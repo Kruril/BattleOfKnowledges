@@ -1,0 +1,29 @@
+.buttonTransparence {
+    -fx-background-color: transparent;
+}
+.buttonTransparence {
+    -fx-cursor: hand;
+}
+
+.buttonTransparence:pressed {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.buttonBasic {
+    -fx-background-color: #e6df15;
+    -fx-background-radius: 20px;
+    -fx-font-size: 30;
+}
+.buttonBasic{
+    -fx-cursor: hand;
+}
+
+.buttonBasic:pressed {
+    -fx-background-color: #e6c41b;
+    -fx-scale-shape: true;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+
+}
