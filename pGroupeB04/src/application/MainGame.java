@@ -16,8 +16,8 @@ public class MainGame extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            //WindowMainPage fenetre = new WindowMainPage();
-            GameMainPage fenetre = new GameMainPage();
+            WindowMainPage fenetre = new WindowMainPage();
+            //GameMainPage fenetre = new GameMainPage();
             Scene scene = new Scene(fenetre, 1280,720);
             scene.getStylesheets().add("styles/btnStyles.css");
             primaryStage.setScene(scene);
