@@ -25,5 +25,19 @@
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
     -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+}
 
+.label {
+	-fx-font-family: Cagliostro;
+	-fx-font-style: normal;
+	-fx-font-weight: normal;
+	-fx-font-size: 36px;
+	-fx-line-height: 49px;
+	-fx-color: white;
+}
+
+.textBox {
+	-fx-border-radius: 40px;
+	-fx-background-radius: 40px;
+	-fx-background-color: grey;
 }

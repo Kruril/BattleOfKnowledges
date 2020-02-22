@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import view.AdminPage;
 import view.GameMainPage;
 import view.WindowMainPage;
 
@@ -16,9 +17,10 @@ public class MainGame extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            WindowMainPage fenetre = new WindowMainPage();
+            //WindowMainPage fenetre = new WindowMainPage();
             //GameMainPage fenetre = new GameMainPage();
-            Scene scene = new Scene(fenetre, 1280,720);
+        	AdminPage admin = new AdminPage();
+            Scene scene = new Scene(admin, 1200,800);
             scene.getStylesheets().add("styles/btnStyles.css");
             primaryStage.setScene(scene);
             primaryStage.setTitle("Going for gold");
