@@ -1,0 +1,104 @@
+{
+  "questions": [
+    {
+      "author": "Charlier Guillaume",
+      "theme": "Country",
+      "clues": [
+        "My capital has a metal structure which is one of my symbols",
+        "My motto is \"Unity is strength\"",
+        "My king during the Second World War ordered cessation of fighting by the army at the end of May 1940"
+      ],
+      "answer": "Belgium"
+    },
+    {
+      "author": "Charlier Guillaume",
+      "theme": "Country",
+      "clues": [
+        "It was the place of one of the greatest defeats of Napoleon",
+        "Without this country there would be no international space station",
+        "It is the largest state in the world"
+      ],
+      "answer": "Russia"
+    },
+    {
+      "author": "Charlier Guillaume",
+      "theme": "Country",
+      "clues": [
+        "This country is nicknamed \"the African miracle\", \"the exception of the continent\" or \"the Switzerland of Africa\"",
+        "Poaching of elephants and rhinos is very present",
+        "I am between Namibia and Zimbabwe"
+      ],
+      "answer": "Botswana"
+    },
+    {
+      "author": "Trempont Mathieu",
+      "theme": "Country",
+      "clues": [
+        "The ancients worshiped more than 1,400 different gods and goddesses in my country",
+        "The Statue of Liberty was designed for me, but fate decided otherwise",
+        "I have the most famous pyramids in the world : Khéops, Khéphren et Mykérinos"
+      ],
+      "answer": "Egypt"
+    },
+    {
+      "author": "Trempont Mathieu",
+      "theme": "Country",
+      "clues": [
+        "I host one of the most famous carnivals in the world",
+        "My flag contains 27 stars, one for each states plus one for the federal district where is located my capital",
+        "I am the nation that won the Football World Cup the most times (5 times)"
+      ],
+      "answer": "Brazil"
+    },
+    {
+      "author": "Trempont Mathieu",
+      "theme": "Country",
+      "clues": [
+        "My capital is the most populous city in the world",
+        "There is almost no delay in my rail network",
+        "I am one of the last countries to have an emperor"
+      ],
+      "answer": "Japan"
+    },
+    {
+      "author": "Gailliez Valentin",
+      "theme": "Country",
+      "clues": [
+        "I'm divided into 58 provinces and five municipalities, which are administratively on the same level as provinces.",
+        "In 2017, I signed the UN treaty on the Prohibition of Nuclear Weapons",
+        "I'm located on the eastern Indochinese Peninsula"
+      ],
+      "answer": "Vietnam"
+    },
+    {
+      "author": "Gailliez Valentin",
+      "theme": "Country",
+      "clues": [
+        "Until the early 19th century, I was best known as \"New Holland\"",
+        "I'm the oldest, flattest, and driest inhabited continent, with the least fertile soils",
+        "I'm separated from Asia by the Arafura and Timor seas, with the Coral Sea lying off the Queensland coast"
+      ],
+      "answer": "Australia"
+    },
+    {
+      "author": "Gailliez Valentin",
+      "theme": "Country",
+      "clues": [
+        "With an estimated 48 million people in 2019, I'm the third-most populous country in Latin America",
+        "The country has between 40,000 and 45,000 plant species, equivalent to 10 or 20% of total global species",
+        "I'ms bordered to the northwest by Panama, to the east by Venezuela and Brazil, and to the south by Ecuador and Peru"
+      ],
+      "answer": "Colombia"
+    },
+    {
+      "author": "Gailliez Valentin",
+      "theme": "Country",
+      "clues": [
+        "My name is probably from a Portuguese transliteration of the name of the Zenaga also known as the Sanhaja",
+        "I will host the 2022 Summer Youth Olympics",
+        "I am externally bounded by the Atlantic Ocean to the west, Mauritania to the north, Mali to the east, and Guinea and Guinea-Bissau to the south"
+      ],
+      "answer": "Senegal"
+    }
+  ]
+}
