@@ -1,0 +1,105 @@
+{
+  "questions":[
+	{
+		"author":"Valentin Gailliez",
+		"theme":"Villains Disney",
+		"clues":[
+			"I teamed up in order to kill my own brother and nephew",
+			"My heir has a name with the same meaning as mine",
+			"I died killed and eaten by \"my friends\" after calling them enemies"
+		],
+		"answer":"Scar"
+	},
+	{
+		"author":"Valentin Gailliez",
+		
+		"theme":"Villains Disney",
+		"clues":[
+			"Always accompanied by my sarcastic, devious pet parrot, I'm the second most powerful authority in the kingdom",
+			"I constantly manipulate the Sultan by means of hypnotizing him with a magical snake-headed staff",
+			"I am a tall, bony man dressed in extravagant clothing, always seen carrying a gold, ruby-eyed, cobra headed staff to supplement my magical powers"
+		],
+		"answer":"Jafar"
+	},
+	{
+		"author":"Valentin Gailliez",
+		"theme":"Villains Disney",
+		"clues":[
+			"A religious extremist and a dogmatist, I'm convinced that all my actions are justified because they are God's will",
+			"My goal is to rid Paris of gypsies",
+			"I'm most frequently dressed in a black and purple robe, a purple jumpsuit, a purple and black striped tricorn hat with a red tassel attached to the bottom, and black shoulder pads with red stripes"
+		],
+		"answer":"Frollo"
+	},
+	{
+		"author":"Valentin Gailliez",
+		"theme":"Villains Disney",
+		"clues":[
+			"A trully cruel and sadistic megalomaniac, I’m solely driven by power and the desire to earn myself riches",
+			"I destest ,above all else, being referred to as a rat",
+			"I make plans to take over London by replacing the Mouse Queen with a robotic fake built by a toymaker named Flaversham"
+		],
+		"answer":"Ratigan"
+	},
+	{
+		"author":"Valentin Gailliez",
+		"theme":"Villains Disney",
+		"clues":[
+			"While I’m incredibly cruel, deadly, short tempered and show no care for my crew, I seem to only tolerate the bumbling actions of Mr. Smee",
+			"It is rumored that my appearance is based on that of my animator, Frank Thomas",
+			"Mr. Smee is my faithful first mate"
+		],
+		"answer":"Captain Hook"
+	},
+	{
+		"author":"Valentin Gailliez",
+		"theme":"Villains Disney",
+		"clues":[
+			"I am an extremely thin woman that appears to almost look skeletal in appearance around the curves",
+			"I hire Horace and Jasper Badun, two incompetent crooks, to steal puppies",
+			"I am an old school friend of Anita Radcliffe"
+		],
+		"answer":"Cruella de Vil"
+	},
+	{
+		"author":"Valentin Gailliez",
+		"theme":"Villains Disney",
+		"clues":[
+			"I was pretty egotistical and cocky, which sometimes led to his friends bailing me out",
+			"It has been strongly implied that I see humans as unforgiving, and soulless creatures who continuously cause havoc on nature, using narcissistic entitlement as justification for such acts",
+			"I hold a burning hatred for mankind and vow to kill any human that steps foot within the jungle"
+		],
+		"answer":"Shere Khan"
+	},
+	{
+		"author":"Valentin Gailliez",
+		"theme":"Villains Disney",
+		"clues":[
+			"My alter-ego, Vanessa, is a fair-skinned human female with long wavy brown hair and pink lips",
+			"I was able to concoct various potions to create various spells, including mass-transfer as well as physically altering people's bodies",
+			"I'm a plump light lavender-skinned, white-haired cecaelia"
+		],
+		"answer":"Ursula"
+	},
+	{
+		"author":"Valentin Gailliez",
+		"theme":"Villains Disney",
+		"clues":[
+			"I was voiced by Eleanor Audley, who also provided live-action reference for the character",
+			"I seek to punish and abuse my stepdaughter's psychologically, motivated by my jealousy being far more beautiful and graceful than her own awkward daughters, Anastasia and Drizella",
+			"I am also known as the \"Wicked Stepmother\""
+		],
+		"answer":"Lady Tremaine"
+	},
+	{
+		"author":"Valentin Gailliez",
+		"theme":"Villains Disney",
+		"clues":[
+			"I am commonly known as the Shadow Man",
+			"I am a scheming bokor, driven mostly by greed and the desire to have authority over others",
+			"I am accompanied by my sidekick shadow, which has a will and personality of my own"
+		],
+		"answer":"Doctor Facilier"
+	}
+	]
+}

@@ -81,7 +81,7 @@ public class GamePage extends BorderPane{
 
 	public Label getLblTitle() {
 		if (lblTitle == null) {
-			lblTitle = new Label("Ici le thème");
+			lblTitle = new Label("Ici le thÃ¨me");
 			lblTitle.getStyleClass().addAll("labelBasique","labelTitle");
 		}
 		return lblTitle;
