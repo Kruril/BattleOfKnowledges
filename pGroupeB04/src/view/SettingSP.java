@@ -92,7 +92,7 @@ public class SettingSP extends StackPane {
     public Label getLblSound() {
         if (lblSound == null) {
             lblSound = new Label("       Sound :");
-            lblSound.getStyleClass().add("lablelBasique");
+            lblSound.getStyleClass().add("labelBasique");
         }
         return lblSound;
     }
@@ -100,7 +100,7 @@ public class SettingSP extends StackPane {
     public Label getLblResolution() {
         if (lblResolution == null) {
             lblResolution = new Label("Resolution :");
-            lblResolution.getStyleClass().add("lablelBasique");
+            lblResolution.getStyleClass().add("labelBasique");
         }
         return lblResolution;
     }
@@ -108,7 +108,7 @@ public class SettingSP extends StackPane {
     public Label getLblAvatar() {
         if (lblAvatar == null) {
             lblAvatar = new Label("       Avatar :");
-            lblAvatar.getStyleClass().add("lablelBasique");
+            lblAvatar.getStyleClass().add("labelBasique");
         }
         return lblAvatar;
     }
