@@ -7,7 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import view.ChoiceThemeGP;
-import view.MainGamePage;
+import view.GamePage;
 import view.MainPageSP;
 import view.AdminLoginSP;
 import view.SettingSP;
@@ -35,7 +35,7 @@ public class Main extends Application {
         ChoiceThemeGP choiceTheme = new ChoiceThemeGP();
         
         //Main Game Page
-        MainGamePage mainGame = new MainGamePage();
+        GamePage mainGame = new GamePage();
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

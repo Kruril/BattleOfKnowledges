@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.BackGroundLoader;
 
-public class MainGamePage extends BorderPane{
+public class GamePage extends BorderPane{
 	
 	private Label lblTitle;
 	
@@ -27,13 +27,13 @@ public class MainGamePage extends BorderPane{
 	private Label lblPoint4;
 	private Label lblPoints;
 	
-	private Timer timer;
+	private Label lblTimer;
 	
 	private Button btnSkip;
 	private TextField txtAnswer;
 	private Button btnOk;
 	
-	public MainGamePage() {
+	public GamePage() {
         //BACKGROUND
         this.setBackground(BackGroundLoader.builderBackGround());
 		
@@ -58,10 +58,12 @@ public class MainGamePage extends BorderPane{
 		vbClues.setAlignment(Pos.CENTER);
 		vbClues.setSpacing(15);
 		
-		/*VBox vbTimer = new VBox();
-		vbTimer.getChildren().add(getTimer());*/
+		VBox vbTimer = new VBox();
+		vbTimer.getChildren().addAll(getLblTimer());
+		vbTimer.setAlignment(Pos.CENTER);
+		vbTimer.setSpacing(15);
 		
-		hbCenter.getChildren().addAll(vbPoints, vbClues);
+		hbCenter.getChildren().addAll(vbPoints, vbClues, vbTimer);
 		hbCenter.setAlignment(Pos.CENTER_LEFT);
 		hbCenter.setSpacing(50);
 		hbCenter.setPadding(new Insets(0,0,0,40));
@@ -157,11 +159,12 @@ public class MainGamePage extends BorderPane{
 		return lblPoint4;
 	}
 
-	public Timer getTimer() {
-		if (timer == null) {
-			timer = new Timer();
+	public Label getLblTimer() {
+		if (lblTimer == null) {
+			lblTimer = new Label("Ici Timer");
+			lblTimer.getStyleClass().addAll("labelBasique","labelPoints");
 		}
-		return timer;
+		return lblTimer;
 	}
 
 	public Button getBtnSkip() {
