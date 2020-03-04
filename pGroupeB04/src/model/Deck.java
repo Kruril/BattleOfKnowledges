@@ -1,5 +1,8 @@
 package model;
 
+import com.google.gson.Gson;
+import serialisation.LectureEcriture;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +51,16 @@ public class Deck {
         }
         return tpm;
     }
+
+	public String toJson(){
+		Gson gson = new Gson();
+		return gson.toJson( this);
+	}
+
+	public static Deck fromJson(String fichier){
+		Gson gson = new Gson();
+		return LectureEcriture.readString(fichier);
+	}
 	
 }
 

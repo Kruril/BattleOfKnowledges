@@ -90,16 +90,6 @@ public class Question implements Serializable {
 	public String toString() {
 		return "Question [author=" + author + ", theme=" + theme + ", clues=" + clues + ", answer=" + answer + "]";
 	}
-
-	public String toJson(){
-		Gson gson = new Gson();
-		return gson.toJson( this);
-	}
-
-	public static Question fromJson(String fichier){
-		Gson gson = new Gson();
-		return LectureEcriture.readString(fichier);
-	}
 	
 	public Question clone() {
 		return new Question(author, theme,answer);
