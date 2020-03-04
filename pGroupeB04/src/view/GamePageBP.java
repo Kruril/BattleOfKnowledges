@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.BackGroundLoader;
 
-public class GamePage extends BorderPane{
+public class GamePageBP extends BorderPane{
 	
 	private Label lblTitle;
 	
@@ -31,7 +31,7 @@ public class GamePage extends BorderPane{
 	private TextField txtAnswer;
 	private Button btnOk;
 	
-	public GamePage() {
+	public GamePageBP() {
         //BACKGROUND
         this.setBackground(BackGroundLoader.builderBackGround());
 		

@@ -6,10 +6,10 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import view.ChoiceThemeGP;
-import view.GamePage;
+import view.GamePageBP;
 import view.MainPageSP;
 import view.AdminLoginSP;
+import view.ChoiceThemeAP;
 import view.SettingSP;
 
 public class Main extends Application {
@@ -32,10 +32,10 @@ public class Main extends Application {
         SettingSP settingPage = new SettingSP();
 
         //Choice theme page
-        ChoiceThemeGP choiceTheme = new ChoiceThemeGP();
+        ChoiceThemeAP choiceTheme = new ChoiceThemeAP();
         
         //Main Game Page
-        GamePage mainGame = new GamePage();
+        GamePageBP mainGame = new GamePageBP();
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
@@ -51,7 +51,7 @@ public class Main extends Application {
         SettingSP.getBtnAdminConnect().setOnAction(event -> primaryStage.getScene().setRoot(adminPage));
 
         AdminLoginSP.getBtnBack().setOnAction(event -> primaryStage.getScene().setRoot(settingPage));
-        ChoiceThemeGP.getValidate().setOnAction(event -> primaryStage.getScene().setRoot(mainGame));
+        ChoiceThemeAP.getValidate().setOnAction(event -> primaryStage.getScene().setRoot(mainGame));
 
 //        scene.setOnKeyPressed(event -> {
 //            if (event.getCode() == KeyCode.F12) {
