@@ -1,13 +1,16 @@
 package view;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import model.BackGroundLoader;
 
 public class GamePage extends BorderPane{
@@ -119,6 +122,7 @@ public class GamePage extends BorderPane{
 		if (lblPoint0 == null) {
 			lblPoint0 = new Label("0");
 			lblPoint0.getStyleClass().addAll("labelBasique","labelPoints");
+			lblPoint0.setStyle("-fx-background-color: orange;");
 		}
 		return lblPoint0;
 	}
@@ -185,6 +189,12 @@ public class GamePage extends BorderPane{
 		if (btnOk == null) {
 			btnOk = new Button("Ok");
 			btnOk.getStyleClass().addAll("buttonBasic","buttonTextField");
+			/*btnOk.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					getLblPoint0().setStyle("-fx-background-color: orange;");
+				}
+			});*/
 		}
 		return btnOk;
 	}

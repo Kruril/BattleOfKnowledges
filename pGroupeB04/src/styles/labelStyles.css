@@ -17,7 +17,7 @@
     -fx-background-radius: 65; 
     -fx-min-width:850;
     -fx-min-height:100;
-    -fx-graphic-hpos:center;
+	-fx-alignment:center;
 }
 
 .labelPoints {
@@ -25,7 +25,7 @@
 	-fx-border-radius: 15; 
     -fx-background-radius: 15; 
     -fx-min-width:75;
-    -fx-graphic-hpos:center;
+	-fx-alignment:center;
 }
 
 .labelTitle {
