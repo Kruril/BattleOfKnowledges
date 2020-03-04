@@ -67,14 +67,14 @@ public class AdminLoginSP extends StackPane {
     public Label getLblLogin() {
         if (lblLogin == null) {
             lblLogin = new Label("      Login :");
-            lblLogin.getStyleClass().add("lablelBasique");
+            lblLogin.getStyleClass().add("labelBasique");
         }
         return lblLogin;
     }
     public Label getLblPassword() {
         if (lblPassword == null) {
             lblPassword = new Label("Password :");
-            lblPassword.getStyleClass().add("lablelBasique");
+            lblPassword.getStyleClass().add("labelBasique");
         }
         return lblPassword;
     }

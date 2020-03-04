@@ -19,7 +19,7 @@ import model.BackGroundLoader;
 public class ChoiceThemeGP extends GridPane{
 	private Label theme;
 	private Button thm1,thm2,thm3,thm4;
-	private Button validate;
+	private static Button validate;
 	public ChoiceThemeGP() {
         //BACKGROUND
         this.setBackground(BackGroundLoader.builderBackGround());
@@ -34,7 +34,7 @@ public class ChoiceThemeGP extends GridPane{
 	public Label getTheme() {
 		if(theme==null) {
 			theme=new Label("Choose Your Theme");
-			theme.getStyleClass().add("lablelBasique");
+			theme.getStyleClass().add("labelBasique");
 		}
 		return theme;
 	}
@@ -62,7 +62,7 @@ public class ChoiceThemeGP extends GridPane{
 			thm4.getStyleClass().add("buttonBasic");
 		}return thm4;
 	}
-	public Button getValidate() {
+	public static Button getValidate() {
 		if(validate==null) {
 			validate=new Button("Validate");
 			validate.getStyleClass().add("buttonBasic");

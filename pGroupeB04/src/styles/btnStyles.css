@@ -10,8 +10,6 @@
     -fx-scale-y: 1.05;
 }
 
-
-
 .buttonBasic {
     -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
     rgb(20, 233, 101), #6ecc0e);

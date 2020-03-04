@@ -12,3 +12,12 @@
     -fx-border-color: blue;
     -fx-border-width: 4px;
 }
+
+.vboxPoints {
+	-fx-padding: 10;
+	-fx-border-width: 2;
+	-fx-border-radius: 5;
+	-fx-background-color: #5094BF;
+	-fx-border-radius: 15; 
+    -fx-background-radius: 15; 
+}
