@@ -4,13 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import view.GamePageBP;
-import view.MainPageSP;
-import view.AdminLoginSP;
-import view.ChoiceThemeAP;
-import view.SettingSP;
+import view.*;
 
 public class Main extends Application {
 
@@ -32,7 +27,7 @@ public class Main extends Application {
         SettingSP settingPage = new SettingSP();
 
         //Choice theme page
-        ChoiceThemeAP choiceTheme = new ChoiceThemeAP();
+        ChoiceThemeBP choiceTheme = new ChoiceThemeBP();
         
         //Main Game Page
         GamePageBP mainGame = new GamePageBP();
@@ -42,6 +37,7 @@ public class Main extends Application {
         primaryStage.setMinHeight(720.);
         primaryStage.setTitle("Battle of knowledges");
         primaryStage.getIcons().add(new Image("images/base/euro.png"));
+
         primaryStage.show();
 
         MainPageSP.getBtnSetting().setOnAction(event -> primaryStage.getScene().setRoot(settingPage));
@@ -52,7 +48,7 @@ public class Main extends Application {
         SettingSP.getBtnAdminConnect().setOnAction(event -> primaryStage.getScene().setRoot(adminPage));
 
         AdminLoginSP.getBtnBack().setOnAction(event -> primaryStage.getScene().setRoot(settingPage));
-        ChoiceThemeAP.getValidate().setOnAction(event -> primaryStage.getScene().setRoot(mainGame));
+        ChoiceThemeBP.getValidate().setOnAction(event -> primaryStage.getScene().setRoot(mainGame));
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F12) {

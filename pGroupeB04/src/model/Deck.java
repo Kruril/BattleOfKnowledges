@@ -15,8 +15,7 @@ public class Deck {
 	}
 	
 	public List<Question> getListe() {
-		List<Question> cloneListe = new ArrayList<>(questions);
-		return cloneListe;
+		return new ArrayList<>(questions);
 	}
 
 	public void setQuestions(List<Question> questions) {
