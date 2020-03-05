@@ -22,7 +22,8 @@ public class AdminLoginSP extends StackPane {
     private PasswordField pwfPassword;
 
     private Button btnConnection;
-    private static Button btnBack;
+    private Button btnBack;
+    private SettingSP setting;
 
     public AdminLoginSP() {
 
@@ -100,14 +101,19 @@ public class AdminLoginSP extends StackPane {
         }
         return btnConnection;
     }
-    public static Button getBtnBack() {
+    public Button getBtnBack() {
         if (btnBack == null) {
             btnBack = new Button("Back");
             btnBack.getStyleClass().add("buttonBasic");
+            btnBack.setOnAction(event -> getScene().setRoot(getSetting()));
         }
         return btnBack;
     }
 
-
-
+    public SettingSP getSetting() {
+        if (setting == null) {
+            setting = new SettingSP();
+        }
+        return setting;
+    }
 }

@@ -1,8 +1,5 @@
 package model;
 
-import com.google.gson.Gson;
-import serialisation.LectureEcriture;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

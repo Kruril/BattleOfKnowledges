@@ -2,6 +2,7 @@ package view;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,9 +12,10 @@ import model.BackGroundLoader;
 
 public class MainPageSP extends StackPane {
 
-    private static Button btnSetting, btnSolo;
-    private Button btnOff, btnMulti;
+    private Button btnOff, btnMulti,btnSetting,btnSolo;
     private ImageView ivTitle;
+    private SettingSP setting;
+    private ChoiceThemeBP choiceTheme;
 
     public MainPageSP() {
         //BACKGROUND
@@ -36,15 +38,16 @@ public class MainPageSP extends StackPane {
 
         this.getChildren().addAll(getBtnSetting(), getBtnOff(),getIvTitle(), getBtnSolo(),getBtnMulti());
 
-        getBtnOff().setOnAction(event -> ((Stage)(((Button)event.getSource()).getScene().getWindow())).close());
     }
 
-    public static Button getBtnSetting() {
+    public Button getBtnSetting() {
         if (btnSetting == null) {
             ImageView setting = new ImageView(new Image("images/icon/settings.png", 50,
                     50,true,true));
             btnSetting = new Button("" , setting);
             btnSetting.getStyleClass().add("buttonTransparence");
+
+            btnSetting.setOnAction(event -> getScene().setRoot(getSetting()));
         }
         return btnSetting;
     }
@@ -55,14 +58,16 @@ public class MainPageSP extends StackPane {
                     50,true,true));
             btnOff = new Button("", powerOff);
             btnOff.getStyleClass().add("buttonTransparence");
+            btnOff.setOnAction(event -> ((Stage)(((Button)event.getSource()).getScene().getWindow())).close());
         }
         return btnOff;
     }
 
-    public static Button getBtnSolo() {
+    public Button getBtnSolo() {
         if (btnSolo == null) {
             btnSolo = new Button("SoloPlayer");
             btnSolo.getStyleClass().add("buttonBasic");
+            btnSolo.setOnAction(event -> getScene().setRoot(getChoiceTheme()));
         }
         return btnSolo;
     }
@@ -80,5 +85,19 @@ public class MainPageSP extends StackPane {
             ivTitle = new ImageView(new Image("images/base/Title.png"));
         }
         return ivTitle;
+    }
+
+    public SettingSP getSetting() {
+        if (setting == null) {
+            setting = new SettingSP();
+        }
+        return setting;
+    }
+
+    public ChoiceThemeBP getChoiceTheme() {
+        if (choiceTheme == null) {
+            choiceTheme = new ChoiceThemeBP();
+        }
+        return choiceTheme;
     }
 }

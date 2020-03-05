@@ -21,8 +21,10 @@ public class SettingSP extends StackPane {
     private Slider slSound;
     private ComboBox<String> cmResolusion;
     private ComboBox<ImageView> cmAvatar;
-    private static Button btnAdminConnect;
-    private static Button btnBack;
+    private Button btnAdminConnect;
+    private Button btnBack;
+    private MainPageSP mainPage;
+    private AdminLoginSP adminLogin;
 
     public SettingSP() {
 
@@ -65,21 +67,6 @@ public class SettingSP extends StackPane {
 
         this.getChildren().addAll(getIvTitle(), vContainer, getBtnBack(), getBtnAdminConnect());
 
-        getCmResolusion().setOnAction(event -> {
-            String choice = getCmResolusion().getSelectionModel().getSelectedItem();
-
-            if (choice == "FullScreen") {
-                ((Stage)(((ComboBox)event.getSource()).getScene().getWindow())).setFullScreen(true);
-            }
-            else {
-                String width = choice.substring(0,4);
-                String height = choice.substring(5);
-                ((Stage)(((ComboBox)event.getSource()).getScene().getWindow())).setFullScreen(false);
-                (((ComboBox)event.getSource()).getScene().getWindow()).setWidth(Double.valueOf(width));
-                (((ComboBox)event.getSource()).getScene().getWindow()).setHeight(Double.valueOf(height));
-                (((ComboBox)event.getSource()).getScene().getWindow()).centerOnScreen();
-            }
-        });
     }
 
     public ImageView getIvTitle() {
@@ -128,6 +115,22 @@ public class SettingSP extends StackPane {
             cmResolusion.getStyleClass().add("textBox");
             cmResolusion.getItems().addAll("1080*720","1280*720","1280*800","1280*1024", "1920*1080",
                     "FullScreen");
+
+            getCmResolusion().setOnAction(event -> {
+                String choice = getCmResolusion().getSelectionModel().getSelectedItem();
+
+                if (choice.equals("FullScreen")) {
+                    ((Stage)(((ComboBox)event.getSource()).getScene().getWindow())).setFullScreen(true);
+                }
+                else {
+                    String width = choice.substring(0,4);
+                    String height = choice.substring(5);
+                    ((Stage)(((ComboBox)event.getSource()).getScene().getWindow())).setFullScreen(false);
+                    (((ComboBox)event.getSource()).getScene().getWindow()).setWidth(Double.parseDouble(width));
+                    (((ComboBox)event.getSource()).getScene().getWindow()).setHeight(Double.parseDouble(height));
+                    (((ComboBox)event.getSource()).getScene().getWindow()).centerOnScreen();
+                }
+            });
         }
         return cmResolusion;
     }
@@ -152,19 +155,35 @@ public class SettingSP extends StackPane {
         return cmAvatar;
     }
 
-    public static Button getBtnAdminConnect() {
+    public Button getBtnAdminConnect() {
         if (btnAdminConnect == null) {
             btnAdminConnect = new Button("Admin");
             btnAdminConnect.getStyleClass().add("buttonBasic");
+            btnAdminConnect.setOnAction(event -> getScene().setRoot(getAdminLogin()));
         }
         return btnAdminConnect;
     }
 
-    public static Button getBtnBack() {
+    public Button getBtnBack() {
         if (btnBack == null) {
             btnBack = new Button("Back");
             btnBack.getStyleClass().add("buttonBasic");
+            btnBack.setOnAction(event -> getScene().setRoot(getMainPage()));
         }
         return btnBack;
+    }
+
+    public MainPageSP getMainPage() {
+        if (mainPage == null) {
+            mainPage = new MainPageSP();
+        }
+        return mainPage;
+    }
+
+    public AdminLoginSP getAdminLogin() {
+        if (adminLogin == null) {
+            adminLogin = new AdminLoginSP();
+        }
+        return adminLogin;
     }
 }

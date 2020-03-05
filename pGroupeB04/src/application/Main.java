@@ -19,15 +19,6 @@ public class Main extends Application {
         MainPageSP menuPage = new MainPageSP();
         scene = new Scene(menuPage, 1280.,720.);
         scene.getStylesheets().addAll("styles/btnStyles.css", "styles/labelStyles.css", "styles/BoxStyles.css");
-
-        //Admin login Page
-        AdminLoginSP adminPage = new AdminLoginSP();
-
-        //Setting page
-        SettingSP settingPage = new SettingSP();
-
-        //Choice theme page
-        ChoiceThemeBP choiceTheme = new ChoiceThemeBP();
         
         //Main Game Page
         GamePageBP mainGame = new GamePageBP();
@@ -40,14 +31,6 @@ public class Main extends Application {
 
         primaryStage.show();
 
-        MainPageSP.getBtnSetting().setOnAction(event -> primaryStage.getScene().setRoot(settingPage));
-        MainPageSP.getBtnSolo().setOnAction(event -> primaryStage.getScene().setRoot(choiceTheme));
-
-        SettingSP.getBtnBack().setOnAction(event -> primaryStage.getScene().setRoot(menuPage));
-
-        SettingSP.getBtnAdminConnect().setOnAction(event -> primaryStage.getScene().setRoot(adminPage));
-
-        AdminLoginSP.getBtnBack().setOnAction(event -> primaryStage.getScene().setRoot(settingPage));
         ChoiceThemeBP.getValidate().setOnAction(event -> primaryStage.getScene().setRoot(mainGame));
 
         scene.setOnKeyPressed(event -> {
