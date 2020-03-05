@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import model.Deck;
 import model.Question;
 
+
 import java.io.*;
 
 public class LectureEcriture implements Serializable {

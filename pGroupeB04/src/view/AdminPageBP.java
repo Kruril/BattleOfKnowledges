@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 
-public class AdminPage extends BorderPane {
+public class AdminPageBP extends BorderPane {
 
 	private ImageView imgTitre;
 	
@@ -32,7 +32,7 @@ public class AdminPage extends BorderPane {
 	private Button btnConnection;
 	private Button btnBack;
 	
-	public AdminPage() {
+	public AdminPageBP() {
 		
 		//BACKGROUND
         BackgroundImage bgiAdminPage = new BackgroundImage(new Image("images/Background.png"),BackgroundRepeat.NO_REPEAT,
