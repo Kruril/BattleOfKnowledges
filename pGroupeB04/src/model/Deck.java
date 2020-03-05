@@ -14,14 +14,15 @@ public class Deck {
 		questions = new ArrayList<>();
 	}
 	
-	public List<Question> getListe(List<Question> questions) {
-		List<Question> cloneListe = new ArrayList<>();
-		for (Question question : questions) {
-			cloneListe.add(question);
-		}
+	public List<Question> getListe() {
+		List<Question> cloneListe = new ArrayList<>(questions);
 		return cloneListe;
 	}
-	
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
 	public void addQuestion(Question questionAdd) {
 		if (questions.contains(questionAdd)) return;
 		questions.add(questionAdd);
@@ -57,9 +58,8 @@ public class Deck {
 		return gson.toJson( this);
 	}
 
-	public static Deck fromJson(String fichier){
-		Gson gson = new Gson();
-		return LectureEcriture.readString(fichier);
+	public void fromJson(String fichier){
+		this.setQuestions(LectureEcriture.readString(fichier).getListe());
 	}
 	
 }
