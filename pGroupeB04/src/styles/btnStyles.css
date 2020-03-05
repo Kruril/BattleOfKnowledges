@@ -12,7 +12,7 @@
 
 .buttonBasic {
     -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
-    rgb(20, 233, 101), #6ecc0e);
+    #7EC553, #6ecc0e);
     -fx-effect: dropshadow(gaussian,rgba(0, 0, 0, 0.25),4,0,0,4);
     -fx-padding: 20 50 20 50;
     -fx-border-color: #FFC900;

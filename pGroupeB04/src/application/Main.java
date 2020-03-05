@@ -38,7 +38,8 @@ public class Main extends Application {
         GamePageBP mainGame = new GamePageBP();
 
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+        primaryStage.setMinWidth(1080.);
+        primaryStage.setMinHeight(720.);
         primaryStage.setTitle("Battle of knowledges");
         primaryStage.getIcons().add(new Image("images/base/euro.png"));
         primaryStage.show();
@@ -53,16 +54,11 @@ public class Main extends Application {
         AdminLoginSP.getBtnBack().setOnAction(event -> primaryStage.getScene().setRoot(settingPage));
         ChoiceThemeAP.getValidate().setOnAction(event -> primaryStage.getScene().setRoot(mainGame));
 
-//        scene.setOnKeyPressed(event -> {
-//            if (event.getCode() == KeyCode.F12) {
-//                primaryStage.setFullScreen(true);
-//            }
-//
-//        });
-        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F12) {
                 primaryStage.setFullScreen(true);
             }
+
         });
 
     }
