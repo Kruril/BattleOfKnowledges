@@ -1,5 +1,6 @@
 package view;
 
+import application.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -23,7 +24,6 @@ public class AdminLoginSP extends StackPane {
 
     private Button btnConnection;
     private Button btnBack;
-    private SettingSP setting;
 
     public AdminLoginSP() {
 
@@ -105,15 +105,8 @@ public class AdminLoginSP extends StackPane {
         if (btnBack == null) {
             btnBack = new Button("Back");
             btnBack.getStyleClass().add("buttonBasic");
-            btnBack.setOnAction(event -> getScene().setRoot(getSetting()));
+            btnBack.setOnAction(event -> Main.switchScene(new SettingSP()));
         }
         return btnBack;
-    }
-
-    public SettingSP getSetting() {
-        if (setting == null) {
-            setting = new SettingSP();
-        }
-        return setting;
     }
 }

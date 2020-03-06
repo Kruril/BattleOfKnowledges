@@ -1,6 +1,7 @@
 package application;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -9,10 +10,17 @@ import view.*;
 
 public class Main extends Application {
 
+    private static Stage stage;
+
+    public static void switchScene(Parent switchScene) {
+        stage.getScene().setRoot(switchScene);
+    }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        stage = primaryStage;
         Scene scene;
 
         //Main menu page
@@ -37,7 +45,6 @@ public class Main extends Application {
             if (event.getCode() == KeyCode.F12) {
                 primaryStage.setFullScreen(true);
             }
-
         });
 
     }
@@ -47,4 +54,7 @@ public class Main extends Application {
         launch(args);
     }
 
+    public static Stage getStage() {
+        return stage;
+    }
 }

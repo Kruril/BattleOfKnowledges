@@ -1,5 +1,6 @@
 package view;
 
+import application.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -23,8 +24,6 @@ public class SettingSP extends StackPane {
     private ComboBox<ImageView> cmAvatar;
     private Button btnAdminConnect;
     private Button btnBack;
-    private MainPageSP mainPage;
-    private AdminLoginSP adminLogin;
 
     public SettingSP() {
 
@@ -120,15 +119,15 @@ public class SettingSP extends StackPane {
                 String choice = getCmResolusion().getSelectionModel().getSelectedItem();
 
                 if (choice.equals("FullScreen")) {
-                    ((Stage)(((ComboBox)event.getSource()).getScene().getWindow())).setFullScreen(true);
+                    Main.getStage().setFullScreen(true);
                 }
                 else {
                     String width = choice.substring(0,4);
                     String height = choice.substring(5);
-                    ((Stage)(((ComboBox)event.getSource()).getScene().getWindow())).setFullScreen(false);
-                    (((ComboBox)event.getSource()).getScene().getWindow()).setWidth(Double.parseDouble(width));
-                    (((ComboBox)event.getSource()).getScene().getWindow()).setHeight(Double.parseDouble(height));
-                    (((ComboBox)event.getSource()).getScene().getWindow()).centerOnScreen();
+                    Main.getStage().setFullScreen(false);
+                    getScene().getWindow().setWidth(Double.parseDouble(width));
+                    getScene().getWindow().setHeight(Double.parseDouble(height));
+                    getScene().getWindow().centerOnScreen();
                 }
             });
         }
@@ -159,7 +158,7 @@ public class SettingSP extends StackPane {
         if (btnAdminConnect == null) {
             btnAdminConnect = new Button("Admin");
             btnAdminConnect.getStyleClass().add("buttonBasic");
-            btnAdminConnect.setOnAction(event -> getScene().setRoot(getAdminLogin()));
+            btnAdminConnect.setOnAction(event -> Main.switchScene(new AdminLoginSP()));
         }
         return btnAdminConnect;
     }
@@ -168,22 +167,8 @@ public class SettingSP extends StackPane {
         if (btnBack == null) {
             btnBack = new Button("Back");
             btnBack.getStyleClass().add("buttonBasic");
-            btnBack.setOnAction(event -> getScene().setRoot(getMainPage()));
+            btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
         }
         return btnBack;
-    }
-
-    public MainPageSP getMainPage() {
-        if (mainPage == null) {
-            mainPage = new MainPageSP();
-        }
-        return mainPage;
-    }
-
-    public AdminLoginSP getAdminLogin() {
-        if (adminLogin == null) {
-            adminLogin = new AdminLoginSP();
-        }
-        return adminLogin;
     }
 }

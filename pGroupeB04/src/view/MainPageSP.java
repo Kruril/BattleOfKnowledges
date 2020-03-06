@@ -1,5 +1,6 @@
 package view;
 
+import application.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,8 +15,6 @@ public class MainPageSP extends StackPane {
 
     private Button btnOff, btnMulti,btnSetting,btnSolo;
     private ImageView ivTitle;
-    private SettingSP setting;
-    private ChoiceThemeBP choiceTheme;
 
     public MainPageSP() {
         //BACKGROUND
@@ -47,7 +46,7 @@ public class MainPageSP extends StackPane {
             btnSetting = new Button("" , setting);
             btnSetting.getStyleClass().add("buttonTransparence");
 
-            btnSetting.setOnAction(event -> getScene().setRoot(getSetting()));
+            btnSetting.setOnAction(event -> Main.switchScene(new SettingSP()));
         }
         return btnSetting;
     }
@@ -58,7 +57,7 @@ public class MainPageSP extends StackPane {
                     50,true,true));
             btnOff = new Button("", powerOff);
             btnOff.getStyleClass().add("buttonTransparence");
-            btnOff.setOnAction(event -> ((Stage)(((Button)event.getSource()).getScene().getWindow())).close());
+            btnOff.setOnAction(event -> Main.getStage().close());
         }
         return btnOff;
     }
@@ -67,7 +66,7 @@ public class MainPageSP extends StackPane {
         if (btnSolo == null) {
             btnSolo = new Button("SoloPlayer");
             btnSolo.getStyleClass().add("buttonBasic");
-            btnSolo.setOnAction(event -> getScene().setRoot(getChoiceTheme()));
+            btnSolo.setOnAction(event -> Main.switchScene(new ChoiceThemeBP()));
         }
         return btnSolo;
     }
@@ -85,19 +84,5 @@ public class MainPageSP extends StackPane {
             ivTitle = new ImageView(new Image("images/base/Title.png"));
         }
         return ivTitle;
-    }
-
-    public SettingSP getSetting() {
-        if (setting == null) {
-            setting = new SettingSP();
-        }
-        return setting;
-    }
-
-    public ChoiceThemeBP getChoiceTheme() {
-        if (choiceTheme == null) {
-            choiceTheme = new ChoiceThemeBP();
-        }
-        return choiceTheme;
     }
 }
