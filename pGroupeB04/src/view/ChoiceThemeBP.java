@@ -7,14 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.BackGroundLoader;
+import model.BackgroundLoader;
 
 public class ChoiceThemeBP extends BorderPane{
 	private Label theme;
 	private Button thm1,thm2,thm3,thm4;
 	private static Button validate;
 	public ChoiceThemeBP() {
-		this.setBackground(BackGroundLoader.builderBackGround());
+		this.setBackground(BackgroundLoader.builderBackGround());
 
 		HBox hTop=new HBox();
 		hTop.getChildren().addAll(getTheme());

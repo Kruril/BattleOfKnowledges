@@ -12,7 +12,7 @@
 
 .buttonBasic {
     -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
-    #7EC553, #6ecc0e);
+    #3624c5, #2a5bcc);
     -fx-effect: dropshadow(gaussian,rgba(0, 0, 0, 0.25),4,0,0,4);
     -fx-padding: 20 50 20 50;
     -fx-border-color: #FFC900;
@@ -36,12 +36,5 @@
     -fx-scale-y: 1.05;
     -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
     rgb(20, 233, 101), #6ecc0e);
-    -fx-effect: dropshadow(gaussian,rgba(0, 0, 0, 0.25),4,0,0,4);
-    -fx-border-color: #FFC900;
-    -fx-border-width: 4px;
-    -fx-border-radius: 65px;
-    -fx-background-radius: 65px;
-    -fx-font-size: 40;
     -fx-text-fill: black;
-    -fx-font-family: Cagliostro;
 }

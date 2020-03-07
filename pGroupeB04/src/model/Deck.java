@@ -45,11 +45,11 @@ public class Deck {
 	
     @Override
 	public String toString(){
-    	String tpm = "";        
+    	StringBuilder tpm = new StringBuilder();
         for (Question q : questions) {
-        	tpm += q.toString() + "\n";
+        	tpm.append(q.toString()).append("\n");
         }
-        return tpm;
+        return tpm.toString();
     }
 
 	public String toJson(){
@@ -58,7 +58,7 @@ public class Deck {
 	}
 
 	public void fromJson(String fichier){
-		this.setQuestions(LectureEcriture.readString(fichier).getListe());
+		this.setQuestions(LectureEcriture.readStringDeck(fichier).getListe());
 	}
 	
 }

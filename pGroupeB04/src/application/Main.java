@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import utils.Resolution;
 import view.*;
 
 public class Main extends Application {
@@ -22,16 +23,21 @@ public class Main extends Application {
 
         stage = primaryStage;
         Scene scene;
+        Resolution resolution = new Resolution();
+        resolution.fromJson();
 
         //Main menu page
         MainPageSP menuPage = new MainPageSP();
-        scene = new Scene(menuPage, 1280.,720.);
+        scene = new Scene(menuPage);
         scene.getStylesheets().addAll("styles/btnStyles.css", "styles/labelStyles.css", "styles/BoxStyles.css");
         
         //Main Game Page
         GamePageBP mainGame = new GamePageBP();
 
         primaryStage.setScene(scene);
+
+        loadSizeScreen(resolution);
+
         primaryStage.setMinWidth(1080.);
         primaryStage.setMinHeight(720.);
         primaryStage.setTitle("Battle of knowledges");
@@ -47,6 +53,8 @@ public class Main extends Application {
             }
         });
 
+        primaryStage.setOnCloseRequest(event -> resolution.toJson(primaryStage.getWidth(),primaryStage.getHeight()));
+
     }
 
 
@@ -56,5 +64,16 @@ public class Main extends Application {
 
     public static Stage getStage() {
         return stage;
+    }
+
+    public void loadSizeScreen(Resolution resolution) {
+        if (resolution.isFullscreen())
+            stage.setFullScreen(true);
+        else if (resolution.isMaximize())
+            stage.setMaximized(true);
+        else {
+            stage.setWidth(resolution.getWidth());
+            stage.setHeight(resolution.getHeight());
+        }
     }
 }

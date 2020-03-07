@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import model.BackGroundLoader;
+import model.BackgroundLoader;
 
 public class AdminLoginSP extends StackPane {
 
@@ -28,7 +28,7 @@ public class AdminLoginSP extends StackPane {
     public AdminLoginSP() {
 
         //BACKGROUND
-        this.setBackground(BackGroundLoader.builderBackGround());
+        this.setBackground(BackgroundLoader.builderBackGround());
 
         //Top
         StackPane.setAlignment(getImgTitre(), Pos.TOP_CENTER);
@@ -37,9 +37,11 @@ public class AdminLoginSP extends StackPane {
         VBox vContainer = new VBox();
 
         HBox hbLogin = new HBox();
+        hbLogin.setSpacing(20.);
         hbLogin.getChildren().addAll(getLblLogin(), getTxtLogin());
 
         HBox hbPassword = new HBox();
+        hbPassword.setSpacing(20.);
         hbPassword.getChildren().addAll(getLblPassword(),getPwfPassword());
 
         vContainer.getChildren().addAll(hbLogin,hbPassword);
@@ -67,7 +69,8 @@ public class AdminLoginSP extends StackPane {
 
     public Label getLblLogin() {
         if (lblLogin == null) {
-            lblLogin = new Label("      Login :");
+            lblLogin = new Label("Login : ");
+            lblLogin.setAlignment(Pos.CENTER_RIGHT);
             lblLogin.getStyleClass().add("labelBasique");
         }
         return lblLogin;

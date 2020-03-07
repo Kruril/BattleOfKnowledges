@@ -1,6 +1,8 @@
 package view;
 
 import application.Main;
+import enumeration.AvatarPlayer;
+import enumeration.SizeScreen;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,8 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import model.BackGroundLoader;
+import model.BackgroundLoader;
 
 public class SettingSP extends StackPane {
 
@@ -28,7 +29,7 @@ public class SettingSP extends StackPane {
     public SettingSP() {
 
         //BACKGROUND
-        this.setBackground(BackGroundLoader.builderBackGround());
+        this.setBackground(BackgroundLoader.builderBackGround());
 
         //Title
         StackPane.setAlignment(getIvTitle(), Pos.TOP_CENTER);
@@ -77,7 +78,8 @@ public class SettingSP extends StackPane {
 
     public Label getLblSound() {
         if (lblSound == null) {
-            lblSound = new Label("       Sound :");
+            lblSound = new Label("Sound :");
+            lblSound.setAlignment(Pos.CENTER_RIGHT);
             lblSound.getStyleClass().add("labelBasique");
         }
         return lblSound;
@@ -93,7 +95,8 @@ public class SettingSP extends StackPane {
 
     public Label getLblAvatar() {
         if (lblAvatar == null) {
-            lblAvatar = new Label("       Avatar :");
+            lblAvatar = new Label("Avatar :");
+            lblAvatar.setAlignment(Pos.CENTER_RIGHT);
             lblAvatar.getStyleClass().add("labelBasique");
         }
         return lblAvatar;
@@ -110,25 +113,20 @@ public class SettingSP extends StackPane {
     public ComboBox<String> getCmResolusion() {
         if (cmResolusion == null) {
             cmResolusion = new ComboBox<>();
-            cmResolusion.setPromptText("1280*720");
             cmResolusion.getStyleClass().add("textBox");
-            cmResolusion.getItems().addAll("1080*720","1280*720","1280*800","1280*1024", "1920*1080",
-                    "FullScreen");
+            promptTextValue();
+
+            for (SizeScreen size: SizeScreen.values())
+                cmResolusion.getItems().add(size.getValeur());
 
             getCmResolusion().setOnAction(event -> {
                 String choice = getCmResolusion().getSelectionModel().getSelectedItem();
-
-                if (choice.equals("FullScreen")) {
-                    Main.getStage().setFullScreen(true);
-                }
-                else {
-                    String width = choice.substring(0,4);
-                    String height = choice.substring(5);
-                    Main.getStage().setFullScreen(false);
-                    getScene().getWindow().setWidth(Double.parseDouble(width));
-                    getScene().getWindow().setHeight(Double.parseDouble(height));
-                    getScene().getWindow().centerOnScreen();
-                }
+                if (choice.equals("Fullscreen without border"))
+                    fullscreenMode();
+                else if (choice.equals("Fullscreen with border"))
+                    mazimizedMode();
+                else
+                    sizeScreen(choice);
             });
         }
         return cmResolusion;
@@ -140,16 +138,8 @@ public class SettingSP extends StackPane {
             cmAvatar.setPromptText("select avatar");
             cmAvatar.getStyleClass().add("textBox");
 
-            ImageView im1 = new ImageView(new Image("images/avatar/arbre.png", 50,50,
-                    true,true));
-
-            ImageView im2 = new ImageView(new Image("images/avatar/alien.png",50,50,
-                    true,true));
-
-            ImageView im3 = new ImageView(new Image("images/avatar/batter.png",50,50,
-                    true,true));
-
-            cmAvatar.getItems().addAll(im1,im2, im3);
+            for (AvatarPlayer avatar: AvatarPlayer.values())
+                cmAvatar.getItems().add(avatar.getValeur());
         }
         return cmAvatar;
     }
@@ -170,5 +160,43 @@ public class SettingSP extends StackPane {
             btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
         }
         return btnBack;
+    }
+
+    public void sizeScreen(String choice) {
+        String width = choice.substring(0,4);
+        String height = choice.substring(5);
+
+        Main.getStage().setFullScreen(false);
+        Main.getStage().setMaximized(false);
+
+        Main.getStage().setWidth(Double.parseDouble(width));
+        Main.getStage().setHeight(Double.parseDouble(height));
+        getScene().getWindow().centerOnScreen();
+    }
+
+    public void mazimizedMode() {
+        if (Main.getStage().isFullScreen())
+            Main.getStage().setFullScreen(false);
+
+        Main.getStage().setMaximized(true);
+    }
+
+    public void fullscreenMode() {
+        if (Main.getStage().isMaximized())
+            Main.getStage().setMaximized(false);
+
+        Main.getStage().setFullScreen(true);
+    }
+
+    private void promptTextValue() {
+        String resolution;
+        if (Main.getStage().isFullScreen())
+            resolution = SizeScreen.FULLSCREENWOUTBORDER.getValeur();
+        else if (Main.getStage().isMaximized())
+            resolution = SizeScreen.FULLSCREENWBORDER.getValeur();
+        else
+            resolution = (int)Main.getStage().getWidth()+"*"+(int)Main.getStage().getHeight();
+
+        cmResolusion.setPromptText(resolution);
     }
 }

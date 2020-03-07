@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.BackGroundLoader;
+import model.BackgroundLoader;
 
 public class GamePageBP extends BorderPane{
 	
@@ -33,7 +33,7 @@ public class GamePageBP extends BorderPane{
 	
 	public GamePageBP() {
         //BACKGROUND
-        this.setBackground(BackGroundLoader.builderBackGround());
+        this.setBackground(BackgroundLoader.builderBackGround());
 		
 		//TOP
 		HBox hbTop = new HBox();
@@ -186,12 +186,6 @@ public class GamePageBP extends BorderPane{
 		if (btnOk == null) {
 			btnOk = new Button("Ok");
 			btnOk.getStyleClass().addAll("buttonBasic","buttonTextField");
-			/*btnOk.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					getLblPoint0().setStyle("-fx-background-color: orange;");
-				}
-			});*/
 		}
 		return btnOk;
 	}

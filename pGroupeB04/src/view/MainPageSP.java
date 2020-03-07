@@ -3,13 +3,12 @@ package view;
 import application.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import model.BackGroundLoader;
+import model.BackgroundLoader;
+import utils.Resolution;
 
 public class MainPageSP extends StackPane {
 
@@ -18,7 +17,7 @@ public class MainPageSP extends StackPane {
 
     public MainPageSP() {
         //BACKGROUND
-        this.setBackground(BackGroundLoader.builderBackGround());
+        this.setBackground(BackgroundLoader.builderBackGround());
 
         StackPane.setAlignment(getBtnSetting(), Pos.TOP_LEFT);
         StackPane.setMargin(getBtnSetting(), new Insets(10));
@@ -57,7 +56,10 @@ public class MainPageSP extends StackPane {
                     50,true,true));
             btnOff = new Button("", powerOff);
             btnOff.getStyleClass().add("buttonTransparence");
-            btnOff.setOnAction(event -> Main.getStage().close());
+            btnOff.setOnAction(event -> {
+                new Resolution().toJson(Main.getStage().getWidth(),Main.getStage().getHeight());
+                Main.getStage().close();
+            });
         }
         return btnOff;
     }
