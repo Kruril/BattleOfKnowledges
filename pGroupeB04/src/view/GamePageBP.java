@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.BackgroundLoader;
+import model.BackGroundLoader;
 
 public class GamePageBP extends BorderPane{
 	
@@ -33,7 +33,7 @@ public class GamePageBP extends BorderPane{
 	
 	public GamePageBP() {
         //BACKGROUND
-        this.setBackground(BackgroundLoader.builderBackGround());
+        this.setBackground(BackGroundLoader.builderBackGround());
 		
 		//TOP
 		HBox hbTop = new HBox();
@@ -62,7 +62,7 @@ public class GamePageBP extends BorderPane{
 		vbTimer.setSpacing(15);
 		
 		hbCenter.getChildren().addAll(vbPoints, vbClues, vbTimer);
-		hbCenter.setAlignment(Pos.CENTER_LEFT);
+		hbCenter.setAlignment(Pos.CENTER);
 		hbCenter.setSpacing(50);
 		hbCenter.setPadding(new Insets(0,0,0,40));
 		this.setCenter(hbCenter);
