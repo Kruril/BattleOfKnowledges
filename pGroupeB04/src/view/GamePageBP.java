@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.BackGroundLoader;
+import model.BackgroundLoader;
 
 public class GamePageBP extends BorderPane{
 	
@@ -23,7 +23,6 @@ public class GamePageBP extends BorderPane{
 	private Label lblPoint2;
 	private Label lblPoint3;
 	private Label lblPoint4;
-	private Label lblPoints;
 	
 	private Label lblTimer;
 	
@@ -33,7 +32,7 @@ public class GamePageBP extends BorderPane{
 	
 	public GamePageBP() {
         //BACKGROUND
-        this.setBackground(BackGroundLoader.builderBackGround());
+        this.setBackground(BackgroundLoader.builderBackGround());
 		
 		//TOP
 		HBox hbTop = new HBox();
@@ -64,7 +63,6 @@ public class GamePageBP extends BorderPane{
 		hbCenter.getChildren().addAll(vbPoints, vbClues, vbTimer);
 		hbCenter.setAlignment(Pos.CENTER);
 		hbCenter.setSpacing(50);
-		hbCenter.setPadding(new Insets(0,0,0,40));
 		this.setCenter(hbCenter);
 		
 		//BOTTOM
@@ -107,19 +105,11 @@ public class GamePageBP extends BorderPane{
 		}
 		return lblClue3;
 	}
-
-	public Label getLblPoint() {
-		if (lblPoints == null) {
-			lblPoints = new Label();
-		}
-		return lblPoints;
-	}
 	
 	public Label getLblPoint0() {
 		if (lblPoint0 == null) {
 			lblPoint0 = new Label("0");
-			lblPoint0.getStyleClass().addAll("labelBasique","labelPoints");
-			lblPoint0.setStyle("-fx-background-color: orange;");
+			lblPoint0.getStyleClass().addAll("labelBasique","labelPoints", "point-gagne", "point-consicutif");
 		}
 		return lblPoint0;
 	}
@@ -185,7 +175,7 @@ public class GamePageBP extends BorderPane{
 	public Button getBtnOk() {
 		if (btnOk == null) {
 			btnOk = new Button("Ok");
-			btnOk.getStyleClass().addAll("buttonBasic","buttonTextField");
+			btnOk.getStyleClass().add("buttonBasic");
 		}
 		return btnOk;
 	}

@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Question implements Serializable {
+
 	private String author;
 	private String theme;
 	private List<String> clues;
 	private String answer;
-	
-	/**
-	 * @param author
-	 * @param theme
-	 * @param answer
-	 */
+
+
 	public Question(String author, String theme,String answer) {
 		this.author = author;
 		this.theme = theme;

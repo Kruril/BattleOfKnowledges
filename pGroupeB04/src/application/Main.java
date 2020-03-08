@@ -13,6 +13,10 @@ public class Main extends Application {
 
     private static Stage stage;
 
+    /**
+     * method that changes the displayed scene
+     * @param switchScene new scene to display
+     */
     public static void switchScene(Parent switchScene) {
         stage.getScene().setRoot(switchScene);
     }
@@ -66,6 +70,10 @@ public class Main extends Application {
         return stage;
     }
 
+    /**
+     * method that will configure the size of the scene when loading the game
+     * @param resolution object coming from the json containing the size of previous loading
+     */
     public void loadSizeScreen(Resolution resolution) {
         if (resolution.isFullscreen())
             stage.setFullScreen(true);

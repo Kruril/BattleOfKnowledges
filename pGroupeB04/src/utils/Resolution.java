@@ -5,6 +5,10 @@ import serialisation.LectureEcriture;
 
 public class Resolution {
 
+    /**
+     * Class to remember the screen size the next time the game is restarted.
+     */
+
     private double width, height;
     private boolean maximize, fullscreen;
 
@@ -33,11 +37,19 @@ public class Resolution {
         fullscreen = resolution.isFullscreen();
     }
 
+    /**
+     * transforms a resolution object into json format
+     * @param width stage width
+     * @param height stage height
+     */
     public void toJson(Double width, Double height) {
         setResolution(new Resolution(width,height));
         LectureEcriture.writeStringResolu(this);
     }
 
+    /**
+     * transforms a json into a resolution object
+     */
     public void fromJson() {
         this.setResolution(LectureEcriture.readStringResolu());
     }

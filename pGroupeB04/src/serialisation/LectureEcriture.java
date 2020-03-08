@@ -10,6 +10,11 @@ import java.io.*;
 
 public class LectureEcriture implements Serializable {
 
+    /**
+     * method that reads a deck from a json file
+     * @param fichier location and filename
+     * @return an object of type Deck
+     */
     public static Deck readStringDeck(String fichier) {
         Deck deck = null;
         try (InputStreamReader in = new InputStreamReader(new FileInputStream(fichier))){
@@ -21,6 +26,12 @@ public class LectureEcriture implements Serializable {
         return deck;
     }
 
+    /**
+     * method that will transform a Deck object to json format by specifying
+     * the file name
+     * @param fichier location and filename
+     * @param deck object to be transformed
+     */
     public static void writeStringDeck(String fichier, Deck deck) {
         try(OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(fichier))){
             new GsonBuilder()
@@ -32,6 +43,11 @@ public class LectureEcriture implements Serializable {
         }
     }
 
+
+    /**
+     * method that reads a resolution from a json file
+     * @return an object of type Resolution
+     */
     public static Resolution readStringResolu() {
         Resolution resolution = null;
         try (InputStreamReader in = new InputStreamReader(new FileInputStream("pGroupeB04/src/json/resolution/resolution.json"))){
@@ -43,6 +59,12 @@ public class LectureEcriture implements Serializable {
         return resolution;
     }
 
+
+    /**
+     *method that will transform a Resolution object to json format by specifying
+     *the file name
+     * @param resolution object to be transformed
+     */
     public static void writeStringResolu(Resolution resolution) {
         try(OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream("pGroupeB04/src/json/resolution/resolution.json"))){
             new GsonBuilder()

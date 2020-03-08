@@ -2,6 +2,10 @@ package enumeration;
 
 public enum SizeScreen {
 
+    /**
+     * Enum containing the different sizes of the game window.
+     */
+
     SD("1080*720"),
     HDREADY("1280*720"),
     ELEVENINCH("1280*800"),

@@ -46,3 +46,13 @@
     -fx-min-width: 400px;
     -fx-min-height: 100px;
 }
+
+
+.point-gagne {
+    -fx-background-color: orange;
+}
+
+.point-consicutif {
+    -fx-border-width: 4px;
+    -fx-border-color: #b36000;
+}

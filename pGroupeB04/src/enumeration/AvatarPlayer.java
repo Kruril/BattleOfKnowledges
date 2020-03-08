@@ -5,6 +5,10 @@ import javafx.scene.image.ImageView;
 
 public enum AvatarPlayer {
 
+    /**
+     * Enum containing the different avatars of the game
+     */
+
     ARBRE(new ImageView(new Image("images/avatar/arbre.png", 50,50,
             true,true))),
     ALIEN(new ImageView(new Image("images/avatar/alien.png",50,50,

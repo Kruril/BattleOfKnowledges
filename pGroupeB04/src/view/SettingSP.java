@@ -162,6 +162,11 @@ public class SettingSP extends StackPane {
         return btnBack;
     }
 
+
+    /**
+     * method that will set the size of the window via width and height
+     * @param choice Element selected in the combobox
+     */
     public void sizeScreen(String choice) {
         String width = choice.substring(0,4);
         String height = choice.substring(5);
@@ -174,6 +179,9 @@ public class SettingSP extends StackPane {
         getScene().getWindow().centerOnScreen();
     }
 
+    /**
+     * setup the window in maximized
+     */
     public void mazimizedMode() {
         if (Main.getStage().isFullScreen())
             Main.getStage().setFullScreen(false);
@@ -181,6 +189,9 @@ public class SettingSP extends StackPane {
         Main.getStage().setMaximized(true);
     }
 
+    /**
+     * setup the window in full screen
+     */
     public void fullscreenMode() {
         if (Main.getStage().isMaximized())
             Main.getStage().setMaximized(false);
@@ -188,6 +199,10 @@ public class SettingSP extends StackPane {
         Main.getStage().setFullScreen(true);
     }
 
+    /**
+     * displays the size of the window in the combobox
+     * when you get to the parameters page.
+     */
     private void promptTextValue() {
         String resolution;
         if (Main.getStage().isFullScreen())
