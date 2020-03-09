@@ -70,7 +70,7 @@ public class GamePageBP extends BorderPane{
 		hbBottom.getChildren().addAll(getBtnSkip(), getTxtAnswer(), getBtnOk());
 		hbBottom.setSpacing(10);
 		hbBottom.setAlignment(Pos.CENTER);
-		hbBottom.setPadding(new Insets(0,0,30,0));
+		hbBottom.setPadding(new Insets(0,30,30,0));
 		this.setBottom(hbBottom);
 	}
 
@@ -159,7 +159,7 @@ public class GamePageBP extends BorderPane{
 	public Button getBtnSkip() {
 		if (btnSkip == null) {
 			btnSkip = new Button("Skip"); 
-			btnSkip.getStyleClass().add("buttonBasic");
+			btnSkip.getStyleClass().add("buttonGame");
 		}
 		return btnSkip;
 	}
@@ -175,7 +175,7 @@ public class GamePageBP extends BorderPane{
 	public Button getBtnOk() {
 		if (btnOk == null) {
 			btnOk = new Button("Ok");
-			btnOk.getStyleClass().add("buttonBasic");
+			btnOk.getStyleClass().add("buttonGame");
 		}
 		return btnOk;
 	}
