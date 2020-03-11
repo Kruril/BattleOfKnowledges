@@ -110,7 +110,7 @@ public class GamePageBP extends BorderPane{
 	public Label getLblPoint0() {
 		if (lblPoint0 == null) {
 			lblPoint0 = new Label("0");
-			lblPoint0.getStyleClass().addAll("labelBasique","labelPoints", "point-gagne", "point-consicutif");
+			lblPoint0.getStyleClass().addAll("labelBasique","labelPoints", "point-gagne", "point-consecutif");
 		}
 		return lblPoint0;
 	}

@@ -53,7 +53,9 @@
     -fx-background-color: orange;
 }
 
-.point-consicutif {
+.point-consecutif {
     -fx-border-width: 4px;
     -fx-border-color: #b36000;
 }
+
+
