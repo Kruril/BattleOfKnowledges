@@ -1,5 +1,9 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import application.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,14 +13,22 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.BackgroundLoader;
+import model.Deck;
+import model.Question;
+
 
 public class ChoiceThemeBP extends BorderPane {
     private ImageView ivTitle;
-    private Button btnThm1, btnThm2, btnThm3, btnThm4;
-    private Button btnBack;
-
+    private Button btnThm1, btnThm2, btnThm3, btnThm4,btnBack;
+    
+    private List<Button> buttons;
+    private List<String> listThemes=new ArrayList<String>();
+    private List<String> Themes=new ArrayList<String>();
+    
     public ChoiceThemeBP() {
-        this.setBackground(BackgroundLoader.builderBackGround());
+        AttributeTheme();
+    	
+    	this.setBackground(BackgroundLoader.builderBackGround());
 
         HBox hTop = new HBox();
         hTop.getChildren().addAll(getIvTitle());
@@ -34,12 +46,10 @@ public class ChoiceThemeBP extends BorderPane {
 
         VBox vLeft = new VBox();
         vLeft.getChildren().addAll(getBtnThm1(), getBtnThm3());
-        vLeft.setAlignment(Pos.CENTER_RIGHT);
         vLeft.setSpacing(100.);
 
         VBox vRight = new VBox();
         vRight.getChildren().addAll(getBtnThm2(), getBtnThm4());
-        vRight.setAlignment(Pos.CENTER_LEFT);
         vRight.setSpacing(100.);
 
         HBox hTheme = new HBox();
@@ -51,7 +61,7 @@ public class ChoiceThemeBP extends BorderPane {
 
     public Button getBtnThm1() {
         if (btnThm1 == null) {
-            btnThm1 = new Button("Theme 1");
+            btnThm1 = new Button(Themes.get(0));
             btnThm1.getStyleClass().add("buttonBasic");
         }
         return btnThm1;
@@ -59,7 +69,7 @@ public class ChoiceThemeBP extends BorderPane {
 
     public Button getBtnThm2() {
         if (btnThm2 == null) {
-            btnThm2 = new Button("Theme 2");
+            btnThm2 = new Button(Themes.get(1));
             btnThm2.getStyleClass().add("buttonBasic");
         }
         return btnThm2;
@@ -67,7 +77,7 @@ public class ChoiceThemeBP extends BorderPane {
 
     public Button getBtnThm3() {
         if (btnThm3 == null) {
-            btnThm3 = new Button("Theme 3");
+            btnThm3 = new Button(Themes.get(2));
             btnThm3.getStyleClass().add("buttonBasic");
         }
         return btnThm3;
@@ -75,7 +85,7 @@ public class ChoiceThemeBP extends BorderPane {
 
     public Button getBtnThm4() {
         if (btnThm4 == null) {
-            btnThm4 = new Button("Theme 4");
+            btnThm4 = new Button(Themes.get(3));
             btnThm4.getStyleClass().add("buttonBasic");
         }
         return btnThm4;
@@ -96,5 +106,57 @@ public class ChoiceThemeBP extends BorderPane {
         }
         return ivTitle;
     }
-
+    
+    public void AttributeTheme() {
+    	Deck deck=new Deck();
+    	
+    	deck.fromJson("pGroupeB04/src/json/theme/theme.json");
+    	
+    	for(Question quest:deck.getListe()) {
+    		if(!(listThemes.contains(quest.getTheme()))) {
+    			listThemes.add(quest.getTheme());
+    		}
+    	}
+    	
+    	RandomTheme();
+    	
+    }
+    
+    
+    public void RandomTheme() {
+    	int index,themeAttributed,nbTheme=0;
+    	Random rand=new Random();
+    	String theme;
+    	boolean isAdded=false;
+    	for(String thm:listThemes) {
+    		nbTheme++;
+    	}
+    	
+    	
+    	for(index=1;index<=4;index++) {
+    		while(isAdded==false) {
+        		themeAttributed=rand.nextInt(nbTheme);
+        		theme= listThemes.get(themeAttributed);
+        		
+        		if(!(Themes.contains(theme))) {
+        			Themes.add(theme);
+        			isAdded=true;
+        		}
+    		}
+    		isAdded=false;
+    	}
+    }
+    
+    
+	public List<Button> getButtons() {
+		if(buttons==null) {
+			buttons=new ArrayList<Button>();
+			buttons.add(btnThm1);
+			buttons.add(btnThm2);
+			buttons.add(btnThm3);
+			buttons.add(btnThm4);
+		}
+		return buttons;
+		
+	}
 }
