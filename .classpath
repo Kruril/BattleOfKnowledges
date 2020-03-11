@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="pGroupeB04/src"/>
-	<classpathentry kind="lib" path="D:/jarJava/explorer.jar"/>
-	<classpathentry kind="lib" path="D:/jarJava/gson-2.8.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/valen/OneDrive/Bureau/Nouveau dossier/gson-2.8.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

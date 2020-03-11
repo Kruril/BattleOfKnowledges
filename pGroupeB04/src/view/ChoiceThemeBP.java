@@ -4,20 +4,21 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.BackgroundLoader;
 
 public class ChoiceThemeBP extends BorderPane{
-	private Label theme;
+	private ImageView choiceThemeTitle;
 	private Button thm1,thm2,thm3,thm4;
 	private static Button validate;
 	public ChoiceThemeBP() {
 		this.setBackground(BackgroundLoader.builderBackGround());
 
 		HBox hTop=new HBox();
-		hTop.getChildren().addAll(getTheme());
+		hTop.getChildren().addAll(getChoiceThemeTitle());
 		hTop.setAlignment(Pos.CENTER);
 		hTop.setPadding(new Insets(50,5,10,5));
 		hTop.setPrefSize(150., 50.);
@@ -33,25 +34,20 @@ public class ChoiceThemeBP extends BorderPane{
 		VBox vLeft=new VBox();
 		vLeft.getChildren().addAll(getThm1(),getThm3());
 		vLeft.setAlignment(Pos.CENTER_RIGHT);
-		vLeft.setPadding(new Insets(10,10,10,50));
 		vLeft.setSpacing(100.);
-		this.setLeft(vLeft);
 
 		VBox vRight=new VBox();
 		vRight.getChildren().addAll(getThm2(),getThm4());
 		vRight.setAlignment(Pos.CENTER_LEFT);
-		vRight.setPadding(new Insets(10,50,10,10));
 		vRight.setSpacing(100.);
-		this.setRight(vRight);
+		
+		HBox hTheme=new HBox();
+		hTheme.getChildren().addAll(vLeft,vRight);
+		hTheme.setSpacing(100);
+		hTheme.setAlignment(Pos.CENTER);
+		this.setCenter(hTheme);
 	}
-	public Label getTheme() {
-		if(theme==null) {
-			theme=new Label("Choose Your Theme");
-			theme.getStyleClass().add("labelBasique");
-			theme.setAlignment(Pos.CENTER);
-		}
-		return theme;
-	}
+	
 	public Button getThm1() {
 		if(thm1==null) {
 			thm1=new Button("Theme 1");
@@ -79,9 +75,14 @@ public class ChoiceThemeBP extends BorderPane{
 	public static Button getValidate() {
 		if(validate==null) {
 			validate=new Button("Validate");
-			validate.getStyleClass().add("buttonBasic");
+			validate.getStyleClass().add("buttonGame");
 		}return validate;
 	}
-
+	public ImageView getChoiceThemeTitle() {
+		if(choiceThemeTitle==null) {
+			choiceThemeTitle=new ImageView("images/base/ChooseThemeLabel.png");
+		}
+		return choiceThemeTitle;
+	}
 
 }
