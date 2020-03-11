@@ -34,9 +34,6 @@ public class Main extends Application {
         MainPageSP menuPage = new MainPageSP();
         scene = new Scene(menuPage);
         scene.getStylesheets().addAll("styles/btnStyles.css", "styles/labelStyles.css", "styles/BoxStyles.css");
-        
-        //Main Game Page
-        GamePageBP mainGame = new GamePageBP();
 
         primaryStage.setScene(scene);
 
@@ -48,8 +45,6 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("images/base/euro.png"));
 
         primaryStage.show();
-
-        ChoiceThemeBP.getValidate().setOnAction(event -> primaryStage.getScene().setRoot(mainGame));
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F12) {

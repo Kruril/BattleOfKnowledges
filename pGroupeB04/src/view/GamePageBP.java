@@ -61,6 +61,7 @@ public class GamePageBP extends BorderPane{
 		vbTimer.setSpacing(15);
 		
 		hbCenter.getChildren().addAll(vbPoints, vbClues, vbTimer);
+		hbCenter.setPadding(new Insets(10));
 		hbCenter.setAlignment(Pos.CENTER);
 		hbCenter.setSpacing(50);
 		this.setCenter(hbCenter);
@@ -150,7 +151,7 @@ public class GamePageBP extends BorderPane{
 
 	public Label getLblTimer() {
 		if (lblTimer == null) {
-			lblTimer = new Label("Ici Timer");
+			lblTimer = new Label("Timer");
 			lblTimer.getStyleClass().addAll("labelBasique","labelPoints");
 		}
 		return lblTimer;

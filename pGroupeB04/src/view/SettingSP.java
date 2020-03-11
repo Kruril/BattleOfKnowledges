@@ -162,7 +162,6 @@ public class SettingSP extends StackPane {
         return btnBack;
     }
 
-
     /**
      * method that will set the size of the window via width and height
      * @param choice Element selected in the combobox
