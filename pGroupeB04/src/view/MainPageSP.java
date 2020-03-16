@@ -68,6 +68,7 @@ public class MainPageSP extends StackPane {
         if (btnSolo == null) {
             btnSolo = new Button("SoloPlayer");
             btnSolo.getStyleClass().add("buttonBasic");
+            btnSolo.setId("big-button");
             btnSolo.setOnAction(event -> Main.switchScene(new ChoiceThemeBP()));
         }
         return btnSolo;
@@ -77,6 +78,7 @@ public class MainPageSP extends StackPane {
         if (btnMulti == null) {
             btnMulti = new Button("MultiPlayer");
             btnMulti.getStyleClass().add("buttonBasic");
+            btnMulti.setId("big-button");
         }
         return btnMulti;
     }

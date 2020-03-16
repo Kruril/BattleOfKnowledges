@@ -160,7 +160,8 @@ public class GamePageBP extends BorderPane{
 	public Button getBtnSkip() {
 		if (btnSkip == null) {
 			btnSkip = new Button("Skip"); 
-			btnSkip.getStyleClass().add("buttonGame");
+			btnSkip.getStyleClass().add("buttonBasic");
+			btnSkip.setId("medium-button");
 		}
 		return btnSkip;
 	}
@@ -176,7 +177,8 @@ public class GamePageBP extends BorderPane{
 	public Button getBtnOk() {
 		if (btnOk == null) {
 			btnOk = new Button("Ok");
-			btnOk.getStyleClass().add("buttonGame");
+			btnOk.getStyleClass().add("buttonBasic");
+			btnOk.setId("medium-button");
 		}
 		return btnOk;
 	}

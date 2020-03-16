@@ -301,7 +301,7 @@
             "answer": "Senegal"
         },
         {
-            "author": "Valentin Gailliez",
+            "author": "Gailliez Valentin",
             "theme": "Villains Disney",
             "clues": [
                 "I teamed up in order to kill my own brother and nephew",
@@ -311,7 +311,7 @@
             "answer": "Scar"
         },
         {
-            "author": "Valentin Gailliez",
+            "author": "Gailliez Valentin",
             "theme": "Villains Disney",
             "clues": [
                 "Always accompanied by my sarcastic, devious pet parrot, I'm the second most powerful authority in the kingdom",
@@ -321,7 +321,7 @@
             "answer": "Jafar"
         },
         {
-            "author": "Valentin Gailliez",
+            "author": "Gailliez Valentin",
             "theme": "Villains Disney",
             "clues": [
                 "A religious extremist and a dogmatist, I'm convinced that all my actions are justified because they are God's will",
@@ -331,7 +331,7 @@
             "answer": "Frollo"
         },
         {
-            "author": "Valentin Gailliez",
+            "author": "Gailliez Valentin",
             "theme": "Villains Disney",
             "clues": [
                 "A trully cruel and sadistic megalomaniac, I’m solely driven by power and the desire to earn myself riches",
@@ -341,7 +341,7 @@
             "answer": "Ratigan"
         },
         {
-            "author": "Valentin Gailliez",
+            "author": "Gailliez Valentin",
             "theme": "Villains Disney",
             "clues": [
                 "While I’m incredibly cruel, deadly, short tempered and show no care for my crew, I seem to only tolerate the bumbling actions of Mr. Smee",
@@ -351,7 +351,7 @@
             "answer": "Captain Hook"
         },
         {
-            "author": "Valentin Gailliez",
+            "author": "Gailliez Valentin",
             "theme": "Villains Disney",
             "clues": [
                 "I am an extremely thin woman that appears to almost look skeletal in appearance around the curves",
@@ -361,7 +361,7 @@
             "answer": "Cruella de Vil"
         },
         {
-            "author": "Valentin Gailliez",
+            "author": "Gailliez Valentin",
             "theme": "Villains Disney",
             "clues": [
                 "I was pretty egotistical and cocky, which sometimes led to his friends bailing me out",
@@ -371,7 +371,7 @@
             "answer": "Shere Khan"
         },
         {
-            "author": "Valentin Gailliez",
+            "author": "Gailliez Valentin",
             "theme": "Villains Disney",
             "clues": [
                 "My alter-ego, Vanessa, is a fair-skinned human female with long wavy brown hair and pink lips",
@@ -381,7 +381,7 @@
             "answer": "Ursula"
         },
         {
-            "author": "Valentin Gailliez",
+            "author": "Gailliez Valentin",
             "theme": "Villains Disney",
             "clues": [
                 "I was voiced by Eleanor Audley, who also provided live-action reference for the character",
@@ -391,7 +391,7 @@
             "answer": "Lady Tremaine"
         },
         {
-            "author": "Valentin Gailliez",
+            "author": "Gailliez Valentin",
             "theme": "Villains Disney",
             "clues": [
                 "I am commonly known as the Shadow Man",
@@ -399,6 +399,106 @@
                 "I am accompanied by my sidekick shadow, which has a will and personality of my own"
             ],
             "answer": "Doctor Facilier"
+        },
+        {
+            "author": "Trempont Mathieu",
+            "theme": "Sport",
+            "clues": [
+                "I was created in the 1860s and became an Olympic sport in 1908",
+                "There is a Mondial cup every 4 years, where teams can earn a star to put on their jersey",
+                "I'm the most popular sport in the world with more than 4 billions supporters"
+            ],
+            "answer": "Football"
+        },
+        {
+            "author": "Trempont Mathieu",
+            "theme": "Sport",
+            "clues": [
+                "There is more than 38000 clubs only in Europe",
+                "You can play me on different types of terrain: grass, synthetic, dirt",
+                "My main championships are divided into grand slam"
+            ],
+            "answer": "Tennis"
+        },
+        {
+            "author": "Trempont Mathieu",
+            "theme": "Sport",
+            "clues": [
+                "In Europe, I'm mainly played on grass or synthetic field, and in the United States, I'm often played on ice",
+                "On a grass field, the teams are made up of 11 players and 5 substitutes.On an ice field, the teams are composed of 5 players and 1 goalkeeper",
+                "The players must be well equipped because the ball (called puck) can reach 105 mph"
+            ],
+            "answer": "Hockey"
+        },
+        {
+            "author": "Trempont Mathieu",
+            "theme": "Sport",
+            "clues": [
+                "You have to be a good rider to be able to play it",
+                "My playground can reach 300 meters for major competitions",
+                "My style of play is very close to the football"
+            ],
+            "answer": "Polo"
+        },
+        {
+            "author": "Charlier Guillaume",
+            "theme": "Sport",
+            "clues": [
+                "I traces back to thousands of years ago and across many continents, but my current form and popularity originated in Hawaii in the 1900s",
+                "I was documented in a 2013 report that identified me as the outdoor sporting activity with the most first-time participants in the United States that year",
+                "They practice me no matter where he has water"
+            ],
+            "answer": "Paddle"
+        },
+        {
+            "author": "Charlier Guillaume",
+            "theme": "Sport",
+            "clues": [
+                "A match ends once a person / team has scored 21 points",
+                "I 'm developed me in British India from the earlier game of battledore and shuttlecock",
+                "My projectile can be plastic or feather"
+            ],
+            "answer": "Badminton"
+        },
+        {
+            "author": "Charlier Guillaume",
+            "theme": "Sport",
+            "clues": [
+                "I'm a team sport, most commonly of five players",
+                "Scoring in my sport is not necessarily worth 1 point",
+                "The teams are preferably made up of tall people"
+            ],
+            "answer": "Basketball"
+        },
+        {
+            "author": "Gailliez Valentin",
+            "theme": "Sport",
+            "clues": [
+                "This sport can occur during the winter",
+                "It's a team sport",
+                "It's a race against the clock"
+            ],
+            "answer": "Bobsleigh"
+        },
+        {
+            "author": "Gailliez Valentin",
+            "theme": "Sport",
+            "clues": [
+                "It is a combat sport in which two people, usually wearing protective gloves, throw punches at each other for a predetermined amount of time in a ring",
+                "The different disciplines depend on the weight of the opponent",
+                "Gene Tunney is a honoring heavyweight champion of my discipline"
+            ],
+            "answer": "Boxing"
+        },
+        {
+            "author": "Gailliez Valentin",
+            "theme": "Sport",
+            "clues": [
+                "It was one of the original modern Olympic events in 1896",
+                "It the longest foot race ever",
+                "The length of an Olympic sport was not precisely fixed at first, but the races in the first few Olympic Games were about 40 kilometres"
+            ],
+            "answer": "Marathon"
         }
     ]
 }

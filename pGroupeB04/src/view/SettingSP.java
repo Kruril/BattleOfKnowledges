@@ -148,6 +148,7 @@ public class SettingSP extends StackPane {
         if (btnAdminConnect == null) {
             btnAdminConnect = new Button("Admin");
             btnAdminConnect.getStyleClass().add("buttonBasic");
+            btnAdminConnect.setId("big-button");
             btnAdminConnect.setOnAction(event -> Main.switchScene(new AdminLoginSP()));
         }
         return btnAdminConnect;
@@ -157,6 +158,7 @@ public class SettingSP extends StackPane {
         if (btnBack == null) {
             btnBack = new Button("Back");
             btnBack.getStyleClass().add("buttonBasic");
+            btnBack.setId("big-button");
             btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
         }
         return btnBack;
