@@ -65,6 +65,7 @@ public class ChoiceThemeBP extends BorderPane {
             btnThm1 = new Button(Themes.get(0));
             btnThm1.getStyleClass().add("buttonBasic");
             btnThm1.setId("big-button");
+            btnThm1.setOnAction(event -> Main.switchScene(new GamePageBP()));
         }
         return btnThm1;
     }
@@ -126,28 +127,21 @@ public class ChoiceThemeBP extends BorderPane {
                 listThemes.add(quest.getTheme());
             }
         }
-
         RandomTheme();
-
     }
 
 
     public void RandomTheme() {
-        int index, themeAttributed, nbTheme = 0;
         Random rand = new Random();
         String theme;
-        boolean isAdded;
-
         
-        for (index = 1; index <= 4; index++) {
-        	isAdded=false;
-            while (isAdded == false) {
-                themeAttributed = rand.nextInt(listThemes.size());
-                theme = listThemes.get(themeAttributed);
+        for (int index = 1; index <= 4; index++) {
+            while (true) {
+                theme = listThemes.get(rand.nextInt(listThemes.size()));
 
                 if (!(Themes.contains(theme))) {
                     Themes.add(theme);
-                    isAdded = true;
+                    break;
                 }
             }
         }

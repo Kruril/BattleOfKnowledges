@@ -1,8 +1,5 @@
 package view;
 
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-
 import application.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,6 +23,8 @@ public class EndGameBP extends BorderPane{
 	private ImageView imgPlayAgain;
 	private Button btnPlay;
 	private Button btnMenu;
+
+	private int pointWon;
 	
 	
 	public EndGameBP() {
@@ -50,14 +49,15 @@ public class EndGameBP extends BorderPane{
         HBox hbImgPlayAgain = new HBox();
         hbImgPlayAgain.getChildren().addAll(getImgPlayAgain());
         hbImgPlayAgain.setAlignment(Pos.CENTER);
-        hbImgPlayAgain.setPadding(new Insets(10));
+        hbImgPlayAgain.setPadding(new Insets(20));
         HBox hbPlayAgain = new HBox();
         hbPlayAgain.getChildren().addAll(getBtnPlay(), getBtnMenu());
         hbPlayAgain.setAlignment(Pos.CENTER);
-        hbPlayAgain.setSpacing(5);
+        hbPlayAgain.setSpacing(60.);
         vbBottom.getChildren().addAll(hbImgPlayAgain, hbPlayAgain);
+        vbBottom.setSpacing(20.);
         vbBottom.setAlignment(Pos.CENTER);
-        vbBottom.setPadding(new Insets(10));
+        vbBottom.setPadding(new Insets(20));
         this.setBottom(vbBottom);
         
 	}

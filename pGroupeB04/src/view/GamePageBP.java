@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.BackgroundLoader;
+import utils.Timer;
 
 public class GamePageBP extends BorderPane{
 	
@@ -151,7 +152,8 @@ public class GamePageBP extends BorderPane{
 
 	public Label getLblTimer() {
 		if (lblTimer == null) {
-			lblTimer = new Label("Timer");
+			lblTimer = new Label();
+			Timer.startTime(lblTimer);
 			lblTimer.getStyleClass().addAll("labelBasique","labelPoints");
 		}
 		return lblTimer;
