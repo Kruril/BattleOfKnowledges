@@ -74,6 +74,9 @@ public class ChoiceThemeBP extends BorderPane {
             btnThm2 = new Button(Themes.get(1));
             btnThm2.getStyleClass().add("buttonBasic");
             btnThm2.setId("big-button");
+            
+            btnThm2.setOnAction(event -> Main.switchScene(new EndGameBP()));
+
         }
         return btnThm2;
     }

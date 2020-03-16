@@ -104,7 +104,8 @@ public class EndGameBP extends BorderPane{
 	public Button getBtnPlay() {
 		if (btnPlay == null) {
 			btnPlay = new Button("Yes");
-			btnPlay.getStyleClass().addAll("buttonEndGame");
+			btnPlay.getStyleClass().add("buttonBasic");
+            btnPlay.setId("small-button");
 			
 			btnPlay.setOnAction(event -> Main.switchScene(new ChoiceThemeBP()));
 		}
@@ -114,7 +115,8 @@ public class EndGameBP extends BorderPane{
 	public Button getBtnMenu() {
 		if (btnMenu == null) {
 			btnMenu = new Button("No");
-			btnMenu.getStyleClass().addAll("buttonEndGame");
+			btnMenu.getStyleClass().add("buttonBasic");
+            btnMenu.setId("small-button");
 			
 			btnMenu.setOnAction(event -> Main.switchScene(new MainPageSP()));
 		}
