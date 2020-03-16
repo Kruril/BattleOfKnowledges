@@ -22,9 +22,6 @@
     -fx-font-size: 40;
     -fx-text-fill: white;
     -fx-font-family: Cagliostro;
-    -fx-cell-size: 150px 100px;
-    -fx-min-width: 400px;
-    -fx-min-height: 100px;
 }
 .buttonBasic:hover{
     -fx-cursor: hand;
@@ -39,33 +36,17 @@
     -fx-text-fill: black;
 }
 
-/*Button Game*/
-.buttonGame {
-    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
-    #3624c5, #2a5bcc);
-    -fx-effect: dropshadow(gaussian,rgba(0, 0, 0, 0.25),4,0,0,4);
-    -fx-padding: 20 50 20 50;
-    -fx-border-color: #FFC900;
-    -fx-border-width: 4px;
-    -fx-border-radius: 65px;
-    -fx-background-radius: 65px;
-    -fx-font-size: 40;
-    -fx-text-fill: white;
-    -fx-font-family: Cagliostro;
-    -fx-cell-size: 150px 100px;
+#small-button {
+    -fx-min-width: 200px;
+    -fx-min-height: 80px;
+}
+
+#medium-button {
     -fx-min-width: 300px;
     -fx-min-height: 100px;
 }
-.buttonGame:hover{
-    -fx-cursor: hand;
-}
 
-.buttonGame:pressed {
-    -fx-scale-shape: true;
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
-    rgb(20, 233, 101), #6ecc0e);
-    -fx-text-fill: black;
+#big-button {
+    -fx-min-width: 400px;
+    -fx-min-height: 90px;
 }
-

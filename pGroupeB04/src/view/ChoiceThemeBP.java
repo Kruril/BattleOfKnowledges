@@ -19,16 +19,15 @@ import model.Question;
 
 public class ChoiceThemeBP extends BorderPane {
     private ImageView ivTitle;
-    private Button btnThm1, btnThm2, btnThm3, btnThm4,btnBack;
-    
-    private List<Button> buttons;
-    private List<String> listThemes=new ArrayList<String>();
-    private List<String> Themes=new ArrayList<String>();
-    
+    private Button btnThm1, btnThm2, btnThm3, btnThm4, btnBack;
+
+    private List<String> listThemes = new ArrayList<>();
+    private List<String> Themes = new ArrayList<>();
+
     public ChoiceThemeBP() {
         AttributeTheme();
-    	
-    	this.setBackground(BackgroundLoader.builderBackGround());
+
+        this.setBackground(BackgroundLoader.builderBackGround());
 
         HBox hTop = new HBox();
         hTop.getChildren().addAll(getIvTitle());
@@ -63,6 +62,7 @@ public class ChoiceThemeBP extends BorderPane {
         if (btnThm1 == null) {
             btnThm1 = new Button(Themes.get(0));
             btnThm1.getStyleClass().add("buttonBasic");
+            btnThm1.setId("big-button");
         }
         return btnThm1;
     }
@@ -71,6 +71,7 @@ public class ChoiceThemeBP extends BorderPane {
         if (btnThm2 == null) {
             btnThm2 = new Button(Themes.get(1));
             btnThm2.getStyleClass().add("buttonBasic");
+            btnThm2.setId("big-button");
         }
         return btnThm2;
     }
@@ -79,6 +80,7 @@ public class ChoiceThemeBP extends BorderPane {
         if (btnThm3 == null) {
             btnThm3 = new Button(Themes.get(2));
             btnThm3.getStyleClass().add("buttonBasic");
+            btnThm3.setId("big-button");
         }
         return btnThm3;
     }
@@ -87,6 +89,7 @@ public class ChoiceThemeBP extends BorderPane {
         if (btnThm4 == null) {
             btnThm4 = new Button(Themes.get(3));
             btnThm4.getStyleClass().add("buttonBasic");
+            btnThm4.setId("big-button");
         }
         return btnThm4;
     }
@@ -94,7 +97,8 @@ public class ChoiceThemeBP extends BorderPane {
     public Button getBtnBack() {
         if (btnBack == null) {
             btnBack = new Button("Back");
-            btnBack.getStyleClass().add("buttonGame");
+            btnBack.getStyleClass().add("buttonBasic");
+            btnBack.setId("medium-button");
             btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
         }
         return btnBack;
@@ -106,57 +110,53 @@ public class ChoiceThemeBP extends BorderPane {
         }
         return ivTitle;
     }
-    
+
     public void AttributeTheme() {
-    	Deck deck=new Deck();
-    	
-    	deck.fromJson("pGroupeB04/src/json/theme/theme.json");
-    	
-    	for(Question quest:deck.getListe()) {
-    		if(!(listThemes.contains(quest.getTheme()))) {
-    			listThemes.add(quest.getTheme());
-    		}
-    	}
-    	
-    	RandomTheme();
-    	
+        Deck deck = new Deck();
+
+        deck.fromJson("pGroupeB04/src/json/theme/theme.json");
+
+        for (Question quest : deck.getListe()) {
+            if (!(listThemes.contains(quest.getTheme()))) {
+                listThemes.add(quest.getTheme());
+            }
+        }
+
+        RandomTheme();
+
     }
-    
-    
+
+
     public void RandomTheme() {
-    	int index,themeAttributed,nbTheme=0;
-    	Random rand=new Random();
-    	String theme;
-    	boolean isAdded=false;
-    	for(String thm:listThemes) {
-    		nbTheme++;
-    	}
-    	
-    	
-    	for(index=1;index<=4;index++) {
-    		while(isAdded==false) {
-        		themeAttributed=rand.nextInt(nbTheme);
-        		theme= listThemes.get(themeAttributed);
-        		
-        		if(!(Themes.contains(theme))) {
-        			Themes.add(theme);
-        			isAdded=true;
-        		}
-    		}
-    		isAdded=false;
-    	}
+        int index, themeAttributed, nbTheme = 0;
+        Random rand = new Random();
+        String theme;
+        boolean isAdded = false;
+
+        //Inutile car toujours 4 thèmes
+        for (String thm : listThemes) {
+            nbTheme++;
+        }
+
+        //Ton index et fait pour aller mettre les thèmes dans
+        //les boutons donc il peut aller jusque nbTheme
+        //ou si tu retire le nbTheme ton nextInt tu mets 4 dedans
+        //pour la boucle while en général on évite les boucles false
+        //pour listThemes le prof prefere passer par des getters
+        //pour eviter de donner 2 fois isAdded à false tu peux le mettre
+        //juste après le for ainsi avant qu'il rentre dans le while il est
+        //a false et tu dois pas l'initialiser
+        for (index = 1; index <= 4; index++) {
+            while (isAdded == false) {
+                themeAttributed = rand.nextInt(nbTheme);
+                theme = listThemes.get(themeAttributed);
+
+                if (!(Themes.contains(theme))) {
+                    Themes.add(theme);
+                    isAdded = true;
+                }
+            }
+            isAdded = false;
+        }
     }
-    
-    
-	public List<Button> getButtons() {
-		if(buttons==null) {
-			buttons=new ArrayList<Button>();
-			buttons.add(btnThm1);
-			buttons.add(btnThm2);
-			buttons.add(btnThm3);
-			buttons.add(btnThm4);
-		}
-		return buttons;
-		
-	}
 }
