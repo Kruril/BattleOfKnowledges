@@ -46,10 +46,12 @@ public class ChoiceThemeBP extends BorderPane {
         VBox vLeft = new VBox();
         vLeft.getChildren().addAll(getBtnThm1(), getBtnThm3());
         vLeft.setSpacing(100.);
+        vLeft.setAlignment(Pos.CENTER);
 
         VBox vRight = new VBox();
         vRight.getChildren().addAll(getBtnThm2(), getBtnThm4());
         vRight.setSpacing(100.);
+        vRight.setAlignment(Pos.CENTER);
 
         HBox hTheme = new HBox();
         hTheme.getChildren().addAll(vLeft, vRight);
@@ -131,24 +133,13 @@ public class ChoiceThemeBP extends BorderPane {
         int index, themeAttributed, nbTheme = 0;
         Random rand = new Random();
         String theme;
-        boolean isAdded = false;
+        boolean isAdded;
 
-        //Inutile car toujours 4 thèmes
-        for (String thm : listThemes) {
-            nbTheme++;
-        }
-
-        //Ton index et fait pour aller mettre les thèmes dans
-        //les boutons donc il peut aller jusque nbTheme
-        //ou si tu retire le nbTheme ton nextInt tu mets 4 dedans
-        //pour la boucle while en général on évite les boucles false
-        //pour listThemes le prof prefere passer par des getters
-        //pour eviter de donner 2 fois isAdded à false tu peux le mettre
-        //juste après le for ainsi avant qu'il rentre dans le while il est
-        //a false et tu dois pas l'initialiser
+        
         for (index = 1; index <= 4; index++) {
+        	isAdded=false;
             while (isAdded == false) {
-                themeAttributed = rand.nextInt(nbTheme);
+                themeAttributed = rand.nextInt(listThemes.size());
                 theme = listThemes.get(themeAttributed);
 
                 if (!(Themes.contains(theme))) {
@@ -156,7 +147,6 @@ public class ChoiceThemeBP extends BorderPane {
                     isAdded = true;
                 }
             }
-            isAdded = false;
         }
     }
 }
