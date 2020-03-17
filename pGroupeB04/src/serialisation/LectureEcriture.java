@@ -3,6 +3,7 @@ package serialisation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Deck;
+import utils.JsonManager;
 import utils.Resolution;
 
 
@@ -12,12 +13,11 @@ public class LectureEcriture implements Serializable {
 
     /**
      * method that reads a deck from a json file
-     * @param fichier location and filename
      * @return an object of type Deck
      */
-    public static Deck readStringDeck(String fichier) {
+    public static Deck readStringDeck() {
         Deck deck = null;
-        try (InputStreamReader in = new InputStreamReader(new FileInputStream(fichier))){
+        try (InputStreamReader in = new InputStreamReader(new FileInputStream(JsonManager.FILE_THEME))){
             Gson gson = new Gson();
             deck = gson.fromJson(in , Deck.class);
         } catch (IOException e) {
@@ -29,11 +29,10 @@ public class LectureEcriture implements Serializable {
     /**
      * method that will transform a Deck object to json format by specifying
      * the file name
-     * @param fichier location and filename
      * @param deck object to be transformed
      */
-    public static void writeStringDeck(String fichier, Deck deck) {
-        try(OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(fichier))){
+    public static void writeStringDeck(Deck deck) {
+        try(OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(JsonManager.FILE_THEME))){
             new GsonBuilder()
                     .disableHtmlEscaping()
                     .create()
@@ -50,7 +49,7 @@ public class LectureEcriture implements Serializable {
      */
     public static Resolution readStringResolu() {
         Resolution resolution = null;
-        try (InputStreamReader in = new InputStreamReader(new FileInputStream("pGroupeB04/src/json/resolution/resolution.json"))){
+        try (InputStreamReader in = new InputStreamReader(new FileInputStream(JsonManager.FILE_RESOLUTION))){
             Gson gson = new Gson();
             resolution = gson.fromJson(in , Resolution.class);
         } catch (IOException e) {
@@ -66,7 +65,7 @@ public class LectureEcriture implements Serializable {
      * @param resolution object to be transformed
      */
     public static void writeStringResolu(Resolution resolution) {
-        try(OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream("pGroupeB04/src/json/resolution/resolution.json"))){
+        try(OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(JsonManager.FILE_RESOLUTION))){
             new GsonBuilder()
                     .disableHtmlEscaping()
                     .create()

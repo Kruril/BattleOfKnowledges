@@ -57,8 +57,8 @@ public class Deck {
 		return gson.toJson( this);
 	}
 
-	public void fromJson(String fichier){
-		this.setQuestions(LectureEcriture.readStringDeck(fichier).getListe());
+	public void fromJson(){
+		this.setQuestions(LectureEcriture.readStringDeck().getListe());
 	}
 	
 }

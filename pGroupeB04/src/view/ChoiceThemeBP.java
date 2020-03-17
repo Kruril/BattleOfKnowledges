@@ -13,19 +13,17 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.BackgroundLoader;
-import model.Deck;
-import model.Question;
+import utils.JsonManager;
 
 
 public class ChoiceThemeBP extends BorderPane {
     private ImageView ivTitle;
     private Button btnThm1, btnThm2, btnThm3, btnThm4, btnBack;
 
-    private List<String> listThemes = new ArrayList<>();
-    private List<String> Themes = new ArrayList<>();
+    private List<String> themes = new ArrayList<>();
 
     public ChoiceThemeBP() {
-        AttributeTheme();
+        randomTheme();
 
         this.setBackground(BackgroundLoader.builderBackGround());
 
@@ -62,7 +60,7 @@ public class ChoiceThemeBP extends BorderPane {
 
     public Button getBtnThm1() {
         if (btnThm1 == null) {
-            btnThm1 = new Button(Themes.get(0));
+            btnThm1 = new Button(themes.get(0));
             btnThm1.getStyleClass().add("buttonBasic");
             btnThm1.setId("big-button");
             btnThm1.setOnAction(event -> Main.switchScene(new GamePageBP()));
@@ -72,7 +70,7 @@ public class ChoiceThemeBP extends BorderPane {
 
     public Button getBtnThm2() {
         if (btnThm2 == null) {
-            btnThm2 = new Button(Themes.get(1));
+            btnThm2 = new Button(themes.get(1));
             btnThm2.getStyleClass().add("buttonBasic");
             btnThm2.setId("big-button");
             
@@ -84,7 +82,7 @@ public class ChoiceThemeBP extends BorderPane {
 
     public Button getBtnThm3() {
         if (btnThm3 == null) {
-            btnThm3 = new Button(Themes.get(2));
+            btnThm3 = new Button(themes.get(2));
             btnThm3.getStyleClass().add("buttonBasic");
             btnThm3.setId("big-button");
         }
@@ -93,7 +91,7 @@ public class ChoiceThemeBP extends BorderPane {
 
     public Button getBtnThm4() {
         if (btnThm4 == null) {
-            btnThm4 = new Button(Themes.get(3));
+            btnThm4 = new Button(themes.get(3));
             btnThm4.getStyleClass().add("buttonBasic");
             btnThm4.setId("big-button");
         }
@@ -117,30 +115,15 @@ public class ChoiceThemeBP extends BorderPane {
         return ivTitle;
     }
 
-    public void AttributeTheme() {
-        Deck deck = new Deck();
-
-        deck.fromJson("pGroupeB04/src/json/theme/theme.json");
-
-        for (Question quest : deck.getListe()) {
-            if (!(listThemes.contains(quest.getTheme()))) {
-                listThemes.add(quest.getTheme());
-            }
-        }
-        RandomTheme();
-    }
-
-
-    public void RandomTheme() {
+    public void randomTheme() {
         Random rand = new Random();
         String theme;
         
         for (int index = 1; index <= 4; index++) {
             while (true) {
-                theme = listThemes.get(rand.nextInt(listThemes.size()));
-
-                if (!(Themes.contains(theme))) {
-                    Themes.add(theme);
+                theme = JsonManager.themeFromDeck().get(rand.nextInt(JsonManager.THEMES.size()));
+                if (!(themes.contains(theme))) {
+                    themes.add(theme);
                     break;
                 }
             }
