@@ -16,9 +16,8 @@ public class EndGameBP extends BorderPane{
 	
 	private ImageView imgCongrats;
 	
-	private Label lblPoints1;
-	private Label lblPoints2;
-	private Label lblPoints3;
+	private Label lblPoints;
+	private int points = 0;
 	
 	private ImageView imgPlayAgain;
 	private Button btnPlay;
@@ -40,7 +39,7 @@ public class EndGameBP extends BorderPane{
         
         //CENTER
         HBox hbPoints = new HBox();
-        hbPoints.getChildren().addAll(getLblPoints1(), getLblPoints2(), getLblPoints3());
+        hbPoints.getChildren().addAll(getLblPoints());
         hbPoints.setAlignment(Pos.CENTER);
         this.setCenter(hbPoints);
         
@@ -69,30 +68,14 @@ public class EndGameBP extends BorderPane{
 		return imgCongrats;
 	}
 
-	public Label getLblPoints1() {
-		if (lblPoints1 == null) {
-			lblPoints1 = new Label("You obtained ");
-			lblPoints1.getStyleClass().addAll("labelBasique");
+	public Label getLblPoints() {
+		if (lblPoints == null) {
+			lblPoints = new Label("You obtained " + points + " points !");
+			lblPoints.getStyleClass().addAll("labelBasique");
 		}
-		return lblPoints1;
+		return lblPoints;
 	}
 
-	public Label getLblPoints2() {
-		if (lblPoints2 == null) {
-			lblPoints2 = new Label("INSERT POINTS");
-			lblPoints2.getStyleClass().addAll("labelBasique");
-		}
-		return lblPoints2;
-	}
-
-
-	public Label getLblPoints3() {
-		if (lblPoints3 == null) {
-			lblPoints3 = new Label(" points !");
-			lblPoints3.getStyleClass().addAll("labelBasique");
-		}
-		return lblPoints3;
-	}
 
 	public ImageView getImgPlayAgain() {
 		if (imgPlayAgain == null) {
