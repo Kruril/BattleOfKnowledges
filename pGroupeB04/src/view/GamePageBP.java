@@ -31,7 +31,10 @@ public class GamePageBP extends BorderPane{
 	private TextField txtAnswer;
 	private Button btnOk;
 	
-	public GamePageBP() {
+	private String theme;
+	public GamePageBP(String theme) {
+		this.theme=theme;
+		
         //BACKGROUND
         this.setBackground(BackgroundLoader.builderBackGround());
 		
@@ -78,7 +81,7 @@ public class GamePageBP extends BorderPane{
 
 	public Label getLblTitle() {
 		if (lblTitle == null) {
-			lblTitle = new Label("Ici le thème");
+			lblTitle = new Label(theme);
 			lblTitle.getStyleClass().addAll("labelBasique","labelTitle");
 		}
 		return lblTitle;
