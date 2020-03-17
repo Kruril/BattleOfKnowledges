@@ -21,7 +21,9 @@ public class ChoiceThemeBP extends BorderPane {
     private Button btnThm1, btnThm2, btnThm3, btnThm4, btnBack;
 
     private List<String> themes = new ArrayList<>();
-
+    private List<Button> btnThemes;
+    
+    private int nbBtn;
     public ChoiceThemeBP() {
         randomTheme();
 
@@ -63,7 +65,7 @@ public class ChoiceThemeBP extends BorderPane {
             btnThm1 = new Button(themes.get(0));
             btnThm1.getStyleClass().add("buttonBasic");
             btnThm1.setId("big-button");
-            btnThm1.setOnAction(event -> Main.switchScene(new GamePageBP()));
+            btnThm1.setOnAction(event -> Main.switchScene(new GamePageBP(btnThm1.getText())));
         }
         return btnThm1;
     }
@@ -114,7 +116,7 @@ public class ChoiceThemeBP extends BorderPane {
         }
         return ivTitle;
     }
-
+   
     public void randomTheme() {
         Random rand = new Random();
         String theme;
