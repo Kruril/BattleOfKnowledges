@@ -68,6 +68,7 @@ public class EndGameBP extends BorderPane{
 		return imgCongrats;
 	}
 
+	//Points en 1 ligne
 	public Label getLblPoints() {
 		if (lblPoints == null) {
 			lblPoints = new Label("You obtained " + points + " points !");
