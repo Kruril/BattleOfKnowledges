@@ -234,7 +234,7 @@ public class GamePageBP extends BorderPane {
 				if (isCorrect(getTxtAnswer().getText())) {
 					questions.remove(waittingQuestions);
 					pointWon++;
-					returnStartQuestion();
+					choiceQuestion();
 					getTxtAnswer().setPromptText("Correct Answer");
 				}
 				else {
@@ -244,6 +244,13 @@ public class GamePageBP extends BorderPane {
 			});
         }
         return btnOk;
+    }
+
+    public void choiceQuestion(){
+        if (waittingQuestions < questions.size()) {
+            returnStartQuestion();
+        }
+        if (waittingQuestions >= questions.size()) waittingQuestions = 0;
     }
 
     public void returnStartQuestion() {
