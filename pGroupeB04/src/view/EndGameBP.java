@@ -17,7 +17,6 @@ public class EndGameBP extends BorderPane{
 	private ImageView imgCongrats;
 	
 	private Label lblPoints;
-	private int points = 0;
 	
 	private ImageView imgPlayAgain;
 	private Button btnPlay;
@@ -26,8 +25,11 @@ public class EndGameBP extends BorderPane{
 	private int pointWon;
 	
 	
-	public EndGameBP() {
-        //BACKGROUND
+	public EndGameBP(int pointWon) {
+
+		this.pointWon = pointWon;
+
+		//BACKGROUND
         this.setBackground(BackgroundLoader.builderBackGround());
         
         //TOP
@@ -71,7 +73,7 @@ public class EndGameBP extends BorderPane{
 	//Points en 1 ligne
 	public Label getLblPoints() {
 		if (lblPoints == null) {
-			lblPoints = new Label("You obtained " + points + " points !");
+			lblPoints = new Label("You obtained " + pointWon + " points !");
 			lblPoints.getStyleClass().addAll("labelBasique");
 		}
 		return lblPoints;

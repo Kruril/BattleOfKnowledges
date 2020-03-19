@@ -7,29 +7,33 @@ import javafx.util.Duration;
 
 public class Timer {
 
-    private static final int STARTTIME = 90;
-    private static Timeline timeline;
-    private static Integer timeSeconds;
+    private static final int TIME_TIMER = 90;
+    private static Timeline timeTimer;
+    private static Integer timeSecond;
 
-    public static void startTime(Label lblTimer) {
-        if (timeline != null) {
-            timeline.stop();
+
+    public static void startTimer(Label lblTimer) {
+        if (timeTimer != null) {
+            timeTimer.stop();
         }
+        timeSecond = TIME_TIMER;
 
-        timeSeconds = STARTTIME;
-        lblTimer.setText(timeSeconds.toString());
-        timeline = new Timeline();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.getKeyFrames().add(
+        lblTimer.setText(timeSecond.toString());
+        timeTimer = new Timeline();
+        timeTimer.setCycleCount(Timeline.INDEFINITE);
+        timeTimer.getKeyFrames().add(
                 new KeyFrame(Duration.seconds(1.),
                         event -> {
-                            timeSeconds--;
-                            lblTimer.setText(timeSeconds.toString());
-                            if (timeSeconds <= 0) {
-                                timeline.stop();
-                            }
+                            timeSecond--;
+                            lblTimer.setText(timeSecond.toString());
+
+                            if (timeSecond <= 0) timeTimer.stop();
                         })
         );
-        timeline.playFromStart();
+        timeTimer.playFromStart();
+    }
+
+    public static Timeline getTimeTimer() {
+        return timeTimer;
     }
 }

@@ -82,7 +82,7 @@ public class Question implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Question [author=" + author + ", json.theme=" + theme + ", clues=" + clues + ", answer=" + answer + "]";
+		return "Question [author=" + author + ", theme=" + theme + ", clues=" + clues + ", answer=" + answer + "]";
 	}
 	
 	public Question clone() {
