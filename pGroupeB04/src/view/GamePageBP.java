@@ -265,10 +265,8 @@ public class GamePageBP extends BorderPane {
     }
 
     public void choiceQuestion(){
-        if (waitingQuestions < questions.size()) {
-            returnStartQuestion();
-        }
         if (waitingQuestions >= questions.size()) waitingQuestions = 0;
+        returnStartQuestion();
     }
 
     public void returnStartQuestion() {
