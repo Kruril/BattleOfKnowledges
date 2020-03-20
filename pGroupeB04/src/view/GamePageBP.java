@@ -38,8 +38,8 @@ public class GamePageBP extends BorderPane {
 
     private String theme;
     private List<Question> questions;
-    private int waittingClues = 0;
-    private int waittingQuestions = 0;
+    private int waitingClues = 0;
+    private int waitingQuestions = 0;
     private long time;
     private int pointWon;
 
@@ -175,18 +175,18 @@ public class GamePageBP extends BorderPane {
             lblTimer.getStyleClass().addAll("labelBasique", "labelPoints");
             lblTimer.textProperty().addListener((observable, oldValue, newValue) -> {
 
-                if (waittingClues < 3) {
-                    if (waittingClues == 0){
-                        getLblClue1().setText(questions.get(waittingQuestions).getClues().get(waittingClues));
-						waittingClues++;
+                if (waitingClues < 3) {
+                    if (waitingClues == 0){
+                        getLblClue1().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
+						waitingClues++;
 					}
-                    if (waittingClues == 1 && System.currentTimeMillis() - time >= 3000) {
-                        getLblClue2().setText(questions.get(waittingQuestions).getClues().get(waittingClues));
-						waittingClues++;
+                    if (waitingClues == 1 && System.currentTimeMillis() - time >= 3000) {
+                        getLblClue2().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
+						waitingClues++;
                     }
-                    if (waittingClues == 2 && System.currentTimeMillis() - time >= 6000){
-                        getLblClue3().setText(questions.get(waittingQuestions).getClues().get(waittingClues));
-						waittingClues++;
+                    if (waitingClues == 2 && System.currentTimeMillis() - time >= 6000){
+                        getLblClue3().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
+						waitingClues++;
 					}
                 }
 
@@ -207,10 +207,10 @@ public class GamePageBP extends BorderPane {
             btnSkip.setId("medium-button");
             btnSkip.setOnAction(event -> {
 
-            	if (waittingQuestions < questions.size()) {
+            	if (waitingQuestions < questions.size()) {
 					returnStartQuestion();
 				}
-            	if (waittingQuestions >= questions.size()) waittingQuestions = 0;
+            	if (waitingQuestions >= questions.size()) waitingQuestions = 0;
 			});
         }
         return btnSkip;
@@ -232,7 +232,7 @@ public class GamePageBP extends BorderPane {
 
 			btnOk.setOnAction(event -> {
 				if (isCorrect(getTxtAnswer().getText())) {
-					questions.remove(waittingQuestions);
+					questions.remove(waitingQuestions);
 					pointWon++;
 					choiceQuestion();
 					getTxtAnswer().setPromptText("Correct Answer");
@@ -247,22 +247,22 @@ public class GamePageBP extends BorderPane {
     }
 
     public void choiceQuestion(){
-        if (waittingQuestions < questions.size()) {
+        if (waitingQuestions < questions.size()) {
             returnStartQuestion();
         }
-        if (waittingQuestions >= questions.size()) waittingQuestions = 0;
+        if (waitingQuestions >= questions.size()) waitingQuestions = 0;
     }
 
     public void returnStartQuestion() {
-		waittingQuestions++;
+		waitingQuestions++;
 		getLblClue1().setText("");
 		getLblClue2().setText("");
 		getLblClue3().setText("");
-		waittingClues = 0;
+		waitingClues = 0;
 		time = System.currentTimeMillis();
 	}
 
 	public boolean isCorrect(String text) {
-        return questions.get(waittingQuestions).getAnswer().equalsIgnoreCase((text));
+        return questions.get(waitingQuestions).getAnswer().equalsIgnoreCase((text));
     }
 }
