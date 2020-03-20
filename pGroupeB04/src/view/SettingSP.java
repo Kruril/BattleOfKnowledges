@@ -45,7 +45,7 @@ public class SettingSP extends StackPane {
         //Resolution
         HBox hbResolution = new HBox();
         hbResolution.setSpacing(20);
-        hbResolution.getChildren().addAll(getLblResolution(), getCmResolusion());
+        hbResolution.getChildren().addAll(getLblResolution(), getCmResolution());
 
         //Avatar
         HBox hbAvatar = new HBox();
@@ -110,7 +110,7 @@ public class SettingSP extends StackPane {
         return slSound;
     }
 
-    public ComboBox<String> getCmResolusion() {
+    public ComboBox<String> getCmResolution() {
         if (cmResolusion == null) {
             cmResolusion = new ComboBox<>();
             cmResolusion.getStyleClass().add("textBox");
@@ -119,8 +119,8 @@ public class SettingSP extends StackPane {
             for (SizeScreen size: SizeScreen.values())
                 cmResolusion.getItems().add(size.getValeur());
 
-            getCmResolusion().setOnAction(event -> {
-                String choice = getCmResolusion().getSelectionModel().getSelectedItem();
+            getCmResolution().setOnAction(event -> {
+                String choice = getCmResolution().getSelectionModel().getSelectedItem();
                 if (choice.equals("Fullscreen without border"))
                     fullscreenMode();
                 else if (choice.equals("Fullscreen with border"))
