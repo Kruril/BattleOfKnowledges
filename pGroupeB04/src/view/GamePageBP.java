@@ -14,6 +14,7 @@ import model.Question;
 import utils.JsonManager;
 import utils.Timer;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class GamePageBP extends BorderPane {
@@ -41,7 +42,9 @@ public class GamePageBP extends BorderPane {
     private int waitingClues = 0;
     private int waitingQuestions = 0;
     private long time;
-    private int pointWon;
+    private int pointWon = 0;
+    private int pointCons;
+    private HashMap<String,Label> pointsFromLbl;
 
     public GamePageBP(String theme) {
         this.theme = theme;
@@ -131,6 +134,7 @@ public class GamePageBP extends BorderPane {
         if (lblPoint0 == null) {
             lblPoint0 = new Label("0");
             lblPoint0.getStyleClass().addAll("labelBasique", "labelPoints", "point-gagne", "point-consecutif");
+            getPointsFromLbl().put(lblPoint0.getText(), lblPoint0);
         }
         return lblPoint0;
     }
@@ -139,7 +143,7 @@ public class GamePageBP extends BorderPane {
         if (lblPoint1 == null) {
             lblPoint1 = new Label("1");
             lblPoint1.getStyleClass().addAll("labelBasique", "labelPoints");
-
+            getPointsFromLbl().put(lblPoint1.getText(), lblPoint1);
         }
         return lblPoint1;
     }
@@ -148,7 +152,7 @@ public class GamePageBP extends BorderPane {
         if (lblPoint2 == null) {
             lblPoint2 = new Label("2");
             lblPoint2.getStyleClass().addAll("labelBasique", "labelPoints");
-
+            getPointsFromLbl().put(lblPoint2.getText(), lblPoint2);
         }
         return lblPoint2;
     }
@@ -157,6 +161,7 @@ public class GamePageBP extends BorderPane {
         if (lblPoint3 == null) {
             lblPoint3 = new Label("3");
             lblPoint3.getStyleClass().addAll("labelBasique", "labelPoints");
+            getPointsFromLbl().put(lblPoint3.getText(), lblPoint3);
         }
         return lblPoint3;
     }
@@ -165,6 +170,7 @@ public class GamePageBP extends BorderPane {
         if (lblPoint4 == null) {
             lblPoint4 = new Label("4");
             lblPoint4.getStyleClass().addAll("labelBasique", "labelPoints");
+            getPointsFromLbl().put(lblPoint4.getText(), lblPoint4);
         }
         return lblPoint4;
     }
@@ -178,16 +184,16 @@ public class GamePageBP extends BorderPane {
                 if (waitingClues < 3) {
                     if (waitingClues == 0){
                         getLblClue1().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
-						waitingClues++;
-					}
+                        waitingClues++;
+                    }
                     if (waitingClues == 1 && System.currentTimeMillis() - time >= 3000) {
                         getLblClue2().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
-						waitingClues++;
+                        waitingClues++;
                     }
                     if (waitingClues == 2 && System.currentTimeMillis() - time >= 6000){
                         getLblClue3().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
-						waitingClues++;
-					}
+                        waitingClues++;
+                    }
                 }
 
                 if (newValue.equals("0") || pointWon == 4) {
@@ -207,11 +213,12 @@ public class GamePageBP extends BorderPane {
             btnSkip.setId("medium-button");
             btnSkip.setOnAction(event -> {
 
-            	if (waitingQuestions < questions.size()) {
-					returnStartQuestion();
-				}
-            	if (waitingQuestions >= questions.size()) waitingQuestions = 0;
-			});
+                if (waitingQuestions < questions.size()) {
+                    returnStartQuestion();
+                }
+                if (waitingQuestions >= questions.size()) waitingQuestions = 0;
+                updateScore(false);
+            });
         }
         return btnSkip;
     }
@@ -230,20 +237,30 @@ public class GamePageBP extends BorderPane {
             btnOk.getStyleClass().add("buttonBasic");
             btnOk.setId("medium-button");
 
-			btnOk.setOnAction(event -> {
-				if (isCorrect(getTxtAnswer().getText())) {
-					questions.remove(waitingQuestions);
-					pointWon++;
-					choiceQuestion();
-					getTxtAnswer().setPromptText("Correct Answer");
-				}
-				else {
-					getTxtAnswer().setPromptText("Wrong Answer");
-				}
-				getTxtAnswer().setText("");
-			});
+            btnOk.setOnAction(event -> {
+                boolean addPoint;
+                if (isCorrect(getTxtAnswer().getText())) {
+                    addPoint = true;
+                    questions.remove(waitingQuestions);
+                    choiceQuestion();
+                    getTxtAnswer().setPromptText("Correct Answer");
+                }
+                else {
+                    addPoint = false;
+                    getTxtAnswer().setPromptText("Wrong Answer");
+                }
+                updateScore(addPoint);
+                getTxtAnswer().setText("");
+            });
         }
         return btnOk;
+    }
+
+    public HashMap<String, Label> getPointsFromLbl() {
+        if (pointsFromLbl == null) {
+            pointsFromLbl = new HashMap<>();
+        }
+        return pointsFromLbl;
     }
 
     public void choiceQuestion(){
@@ -254,15 +271,56 @@ public class GamePageBP extends BorderPane {
     }
 
     public void returnStartQuestion() {
-		waitingQuestions++;
-		getLblClue1().setText("");
-		getLblClue2().setText("");
-		getLblClue3().setText("");
-		waitingClues = 0;
-		time = System.currentTimeMillis();
-	}
+        waitingQuestions++;
+        getLblClue1().setText("");
+        getLblClue2().setText("");
+        getLblClue3().setText("");
+        waitingClues = 0;
+        time = System.currentTimeMillis();
+    }
 
-	public boolean isCorrect(String text) {
+    public boolean isCorrect(String text) {
         return questions.get(waitingQuestions).getAnswer().equalsIgnoreCase((text));
+    }
+
+    public void updateScore(boolean addPoint) {
+        if (addPoint){
+            addPointScore();
+        }
+        else {
+            removePointScore();
+        }
+    }
+
+    public void addPointScore() {
+        pointCons++;
+        pointsFromLbl.forEach((key, label) -> {
+            if (pointCons == Integer.parseInt(key)) {
+                label.getStyleClass().addAll("point-gagne","point-consecutif");
+                pointFinal();
+            }
+            if (pointCons-1 == Integer.parseInt(key)) {
+                label.getStyleClass().remove("point-consecutif");
+            }
+        });
+    }
+
+    public void removePointScore() {
+        pointsFromLbl.forEach((key, label) -> {
+            if (pointCons == Integer.parseInt(key)) {
+                label.getStyleClass().remove("point-consecutif");
+                pointFinal();
+                pointCons = 0;
+            }
+            if (key.equals("0")) {
+                label.getStyleClass().add("point-consecutif");
+            }
+        });
+    }
+
+    public void pointFinal(){
+        if (pointWon < pointCons) {
+            pointWon = pointCons;
+        }
     }
 }
