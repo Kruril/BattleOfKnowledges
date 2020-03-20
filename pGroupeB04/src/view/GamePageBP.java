@@ -218,6 +218,7 @@ public class GamePageBP extends BorderPane {
                 }
                 if (waitingQuestions >= questions.size()) waitingQuestions = 0;
                 updateScore(false);
+                getTxtAnswer().setPromptText("");
             });
         }
         return btnSkip;
@@ -242,13 +243,13 @@ public class GamePageBP extends BorderPane {
                 if (isCorrect(getTxtAnswer().getText())) {
                     addPoint = true;
                     questions.remove(waitingQuestions);
-                    choiceQuestion();
                     getTxtAnswer().setPromptText("Correct Answer");
                 }
                 else {
                     addPoint = false;
                     getTxtAnswer().setPromptText("Wrong Answer");
                 }
+                choiceQuestion();
                 updateScore(addPoint);
                 getTxtAnswer().setText("");
             });
