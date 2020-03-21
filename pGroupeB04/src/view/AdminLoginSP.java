@@ -114,7 +114,7 @@ public class AdminLoginSP extends StackPane {
 				public void handle(ActionEvent event) {
 					// TODO Auto-generated method stub
 					if(pwfPassword.getText().equals("helha")) {
-						Main.switchScene(new TableViewBP());
+						Main.switchScene(new TableViewBP(txtLogin.getText()));
 					}
 					else{
 						Main.switchScene(new AdminLoginSP());
