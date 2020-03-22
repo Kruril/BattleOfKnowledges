@@ -106,8 +106,8 @@ public class AdminLoginSP extends StackPane {
             btnConnection.setId("big-button");
             
             btnConnection.setOnAction(event -> {
-                if(pwfPassword.getText().equals("helha")) {
-                    Main.switchScene(new TableViewBP(txtLogin.getText()));
+                if(pwfPassword.getText().equals("helha") && txtLogin.getText().equalsIgnoreCase("admin")) {
+                    Main.switchScene(new TableViewBP());
                 }
                 else{
                     Main.switchScene(new AdminLoginSP());

@@ -41,12 +41,10 @@ public class TableViewBP extends BorderPane{
 	
 	List<Question>questions=new ArrayList<>();
 	
-	String login;
-
+	
 	
 
-	public TableViewBP(String login) {
-		this.login=login;
+	public TableViewBP() {
 		this.setBackground(BackgroundLoader.builderBackGround());
 
 		getQuestions();
@@ -107,7 +105,7 @@ public class TableViewBP extends BorderPane{
 	
 	public Label getLblTitle() {
 		if(lblTitle==null) {
-			lblTitle=new Label(login);
+			lblTitle=new Label("Admin");
 			lblTitle.getStyleClass().add("labelTitle");
 		}
 		return lblTitle;
@@ -160,7 +158,7 @@ public class TableViewBP extends BorderPane{
 		 
 		  public ObservableValue<String> call(CellDataFeatures<Question, String> p) {
 			  SimpleStringProperty sspClues=new SimpleStringProperty(p.getValue().getClues().get(index));
-		     return sspClues; // Ici il te faudra peut être caster quelque chose
+		     return sspClues;
 		  }
 
 		
