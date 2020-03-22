@@ -30,6 +30,10 @@ public class Resolution {
         return height;
     }
 
+    /**
+     * Set the different variable of Resolution
+     * @param resolution Resolution from json
+     */
     private void setResolution(Resolution resolution) {
         height = resolution.getHeight();
         width = resolution.getWidth();

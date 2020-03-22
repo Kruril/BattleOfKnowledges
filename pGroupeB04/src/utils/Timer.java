@@ -12,6 +12,10 @@ public class Timer {
     private static Integer timeSecond;
 
 
+    /**
+     * launch the timer in a specific label
+     * @param lblTimer Label where there is the timer
+     */
     public static void startTimer(Label lblTimer) {
         if (timeTimer != null) {
             timeTimer.stop();

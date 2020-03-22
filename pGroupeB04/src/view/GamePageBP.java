@@ -181,29 +181,44 @@ public class GamePageBP extends BorderPane {
             lblTimer.getStyleClass().addAll("labelBasique", "labelPoints");
             lblTimer.textProperty().addListener((observable, oldValue, newValue) -> {
 
-                if (waitingClues < 3) {
-                    if (waitingClues == 0){
-                        getLblClue1().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
-                        waitingClues++;
-                    }
-                    if (waitingClues == 1 && System.currentTimeMillis() - time >= 3000) {
-                        getLblClue2().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
-                        waitingClues++;
-                    }
-                    if (waitingClues == 2 && System.currentTimeMillis() - time >= 6000){
-                        getLblClue3().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
-                        waitingClues++;
-                    }
-                }
+                gameOver(newValue);
+                seeClues();
 
-                if (newValue.equals("0") || pointWon == 4) {
-                    Main.switchScene(new EndGameBP(pointWon));
-                    Timer.getTimeTimer().stop();
-                    pointWon++;
-                }
             });
         }
         return lblTimer;
+    }
+
+    /**
+     * show clues after 3 seconds
+     */
+    public void seeClues() {
+        if (waitingClues < 3) {
+            if (waitingClues == 0){
+                getLblClue1().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
+                waitingClues++;
+            }
+            if (waitingClues == 1 && System.currentTimeMillis() - time >= 3000) {
+                getLblClue2().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
+                waitingClues++;
+            }
+            if (waitingClues == 2 && System.currentTimeMillis() - time >= 6000){
+                getLblClue3().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
+                waitingClues++;
+            }
+        }
+    }
+
+    /**
+     * Check if game is over with time equals 0 or pointWon is 4
+     * @param newValue new value of label
+     */
+    public void gameOver(String newValue) {
+        if (newValue.equals("0") || pointWon == 4) {
+            Main.switchScene(new EndGameBP(pointWon));
+            Timer.getTimeTimer().stop();
+            pointWon++;
+        }
     }
 
     public Button getBtnSkip() {
@@ -212,11 +227,7 @@ public class GamePageBP extends BorderPane {
             btnSkip.getStyleClass().add("buttonBasic");
             btnSkip.setId("medium-button");
             btnSkip.setOnAction(event -> {
-
-                if (waitingQuestions < questions.size()) {
-                    returnStartQuestion();
-                }
-                if (waitingQuestions >= questions.size()) waitingQuestions = 0;
+                choiceQuestion();
                 updateScore(false);
                 getTxtAnswer().setPromptText("");
             });
@@ -239,22 +250,30 @@ public class GamePageBP extends BorderPane {
             btnOk.setId("medium-button");
 
             btnOk.setOnAction(event -> {
-                boolean addPoint;
-                if (isCorrect(getTxtAnswer().getText())) {
-                    addPoint = true;
-                    questions.remove(waitingQuestions);
-                    getTxtAnswer().setPromptText("Correct Answer");
-                }
-                else {
-                    addPoint = false;
-                    getTxtAnswer().setPromptText("Wrong Answer");
-                }
                 choiceQuestion();
-                updateScore(addPoint);
+                updateScore(isAddPoint());
                 getTxtAnswer().setText("");
             });
         }
         return btnOk;
+    }
+
+    /**
+     * Check if it's necessary add a point or not
+     * @return true or false if add point
+     */
+    public boolean isAddPoint() {
+        boolean addPoint;
+        if (isCorrect(getTxtAnswer().getText())) {
+            addPoint = true;
+            questions.remove(waitingQuestions);
+            getTxtAnswer().setPromptText("Correct Answer");
+        }
+        else {
+            addPoint = false;
+            getTxtAnswer().setPromptText("Wrong Answer");
+        }
+        return addPoint;
     }
 
     public HashMap<String, Label> getPointsFromLbl() {
@@ -264,11 +283,17 @@ public class GamePageBP extends BorderPane {
         return pointsFromLbl;
     }
 
+    /**
+     * Check if it's end of the list
+     */
     public void choiceQuestion(){
-        if (waitingQuestions >= questions.size()) waitingQuestions = 0;
+        if (waitingQuestions >= questions.size()) waitingQuestions = -1;
         returnStartQuestion();
     }
 
+    /**
+     * set the basic display for start a question
+     */
     public void returnStartQuestion() {
         waitingQuestions++;
         getLblClue1().setText("");
@@ -278,10 +303,19 @@ public class GamePageBP extends BorderPane {
         time = System.currentTimeMillis();
     }
 
+    /**
+     * Check if the answer of question is correct
+     * @param text answer of question
+     * @return true or false
+     */
     public boolean isCorrect(String text) {
         return questions.get(waitingQuestions).getAnswer().equalsIgnoreCase((text));
     }
 
+    /**
+     * Update of score add point or return to zero
+     * @param addPoint true or false if add point
+     */
     public void updateScore(boolean addPoint) {
         if (addPoint){
             addPointScore();
@@ -291,6 +325,9 @@ public class GamePageBP extends BorderPane {
         }
     }
 
+    /**
+     * add point in total and update of label for point in user display
+     */
     public void addPointScore() {
         pointCons++;
         pointsFromLbl.forEach((key, label) -> {
@@ -304,6 +341,9 @@ public class GamePageBP extends BorderPane {
         });
     }
 
+    /**
+     * update point in zero value
+     */
     public void removePointScore() {
         pointsFromLbl.forEach((key, label) -> {
             if (pointCons == Integer.parseInt(key)) {
@@ -317,6 +357,9 @@ public class GamePageBP extends BorderPane {
         });
     }
 
+    /**
+     * Point fianl for EndGameBP, retains the highest point
+     */
     public void pointFinal(){
         if (pointWon < pointCons) {
             pointWon = pointCons;

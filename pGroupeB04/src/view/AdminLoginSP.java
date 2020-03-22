@@ -1,9 +1,6 @@
 package view;
 
 import application.Main;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -108,20 +105,15 @@ public class AdminLoginSP extends StackPane {
             btnConnection.getStyleClass().addAll("buttonBasic");
             btnConnection.setId("big-button");
             
-            btnConnection.setOnAction(new EventHandler<ActionEvent>() {
-				
-				@Override
-				public void handle(ActionEvent event) {
-					// TODO Auto-generated method stub
-					if(pwfPassword.getText().equals("helha")) {
-						Main.switchScene(new TableViewBP(txtLogin.getText()));
-					}
-					else{
-						Main.switchScene(new AdminLoginSP());
-					}
-					
-				}
-			});
+            btnConnection.setOnAction(event -> {
+                if(pwfPassword.getText().equals("helha")) {
+                    Main.switchScene(new TableViewBP(txtLogin.getText()));
+                }
+                else{
+                    Main.switchScene(new AdminLoginSP());
+                }
+
+            });
         }
         return btnConnection;
     }

@@ -39,7 +39,7 @@ public class TableViewBP extends BorderPane{
 	
 	private Button btnBack;
 	
-	List<Question>questions=new ArrayList<Question>();
+	List<Question>questions=new ArrayList<>();
 	
 	String login;
 
@@ -72,16 +72,16 @@ public class TableViewBP extends BorderPane{
 	
 	public TableView getTvQuestions() {
 		if(tvQuestions==null) {
-			tvQuestions=new TableView<Question>();
+			tvQuestions=new TableView<>();
 			
-			tcTheme= new TableColumn<Question,String>("theme");
-			tcAuthor=new TableColumn<Question,String>("author");
-			tcClues1=new TableColumn<Question,String>("Clues_1");
-			tcClues2=new TableColumn<Question,String>("Clues_2");
-			tcClues3=new TableColumn<Question,String>("Clues_3");
-			tcClues=new TableColumn<Question,String>("Clues");
+			tcTheme= new TableColumn<>("theme");
+			tcAuthor=new TableColumn<>("author");
+			tcClues1=new TableColumn<>("Clues_1");
+			tcClues2=new TableColumn<>("Clues_2");
+			tcClues3=new TableColumn<>("Clues_3");
+			tcClues=new TableColumn<>("Clues");
 			tcClues.getColumns().addAll(tcClues1,tcClues2,tcClues3);			
-			tcAnswer=new TableColumn<Question,String>("Anwser");
+			tcAnswer=new TableColumn<>("Anwser");
 			
 			tcTheme.setCellValueFactory(new PropertyValueFactory<>("theme"));
 			tcAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
