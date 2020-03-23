@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.BackgroundLoader;
+import utils.BackgroundLoader;
 import model.Question;
 import utils.JsonManager;
 import utils.Timer;
@@ -250,8 +250,8 @@ public class GamePageBP extends BorderPane {
             btnOk.setId("medium-button");
 
             btnOk.setOnAction(event -> {
-                choiceQuestion();
                 updateScore(isAddPoint());
+                choiceQuestion();
                 getTxtAnswer().setText("");
             });
         }
@@ -358,7 +358,7 @@ public class GamePageBP extends BorderPane {
     }
 
     /**
-     * Point fianl for EndGameBP, retains the highest point
+     * Point final for EndGameBP, retains the highest point
      */
     public void pointFinal(){
         if (pointWon < pointCons) {

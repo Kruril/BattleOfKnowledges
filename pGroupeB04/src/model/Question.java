@@ -2,9 +2,10 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Question implements Serializable {
+public class Question implements Serializable{
 
 	private String author;
 	private String theme;
@@ -87,6 +88,6 @@ public class Question implements Serializable {
 	
 	public Question clone() {
 		return new Question(author, theme,answer);
-	}	
+	}
 
 }

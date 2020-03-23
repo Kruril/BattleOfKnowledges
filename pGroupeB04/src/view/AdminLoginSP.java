@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import model.BackgroundLoader;
+import utils.BackgroundLoader;
 
 public class AdminLoginSP extends StackPane {
 
@@ -106,11 +106,14 @@ public class AdminLoginSP extends StackPane {
             btnConnection.setId("big-button");
             
             btnConnection.setOnAction(event -> {
-                if(pwfPassword.getText().equals("helha") && txtLogin.getText().equalsIgnoreCase("admin")) {
+                if(pwfPassword.getText().equals("helha") && txtLogin.getText().equals("admin")) {
                     Main.switchScene(new TableViewBP());
                 }
                 else{
-                    Main.switchScene(new AdminLoginSP());
+                    pwfPassword.setText("");
+                    txtLogin.setText("");
+                    txtLogin.setPromptText("Invalid");
+                    pwfPassword.setPromptText("Invalid");
                 }
 
             });

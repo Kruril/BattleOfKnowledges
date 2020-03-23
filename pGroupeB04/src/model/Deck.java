@@ -4,9 +4,11 @@ import com.google.gson.Gson;
 import serialisation.LectureEcriture;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Deck {
+
 	private List<Question> questions;
 	
 	
@@ -60,7 +62,7 @@ public class Deck {
 	public void fromJson(){
 		this.setQuestions(LectureEcriture.readStringDeck().getListe());
 	}
-	
+
 }
 
 

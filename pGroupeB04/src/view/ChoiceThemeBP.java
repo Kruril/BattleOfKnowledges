@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.BackgroundLoader;
+import utils.BackgroundLoader;
 import utils.JsonManager;
 
 
@@ -129,7 +129,6 @@ public class ChoiceThemeBP extends BorderPane {
     public void randomTheme() {
         Random rand = new Random();
         String theme;
-        JsonManager.themeFromDeck();
         for (int index = 1; index <= 4; index++) {
             while (true) {
                 theme = JsonManager.THEMES.get(rand.nextInt(JsonManager.THEMES.size()));

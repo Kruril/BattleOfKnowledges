@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import utils.JsonManager;
 import utils.Resolution;
 import view.*;
 
@@ -25,6 +26,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        JsonManager.themeFromDeck();
         stage = primaryStage;
         Scene scene;
         Resolution resolution = new Resolution();
