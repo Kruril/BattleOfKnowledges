@@ -227,8 +227,8 @@ public class GamePageBP extends BorderPane {
             btnSkip.getStyleClass().add("buttonBasic");
             btnSkip.setId("medium-button");
             btnSkip.setOnAction(event -> {
-                choiceQuestion();
                 updateScore(false);
+                choiceQuestion();
                 getTxtAnswer().setPromptText("");
             });
         }
@@ -287,7 +287,8 @@ public class GamePageBP extends BorderPane {
      * Check if it's end of the list
      */
     public void choiceQuestion(){
-        if (waitingQuestions >= questions.size()) waitingQuestions = -1;
+        System.out.println(waitingQuestions +" "+ questions.size());
+        if (waitingQuestions >= questions.size()-1) waitingQuestions = -1;
         returnStartQuestion();
     }
 
@@ -296,6 +297,7 @@ public class GamePageBP extends BorderPane {
      */
     public void returnStartQuestion() {
         waitingQuestions++;
+        System.out.println("Return " + waitingQuestions +" "+ questions.size());
         getLblClue1().setText("");
         getLblClue2().setText("");
         getLblClue3().setText("");
