@@ -6,10 +6,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
@@ -18,22 +19,30 @@ import utils.BackgroundLoader;
 import utils.JsonManager;
 
 public class TableViewThemeBP extends BorderPane{
-
+	private Label lblTheme;
+	
 	private TableView<Question> tvQuestions;
 
 	private String theme;
 	private List<Question> questions;
+	
+	
 	public TableViewThemeBP(String theme) {
 		this.theme=theme;
 		this.questions=JsonManager.choiceTheme(theme);
 		this.setBackground(BackgroundLoader.builderBackGround());
 		
+		HBox hLabel=new HBox();
+		hLabel.getChildren().add(getLblTheme());
+		this.setTop(hLabel);
 		HBox hTable= new HBox();
 		hTable.getChildren().add(getTvQuestions());
 		hTable.setAlignment(Pos.CENTER);
 		this.setCenter(hTable);
 	}
-
+	
+	
+	
 	public TableView<Question> getTvQuestions() {
 		if(tvQuestions==null) {
 			tvQuestions=new TableView<Question>();
@@ -54,10 +63,17 @@ public class TableViewThemeBP extends BorderPane{
 			tcClues.getColumns().addAll(tcClues1,tcClues2,tcClues3);
             tvQuestions.getColumns().addAll(tcAuthor,tcClues,tcAnswer);
             tvQuestions.setItems(FXCollections.observableArrayList(questions));
+            
 		}
 		return tvQuestions;
 	}
-
+	
+	public Label getLblTheme() {
+		if(lblTheme==null) {
+			lblTheme=new Label(theme);
+		}
+		return lblTheme;
+	}
 
 
 	/**

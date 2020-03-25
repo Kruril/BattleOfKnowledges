@@ -68,9 +68,9 @@ public class TableViewBP extends BorderPane {
             
             tvQuestions.getColumns().addAll(tcTheme);
             tvQuestions.setItems(FXCollections.observableArrayList(questions));
-            tvQuestions.setOnMouseClicked(event -> Main.switchScene(new TableViewThemeBP(tcTheme.getCellData(1))));
+            
+            tvQuestions.setOnMouseClicked(event -> Main.switchScene(new TableViewThemeBP(tvQuestions.getSelectionModel().getSelectedItem().getTheme())));
         }
-
         return tvQuestions;
     }
 
