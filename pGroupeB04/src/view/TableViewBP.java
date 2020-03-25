@@ -60,29 +60,15 @@ public class TableViewBP extends BorderPane {
     public TableView getTvQuestions() {
         if (tvQuestions == null) {
             tvQuestions = new TableView<>();
-
-            TableColumn<Question, String> tcTheme = new TableColumn<>("theme"),
-                    tcAuthor = new TableColumn<>("author"),
-                    tcClues1 = new TableColumn<>("Clues_1"),
-                    tcClues2 = new TableColumn<>("Clues_2"),
-                    tcClues3 = new TableColumn<>("Clues_3"),
-                    tcClues = new TableColumn<>("Clues"),
-                    tcAnswer = new TableColumn<>("Anwser");
-            tcClues.getColumns().addAll(tcClues1, tcClues2, tcClues3);
-
+            
+            TableColumn<Question, String> tcTheme = new TableColumn<>("theme");
+            
             tcTheme.setCellValueFactory(new PropertyValueFactory<>("theme"));
-            tcAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
-            tcAnswer.setCellValueFactory(new PropertyValueFactory<>("answer"));
-            tcClues1.setCellValueFactory(new Factory(0));
-            tcClues2.setCellValueFactory(new Factory(1));
-            tcClues3.setCellValueFactory(new Factory(2));
-
-            tvQuestions.getColumns().addAll(tcTheme, tcAuthor, tcClues, tcAnswer);
-            tvQuestions.setMinWidth(1900.);
+            
+            
+            tvQuestions.getColumns().addAll(tcTheme);
             tvQuestions.setItems(FXCollections.observableArrayList(questions));
-
-            tvQuestions.setMaxWidth(Region.USE_COMPUTED_SIZE);
-            tvQuestions.setMaxWidth(Region.USE_COMPUTED_SIZE);
+            tvQuestions.setOnMouseClicked(event -> Main.switchScene(new TableViewThemeBP(tcTheme.getCellData(1))));
         }
 
         return tvQuestions;
@@ -116,27 +102,10 @@ public class TableViewBP extends BorderPane {
     public void getQuestions() {
         List<Question> quest;
         for (String themes : JsonManager.THEMES) {
-            quest = JsonManager.choiceTheme(themes);
-            questions.addAll(quest);
+            questions.add(JsonManager.choiceTheme(themes).get(0));
         }
     }
 
-    /**
-     * Factory class is used to obtain
-     * the 3 Clues separately
-     */
-    public static class Factory implements Callback<TableColumn.CellDataFeatures<Question, String>, ObservableValue<String>> {
-        int index;
-
-        public Factory(int index) {
-            this.index = index;
-        }
-
-        public ObservableValue<String> call(CellDataFeatures<Question, String> p) {
-            return new SimpleStringProperty(p.getValue().getClues().get(index));
-        }
-
-
-    }
+  
 
 }
