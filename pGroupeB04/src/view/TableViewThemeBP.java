@@ -2,10 +2,12 @@ package view;
 
 import java.util.List;
 
+import application.Main;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -26,6 +28,7 @@ public class TableViewThemeBP extends BorderPane{
 	private String theme;
 	private List<Question> questions;
 	
+	private Button btnBack;
 	
 	public TableViewThemeBP(String theme) {
 		this.theme=theme;
@@ -34,11 +37,19 @@ public class TableViewThemeBP extends BorderPane{
 		
 		HBox hLabel=new HBox();
 		hLabel.getChildren().add(getLblTheme());
+		hLabel.setAlignment(Pos.CENTER);
 		this.setTop(hLabel);
+		
+		
 		HBox hTable= new HBox();
 		hTable.getChildren().add(getTvQuestions());
 		hTable.setAlignment(Pos.CENTER);
 		this.setCenter(hTable);
+		
+		HBox hBtn= new HBox();
+		hBtn.getChildren().add(getBtnBack());
+		hBtn.setAlignment(Pos.CENTER);
+		this.setBottom(hBtn);
 	}
 	
 	
@@ -71,8 +82,21 @@ public class TableViewThemeBP extends BorderPane{
 	public Label getLblTheme() {
 		if(lblTheme==null) {
 			lblTheme=new Label(theme);
+            lblTheme.getStyleClass().add("labelTitle");
 		}
 		return lblTheme;
+	}
+
+
+	public Button getBtnBack() {
+		if(btnBack==null) {
+			btnBack=new Button("Back");
+			btnBack.getStyleClass().add("buttonBasic");
+            btnBack.setId("big-button");
+            btnBack.setOnAction(event -> Main.switchScene(new TableViewBP()));
+		}
+		return btnBack;
+			
 	}
 
 
