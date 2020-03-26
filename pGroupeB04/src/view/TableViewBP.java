@@ -4,21 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.Main;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.util.Callback;
 import utils.BackgroundLoader;
 import model.Question;
 import utils.JsonManager;
@@ -100,7 +95,7 @@ public class TableViewBP extends BorderPane {
      */
 
     public void getQuestions() {
-        for (String themes : JsonManager.THEMES) {
+        for (String themes : JsonManager.getThemes()) {
             questions.add(JsonManager.choiceTheme(themes).get(0));
         }
     }

@@ -1,7 +1,6 @@
 package utils;
 
 import model.Deck;
-import model.IteratorQuestion;
 import model.Question;
 
 import java.util.ArrayList;
@@ -11,12 +10,16 @@ public class JsonManager implements Path {
 
     private static Deck deck;
 
-    public static final List<String> THEMES = new ArrayList<>();
+    private static List<String> themes = new ArrayList<>();
 
 
     private JsonManager(){
         deck = new Deck();
         deck.fromJson();
+    }
+
+    public static List<String> getThemes() {
+        return themes;
     }
 
     /**
@@ -27,8 +30,8 @@ public class JsonManager implements Path {
             new JsonManager();
 
             for (Question quest : deck.getListe()) {
-                if (!(THEMES.contains(quest.getTheme()))) {
-                    THEMES.add(quest.getTheme());
+                if (!(themes.contains(quest.getTheme()))) {
+                    themes.add(quest.getTheme());
                 }
             }
         }

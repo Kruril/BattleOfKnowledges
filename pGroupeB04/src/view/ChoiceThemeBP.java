@@ -131,7 +131,7 @@ public class ChoiceThemeBP extends BorderPane {
         String theme;
         for (int index = 1; index <= 4; index++) {
             while (true) {
-                theme = JsonManager.THEMES.get(rand.nextInt(JsonManager.THEMES.size()));
+                theme = JsonManager.getThemes().get(rand.nextInt(JsonManager.getThemes().size()));
                 if (!(themes.contains(theme)) && (JsonManager.choiceTheme(theme).size()>6)) {
                     themes.add(theme);
                     break;

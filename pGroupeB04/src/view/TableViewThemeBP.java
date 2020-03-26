@@ -56,7 +56,7 @@ public class TableViewThemeBP extends BorderPane{
 	
 	public TableView<Question> getTvQuestions() {
 		if(tvQuestions==null) {
-			tvQuestions=new TableView<Question>();
+			tvQuestions=new TableView<>();
 			
 			TableColumn<Question, String> tcAuthor = new TableColumn<>("Author");
 			TableColumn<Question, String> tcClues = new TableColumn<>("Clues");
