@@ -2,6 +2,7 @@ package model;
 
 import com.google.gson.Gson;
 import serialisation.LectureEcriture;
+import utils.JsonManager;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,6 +62,10 @@ public class Deck {
 
 	public void fromJson(){
 		this.setQuestions(LectureEcriture.readStringDeck().getListe());
+	}
+
+	public static IteratorQuestion createIterator(String theme) {
+		return new IteratorQuestion(JsonManager.choiceTheme(theme));
 	}
 
 }

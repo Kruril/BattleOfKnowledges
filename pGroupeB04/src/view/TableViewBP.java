@@ -100,7 +100,6 @@ public class TableViewBP extends BorderPane {
      */
 
     public void getQuestions() {
-        List<Question> quest;
         for (String themes : JsonManager.THEMES) {
             questions.add(JsonManager.choiceTheme(themes).get(0));
         }

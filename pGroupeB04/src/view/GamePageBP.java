@@ -9,13 +9,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.Deck;
+import model.IteratorQuestion;
 import utils.BackgroundLoader;
-import model.Question;
-import utils.JsonManager;
 import utils.Timer;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class GamePageBP extends BorderPane {
 
@@ -38,9 +37,8 @@ public class GamePageBP extends BorderPane {
     private Button btnOk;
 
     private String theme;
-    private List<Question> questions;
+    private IteratorQuestion itQuestions;
     private int waitingClues = 0;
-    private int waitingQuestions = 0;
     private long time;
     private int pointWon = 0;
     private int pointCons;
@@ -48,7 +46,7 @@ public class GamePageBP extends BorderPane {
 
     public GamePageBP(String theme) {
         this.theme = theme;
-        this.questions = JsonManager.choiceTheme(theme);
+        this.itQuestions = Deck.createIterator(theme);
         //BACKGROUND
         this.setBackground(BackgroundLoader.builderBackGround());
 
@@ -195,15 +193,15 @@ public class GamePageBP extends BorderPane {
     public void seeClues() {
         if (waitingClues < 3) {
             if (waitingClues == 0){
-                getLblClue1().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
+                getLblClue1().setText(itQuestions.item().getClues().get(waitingClues));
                 waitingClues++;
             }
             if (waitingClues == 1 && System.currentTimeMillis() - time >= 3000) {
-                getLblClue2().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
+                getLblClue2().setText(itQuestions.item().getClues().get(waitingClues));
                 waitingClues++;
             }
             if (waitingClues == 2 && System.currentTimeMillis() - time >= 6000){
-                getLblClue3().setText(questions.get(waitingQuestions).getClues().get(waitingClues));
+                getLblClue3().setText(itQuestions.item().getClues().get(waitingClues));
                 waitingClues++;
             }
         }
@@ -266,7 +264,7 @@ public class GamePageBP extends BorderPane {
         boolean addPoint;
         if (isCorrect(getTxtAnswer().getText())) {
             addPoint = true;
-            questions.remove(waitingQuestions);
+            itQuestions.remove();
             getTxtAnswer().setPromptText("Correct Answer");
         }
         else {
@@ -287,8 +285,7 @@ public class GamePageBP extends BorderPane {
      * Check if it's end of the list
      */
     public void choiceQuestion(){
-        System.out.println(waitingQuestions +" "+ questions.size());
-        if (waitingQuestions >= questions.size()-1) waitingQuestions = -1;
+        if (!itQuestions.hasNext()) itQuestions.firstIndex();
         returnStartQuestion();
     }
 
@@ -296,8 +293,7 @@ public class GamePageBP extends BorderPane {
      * set the basic display for start a question
      */
     public void returnStartQuestion() {
-        waitingQuestions++;
-        System.out.println("Return " + waitingQuestions +" "+ questions.size());
+        itQuestions.next();
         getLblClue1().setText("");
         getLblClue2().setText("");
         getLblClue3().setText("");
@@ -311,7 +307,7 @@ public class GamePageBP extends BorderPane {
      * @return true or false
      */
     public boolean isCorrect(String text) {
-        return questions.get(waitingQuestions).getAnswer().equalsIgnoreCase((text));
+        return itQuestions.item().getAnswer().equalsIgnoreCase(text);
     }
 
     /**

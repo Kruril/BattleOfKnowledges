@@ -1,18 +1,13 @@
 package utils;
 
 import model.Deck;
+import model.IteratorQuestion;
 import model.Question;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonManager {
-
-    /**
-     * path to different json
-     */
-    public static final String FILE_THEME = "json/theme/theme.json";
-    public static final String FILE_RESOLUTION = "json/resolution/resolution.json";
+public class JsonManager implements Path {
 
     private static Deck deck;
 
