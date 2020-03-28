@@ -1,9 +1,7 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import application.Main;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,62 +9,62 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import utils.BackgroundLoader;
-import model.Question;
 import utils.JsonManager;
 
 public class TableViewBP extends BorderPane {
 
-    private TableView<Question> tvQuestions;
+    private TableView<String> tvQuestions;
 
     private Label lblTitle;
 
     private Button btnBack;
 
-    List<Question> questions = new ArrayList<>();
-
-
     public TableViewBP() {
         this.setBackground(BackgroundLoader.builderBackGround());
 
-        getQuestions();
+        this.setPadding(new Insets(10.));
+        setAlignment(getLblTitle(), Pos.CENTER);
+        this.setTop(getLblTitle());
 
-        HBox hbTop = new HBox();
-        hbTop.getChildren().add(getLblTitle());
-        hbTop.setAlignment(Pos.TOP_CENTER);
-        this.setTop(hbTop);
+        setAlignment(getTvQuestions(), Pos.CENTER);
+        this.setCenter(getTvQuestions());
 
-        HBox hbCenter = new HBox();
-        hbCenter.getChildren().add(getTvQuestions());
-        hbCenter.setAlignment(Pos.CENTER);
-        hbCenter.setPadding(new Insets(10, 10, 10, 10));
-        this.setCenter(hbCenter);
-
-        HBox hbBottom = new HBox();
-        hbBottom.getChildren().add(getBtnBack());
-        hbBottom.setAlignment(Pos.BOTTOM_CENTER);
-        this.setBottom(hbBottom);
+        setAlignment(getBtnBack(), Pos.CENTER);
+        this.setBottom(getBtnBack());
     }
 
 
     public TableView getTvQuestions() {
         if (tvQuestions == null) {
             tvQuestions = new TableView<>();
+            tvQuestions.setMaxWidth(250.);
+            changeHeight();
+            Main.getStage().heightProperty().addListener(observable -> changeHeight());
             
-            TableColumn<Question, String> tcTheme = new TableColumn<>("theme");
+            TableColumn<String, String> tcTheme = new TableColumn<>("theme");
+            tcTheme.setMinWidth(248.);
             
-            tcTheme.setCellValueFactory(new PropertyValueFactory<>("theme"));
+            tcTheme.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
             
             
-            tvQuestions.getColumns().addAll(tcTheme);
-            tvQuestions.setItems(FXCollections.observableArrayList(questions));
+            tvQuestions.getColumns().add(tcTheme);
+            tvQuestions.setItems(FXCollections.observableArrayList(JsonManager.getThemes()));
             
-            tvQuestions.setOnMouseClicked(event -> Main.switchScene(new TableViewThemeBP(tvQuestions.getSelectionModel().getSelectedItem().getTheme())));
+            tvQuestions.setOnMouseClicked(event -> {
+                String element = tvQuestions.getSelectionModel().getSelectedItem();
+                if (JsonManager.getThemes().contains(element)) {
+                    Main.switchScene(new TableViewThemeBP(element));
+                }
+            });
         }
         return tvQuestions;
+    }
+
+    public void changeHeight() {
+        getTvQuestions().setMaxHeight(Main.getStage().getHeight() - 290);
     }
 
 
@@ -87,17 +85,6 @@ public class TableViewBP extends BorderPane {
             btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
         }
         return btnBack;
-    }
-
-
-    /**
-     * To generate all questions of Json file
-     */
-
-    public void getQuestions() {
-        for (String themes : JsonManager.getThemes()) {
-            questions.add(JsonManager.choiceTheme(themes).get(0));
-        }
     }
 
   

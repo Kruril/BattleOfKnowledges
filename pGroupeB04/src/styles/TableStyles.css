@@ -1,0 +1,8 @@
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color: rgba(0, 0, 0, 0.74);
+}
+
+.table-view .column-header-background .label {
+    -fx-text-fill: white;
+}

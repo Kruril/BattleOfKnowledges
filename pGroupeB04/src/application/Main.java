@@ -35,7 +35,8 @@ public class Main extends Application {
         //Main menu page
         MainPageSP menuPage = new MainPageSP();
         scene = new Scene(menuPage);
-        scene.getStylesheets().addAll("styles/btnStyles.css", "styles/labelStyles.css", "styles/BoxStyles.css");
+        scene.getStylesheets().addAll("styles/btnStyles.css", "styles/labelStyles.css", "styles/BoxStyles.css",
+                "styles/TableStyles.css");
 
         primaryStage.setScene(scene);
 
