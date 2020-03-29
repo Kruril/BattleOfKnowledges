@@ -62,18 +62,14 @@ public class TableViewThemeBP extends BorderPane{
 					tcClues2 = new TableColumn<>("Clues_2"),
 					tcClues3 = new TableColumn<>("Clues_3");
 
-			double value = (Main.getStage().getWidth()/100)*25;
-			tcClues1.setCellFactory(getValue(value));
-			tcClues2.setCellFactory(getValue(value));
-			tcClues3.setCellFactory(getValue(value));
-			Main.getStage().widthProperty().addListener((observable, oldValue, newValue) -> {
-				double val = ((Double) newValue/100)*25;
+			tvQuestions.widthProperty().addListener(observable -> {
+				double val = ((tvQuestions.getWidth() - tcAuthor.getWidth() - tcAnswer.getWidth()) / 3) - 10;
 				tcClues1.setCellFactory(getValue(val));
 				tcClues2.setCellFactory(getValue(val));
 				tcClues3.setCellFactory(getValue(val));
-				tcClues1.setPrefWidth(val);
-				tcClues2.setPrefWidth(val);
-				tcClues3.setPrefWidth(val);
+				tcClues1.setPrefWidth(val + 5);
+				tcClues2.setPrefWidth(val + 5);
+				tcClues3.setPrefWidth(val + 5);
 			});
 
 			tcAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -84,9 +80,8 @@ public class TableViewThemeBP extends BorderPane{
 			
 			tcClues.getColumns().addAll(tcClues1,tcClues2,tcClues3);
             tvQuestions.getColumns().addAll(tcAuthor,tcClues,tcAnswer);
-
             tvQuestions.setItems(FXCollections.observableArrayList(questions));
-            
+
 		}
 		return tvQuestions;
 	}
@@ -96,13 +91,12 @@ public class TableViewThemeBP extends BorderPane{
 			@Override
 			public TableCell<Question, String> call(TableColumn<Question, String> arg0) {
 				return new TableCell<Question, String>() {
-					private Text text;
 
 					@Override
 					public void updateItem(String item, boolean empty) {
 						super.updateItem(item, empty);
 						if (!isEmpty()) {
-							text = new Text(item);
+							Text text = new Text(item);
 							text.setWrappingWidth(size);
 							this.setWrapText(true);
 							setGraphic(text);

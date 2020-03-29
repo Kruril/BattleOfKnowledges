@@ -6,3 +6,6 @@
 .table-view .column-header-background .label {
     -fx-text-fill: white;
 }
+.table-row-cell .label{
+    -fx-padding: 10;
+}
