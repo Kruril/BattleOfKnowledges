@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import utils.BackgroundLoader;
+import utils.JsonManager;
 import utils.Resolution;
 
 public class MainPageSP extends StackPane {
@@ -59,6 +60,7 @@ public class MainPageSP extends StackPane {
             btnOff.setOnAction(event -> {
                 new Resolution().toJson(Main.getStage().getWidth(),Main.getStage().getHeight());
                 Main.getStage().close();
+                JsonManager.getDeck().toJson();
             });
         }
         return btnOff;

@@ -6,7 +6,7 @@ import model.Question;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonManager implements Path {
+public class JsonManager {
 
     private static Deck deck;
 
@@ -20,6 +20,10 @@ public class JsonManager implements Path {
 
     public static List<String> getThemes() {
         return themes;
+    }
+
+    public static Deck getDeck() {
+        return deck;
     }
 
     /**

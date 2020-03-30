@@ -212,7 +212,7 @@ public class GamePageBP extends BorderPane {
      * @param newValue new value of label
      */
     public void gameOver(String newValue) {
-        if (newValue.equals("0") || pointWon == 4) {
+        if (newValue.equals("0") || pointWon == 4 || itQuestions.size() <= 0) {
             Main.switchScene(new EndGameBP(pointWon));
             Timer.getTimeTimer().stop();
             pointWon++;

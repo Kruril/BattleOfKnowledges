@@ -55,7 +55,10 @@ public class Main extends Application {
             }
         });
 
-        primaryStage.setOnCloseRequest(event -> resolution.toJson(primaryStage.getWidth(),primaryStage.getHeight()));
+        primaryStage.setOnCloseRequest(event -> {
+            resolution.toJson(primaryStage.getWidth(),primaryStage.getHeight());
+            JsonManager.getDeck().toJson();
+        });
 
     }
 

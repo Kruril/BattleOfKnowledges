@@ -1,11 +1,9 @@
 package model;
 
-import com.google.gson.Gson;
 import serialisation.LectureEcriture;
 import utils.JsonManager;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Deck {
@@ -25,10 +23,11 @@ public class Deck {
 		this.questions = questions;
 	}
 
-	public void addQuestion(Question questionAdd) {
-		if (questions.contains(questionAdd)) return;
+	public boolean addQuestion(Question questionAdd) {
+		if (questions.contains(questionAdd)) return false;
 		questions.add(questionAdd);
-	}
+        return true;
+    }
 	
 	public void removeQuestion(Question questionASuprimer) {
 		questions.remove(questionASuprimer);
@@ -55,9 +54,8 @@ public class Deck {
         return tpm.toString();
     }
 
-	public String toJson(){
-		Gson gson = new Gson();
-		return gson.toJson( this);
+	public void toJson(){
+		LectureEcriture.writeStringDeck(this);
 	}
 
 	public void fromJson(){

@@ -20,6 +20,13 @@ public class Question implements Serializable{
 		clues = new ArrayList<>();
 	}
 
+	public Question(String author, String theme, List<String> clues, String answer) {
+		this.author = author;
+		this.theme = theme;
+		this.clues = clues;
+		this.answer = answer;
+	}
+
 	public String getAuthor() {
 		return author;
 	}

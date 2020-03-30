@@ -52,3 +52,31 @@
     -fx-min-height: 90px;
     -fx-font-size: 40;
 }
+
+.round {
+    -fx-background-radius: 50em;
+    -fx-min-width: 45px;
+    -fx-min-height: 45px;
+    -fx-max-width: 45px;
+    -fx-max-height: 45px;
+    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
+    #3624c5, #2a5bcc);
+    -fx-border-color: #FFC900;
+    -fx-border-width: 4px;
+    -fx-border-radius: 65px;
+    -fx-background-radius: 65px;
+    -fx-background-insets: 0px;
+    -fx-padding: 0px;
+}
+.round:hover {
+    -fx-cursor: hand;
+}
+
+.round:pressed {
+    -fx-scale-shape: true;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
+    rgb(20, 233, 101), #6ecc0e);
+    -fx-text-fill: black;
+}

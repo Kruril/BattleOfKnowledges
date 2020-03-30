@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Deck;
 import utils.JsonManager;
+import utils.Path;
 import utils.Resolution;
 
 
@@ -17,7 +18,7 @@ public class LectureEcriture implements Serializable {
      */
     public static Deck readStringDeck() {
         Deck deck = null;
-        try (InputStreamReader in = new InputStreamReader(new FileInputStream(JsonManager.FILE_THEME))){
+        try (InputStreamReader in = new InputStreamReader(new FileInputStream(Path.FILE_THEME))){
             Gson gson = new Gson();
             deck = gson.fromJson(in , Deck.class);
         } catch (IOException e) {
@@ -32,9 +33,10 @@ public class LectureEcriture implements Serializable {
      * @param deck object to be transformed
      */
     public static void writeStringDeck(Deck deck) {
-        try(OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(JsonManager.FILE_THEME))){
+        try(OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(Path.FILE_THEME))){
             new GsonBuilder()
                     .disableHtmlEscaping()
+                    .setPrettyPrinting()
                     .create()
                     .toJson(deck, out);
         } catch (IOException e) {
@@ -49,7 +51,7 @@ public class LectureEcriture implements Serializable {
      */
     public static Resolution readStringResolu() {
         Resolution resolution = null;
-        try (InputStreamReader in = new InputStreamReader(new FileInputStream(JsonManager.FILE_RESOLUTION))){
+        try (InputStreamReader in = new InputStreamReader(new FileInputStream(Path.FILE_RESOLUTION))){
             Gson gson = new Gson();
             resolution = gson.fromJson(in , Resolution.class);
         } catch (IOException e) {
@@ -65,9 +67,10 @@ public class LectureEcriture implements Serializable {
      * @param resolution object to be transformed
      */
     public static void writeStringResolu(Resolution resolution) {
-        try(OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(JsonManager.FILE_RESOLUTION))){
+        try(OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(Path.FILE_RESOLUTION))){
             new GsonBuilder()
                     .disableHtmlEscaping()
+                    .setPrettyPrinting()
                     .create()
                     .toJson(resolution, out);
         } catch (IOException e) {

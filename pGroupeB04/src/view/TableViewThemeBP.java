@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import application.Main;
@@ -11,7 +14,11 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import model.Question;
@@ -26,15 +33,17 @@ public class TableViewThemeBP extends BorderPane{
 	private String theme;
 	private List<Question> questions;
 	
-	private Button btnBack;
+	private Button btnBack, btnValidation;
 
+	private TextField txtAuthor, txtClues1, txtClues2, txtClues3, txtAnswer;
 	
 	public TableViewThemeBP(String theme) {
 		this.theme=theme;
 		this.questions=JsonManager.choiceTheme(theme);
 		this.setBackground(BackgroundLoader.builderBackGround());
+		Insets insets = new Insets(10.);
 
-		this.setPadding(new Insets(10.));
+		this.setPadding(insets);
 
 		setAlignment(getLblTheme(), Pos.CENTER);
 		this.setTop(getLblTheme());
@@ -43,7 +52,16 @@ public class TableViewThemeBP extends BorderPane{
 		this.setCenter(getTvQuestions());
 
 		setAlignment(getBtnBack(), Pos.CENTER);
-		this.setBottom(getBtnBack());
+		HBox hbNewQuestion = new HBox(getTxtAuthor(),getTxtClues1(),getTxtClues2(),getTxtClues3(),getTxtAnswer(),getBtnValidation());
+		hbNewQuestion.setAlignment(Pos.CENTER);
+		hbNewQuestion.setSpacing(10.);
+		hbNewQuestion.setPadding(insets);
+
+		VBox vbBottom = new VBox(hbNewQuestion, getBtnBack());
+		vbBottom.setAlignment(Pos.CENTER);
+		vbBottom.setPadding(insets);
+		vbBottom.setSpacing(10.);
+		this.setBottom(vbBottom);
 	}
 	
 	
@@ -63,13 +81,13 @@ public class TableViewThemeBP extends BorderPane{
 					tcClues3 = new TableColumn<>("Clues_3");
 
 			tvQuestions.widthProperty().addListener(observable -> {
-				double val = ((tvQuestions.getWidth() - tcAuthor.getWidth() - tcAnswer.getWidth()) / 3) - 10;
+				double val = ((tvQuestions.getWidth() - tcAuthor.getWidth() - tcAnswer.getWidth()) / 3) - 5;
 				tcClues1.setCellFactory(getValue(val));
 				tcClues2.setCellFactory(getValue(val));
 				tcClues3.setCellFactory(getValue(val));
-				tcClues1.setPrefWidth(val + 5);
-				tcClues2.setPrefWidth(val + 5);
-				tcClues3.setPrefWidth(val + 5);
+				tcClues1.setPrefWidth(val);
+				tcClues2.setPrefWidth(val);
+				tcClues3.setPrefWidth(val);
 			});
 
 			tcAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -91,7 +109,6 @@ public class TableViewThemeBP extends BorderPane{
 			@Override
 			public TableCell<Question, String> call(TableColumn<Question, String> arg0) {
 				return new TableCell<Question, String>() {
-
 					@Override
 					public void updateItem(String item, boolean empty) {
 						super.updateItem(item, empty);
@@ -131,6 +148,67 @@ public class TableViewThemeBP extends BorderPane{
 			
 	}
 
+
+	public Button getBtnValidation() {
+		if (btnValidation == null) {
+			btnValidation = new Button("", new ImageView(new Image("images/icon/validation.png",
+					30, 30, true, true)));
+			btnValidation.getStyleClass().add("round");
+			btnValidation.setOnAction(event -> {
+				if (!getTxtAuthor().getText().equals("") && !getTxtClues1().getText().equals("") &&
+						!getTxtClues2().getText().equals("") && !getTxtClues3().getText().equals("") &&
+						!getTxtAnswer().getText().equals("")) {
+					Question question = new Question(getTxtAuthor().getText(), theme,
+							Arrays.asList(getTxtClues1().getText(),getTxtClues2().getText(),getTxtClues3().getText()),
+							getTxtAnswer().getText());
+					if (JsonManager.getDeck().addQuestion(question)) {
+						getTvQuestions().getItems().add(question);
+					}
+				}
+			});
+		}
+		return btnValidation;
+	}
+
+	public TextField getTxtAuthor() {
+		if (txtAuthor == null) {
+			txtAuthor = new TextField();
+			txtAuthor.setPromptText("Enter Author");
+		}
+		return txtAuthor;
+	}
+
+	public TextField getTxtClues1() {
+		if (txtClues1 == null) {
+			txtClues1 = new TextField();
+			txtClues1.setPromptText("Enter Clue 1");
+		}
+		return txtClues1;
+	}
+
+	public TextField getTxtClues2() {
+		if (txtClues2 == null) {
+			txtClues2 = new TextField();
+			txtClues2.setPromptText("Enter Clue 2");
+		}
+		return txtClues2;
+	}
+
+	public TextField getTxtClues3() {
+		if (txtClues3 == null) {
+			txtClues3 = new TextField();
+			txtClues3.setPromptText("Enter Clue 3");
+		}
+		return txtClues3;
+	}
+
+	public TextField getTxtAnswer() {
+		if (txtAnswer == null) {
+			txtAnswer = new TextField();
+			txtAnswer.setPromptText("Enter Answer");
+		}
+		return txtAnswer;
+	}
 
 	/**
      * Factory class is used to obtain

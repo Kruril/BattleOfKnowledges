@@ -40,7 +40,7 @@ public class IteratorQuestion {
         return index;
     }
 
-    public int getNbIndex() {
+    public int size() {
         return list.size();
     }
 
