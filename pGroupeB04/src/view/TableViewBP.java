@@ -111,7 +111,7 @@ public class TableViewBP extends BorderPane {
                     30, 30, true, true)));
             btnAddTheme.getStyleClass().add("round");
             btnAddTheme.setOnAction(event -> {
-                String newTheme = upperLowerText(getTxtAddTheme().getText());;
+                String newTheme = upperLowerText(getTxtAddTheme().getText());
                 if (!newTheme.equals("")) {
                     if (!JsonManager.getThemes().contains(newTheme)) {
                         JsonManager.getThemes().add(newTheme);
