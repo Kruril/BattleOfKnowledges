@@ -3,7 +3,6 @@ package serialisation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Deck;
-import utils.JsonManager;
 import utils.Path;
 import utils.Resolution;
 

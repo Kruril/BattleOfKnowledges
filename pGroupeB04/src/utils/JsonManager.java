@@ -6,7 +6,7 @@ import model.Question;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonManager {
+public class JsonManager{
 
     private static Deck deck;
 

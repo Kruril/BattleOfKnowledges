@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Question implements Serializable{
@@ -80,11 +79,11 @@ public class Question implements Serializable{
 		if (answer == null) {
 			if (other.answer != null)
 				return false;
-		} else if (!answer.equals(other.answer))
+		} else if (!answer.equalsIgnoreCase(other.answer))
 			return false;
 		if (theme == null) {
 			return other.theme == null;
-		} else return theme.equals(other.theme);
+		} else return theme.equalsIgnoreCase(other.theme);
 	}
 
 

@@ -1,8 +1,6 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import application.Main;
@@ -163,11 +161,28 @@ public class TableViewThemeBP extends BorderPane{
 							getTxtAnswer().getText());
 					if (JsonManager.getDeck().addQuestion(question)) {
 						getTvQuestions().getItems().add(question);
+						setTxtPromptText("Enter new");
 					}
+					else {
+						setTxtPromptText("Invalid");
+					}
+					getTxtAuthor().setText("");
+					getTxtClues1().setText("");
+					getTxtClues2().setText("");
+					getTxtClues3().setText("");
+					getTxtAnswer().setText("");
 				}
 			});
 		}
 		return btnValidation;
+	}
+
+	private void setTxtPromptText(String value) {
+		getTxtAuthor().setPromptText(value +" Author");
+		getTxtClues1().setPromptText(value +" Clue 1");
+		getTxtClues2().setPromptText(value +" Clue 2");
+		getTxtClues3().setPromptText(value +" Clue 3");
+		getTxtAnswer().setPromptText(value +" Answer");
 	}
 
 	public TextField getTxtAuthor() {
