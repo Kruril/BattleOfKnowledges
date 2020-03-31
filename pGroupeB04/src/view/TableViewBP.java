@@ -14,8 +14,6 @@ import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
 import utils.JsonManager;
 
-import java.util.Locale;
-
 public class TableViewBP extends BorderPane {
 
     private TableView<String> tvQuestions;
@@ -113,7 +111,7 @@ public class TableViewBP extends BorderPane {
                     30, 30, true, true)));
             btnAddTheme.getStyleClass().add("round");
             btnAddTheme.setOnAction(event -> {
-                String newTheme = upperFirstLetter(getTxtAddTheme().getText());;
+                String newTheme = upperLowerText(getTxtAddTheme().getText());;
                 if (!newTheme.equals("")) {
                     if (!JsonManager.getThemes().contains(newTheme)) {
                         JsonManager.getThemes().add(newTheme);
@@ -129,8 +127,8 @@ public class TableViewBP extends BorderPane {
         return btnAddTheme;
     }
 
-    public String upperFirstLetter(String element) {
-        char[] tmp = element.toCharArray();
+    public String upperLowerText(String element) {
+        char[] tmp = element.toLowerCase().toCharArray();
         if (tmp.length <= 0) return "";
         tmp[0] = Character.toUpperCase(tmp[0]);
         return new String(tmp);
