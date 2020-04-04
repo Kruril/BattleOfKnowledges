@@ -66,6 +66,7 @@ public class TableViewThemeBP extends BorderPane{
 		vbBottom.setPadding(insets);
 		vbBottom.setSpacing(10.);
 		this.setBottom(vbBottom);
+		contexMenu();
 	}
 	
 	
@@ -106,6 +107,21 @@ public class TableViewThemeBP extends BorderPane{
 
 		}
 		return tvQuestions;
+	}
+
+	public void contexMenu() {
+		ContextMenu menu = new ContextMenu();
+
+		MenuItem remove = new MenuItem("Remove");
+		remove.setOnAction(event -> {
+			Question qRemoved = getTvQuestions().getSelectionModel().getSelectedItem();
+			if (JsonManager.getDeck().removeQuestion(qRemoved)) {
+				getTvQuestions().getItems().remove(qRemoved);
+			}
+		});
+
+		menu.getItems().add(remove);
+		getTvQuestions().setContextMenu(menu);
 	}
 
 	public Callback<TableColumn<Question, String>, TableCell<Question, String>> getValue(double size) {

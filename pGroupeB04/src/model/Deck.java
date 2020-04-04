@@ -30,8 +30,10 @@ public class Deck {
         return true;
     }
 	
-	public void removeQuestion(Question questionASuprimer) {
+	public boolean removeQuestion(Question questionASuprimer) {
+		if (!questions.contains(questionASuprimer)) return false;
 		questions.remove(questionASuprimer);
+		return true;
 	}
 	
 	public void modifyQuestion(Question questionOld, Question questionNew) {
