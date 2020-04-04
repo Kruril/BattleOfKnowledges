@@ -3,6 +3,7 @@ package model;
 import serialisation.LectureEcriture;
 import utils.JsonManager;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,8 +63,16 @@ public class Deck {
 		this.setQuestions(LectureEcriture.readStringDeck().getListe());
 	}
 
+	public void fromJson(File file) {
+		this.setQuestions(LectureEcriture.readStringDeck(file).getListe());
+	}
+
 	public static IteratorQuestion createIterator(String theme) {
 		return new IteratorQuestion(JsonManager.choiceTheme(theme));
+	}
+
+	public void checkTheme(String theme) {
+		questions.removeIf(quest -> !quest.getTheme().equals(theme));
 	}
 
 }

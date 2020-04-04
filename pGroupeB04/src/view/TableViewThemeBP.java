@@ -1,5 +1,6 @@
 package view;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,9 +20,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import model.Deck;
 import model.Question;
 import utils.BackgroundLoader;
 import utils.JsonManager;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 public class TableViewThemeBP extends BorderPane{
 	private Label lblTheme;
@@ -31,7 +37,7 @@ public class TableViewThemeBP extends BorderPane{
 	private String theme;
 	private List<Question> questions;
 	
-	private Button btnBack, btnValidation;
+	private Button btnBack, btnValidation, btnAddFile;
 
 	private TextField txtAuthor, txtClues1, txtClues2, txtClues3, txtAnswer;
 	
@@ -50,7 +56,7 @@ public class TableViewThemeBP extends BorderPane{
 		this.setCenter(getTvQuestions());
 
 		setAlignment(getBtnBack(), Pos.CENTER);
-		HBox hbNewQuestion = new HBox(getTxtAuthor(),getTxtClues1(),getTxtClues2(),getTxtClues3(),getTxtAnswer(),getBtnValidation());
+		HBox hbNewQuestion = new HBox(getBtnAddFile(),getTxtAuthor(),getTxtClues1(),getTxtClues2(),getTxtClues3(),getTxtAnswer(),getBtnValidation());
 		hbNewQuestion.setAlignment(Pos.CENTER);
 		hbNewQuestion.setSpacing(10.);
 		hbNewQuestion.setPadding(insets);
@@ -183,6 +189,40 @@ public class TableViewThemeBP extends BorderPane{
 		getTxtClues2().setPromptText(value +" Clue 2");
 		getTxtClues3().setPromptText(value +" Clue 3");
 		getTxtAnswer().setPromptText(value +" Answer");
+	}
+
+	public Button getBtnAddFile() {
+		if (btnAddFile == null) {
+			btnAddFile = new Button("", new ImageView(new Image("images/icon/openFile.png",
+					25, 25, true, true)));
+			btnAddFile.getStyleClass().add("round");
+			btnAddFile.setOnAction(event -> importFile());
+		}
+		return btnAddFile;
+	}
+
+	public void importFile() {
+		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+		jfc.setDialogTitle("Select a theme from json");
+		jfc.setAcceptAllFileFilterUsed(false);
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON", "json");
+		jfc.addChoosableFileFilter(filter);
+
+		int returnValue = jfc.showDialog(null, "Add theme");
+
+		if (returnValue == JFileChooser.APPROVE_OPTION) {
+			File selectedFile = jfc.getSelectedFile();
+			System.out.println(selectedFile.getAbsolutePath());
+			Deck deck = new Deck();
+			deck.fromJson(selectedFile);
+			deck.checkTheme(theme);
+
+			deck.getListe().forEach(question -> {
+				if (JsonManager.getDeck().addQuestion(question)) {
+					getTvQuestions().getItems().add(question);
+				}
+			});
+		}
 	}
 
 	public TextField getTxtAuthor() {

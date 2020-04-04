@@ -26,6 +26,17 @@ public class LectureEcriture implements Serializable {
         return deck;
     }
 
+    public static Deck readStringDeck(File file) {
+        Deck deck = null;
+        try (InputStreamReader in = new InputStreamReader(new FileInputStream(file))){
+            Gson gson = new Gson();
+            deck = gson.fromJson(in , Deck.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return deck;
+    }
+
     /**
      * method that will transform a Deck object to json format by specifying
      * the file name
