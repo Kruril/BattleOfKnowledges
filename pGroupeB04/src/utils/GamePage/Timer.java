@@ -1,4 +1,4 @@
-package utils;
+package utils.GamePage;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

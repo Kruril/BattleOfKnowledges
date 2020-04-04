@@ -24,12 +24,13 @@ import model.Deck;
 import model.Question;
 import utils.BackgroundLoader;
 import utils.JsonManager;
+import utils.TableView.CommonTableViewBP;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
-public class TableViewThemeBP extends BorderPane{
+public class TableViewThemeBP extends CommonTableViewBP {
 	private Label lblTheme;
 	
 	private TableView<Question> tvQuestions;
@@ -74,8 +75,8 @@ public class TableViewThemeBP extends BorderPane{
 	public TableView<Question> getTvQuestions() {
 		if(tvQuestions==null) {
 			tvQuestions=new TableView<>();
-			changeHeight();
-			Main.getStage().heightProperty().addListener(observable -> changeHeight());
+			changeHeight(tvQuestions);
+			Main.getStage().heightProperty().addListener(observable -> changeHeight(tvQuestions));
 
 			TableColumn<Question, String>
 					tcAuthor = new TableColumn<>("Author"),
@@ -142,10 +143,6 @@ public class TableViewThemeBP extends BorderPane{
 				};
 			}
 		};
-	}
-
-	public void changeHeight() {
-		getTvQuestions().setMaxHeight(Main.getStage().getHeight() - 290);
 	}
 
 	public Label getLblTheme() {

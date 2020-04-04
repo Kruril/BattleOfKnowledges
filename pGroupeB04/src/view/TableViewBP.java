@@ -8,15 +8,16 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
 import utils.JsonManager;
+import utils.TableView.CommonTableViewBP;
 
-public class TableViewBP extends BorderPane {
+public class TableViewBP extends CommonTableViewBP {
 
-    private TableView<String> tvQuestions;
+    private TableView<String> tvThemes;
 
     private Label lblTitle;
 
@@ -31,8 +32,8 @@ public class TableViewBP extends BorderPane {
         setAlignment(getLblTitle(), Pos.CENTER);
         this.setTop(getLblTitle());
 
-        setAlignment(getTvQuestions(), Pos.CENTER);
-        this.setCenter(getTvQuestions());
+        setAlignment(getTvThemes(), Pos.CENTER);
+        this.setCenter(getTvThemes());
 
         HBox hbAddTheme = new HBox(getTxtAddTheme(), getBtnAddTheme());
         hbAddTheme.setPadding(new Insets(10.));
@@ -43,15 +44,16 @@ public class TableViewBP extends BorderPane {
         vbBottom.setPadding(new Insets(10.));
         vbBottom.setAlignment(Pos.CENTER);
         this.setBottom(vbBottom);
+        contexMenu();
     }
 
 
-    public TableView<String> getTvQuestions() {
-        if (tvQuestions == null) {
-            tvQuestions = new TableView<>();
-            tvQuestions.setMaxWidth(250.);
-            changeHeight();
-            Main.getStage().heightProperty().addListener(observable -> changeHeight());
+    public TableView<String> getTvThemes() {
+        if (tvThemes == null) {
+            tvThemes = new TableView<>();
+            tvThemes.setMaxWidth(250.);
+            changeHeight(tvThemes);
+            Main.getStage().heightProperty().addListener(observable -> changeHeight(tvThemes));
 
             TableColumn<String, String> tcTheme = new TableColumn<>("theme");
             tcTheme.setMinWidth(248.);
@@ -59,22 +61,21 @@ public class TableViewBP extends BorderPane {
             tcTheme.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
 
 
-            tvQuestions.getColumns().add(tcTheme);
-            tvQuestions.setItems(FXCollections.observableArrayList(JsonManager.getThemes()));
+            tvThemes.getColumns().add(tcTheme);
+            tvThemes.setItems(FXCollections.observableArrayList(JsonManager.getThemes()));
 
-            tvQuestions.setOnMouseClicked(event -> {
-                String element = tvQuestions.getSelectionModel().getSelectedItem();
+            tvThemes.setOnMouseClicked(event -> {
+                String element = tvThemes.getSelectionModel().getSelectedItem();
                 if (JsonManager.getThemes().contains(element)) {
-                    Main.switchScene(new TableViewThemeBP(element));
+                    if (event.getButton() == MouseButton.PRIMARY) {
+                        Main.switchScene(new TableViewThemeBP(element));
+                    }
                 }
             });
         }
-        return tvQuestions;
+        return tvThemes;
     }
 
-    public void changeHeight() {
-        getTvQuestions().setMaxHeight(Main.getStage().getHeight() - 290);
-    }
 
 
     public Label getLblTitle() {
@@ -115,7 +116,7 @@ public class TableViewBP extends BorderPane {
                 if (!newTheme.equals("")) {
                     if (!JsonManager.getThemes().contains(newTheme)) {
                         JsonManager.getThemes().add(newTheme);
-                        getTvQuestions().getItems().add(newTheme);
+                        getTvThemes().getItems().add(newTheme);
                     }
                     else {
                         getTxtAddTheme().setPromptText("Theme already present");
@@ -132,5 +133,27 @@ public class TableViewBP extends BorderPane {
         if (tmp.length <= 0) return "";
         tmp[0] = Character.toUpperCase(tmp[0]);
         return new String(tmp);
+    }
+
+    public void contexMenu() {
+        ContextMenu menu = new ContextMenu();
+
+        MenuItem remove = new MenuItem("Remove");
+        remove.setOnAction(event -> {
+            String sRemoved = getTvThemes().getSelectionModel().getSelectedItem();
+            if (JsonManager.getThemes().remove(sRemoved)) {
+                getTvThemes().getItems().remove(sRemoved);
+                System.out.println(sRemoved);
+                JsonManager.getDeck().getListe().forEach(question -> {
+                    if (question.getTheme().equals(sRemoved)) {
+                        JsonManager.getDeck().removeQuestion(question);
+                        System.out.println(question);
+                    }
+                });
+            }
+        });
+
+        menu.getItems().add(remove);
+        getTvThemes().setContextMenu(menu);
     }
 }

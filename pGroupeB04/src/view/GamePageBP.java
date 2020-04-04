@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import model.Deck;
 import model.IteratorQuestion;
 import utils.BackgroundLoader;
-import utils.Timer;
+import utils.GamePage.Timer;
 
 import java.util.HashMap;
 
