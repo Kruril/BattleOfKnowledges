@@ -9,13 +9,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
 import utils.JsonManager;
-import utils.TableView.CommonTableViewBP;
+import utils.TableView.CommonTableView;
 
-public class TableViewBP extends CommonTableViewBP {
+public class TableViewBP extends BorderPane {
 
     private TableView<String> tvThemes;
 
@@ -52,8 +53,8 @@ public class TableViewBP extends CommonTableViewBP {
         if (tvThemes == null) {
             tvThemes = new TableView<>();
             tvThemes.setMaxWidth(250.);
-            changeHeight(tvThemes);
-            Main.getStage().heightProperty().addListener(observable -> changeHeight(tvThemes));
+            CommonTableView.changeHeight(tvThemes);
+            Main.getStage().heightProperty().addListener(observable -> CommonTableView.changeHeight(tvThemes));
 
             TableColumn<String, String> tcTheme = new TableColumn<>("theme");
             tcTheme.setMinWidth(248.);
@@ -147,7 +148,6 @@ public class TableViewBP extends CommonTableViewBP {
                 JsonManager.getDeck().getListe().forEach(question -> {
                     if (question.getTheme().equals(sRemoved)) {
                         JsonManager.getDeck().removeQuestion(question);
-                        System.out.println(question);
                     }
                 });
             }

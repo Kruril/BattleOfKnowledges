@@ -9,7 +9,7 @@ public class Resolution {
      * Class to remember the screen size the next time the game is restarted.
      */
 
-    private double width, height;
+    private double width, height, x, y;
     private boolean maximize, fullscreen;
 
     public Resolution() {
@@ -20,6 +20,8 @@ public class Resolution {
         this.height = height;
         this.maximize = Main.getStage().isMaximized();
         this.fullscreen = Main.getStage().isFullScreen();
+        this.x = Main.getStage().getX();
+        this.y = Main.getStage().getY();
     }
 
     public double getWidth() {
@@ -28,6 +30,14 @@ public class Resolution {
 
     public double getHeight() {
         return height;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 
     /**
@@ -39,6 +49,8 @@ public class Resolution {
         width = resolution.getWidth();
         maximize = resolution.isMaximize();
         fullscreen = resolution.isFullscreen();
+        x = resolution.getX();
+        y = resolution.getY();
     }
 
     /**
