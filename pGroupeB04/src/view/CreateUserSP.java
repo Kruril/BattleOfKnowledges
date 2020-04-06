@@ -128,6 +128,21 @@ public class CreateUserSP extends StackPane{
         	btnValidate.setId("big-button");
             
         	btnValidate.setOnAction(event -> Main.switchScene(new MainPageSP()));
+        	
+        	btnValidate.setOnAction(event -> {
+                if(pwfPassword.getText().equals("") && txtLogin.getText().equals("") && txtEmail.getText().contentEquals("")) {
+                	pwfPassword.setText("");
+                    txtLogin.setText("");
+                    txtEmail.setText("");
+                    txtLogin.setPromptText("Please fill all the blanks");
+                    pwfPassword.setPromptText("\"Please fill all the blanks");
+                    txtEmail.setPromptText("Please fill all the blanks");
+                }
+                else{
+                    Main.switchScene(new MainPageSP());
+                }
+
+            });
         }
         return btnValidate;
     }
