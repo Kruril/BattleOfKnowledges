@@ -231,6 +231,7 @@ public class TableViewThemeBP extends BorderPane {
 			deck.checkTheme(theme);
 
 			deck.getListe().forEach(question -> {
+				question.setTheme(CommonTableView.upperLowerText(question.getTheme()));
 				if (JsonManager.getDeck().addQuestion(question)) {
 					getTvQuestions().getItems().add(question);
 				}

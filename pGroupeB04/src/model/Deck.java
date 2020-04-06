@@ -25,7 +25,7 @@ public class Deck {
 	}
 
 	public boolean addQuestion(Question questionAdd) {
-		if (questions.contains(questionAdd) || questionAdd.getClues().size() != 3) return false;
+		if (questions.contains(questionAdd) || !questionAdd.checkQuestion() ) return false;
 		questions.add(questionAdd);
         return true;
     }
@@ -74,7 +74,7 @@ public class Deck {
 	}
 
 	public void checkTheme(String theme) {
-		questions.removeIf(quest -> !quest.getTheme().equals(theme));
+		questions.removeIf(quest -> !quest.getTheme().equalsIgnoreCase(theme));
 	}
 
 }

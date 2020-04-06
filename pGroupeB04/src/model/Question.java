@@ -96,4 +96,11 @@ public class Question implements Serializable{
 		return new Question(author, theme, clues, answer);
 	}
 
+	public boolean checkQuestion() {
+		if (clues.size() != 3) return false;
+		if (author.equalsIgnoreCase("") || author.equalsIgnoreCase(null)) return false;
+		if (clues.contains("") /*|| clues.contains(null)*/) return false;
+		return true;
+	}
+
 }

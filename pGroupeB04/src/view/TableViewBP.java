@@ -113,7 +113,7 @@ public class TableViewBP extends BorderPane {
                     30, 30, true, true)));
             btnAddTheme.getStyleClass().add("round");
             btnAddTheme.setOnAction(event -> {
-                String newTheme = upperLowerText(getTxtAddTheme().getText());
+                String newTheme = CommonTableView.upperLowerText(getTxtAddTheme().getText());
                 if (!newTheme.equals("")) {
                     if (!JsonManager.getThemes().contains(newTheme)) {
                         JsonManager.getThemes().add(newTheme);
@@ -129,13 +129,6 @@ public class TableViewBP extends BorderPane {
         return btnAddTheme;
     }
 
-    public String upperLowerText(String element) {
-        char[] tmp = element.toLowerCase().toCharArray();
-        if (tmp.length <= 0) return "";
-        tmp[0] = Character.toUpperCase(tmp[0]);
-        return new String(tmp);
-    }
-
     public void contexMenu() {
         ContextMenu menu = new ContextMenu();
 
@@ -144,9 +137,8 @@ public class TableViewBP extends BorderPane {
             String sRemoved = getTvThemes().getSelectionModel().getSelectedItem();
             if (JsonManager.getThemes().remove(sRemoved)) {
                 getTvThemes().getItems().remove(sRemoved);
-                System.out.println(sRemoved);
                 JsonManager.getDeck().getListe().forEach(question -> {
-                    if (question.getTheme().equals(sRemoved)) {
+                    if (question.getTheme().equalsIgnoreCase(sRemoved)) {
                         JsonManager.getDeck().removeQuestion(question);
                     }
                 });
