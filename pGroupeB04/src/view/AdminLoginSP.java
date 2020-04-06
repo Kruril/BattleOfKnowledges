@@ -99,6 +99,7 @@ public class AdminLoginSP extends StackPane {
         }
         return pwfPassword;
     }
+    
     public Button getBtnConnection() {
         if (btnConnection == null) {
             btnConnection = new Button("Connection");

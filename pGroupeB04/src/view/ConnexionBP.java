@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
 
@@ -27,11 +26,9 @@ public class ConnexionBP extends BorderPane{
 		
 		this.setBackground(BackgroundLoader.builderBackGround());
 		
-		HBox hbTop = new HBox();
-		hbTop.getChildren().addAll(getImgTitle());
-		hbTop.setAlignment(Pos.CENTER);
-		hbTop.setPadding(new Insets(20));
-		this.setTop(hbTop);
+		this.setTop(getImgTitle());
+		this.setAlignment(getImgTitle(), Pos.CENTER);
+		this.setPadding(new Insets(20));
 		
 		VBox vbCenter = new VBox();
 		vbCenter.getChildren().addAll(getBtnUser(), getBtnAdmin());
@@ -58,7 +55,7 @@ public class ConnexionBP extends BorderPane{
 		if (btnUser == null) {
 			btnUser = new Button("User");
 			
-			btnUser.getStyleClass().addAll("buttonBasic");
+			btnUser.getStyleClass().add("buttonBasic");
             btnUser.setId("big-button");
             
             btnUser.setOnAction(event -> Main.switchScene(new UserLoginSP()));
@@ -70,7 +67,7 @@ public class ConnexionBP extends BorderPane{
 		if (btnAdmin == null) {
 			btnAdmin = new Button("Admin");
 			
-			btnAdmin.getStyleClass().addAll("buttonBasic");
+			btnAdmin.getStyleClass().add("buttonBasic");
 			btnAdmin.setId("big-button");
 			
 			btnAdmin.setOnAction(event -> Main.switchScene(new AdminLoginSP()));
@@ -82,7 +79,7 @@ public class ConnexionBP extends BorderPane{
 		if (lblNew == null) {
 			lblNew = new Label("New here ?");
 			
-			lblNew.getStyleClass().addAll("labelBasique");
+			lblNew.getStyleClass().add("labelBasique");
 		}
 		return lblNew;
 	}
@@ -91,7 +88,7 @@ public class ConnexionBP extends BorderPane{
 		if (lblCreateUser == null) {
 			lblCreateUser = new Label("Create user");
 			
-			lblCreateUser.getStyleClass().addAll("labelSmall");
+			lblCreateUser.getStyleClass().add("labelSmall");
 			
 			lblCreateUser.setOnMouseClicked(event -> Main.switchScene(new CreateUserSP()));
 		}

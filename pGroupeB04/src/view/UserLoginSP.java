@@ -102,7 +102,7 @@ public class UserLoginSP extends StackPane {
     public Button getBtnConnection() {
         if (btnConnection == null) {
             btnConnection = new Button("Connection");
-            btnConnection.getStyleClass().addAll("buttonBasic");
+            btnConnection.getStyleClass().add("buttonBasic");
             btnConnection.setId("big-button");
             
             btnConnection.setOnAction(event -> {
