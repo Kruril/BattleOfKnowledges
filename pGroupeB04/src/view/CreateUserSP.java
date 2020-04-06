@@ -135,7 +135,7 @@ public class CreateUserSP extends StackPane{
                     txtLogin.setText("");
                     txtEmail.setText("");
                     txtLogin.setPromptText("Please fill all the blanks");
-                    pwfPassword.setPromptText("\"Please fill all the blanks");
+                    pwfPassword.setPromptText("Please fill all the blanks");
                     txtEmail.setPromptText("Please fill all the blanks");
                 }
                 else{

@@ -19,6 +19,8 @@ public class ConnexionBP extends BorderPane{
 	private Button btnUser;
 	private Button btnAdmin;
 	
+	private Label lblNew;
+	
 	private Label lblCreateUser;
 	
 	public ConnexionBP() {
@@ -37,11 +39,11 @@ public class ConnexionBP extends BorderPane{
 		vbCenter.setSpacing(40.);
 		this.setCenter(vbCenter);
 		
-		HBox hbBottom = new HBox();
-		hbBottom.getChildren().addAll(getLblCreateUser());
-		hbBottom.setAlignment(Pos.CENTER);
-		hbBottom.setPadding(new Insets(0,0,50,0));
-		this.setBottom(hbBottom);
+		VBox vbBottom = new VBox();
+		vbBottom.getChildren().addAll(getLblNew(),getLblCreateUser());
+		vbBottom.setAlignment(Pos.CENTER);
+		vbBottom.setPadding(new Insets(0,0,50,0));
+		this.setBottom(vbBottom);
 
 	}
 
@@ -76,11 +78,20 @@ public class ConnexionBP extends BorderPane{
 		return btnAdmin;
 	}
 	
+	public Label getLblNew() {
+		if (lblNew == null) {
+			lblNew = new Label("New here ?");
+			
+			lblNew.getStyleClass().addAll("labelBasique");
+		}
+		return lblNew;
+	}
+	
 	public Label getLblCreateUser() {
 		if (lblCreateUser == null) {
 			lblCreateUser = new Label("Create user");
 			
-			lblCreateUser.getStyleClass().addAll("labelBasique");
+			lblCreateUser.getStyleClass().addAll("labelSmall");
 			
 			lblCreateUser.setOnMouseClicked(event -> Main.switchScene(new CreateUserSP()));
 		}
