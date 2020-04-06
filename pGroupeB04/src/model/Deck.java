@@ -25,7 +25,7 @@ public class Deck {
 	}
 
 	public boolean addQuestion(Question questionAdd) {
-		if (questions.contains(questionAdd)) return false;
+		if (questions.contains(questionAdd) || questionAdd.getClues().size() != 3) return false;
 		questions.add(questionAdd);
         return true;
     }

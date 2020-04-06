@@ -50,7 +50,7 @@ public class JsonManager{
         List<Question> questions = new ArrayList<>();
         for (Question question : deck.getListe()) {
             if (question.getTheme().equals(theme)) {
-                questions.add(question);
+                questions.add(question.clone());
             }
         }
         return questions;

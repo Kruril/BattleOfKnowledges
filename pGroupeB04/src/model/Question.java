@@ -93,7 +93,7 @@ public class Question implements Serializable{
 	}
 	
 	public Question clone() {
-		return new Question(author, theme,answer);
+		return new Question(author, theme, clues, answer);
 	}
 
 }

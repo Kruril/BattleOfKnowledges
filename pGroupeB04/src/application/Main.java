@@ -83,8 +83,8 @@ public class Main extends Application {
         else {
             stage.setWidth(resolution.getWidth());
             stage.setHeight(resolution.getHeight());
-            stage.setX(resolution.getX());
-            stage.setY(resolution.getY());
         }
+        stage.setX(resolution.getX());
+        stage.setY(resolution.getY());
     }
 }
