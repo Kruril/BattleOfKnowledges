@@ -4,15 +4,28 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
+
 import application.Main;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -25,10 +38,6 @@ import model.Question;
 import utils.BackgroundLoader;
 import utils.JsonManager;
 import utils.TableView.CommonTableView;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileSystemView;
 
 public class TableViewThemeBP extends BorderPane {
 	private Label lblTheme;
@@ -102,6 +111,35 @@ public class TableViewThemeBP extends BorderPane {
 	        tcClues3.setCellValueFactory(new Factory(2));
 	        tcAnswer.setCellValueFactory(new PropertyValueFactory<>("answer"));
 			
+	        
+
+			 /**
+	         * Allow the Cell editing
+	         */
+	        tcAuthor.setCellFactory(TextFieldTableCell.forTableColumn());
+	        tcClues1.setCellFactory(TextFieldTableCell.forTableColumn());
+	        tcClues2.setCellFactory(TextFieldTableCell.forTableColumn());
+	        tcClues3.setCellFactory(TextFieldTableCell.forTableColumn());
+	        tcAnswer.setCellFactory(TextFieldTableCell.forTableColumn());
+	        
+	        /**
+	         * When we change the value of one cell
+	         * we change also automaticaly the value in the json file
+	         */
+	        tcAuthor.setOnEditCommit((CellEditEvent <Question,String> t)->{
+	        	((Question) t.getTableView().getItems().get(
+	        			 t.getTablePosition().getRow())
+	        			 ).setAuthor(t.getNewValue());
+	        	Question quest=tvQuestions.getSelectionModel().getSelectedItem();
+	        	
+	        });
+	        tcAnswer.setOnEditCommit((CellEditEvent <Question,String> t)->{
+	        	((Question) t.getTableView().getItems().get(
+	        			 t.getTablePosition().getRow())
+	        			 ).setAnswer(t.getNewValue());
+	        	Question quest=tvQuestions.getSelectionModel().getSelectedItem();
+	        	
+	        });
 			tcClues.getColumns().addAll(tcClues1,tcClues2,tcClues3);
             tvQuestions.getColumns().addAll(tcAuthor,tcClues,tcAnswer);
             tvQuestions.setItems(FXCollections.observableArrayList(questions));
