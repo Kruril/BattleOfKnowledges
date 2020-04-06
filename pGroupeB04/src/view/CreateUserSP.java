@@ -14,27 +14,29 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
 
-public class AdminLoginSP extends StackPane {
+public class CreateUserSP extends StackPane{
 
-    private ImageView imgTitre;
-
-    private Label lblLogin;
+	private ImageView imgCreateUser;
+	
+	private Label lblLogin;
     private Label lblPassword;
+    private Label lblEmail;
 
     private TextField txtLogin;
     private PasswordField pwfPassword;
+    private TextField txtEmail;
 
-    private Button btnConnection;
+    private Button btnValidate;
     private Button btnBack;
-
-    public AdminLoginSP() {
+	
+    public CreateUserSP() {
 
         //BACKGROUND
         this.setBackground(BackgroundLoader.builderBackGround());
 
         //Top
-        StackPane.setAlignment(getImgTitre(), Pos.TOP_CENTER);
-        StackPane.setMargin(getImgTitre(), new Insets(20));
+        StackPane.setAlignment(getImgCreateUser(), Pos.TOP_CENTER);
+        StackPane.setMargin(getImgCreateUser(), new Insets(20));
 
         VBox vContainer = new VBox();
 
@@ -45,28 +47,32 @@ public class AdminLoginSP extends StackPane {
         HBox hbPassword = new HBox();
         hbPassword.setSpacing(20.);
         hbPassword.getChildren().addAll(getLblPassword(),getPwfPassword());
+        
+        HBox hbEmail = new HBox();
+        hbEmail.setSpacing(20.);
+        hbEmail.getChildren().addAll(getLblEmail(), getTxtEmail());
 
-        vContainer.getChildren().addAll(hbLogin,hbPassword);
+        vContainer.getChildren().addAll(hbLogin,hbPassword, hbEmail);
         vContainer.setSpacing(50);
         vContainer.setMaxSize(500,200);
 
         StackPane.setAlignment(vContainer, Pos.CENTER);
 
 
-        StackPane.setAlignment(getBtnConnection(), Pos.BOTTOM_CENTER);
-        StackPane.setMargin(getBtnConnection(), new Insets(10,450,50,0));
+        StackPane.setAlignment(getBtnValidate(), Pos.BOTTOM_CENTER);
+        StackPane.setMargin(getBtnValidate(), new Insets(10,450,50,0));
 
         StackPane.setAlignment(getBtnBack(), Pos.BOTTOM_CENTER);
         StackPane.setMargin(getBtnBack(), new Insets(0,0,50,450));
 
-        this.getChildren().addAll(getImgTitre(),vContainer,getBtnConnection(),getBtnBack());
+        this.getChildren().addAll(getImgCreateUser(),vContainer,getBtnValidate(),getBtnBack());
     }
 
-    public ImageView getImgTitre() {
-        if (imgTitre == null) {
-            imgTitre = new ImageView(new Image("images/base/Admin.png"));
+    public ImageView getImgCreateUser() {
+        if (imgCreateUser == null) {
+        	imgCreateUser = new ImageView(new Image("images/base/Create_User.png"));
         }
-        return imgTitre;
+        return imgCreateUser;
     }
 
     public Label getLblLogin() {
@@ -84,6 +90,14 @@ public class AdminLoginSP extends StackPane {
         }
         return lblPassword;
     }
+    public Label getLblEmail() {
+        if (lblEmail == null) {
+            lblEmail = new Label("Email :");
+            lblEmail.setAlignment(Pos.CENTER_RIGHT);
+            lblEmail.getStyleClass().add("labelBasique");
+        }
+        return lblEmail;
+    }
     public TextField getTxtLogin() {
         if (txtLogin == null) {
             txtLogin = new TextField();
@@ -99,26 +113,23 @@ public class AdminLoginSP extends StackPane {
         }
         return pwfPassword;
     }
-    public Button getBtnConnection() {
-        if (btnConnection == null) {
-            btnConnection = new Button("Connection");
-            btnConnection.getStyleClass().addAll("buttonBasic");
-            btnConnection.setId("big-button");
+    public TextField getTxtEmail() {
+    	if (txtEmail == null) {
+    		txtEmail = new TextField();
+    		txtEmail.getStyleClass().add("textBox");
+    		txtEmail.setPrefSize(300, 50);
+    	}
+    	return txtEmail;
+    }
+    public Button getBtnValidate() {
+        if (btnValidate == null) {
+        	btnValidate = new Button("Connection");
+        	btnValidate.getStyleClass().addAll("buttonBasic");
+        	btnValidate.setId("big-button");
             
-            btnConnection.setOnAction(event -> {
-                if(pwfPassword.getText().equals("helha") && txtLogin.getText().equals("admin")) {
-                    Main.switchScene(new TableViewBP());
-                }
-                else{
-                    pwfPassword.setText("");
-                    txtLogin.setText("");
-                    txtLogin.setPromptText("Invalid");
-                    pwfPassword.setPromptText("Invalid");
-                }
-
-            });
+        	btnValidate.setOnAction(event -> Main.switchScene(new MainPageSP()));
         }
-        return btnConnection;
+        return btnValidate;
     }
     public Button getBtnBack() {
         if (btnBack == null) {

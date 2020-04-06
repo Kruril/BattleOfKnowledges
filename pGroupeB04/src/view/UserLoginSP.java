@@ -14,7 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
 
-public class AdminLoginSP extends StackPane {
+public class UserLoginSP extends StackPane {
 
     private ImageView imgTitre;
 
@@ -27,7 +27,7 @@ public class AdminLoginSP extends StackPane {
     private Button btnConnection;
     private Button btnBack;
 
-    public AdminLoginSP() {
+    public UserLoginSP() {
 
         //BACKGROUND
         this.setBackground(BackgroundLoader.builderBackGround());
@@ -64,7 +64,7 @@ public class AdminLoginSP extends StackPane {
 
     public ImageView getImgTitre() {
         if (imgTitre == null) {
-            imgTitre = new ImageView(new Image("images/base/Admin.png"));
+            imgTitre = new ImageView(new Image("images/base/User.png"));
         }
         return imgTitre;
     }
@@ -106,8 +106,8 @@ public class AdminLoginSP extends StackPane {
             btnConnection.setId("big-button");
             
             btnConnection.setOnAction(event -> {
-                if(pwfPassword.getText().equals("helha") && txtLogin.getText().equals("admin")) {
-                    Main.switchScene(new TableViewBP());
+                if(pwfPassword.getText().equals("helha") && txtLogin.getText().equals("user")) {
+                    Main.switchScene(new MainPageSP());
                 }
                 else{
                     pwfPassword.setText("");
