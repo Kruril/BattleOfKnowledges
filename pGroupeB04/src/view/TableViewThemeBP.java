@@ -64,7 +64,7 @@ public class TableViewThemeBP extends BorderPane {
 
 		setAlignment(getTvQuestions(), Pos.CENTER);
 		this.setCenter(getTvQuestions());
-
+		tvQuestions.setEditable(true);
 		setAlignment(getBtnBack(), Pos.CENTER);
 		HBox hbNewQuestion = new HBox(getBtnAddFile(),getTxtAuthor(),getTxtClues1(),getTxtClues2(),getTxtClues3(),getTxtAnswer(),getBtnValidation());
 		hbNewQuestion.setAlignment(Pos.CENTER);
