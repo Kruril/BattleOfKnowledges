@@ -123,23 +123,22 @@ public class CreateUserSP extends StackPane{
     }
     public Button getBtnValidate() {
         if (btnValidate == null) {
-        	btnValidate = new Button("Connection");
+        	btnValidate = new Button("Validate");
         	btnValidate.getStyleClass().addAll("buttonBasic");
         	btnValidate.setId("big-button");
-            
-        	btnValidate.setOnAction(event -> Main.switchScene(new MainPageSP()));
         	
+            //Check if all the form is filled
         	btnValidate.setOnAction(event -> {
-                if(pwfPassword.getText().equals("") && txtLogin.getText().equals("") && txtEmail.getText().contentEquals("")) {
+                if(!pwfPassword.getText().equals("") && !txtLogin.getText().equals("") && !txtEmail.getText().contentEquals("")) {
+                	Main.switchScene(new MainPageSP());
+                }
+                else{
                 	pwfPassword.setText("");
                     txtLogin.setText("");
                     txtEmail.setText("");
                     txtLogin.setPromptText("Please fill all the blanks");
                     pwfPassword.setPromptText("Please fill all the blanks");
                     txtEmail.setPromptText("Please fill all the blanks");
-                }
-                else{
-                    Main.switchScene(new MainPageSP());
                 }
 
             });
@@ -151,7 +150,7 @@ public class CreateUserSP extends StackPane{
             btnBack = new Button("Back");
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("big-button");
-            btnBack.setOnAction(event -> Main.switchScene(new ConnexionBP()));
+            btnBack.setOnAction(event -> Main.switchScene(new UserLoginSP()));
         }
         return btnBack;
     }

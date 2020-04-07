@@ -33,9 +33,9 @@ public class Main extends Application {
         resolution.fromJson();
 
         //Main menu page
-        ConnexionBP connexionPage = new ConnexionBP();
+        UserLoginSP loginPage = new UserLoginSP();
         //MainPageSP menuPage = new MainPageSP();
-        scene = new Scene(connexionPage);
+        scene = new Scene(loginPage);
         scene.getStylesheets().addAll("styles/btnStyles.css", "styles/labelStyles.css", "styles/BoxStyles.css",
                 "styles/TableStyles.css");
 
