@@ -23,9 +23,11 @@ public class UserLoginSP extends StackPane {
 
     private TextField txtLogin;
     private PasswordField pwfPassword;
+    
+    private Label lblNew;
+	private Label lblCreateUser;
 
     private Button btnConnection;
-    private Button btnBack;
 
     public UserLoginSP() {
 
@@ -44,9 +46,14 @@ public class UserLoginSP extends StackPane {
 
         HBox hbPassword = new HBox();
         hbPassword.setSpacing(20.);
-        hbPassword.getChildren().addAll(getLblPassword(),getPwfPassword());
+        hbPassword.getChildren().addAll(getLblPassword(),getPwfPassword(),getLblNew());
+        
+        VBox vbCreateUser = new VBox();
+        vbCreateUser.getChildren().addAll(getLblNew(),getLblCreateUser());
+        vbCreateUser.setAlignment(Pos.CENTER);
+        vbCreateUser.setPadding(new Insets(0,0,50,0));
 
-        vContainer.getChildren().addAll(hbLogin,hbPassword);
+        vContainer.getChildren().addAll(hbLogin,hbPassword, vbCreateUser);
         vContainer.setSpacing(50);
         vContainer.setMaxSize(500,200);
 
@@ -54,17 +61,14 @@ public class UserLoginSP extends StackPane {
 
 
         StackPane.setAlignment(getBtnConnection(), Pos.BOTTOM_CENTER);
-        StackPane.setMargin(getBtnConnection(), new Insets(10,450,50,0));
+        StackPane.setMargin(getBtnConnection(), new Insets(10,0,50,0));
 
-        StackPane.setAlignment(getBtnBack(), Pos.BOTTOM_CENTER);
-        StackPane.setMargin(getBtnBack(), new Insets(0,0,50,450));
-
-        this.getChildren().addAll(getImgTitre(),vContainer,getBtnConnection(),getBtnBack());
+        this.getChildren().addAll(getImgTitre(),vContainer,getBtnConnection());
     }
 
     public ImageView getImgTitre() {
         if (imgTitre == null) {
-            imgTitre = new ImageView(new Image("images/base/User.png"));
+            imgTitre = new ImageView(new Image("images/base/LogIn.png"));
         }
         return imgTitre;
     }
@@ -99,6 +103,27 @@ public class UserLoginSP extends StackPane {
         }
         return pwfPassword;
     }
+    
+    public Label getLblNew() {
+		if (lblNew == null) {
+			lblNew = new Label("New here ?");
+			
+			lblNew.getStyleClass().add("labelBasique");
+		}
+		return lblNew;
+	}
+	
+	public Label getLblCreateUser() {
+		if (lblCreateUser == null) {
+			lblCreateUser = new Label("Click here to create an account");
+			
+			lblCreateUser.getStyleClass().add("labelSmall");
+			
+			lblCreateUser.setOnMouseClicked(event -> Main.switchScene(new CreateUserSP()));
+		}
+		return lblCreateUser;
+	}
+    
     public Button getBtnConnection() {
         if (btnConnection == null) {
             btnConnection = new Button("Connection");
@@ -120,13 +145,5 @@ public class UserLoginSP extends StackPane {
         }
         return btnConnection;
     }
-    public Button getBtnBack() {
-        if (btnBack == null) {
-            btnBack = new Button("Back");
-            btnBack.getStyleClass().add("buttonBasic");
-            btnBack.setId("big-button");
-            btnBack.setOnAction(event -> Main.switchScene(new ConnexionBP()));
-        }
-        return btnBack;
-    }
+
 }

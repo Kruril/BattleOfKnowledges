@@ -126,7 +126,7 @@ public class AdminLoginSP extends StackPane {
             btnBack = new Button("Back");
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("big-button");
-            btnBack.setOnAction(event -> Main.switchScene(new ConnexionBP()));
+            btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
         }
         return btnBack;
     }
