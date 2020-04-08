@@ -24,6 +24,7 @@ public class SettingSP extends StackPane {
     private ComboBox<String> cmResolusion;
     private ComboBox<ImageView> cmAvatar;
     private Button btnBack;
+    private Button btnAdmin;
 
     public SettingSP() {
 
@@ -55,12 +56,16 @@ public class SettingSP extends StackPane {
         vContainer.setSpacing(50);
         vContainer.setMaxSize(600,350);
         StackPane.setAlignment(vContainer, Pos.CENTER);
-
+        
         //Button back
         StackPane.setAlignment(getBtnBack(), Pos.BOTTOM_CENTER);
-        StackPane.setMargin(getBtnBack(), new Insets(0,0,50,0));
+        StackPane.setMargin(getBtnBack(), new Insets(0,0,50,450));
+        
+        //Button Admin
+        StackPane.setAlignment(getBtnAdmin(), Pos.BOTTOM_CENTER);
+        StackPane.setMargin(getBtnAdmin(), new Insets(10,450,50,0));
 
-        this.getChildren().addAll(getIvTitle(), vContainer, getBtnBack());
+        this.getChildren().addAll(getIvTitle(), vContainer,getBtnBack(), getBtnAdmin());
 
     }
 
@@ -147,6 +152,16 @@ public class SettingSP extends StackPane {
             btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
         }
         return btnBack;
+    }
+    
+    public Button getBtnAdmin() {
+        if (btnAdmin == null) {
+        	btnAdmin = new Button("Admin");
+        	btnAdmin.getStyleClass().add("buttonBasic");
+        	btnAdmin.setId("big-button");
+        	btnAdmin.setOnAction(event -> Main.switchScene(new AdminLoginSP()));
+        }
+        return btnAdmin;
     }
 
     /**
