@@ -47,9 +47,7 @@ public class TableViewThemeBP extends BorderPane {
 	private TableView<Question> tvQuestions;
 
 	private String theme;
-	private List<Question> questions,question,listQuest=new ArrayList<>();
-	private Deck deck=new Deck();
-	private Question questionEdit;
+	private List<Question> questions;
 	
 	private Button btnBack, btnValidation, btnAddFile;
 
@@ -60,7 +58,7 @@ public class TableViewThemeBP extends BorderPane {
 		this.questions=JsonManager.choiceTheme(theme);
 		this.setBackground(BackgroundLoader.builderBackGround());
 		Insets insets = new Insets(10.);
-
+		
 		this.setPadding(insets);
 
 		setAlignment(getLblTheme(), Pos.CENTER);
@@ -124,7 +122,6 @@ public class TableViewThemeBP extends BorderPane {
 	        tcClues1.setCellFactory(TextFieldTableCell.forTableColumn());
 	        tcClues2.setCellFactory(TextFieldTableCell.forTableColumn());
 	        tcClues3.setCellFactory(TextFieldTableCell.forTableColumn());
-	        tcAnswer.setCellFactory(TextFieldTableCell.forTableColumn());
 	        
 	        /**
 	         * When we change the value of one cell
@@ -134,16 +131,19 @@ public class TableViewThemeBP extends BorderPane {
 	        	((Question) t.getTableView().getItems().get(
 	        			 t.getTablePosition().getRow())
 	        			 ).setAuthor(t.getNewValue());
-	        	questionEdit=tvQuestions.getSelectionModel().getSelectedItem();
-				AllQuestion("Author");
-				Main.switchScene(new TableViewBP());
+	        	
+				editQuestion(tvQuestions.getSelectionModel().getSelectedItem());
 	        });
-	        tcAnswer.setOnEditCommit((CellEditEvent <Question,String> t)->{
+	        tcClues1.setOnEditCommit((CellEditEvent <Question,String> t)->{
 	        	((Question) t.getTableView().getItems().get(
 	        			 t.getTablePosition().getRow())
-	        			 ).setAnswer(t.getNewValue());
+	        			 ).setAuthor(t.getNewValue());
 	        	
+				editQuestion(tvQuestions.getSelectionModel().getSelectedItem());
 	        });
+	        
+	        
+	        
 			tcClues.getColumns().addAll(tcClues1,tcClues2,tcClues3);
             tvQuestions.getColumns().addAll(tcAuthor,tcClues,tcAnswer);
             tvQuestions.setItems(FXCollections.observableArrayList(questions));
@@ -340,32 +340,15 @@ public class TableViewThemeBP extends BorderPane {
     
 
     /**
-     * To collect all questions
+     * to edit question
      */
     
-    public void AllQuestion(String edit) {
-    	JsonManager.themeFromDeck();
-    	 List<String> themes=JsonManager.getThemes();
-    	for(String theme:themes) {
-    		question=JsonManager.choiceTheme(theme);
-    		for(Question quest:question) {
-    			listQuest.add(quest);
-    			deck=JsonManager.getDeck();
-    		}
-    		
-    	}
-    	
-    	if(edit.equals("Author"))EditAuthor();
-    	
-    }
-    
-    public void EditAuthor() {
-    	for(Question quest:listQuest) {
-    		if(quest.getAnswer().equals(questionEdit.getAnswer()) && quest.getClues().equals(questionEdit.getClues())) {
-    			deck.modifyQuestion(quest,questionEdit);
+    public void editQuestion(Question questionEdit) {
+    	for(Question quest:JsonManager.getDeck().getListe()) {
+    		if(quest.getAnswer().equals(questionEdit.getAnswer()) && quest.getTheme().equals(questionEdit.getTheme())) {
+    			JsonManager.getDeck().modifyQuestion(quest,questionEdit);
     		}
     	}
-    	
-    	deck.toJson();
+    	JsonManager.getDeck().toJson();
     }
 }
