@@ -67,6 +67,7 @@ public class TableViewThemeBP extends BorderPane {
 		setAlignment(getTvQuestions(), Pos.CENTER);
 		this.setCenter(getTvQuestions());
 		tvQuestions.setEditable(true);
+		
 		setAlignment(getBtnBack(), Pos.CENTER);
 		HBox hbNewQuestion = new HBox(getBtnAddFile(),getTxtAuthor(),getTxtClues1(),getTxtClues2(),getTxtClues3(),getTxtAnswer(),getBtnValidation());
 		hbNewQuestion.setAlignment(Pos.CENTER);
@@ -122,6 +123,7 @@ public class TableViewThemeBP extends BorderPane {
 	        tcClues1.setCellFactory(TextFieldTableCell.forTableColumn());
 	        tcClues2.setCellFactory(TextFieldTableCell.forTableColumn());
 	        tcClues3.setCellFactory(TextFieldTableCell.forTableColumn());
+	        tcClues.setCellFactory(TextFieldTableCell.forTableColumn());
 	        
 	        /**
 	         * When we change the value of one cell
@@ -135,11 +137,7 @@ public class TableViewThemeBP extends BorderPane {
 				editQuestion(tvQuestions.getSelectionModel().getSelectedItem());
 	        });
 	        tcClues1.setOnEditCommit((CellEditEvent <Question,String> t)->{
-	        	((Question) t.getTableView().getItems().get(
-	        			 t.getTablePosition().getRow())
-	        			 ).setAuthor(t.getNewValue());
-	        	
-				editQuestion(tvQuestions.getSelectionModel().getSelectedItem());
+	          	
 	        });
 	        
 	        
@@ -337,7 +335,9 @@ public class TableViewThemeBP extends BorderPane {
         }
     }
     
-    
+    public void AssociateClues() {
+    	
+    }
 
     /**
      * to edit question
@@ -345,7 +345,7 @@ public class TableViewThemeBP extends BorderPane {
     
     public void editQuestion(Question questionEdit) {
     	for(Question quest:JsonManager.getDeck().getListe()) {
-    		if(quest.getAnswer().equals(questionEdit.getAnswer()) && quest.getTheme().equals(questionEdit.getTheme())) {
+    		if(quest.equals(questionEdit)) {
     			JsonManager.getDeck().modifyQuestion(quest,questionEdit);
     		}
     	}
