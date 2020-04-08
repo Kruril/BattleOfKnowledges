@@ -1,6 +1,7 @@
 package view;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,6 +36,7 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 import model.Deck;
 import model.Question;
+import serialisation.LectureEcriture;
 import utils.BackgroundLoader;
 import utils.JsonManager;
 import utils.TableView.CommonTableView;
@@ -45,7 +47,9 @@ public class TableViewThemeBP extends BorderPane {
 	private TableView<Question> tvQuestions;
 
 	private String theme;
-	private List<Question> questions;
+	private List<Question> questions,question,listQuest=new ArrayList<>();
+	private Deck deck=new Deck();
+	private Question questionEdit;
 	
 	private Button btnBack, btnValidation, btnAddFile;
 
@@ -130,14 +134,14 @@ public class TableViewThemeBP extends BorderPane {
 	        	((Question) t.getTableView().getItems().get(
 	        			 t.getTablePosition().getRow())
 	        			 ).setAuthor(t.getNewValue());
-	        	Question quest=tvQuestions.getSelectionModel().getSelectedItem();
-	        	
+	        	questionEdit=tvQuestions.getSelectionModel().getSelectedItem();
+				AllQuestion("Author");
+				Main.switchScene(new TableViewBP());
 	        });
 	        tcAnswer.setOnEditCommit((CellEditEvent <Question,String> t)->{
 	        	((Question) t.getTableView().getItems().get(
 	        			 t.getTablePosition().getRow())
 	        			 ).setAnswer(t.getNewValue());
-	        	Question quest=tvQuestions.getSelectionModel().getSelectedItem();
 	        	
 	        });
 			tcClues.getColumns().addAll(tcClues1,tcClues2,tcClues3);
@@ -331,5 +335,37 @@ public class TableViewThemeBP extends BorderPane {
         public ObservableValue<String> call(CellDataFeatures<Question, String> p) {
             return new SimpleStringProperty(p.getValue().getClues().get(index));
         }
+    }
+    
+    
+
+    /**
+     * To collect all questions
+     */
+    
+    public void AllQuestion(String edit) {
+    	JsonManager.themeFromDeck();
+    	 List<String> themes=JsonManager.getThemes();
+    	for(String theme:themes) {
+    		question=JsonManager.choiceTheme(theme);
+    		for(Question quest:question) {
+    			listQuest.add(quest);
+    			deck=JsonManager.getDeck();
+    		}
+    		
+    	}
+    	
+    	if(edit.equals("Author"))EditAuthor();
+    	
+    }
+    
+    public void EditAuthor() {
+    	for(Question quest:listQuest) {
+    		if(quest.getAnswer().equals(questionEdit.getAnswer()) && quest.getClues().equals(questionEdit.getClues())) {
+    			deck.modifyQuestion(quest,questionEdit);
+    		}
+    	}
+    	
+    	deck.toJson();
     }
 }
