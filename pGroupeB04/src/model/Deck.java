@@ -37,18 +37,16 @@ public class Deck {
 	}
 	
 	public void modifyQuestion(Question questionOld, Question questionNew) {
-		int index = questions.indexOf(questionOld);
+		int index = findQuestion(questionOld);
 		if (index == -1) return;
 		questions.set(index, questionNew);
 	}
-	
-	public Question findQuestion(Question questionFinding) {
-		int index = questions.indexOf(questionFinding);
-		if (index == -1) return null;
-		return questions.get(index);
+	public int findQuestion(Question questionFinding) {
+		return questions.indexOf(questionFinding);
 	}
-	
-    @Override
+
+
+	@Override
 	public String toString(){
     	StringBuilder tpm = new StringBuilder();
         for (Question q : questions) {

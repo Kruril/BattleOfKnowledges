@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import utils.JsonManager;
 import utils.Resolution;
@@ -31,11 +32,11 @@ public class Main extends Application {
         Scene scene;
         Resolution resolution = new Resolution();
         resolution.fromJson();
+        primaryStage.setFullScreenExitHint("");
+        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 
         //Main menu page
-        UserLoginSP loginPage = new UserLoginSP();
-        //MainPageSP menuPage = new MainPageSP();
-        scene = new Scene(loginPage);
+        scene = new Scene(new UserLoginSP());
         scene.getStylesheets().addAll("styles/btnStyles.css", "styles/labelStyles.css", "styles/BoxStyles.css",
                 "styles/TableStyles.css");
 
@@ -51,8 +52,8 @@ public class Main extends Application {
         primaryStage.show();
 
         scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F12) {
-                primaryStage.setFullScreen(true);
+            if (event.getCode() == KeyCode.F12 && event.isControlDown()) {
+                primaryStage.setFullScreen(!primaryStage.isFullScreen());
             }
         });
 

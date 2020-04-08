@@ -1,5 +1,7 @@
 package model;
 
+import javafx.beans.property.StringProperty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,10 @@ public class Question implements Serializable{
 
 	public void setClues(List<String> clues) {
 		this.clues = clues;
+	}
+
+	public void setClue(int index, String value) {
+		if (index < clues.size()) clues.set(index, value);
 	}
 
 	public String getAnswer() {
@@ -99,8 +105,12 @@ public class Question implements Serializable{
 	public boolean checkQuestion() {
 		if (clues.size() != 3) return false;
 		if (author.equalsIgnoreCase("") || author.equalsIgnoreCase(null)) return false;
-		if (clues.contains("") /*|| clues.contains(null)*/) return false;
+		if (clues.contains("") || clues.contains(null)) return false;
 		return true;
+	}
+
+	public String get(int index) {
+		return clues.get(0);
 	}
 
 }

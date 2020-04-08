@@ -1,7 +1,6 @@
 package view;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +9,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 import application.Main;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -36,7 +37,6 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 import model.Deck;
 import model.Question;
-import serialisation.LectureEcriture;
 import utils.BackgroundLoader;
 import utils.JsonManager;
 import utils.TableView.CommonTableView;
@@ -51,7 +51,7 @@ public class TableViewThemeBP extends BorderPane {
 	
 	private Button btnBack, btnValidation, btnAddFile;
 
-	private TextField txtAuthor, txtClues1, txtClues2, txtClues3, txtAnswer;
+	private TextField txtAuthor, txtClue1, txtClue2, txtClue3, txtAnswer;
 	
 	public TableViewThemeBP(String theme) {
 		this.theme=theme;
@@ -69,7 +69,7 @@ public class TableViewThemeBP extends BorderPane {
 		tvQuestions.setEditable(true);
 		
 		setAlignment(getBtnBack(), Pos.CENTER);
-		HBox hbNewQuestion = new HBox(getBtnAddFile(),getTxtAuthor(),getTxtClues1(),getTxtClues2(),getTxtClues3(),getTxtAnswer(),getBtnValidation());
+		HBox hbNewQuestion = new HBox(getBtnAddFile(),getTxtAuthor(), getTxtClue1(), getTxtClue2(), getTxtClue3(),getTxtAnswer(),getBtnValidation());
 		hbNewQuestion.setAlignment(Pos.CENTER);
 		hbNewQuestion.setSpacing(10.);
 		hbNewQuestion.setPadding(insets);
@@ -92,26 +92,26 @@ public class TableViewThemeBP extends BorderPane {
 
 			TableColumn<Question, String>
 					tcAuthor = new TableColumn<>("Author"),
-					tcClues = new TableColumn<>("Clues"),
 					tcAnswer = new TableColumn<>("Answer"),
-					tcClues1 = new TableColumn<>("Clues_1"),
-					tcClues2 = new TableColumn<>("Clues_2"),
-					tcClues3 = new TableColumn<>("Clues_3");
+					tcClue1 = new TableColumn<>("Clue_1"),
+					tcClue2 = new TableColumn<>("Clue_2"),
+					tcClue3 = new TableColumn<>("Clue_3");
 
 			tvQuestions.widthProperty().addListener(observable -> {
 				double val = ((tvQuestions.getWidth() - tcAuthor.getWidth() - tcAnswer.getWidth()) / 3) - 5;
-				tcClues1.setCellFactory(getValue(val));
-				tcClues2.setCellFactory(getValue(val));
-				tcClues3.setCellFactory(getValue(val));
-				tcClues1.setPrefWidth(val);
-				tcClues2.setPrefWidth(val);
-				tcClues3.setPrefWidth(val);
+				tcClue1.setCellFactory(getValue(val));
+				tcClue2.setCellFactory(getValue(val));
+				tcClue3.setCellFactory(getValue(val));
+				tcClue1.setPrefWidth(val);
+				tcClue2.setPrefWidth(val);
+				tcClue3.setPrefWidth(val);
 			});
 
 			tcAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
-	        tcClues1.setCellValueFactory(new Factory(0));
-	        tcClues2.setCellValueFactory(new Factory(1));
-	        tcClues3.setCellValueFactory(new Factory(2));
+
+			tcClue1.setCellValueFactory(new Factory(0));
+	        tcClue2.setCellValueFactory(new Factory(1));
+	        tcClue3.setCellValueFactory(new Factory(2));
 	        tcAnswer.setCellValueFactory(new PropertyValueFactory<>("answer"));
 			
 	        
@@ -120,34 +120,54 @@ public class TableViewThemeBP extends BorderPane {
 	         * Allow the Cell editing
 	         */
 	        tcAuthor.setCellFactory(TextFieldTableCell.forTableColumn());
-	        tcClues1.setCellFactory(TextFieldTableCell.forTableColumn());
-	        tcClues2.setCellFactory(TextFieldTableCell.forTableColumn());
-	        tcClues3.setCellFactory(TextFieldTableCell.forTableColumn());
-	        tcClues.setCellFactory(TextFieldTableCell.forTableColumn());
+	        tcClue1.setCellFactory(TextFieldTableCell.forTableColumn());
+	        tcClue2.setCellFactory(TextFieldTableCell.forTableColumn());
+	        tcClue3.setCellFactory(TextFieldTableCell.forTableColumn());
+	        tcAnswer.setCellFactory(TextFieldTableCell.forTableColumn());
 	        
 	        /**
 	         * When we change the value of one cell
 	         * we change also automaticaly the value in the json file
 	         */
-	        tcAuthor.setOnEditCommit((CellEditEvent <Question,String> t)->{
-	        	((Question) t.getTableView().getItems().get(
-	        			 t.getTablePosition().getRow())
-	        			 ).setAuthor(t.getNewValue());
-	        	
-				editQuestion(tvQuestions.getSelectionModel().getSelectedItem());
-	        });
-	        tcClues1.setOnEditCommit((CellEditEvent <Question,String> t)->{
-	          	
-	        });
-	        
-	        
-	        
-			tcClues.getColumns().addAll(tcClues1,tcClues2,tcClues3);
-            tvQuestions.getColumns().addAll(tcAuthor,tcClues,tcAnswer);
+			modifyAuthor(tcAuthor);
+			modifyAnswer(tcAnswer);
+			modifyClues(0, tcClue1);
+			modifyClues(1, tcClue2);
+			modifyClues(2, tcClue3);
+
+            tvQuestions.getColumns().addAll(tcAuthor,tcClue1,tcClue2,tcClue3,tcAnswer);
             tvQuestions.setItems(FXCollections.observableArrayList(questions));
 
 		}
 		return tvQuestions;
+	}
+
+	public void modifyAuthor(TableColumn<Question, String> tcAuthor) {
+		tcAuthor.setOnEditCommit((CellEditEvent<Question,String> t)->{
+			Question oldQuestion = getTvQuestions().getSelectionModel().getSelectedItem().clone();
+			t.getTableView().getItems().get(
+					 t.getTablePosition().getRow()).setAuthor(t.getNewValue());
+			editQuestion(oldQuestion,getTvQuestions().getSelectionModel().getSelectedItem());
+		});
+	}
+
+	public void modifyAnswer(TableColumn<Question, String> tcAnswer) {
+		tcAnswer.setOnEditCommit((CellEditEvent<Question,String> t)->{
+			Question oldQuestion = getTvQuestions().getSelectionModel().getSelectedItem().clone();
+			t.getTableView().getItems().get(
+					t.getTablePosition().getRow()).setAnswer(t.getNewValue());
+
+			editQuestion(oldQuestion,getTvQuestions().getSelectionModel().getSelectedItem());
+		});
+	}
+	public void modifyClues(int index, TableColumn<Question, String> tcClue) {
+		tcClue.setOnEditCommit((CellEditEvent<Question,String> t)->{
+			Question oldQuestion = getTvQuestions().getSelectionModel().getSelectedItem().clone();
+			t.getTableView().getItems().get(
+					t.getTablePosition().getRow()).setClue(index, t.getNewValue());
+
+			editQuestion(oldQuestion,getTvQuestions().getSelectionModel().getSelectedItem());
+		});
 	}
 
 	public void contexMenu() {
@@ -211,36 +231,38 @@ public class TableViewThemeBP extends BorderPane {
 			btnValidation = new Button("", new ImageView(new Image("images/icon/validation.png",
 					30, 30, true, true)));
 			btnValidation.getStyleClass().add("round");
-			btnValidation.setOnAction(event -> {
-				if (!getTxtAuthor().getText().equals("") && !getTxtClues1().getText().equals("") &&
-						!getTxtClues2().getText().equals("") && !getTxtClues3().getText().equals("") &&
-						!getTxtAnswer().getText().equals("")) {
-					Question question = new Question(getTxtAuthor().getText(), theme,
-							Arrays.asList(getTxtClues1().getText(),getTxtClues2().getText(),getTxtClues3().getText()),
-							getTxtAnswer().getText());
-					if (JsonManager.getDeck().addQuestion(question)) {
-						getTvQuestions().getItems().add(question);
-						setTxtPromptText("Enter new");
-					}
-					else {
-						setTxtPromptText("Invalid");
-					}
-					getTxtAuthor().setText("");
-					getTxtClues1().setText("");
-					getTxtClues2().setText("");
-					getTxtClues3().setText("");
-					getTxtAnswer().setText("");
-				}
-			});
+			btnValidation.setOnAction(event -> validation());
 		}
 		return btnValidation;
 	}
 
+	public void validation() {
+		if (!getTxtAuthor().getText().equals("") && !getTxtClue1().getText().equals("") &&
+				!getTxtClue2().getText().equals("") && !getTxtClue3().getText().equals("") &&
+				!getTxtAnswer().getText().equals("")) {
+			Question question = new Question(getTxtAuthor().getText(), theme,
+					Arrays.asList(getTxtClue1().getText(), getTxtClue2().getText(), getTxtClue3().getText()),
+					getTxtAnswer().getText());
+			if (JsonManager.getDeck().addQuestion(question)) {
+				getTvQuestions().getItems().add(question);
+				setTxtPromptText("Enter new");
+			}
+			else {
+				setTxtPromptText("Invalid");
+			}
+			getTxtAuthor().setText("");
+			getTxtClue1().setText("");
+			getTxtClue2().setText("");
+			getTxtClue3().setText("");
+			getTxtAnswer().setText("");
+		}
+	}
+
 	private void setTxtPromptText(String value) {
 		getTxtAuthor().setPromptText(value +" Author");
-		getTxtClues1().setPromptText(value +" Clue 1");
-		getTxtClues2().setPromptText(value +" Clue 2");
-		getTxtClues3().setPromptText(value +" Clue 3");
+		getTxtClue1().setPromptText(value +" Clue 1");
+		getTxtClue2().setPromptText(value +" Clue 2");
+		getTxtClue3().setPromptText(value +" Clue 3");
 		getTxtAnswer().setPromptText(value +" Answer");
 	}
 
@@ -287,28 +309,28 @@ public class TableViewThemeBP extends BorderPane {
 		return txtAuthor;
 	}
 
-	public TextField getTxtClues1() {
-		if (txtClues1 == null) {
-			txtClues1 = new TextField();
-			txtClues1.setPromptText("Enter Clue 1");
+	public TextField getTxtClue1() {
+		if (txtClue1 == null) {
+			txtClue1 = new TextField();
+			txtClue1.setPromptText("Enter Clue 1");
 		}
-		return txtClues1;
+		return txtClue1;
 	}
 
-	public TextField getTxtClues2() {
-		if (txtClues2 == null) {
-			txtClues2 = new TextField();
-			txtClues2.setPromptText("Enter Clue 2");
+	public TextField getTxtClue2() {
+		if (txtClue2 == null) {
+			txtClue2 = new TextField();
+			txtClue2.setPromptText("Enter Clue 2");
 		}
-		return txtClues2;
+		return txtClue2;
 	}
 
-	public TextField getTxtClues3() {
-		if (txtClues3 == null) {
-			txtClues3 = new TextField();
-			txtClues3.setPromptText("Enter Clue 3");
+	public TextField getTxtClue3() {
+		if (txtClue3 == null) {
+			txtClue3 = new TextField();
+			txtClue3.setPromptText("Enter Clue 3");
 		}
-		return txtClues3;
+		return txtClue3;
 	}
 
 	public TextField getTxtAnswer() {
@@ -334,21 +356,12 @@ public class TableViewThemeBP extends BorderPane {
             return new SimpleStringProperty(p.getValue().getClues().get(index));
         }
     }
-    
-    public void AssociateClues() {
-    	
-    }
 
     /**
      * to edit question
      */
     
-    public void editQuestion(Question questionEdit) {
-    	for(Question quest:JsonManager.getDeck().getListe()) {
-    		if(quest.equals(questionEdit)) {
-    			JsonManager.getDeck().modifyQuestion(quest,questionEdit);
-    		}
-    	}
-    	JsonManager.getDeck().toJson();
+    public void editQuestion(Question oldQuestion,Question editQuestion) {
+    	JsonManager.getDeck().modifyQuestion(oldQuestion, editQuestion);
     }
 }
