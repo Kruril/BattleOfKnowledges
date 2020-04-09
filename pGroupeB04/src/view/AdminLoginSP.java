@@ -64,7 +64,7 @@ public class AdminLoginSP extends StackPane {
 
     public ImageView getImgTitre() {
         if (imgTitre == null) {
-            imgTitre = new ImageView(new Image("images/base/Admin.png"));
+            imgTitre = new ImageView(new Image("images/title/Admin.png"));
         }
         return imgTitre;
     }
@@ -103,6 +103,7 @@ public class AdminLoginSP extends StackPane {
     public Button getBtnConnection() {
         if (btnConnection == null) {
             btnConnection = new Button("Connection");
+            btnConnection.setBackground(BackgroundLoader.buildBtnBackGround());
             btnConnection.getStyleClass().addAll("buttonBasic");
             btnConnection.setId("big-button");
             
@@ -124,6 +125,7 @@ public class AdminLoginSP extends StackPane {
     public Button getBtnBack() {
         if (btnBack == null) {
             btnBack = new Button("Back");
+            btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("big-button");
             btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));

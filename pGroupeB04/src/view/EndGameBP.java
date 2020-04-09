@@ -65,7 +65,7 @@ public class EndGameBP extends BorderPane{
 	
 	public ImageView getImgCongrats() {
 		if (imgCongrats == null) {
-			imgCongrats = new ImageView(new Image("images/base/Congratulations.png"));
+			imgCongrats = new ImageView(new Image("images/title/Congratulations.png"));
 		}
 		return imgCongrats;
 	}
@@ -82,7 +82,7 @@ public class EndGameBP extends BorderPane{
 
 	public ImageView getImgPlayAgain() {
 		if (imgPlayAgain == null) {
-			imgPlayAgain = new ImageView(new Image("images/base/PlayAgain.png"));
+			imgPlayAgain = new ImageView(new Image("images/title/PlayAgain.png"));
 		}
 		return imgPlayAgain;
 	}
@@ -90,6 +90,7 @@ public class EndGameBP extends BorderPane{
 	public Button getBtnPlay() {
 		if (btnPlay == null) {
 			btnPlay = new Button("Yes");
+			btnPlay.setBackground(BackgroundLoader.buildBtnBackGround());
 			btnPlay.getStyleClass().add("buttonBasic");
             btnPlay.setId("small-button");
 			
@@ -101,6 +102,7 @@ public class EndGameBP extends BorderPane{
 	public Button getBtnMenu() {
 		if (btnMenu == null) {
 			btnMenu = new Button("No");
+			btnMenu.setBackground(BackgroundLoader.buildBtnBackGround());
 			btnMenu.getStyleClass().add("buttonBasic");
             btnMenu.setId("small-button");
 			

@@ -68,7 +68,7 @@ public class UserLoginSP extends StackPane {
 
     public ImageView getImgTitre() {
         if (imgTitre == null) {
-            imgTitre = new ImageView(new Image("images/base/LogIn.png"));
+            imgTitre = new ImageView(new Image("images/title/LogIn.png"));
         }
         return imgTitre;
     }
@@ -127,6 +127,7 @@ public class UserLoginSP extends StackPane {
     public Button getBtnConnection() {
         if (btnConnection == null) {
             btnConnection = new Button("Connection");
+            btnConnection.setBackground(BackgroundLoader.buildBtnBackGround());
             btnConnection.getStyleClass().add("buttonBasic");
             btnConnection.setId("big-button");
             

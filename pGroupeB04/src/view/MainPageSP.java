@@ -68,7 +68,8 @@ public class MainPageSP extends StackPane {
 
     public Button getBtnSolo() {
         if (btnSolo == null) {
-            btnSolo = new Button("SoloPlayer");
+            btnSolo = new Button("SinglePlayer");
+            btnSolo.setBackground(BackgroundLoader.buildBtnBackGround());
             btnSolo.getStyleClass().add("buttonBasic");
             btnSolo.setId("big-button");
             btnSolo.setOnAction(event -> Main.switchScene(new ChoiceThemeBP()));
@@ -79,6 +80,7 @@ public class MainPageSP extends StackPane {
     public Button getBtnMulti() {
         if (btnMulti == null) {
             btnMulti = new Button("MultiPlayer");
+            btnMulti.setBackground(BackgroundLoader.buildBtnBackGround());
             btnMulti.getStyleClass().add("buttonBasic");
             btnMulti.setId("big-button");
         }
@@ -87,7 +89,7 @@ public class MainPageSP extends StackPane {
 
     public ImageView getIvTitle() {
         if (ivTitle == null) {
-            ivTitle = new ImageView(new Image("images/base/Title.png"));
+            ivTitle = new ImageView(new Image("images/title/Title.png"));
         }
         return ivTitle;
     }

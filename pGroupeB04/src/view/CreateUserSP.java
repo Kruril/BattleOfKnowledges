@@ -70,7 +70,7 @@ public class CreateUserSP extends StackPane{
 
     public ImageView getImgCreateUser() {
         if (imgCreateUser == null) {
-        	imgCreateUser = new ImageView(new Image("images/base/Create_User.png"));
+        	imgCreateUser = new ImageView(new Image("images/title/Create_User.png"));
         }
         return imgCreateUser;
     }
@@ -124,6 +124,7 @@ public class CreateUserSP extends StackPane{
     public Button getBtnValidate() {
         if (btnValidate == null) {
         	btnValidate = new Button("Validate");
+        	btnValidate.setBackground(BackgroundLoader.buildBtnBackGround());
         	btnValidate.getStyleClass().addAll("buttonBasic");
         	btnValidate.setId("big-button");
         	
@@ -148,6 +149,7 @@ public class CreateUserSP extends StackPane{
     public Button getBtnBack() {
         if (btnBack == null) {
             btnBack = new Button("Back");
+            btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("big-button");
             btnBack.setOnAction(event -> Main.switchScene(new UserLoginSP()));

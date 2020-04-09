@@ -9,23 +9,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 import application.Main;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -116,7 +107,7 @@ public class TableViewThemeBP extends BorderPane {
 			
 	        
 
-			 /**
+			 /*
 	         * Allow the Cell editing
 	         */
 	        tcAuthor.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -125,15 +116,12 @@ public class TableViewThemeBP extends BorderPane {
 	        tcClue3.setCellFactory(TextFieldTableCell.forTableColumn());
 	        tcAnswer.setCellFactory(TextFieldTableCell.forTableColumn());
 	        
-	        /**
+	        /*
 	         * When we change the value of one cell
 	         * we change also automaticaly the value in the json file
 	         */
 			modifyAuthor(tcAuthor);
 			modifyAnswer(tcAnswer);
-			modifyClues(0, tcClue1);
-			modifyClues(1, tcClue2);
-			modifyClues(2, tcClue3);
 
             tvQuestions.getColumns().addAll(tcAuthor,tcClue1,tcClue2,tcClue3,tcAnswer);
             tvQuestions.setItems(FXCollections.observableArrayList(questions));
@@ -160,8 +148,8 @@ public class TableViewThemeBP extends BorderPane {
 			editQuestion(oldQuestion,getTvQuestions().getSelectionModel().getSelectedItem());
 		});
 	}
-	public void modifyClues(int index, TableColumn<Question, String> tcClue) {
-		tcClue.setOnEditCommit((CellEditEvent<Question,String> t)->{
+	public void modifyClues(int index, TableColumn<Question, List<String>> tcClue) {
+		tcClue.setOnEditCommit((CellEditEvent<Question,List<String>> t)->{
 			Question oldQuestion = getTvQuestions().getSelectionModel().getSelectedItem().clone();
 			t.getTableView().getItems().get(
 					t.getTablePosition().getRow()).setClue(index, t.getNewValue());
@@ -217,6 +205,7 @@ public class TableViewThemeBP extends BorderPane {
 	public Button getBtnBack() {
 		if(btnBack==null) {
 			btnBack=new Button("Back");
+			btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
 			btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("big-button");
             btnBack.setOnAction(event -> Main.switchScene(new TableViewBP()));

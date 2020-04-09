@@ -11,15 +11,9 @@
 }
 
 .buttonBasic {
-    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
-    #3624c5, #2a5bcc);
-    -fx-effect: dropshadow(gaussian,rgba(0, 0, 0, 0.25),4,0,0,4);
-    -fx-border-color: #FFC900;
-    -fx-border-width: 4px;
-    -fx-border-radius: 65px;
-    -fx-background-radius: 65px;
-    -fx-text-fill: white;
-    -fx-font-family: Cagliostro;
+    -fx-text-fill: #80c400;
+    -fx-font-weight: bold;
+    -fx-font-family: "Book Antiqua";
 }
 
 .buttonBasic:hover{
@@ -30,15 +24,12 @@
     -fx-scale-shape: true;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
-    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
-    rgb(20, 233, 101), #6ecc0e);
-    -fx-text-fill: black;
 }
 
 #small-button {
     -fx-min-width: 100px;
     -fx-min-height: 25px;
-    -fx-font-size: 25;
+    -fx-font-size: 35;
 }
 
 #medium-button {
@@ -48,7 +39,7 @@
 }
 
 #big-button {
-    -fx-min-width: 300px;
+    -fx-min-width: 350px;
     -fx-min-height: 90px;
     -fx-font-size: 40;
 }

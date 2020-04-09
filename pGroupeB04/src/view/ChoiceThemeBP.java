@@ -61,6 +61,7 @@ public class ChoiceThemeBP extends BorderPane {
     public Button getBtnThm1() {
         if (btnThm1 == null) {
             btnThm1 = new Button(themes.get(0));
+            btnThm1.setBackground(BackgroundLoader.buildBtnBackGround());
             btnThm1.getStyleClass().add("buttonBasic");
             btnThm1.setId("big-button");
             btnThm1.setOnAction(event -> Main.switchScene(new GamePageBP(btnThm1.getText())));
@@ -71,6 +72,7 @@ public class ChoiceThemeBP extends BorderPane {
     public Button getBtnThm2() {
         if (btnThm2 == null) {
             btnThm2 = new Button(themes.get(1));
+            btnThm2.setBackground(BackgroundLoader.buildBtnBackGround());
             btnThm2.getStyleClass().add("buttonBasic");
             btnThm2.setId("big-button");
             
@@ -83,6 +85,7 @@ public class ChoiceThemeBP extends BorderPane {
     public Button getBtnThm3() {
         if (btnThm3 == null) {
             btnThm3 = new Button(themes.get(2));
+            btnThm3.setBackground(BackgroundLoader.buildBtnBackGround());
             btnThm3.getStyleClass().add("buttonBasic");
             btnThm3.setId("big-button");
 
@@ -94,6 +97,7 @@ public class ChoiceThemeBP extends BorderPane {
     public Button getBtnThm4() {
         if (btnThm4 == null) {
             btnThm4 = new Button(themes.get(3));
+            btnThm4.setBackground(BackgroundLoader.buildBtnBackGround());
             btnThm4.getStyleClass().add("buttonBasic");
             btnThm4.setId("big-button");
 
@@ -105,6 +109,7 @@ public class ChoiceThemeBP extends BorderPane {
     public Button getBtnBack() {
         if (btnBack == null) {
             btnBack = new Button("Back");
+            btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("medium-button");
             btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
@@ -114,7 +119,7 @@ public class ChoiceThemeBP extends BorderPane {
 
     public ImageView getIvTitle() {
         if (ivTitle == null) {
-            ivTitle = new ImageView("images/base/ChooseThemeLabel.png");
+            ivTitle = new ImageView("images/title/ChooseThemeLabel.png");
         }
         return ivTitle;
     }

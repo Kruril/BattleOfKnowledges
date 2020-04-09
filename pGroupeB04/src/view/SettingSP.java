@@ -71,7 +71,7 @@ public class SettingSP extends StackPane {
 
     public ImageView getIvTitle() {
         if (ivTitle == null) {
-            ivTitle = new ImageView(new Image("images/base/Settings.png"));
+            ivTitle = new ImageView(new Image("images/title/Settings.png"));
         }
         return ivTitle;
     }
@@ -147,6 +147,7 @@ public class SettingSP extends StackPane {
     public Button getBtnBack() {
         if (btnBack == null) {
             btnBack = new Button("Back");
+            btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("big-button");
             btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
@@ -157,6 +158,7 @@ public class SettingSP extends StackPane {
     public Button getBtnAdmin() {
         if (btnAdmin == null) {
         	btnAdmin = new Button("Admin");
+        	btnAdmin.setBackground(BackgroundLoader.buildBtnBackGround());
         	btnAdmin.getStyleClass().add("buttonBasic");
         	btnAdmin.setId("big-button");
         	btnAdmin.setOnAction(event -> Main.switchScene(new AdminLoginSP()));

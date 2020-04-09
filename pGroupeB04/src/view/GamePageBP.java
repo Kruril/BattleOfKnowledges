@@ -6,17 +6,21 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.Deck;
 import model.IteratorQuestion;
+import model.dialog.ExitGame;
 import utils.BackgroundLoader;
 import utils.GamePage.Timer;
 
 import java.util.HashMap;
 
-public class GamePageBP extends BorderPane {
+public class GamePageBP extends StackPane {
 
     private Label lblTitle;
 
@@ -42,55 +46,81 @@ public class GamePageBP extends BorderPane {
     private long time;
     private int pointWon = 0;
     private int pointCons;
-    private HashMap<String,Label> pointsFromLbl;
+    private HashMap<String, Label> pointsFromLbl;
+
+    private ExitGame exit = new ExitGame();
 
     public GamePageBP(String theme) {
         this.theme = theme;
         this.itQuestions = Deck.createIterator(theme);
+
+        ImageView shelf0 = new ImageView(new Image("images/element/shelf.png", 100,40,true,true));
+        ImageView shelf1 = new ImageView(shelf0.getImage()),
+                shelf2 = new ImageView(shelf0.getImage()),
+                shelf3 = new ImageView(shelf0.getImage()),
+                shelf4 = new ImageView(shelf0.getImage());
+
         //BACKGROUND
         this.setBackground(BackgroundLoader.builderBackGround());
 
         //TOP
-        VBox vbTop = new VBox();
-        vbTop.getChildren().add(getLblTitle());
-        vbTop.setAlignment(Pos.CENTER);
-        vbTop.setPadding(new Insets(20, 0, 0, 0));
-        this.setTop(vbTop);
+        setAlignment(getLblTitle(), Pos.TOP_CENTER);
 
         //CENTER
         HBox hbCenter = new HBox();
         VBox vbPoints = new VBox();
-        vbPoints.getChildren().addAll(getLblPoint4(), getLblPoint3(), getLblPoint2(), getLblPoint1(), getLblPoint0());
+        vbPoints.getChildren().addAll(shelf0,getLblPoint4(), getLblPoint3(), getLblPoint2(), getLblPoint1(), getLblPoint0());
         vbPoints.setAlignment(Pos.CENTER);
         vbPoints.getStyleClass().add("vboxPoints");
-        vbPoints.setMaxSize(USE_PREF_SIZE, USE_PREF_SIZE);
+        vbPoints.setMaxSize(100., 450);
         vbPoints.setSpacing(10);
 
         VBox vbClues = new VBox();
         vbClues.getChildren().addAll(getLblClue1(), getLblClue2(), getLblClue3());
-        vbClues.setAlignment(Pos.CENTER);
+        vbClues.setBackground(BackgroundLoader.buildBookGame());
+        vbClues.setMaxSize(800., 500.);
+        vbClues.setMinWidth(780.);
+        VBox.setMargin(getLblClue1(), new Insets(30., 0., 0., 60.));
+        VBox.setMargin(getLblClue2(), new Insets(-110., 0., 0., 400.));
+        VBox.setMargin(getLblClue3(), new Insets(-45., 0., 0., 60));
         vbClues.setSpacing(15);
 
         VBox vbTimer = new VBox();
-        vbTimer.getChildren().addAll(getLblTimer());
+        vbTimer.getChildren().add(getLblTimer());
+        vbTimer.setBackground(BackgroundLoader.buildTimerBackGround());
+        vbTimer.setMinSize(100.,110.);
+        vbTimer.setMaxSize(100.,110.);
         vbTimer.setAlignment(Pos.CENTER);
         vbTimer.setSpacing(15);
 
         hbCenter.getChildren().addAll(vbPoints, vbClues, vbTimer);
-        hbCenter.setPadding(new Insets(10));
+        hbCenter.setPadding(new Insets(10.));
         hbCenter.setAlignment(Pos.CENTER);
-        hbCenter.setSpacing(50);
-        this.setCenter(hbCenter);
+        hbCenter.setSpacing(35);
+        setAlignment(hbCenter, Pos.CENTER);
 
         //BOTTOM
         HBox hbBottom = new HBox();
         hbBottom.getChildren().addAll(getBtnSkip(), getTxtAnswer(), getBtnOk());
         hbBottom.setSpacing(10);
-        hbBottom.setAlignment(Pos.CENTER);
+        hbBottom.setAlignment(Pos.BOTTOM_CENTER);
         hbBottom.setPadding(new Insets(0, 30, 30, 0));
-        this.setBottom(hbBottom);
+        setAlignment(hbBottom, Pos.BOTTOM_CENTER);
         time = System.currentTimeMillis();
         Timer.startTimer(getLblTimer());
+        this.getChildren().addAll(getLblTitle(), hbCenter, hbBottom, exit);
+        exit.setVisible(false);
+
+        this.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                showExitMenu();
+            }
+        });
+    }
+
+    private void showExitMenu() {
+        exit.setVisible(!exit.isVisible());
+        setAlignment(exit, Pos.CENTER);
     }
 
     public Label getLblTitle() {
@@ -192,7 +222,7 @@ public class GamePageBP extends BorderPane {
      */
     public void seeClues() {
         if (waitingClues < 3) {
-            if (waitingClues == 0){
+            if (waitingClues == 0) {
                 getLblClue1().setText(itQuestions.item().getClues().get(waitingClues));
                 waitingClues++;
             }
@@ -200,7 +230,7 @@ public class GamePageBP extends BorderPane {
                 getLblClue2().setText(itQuestions.item().getClues().get(waitingClues));
                 waitingClues++;
             }
-            if (waitingClues == 2 && System.currentTimeMillis() - time >= 6000){
+            if (waitingClues == 2 && System.currentTimeMillis() - time >= 6000) {
                 getLblClue3().setText(itQuestions.item().getClues().get(waitingClues));
                 waitingClues++;
             }
@@ -209,6 +239,7 @@ public class GamePageBP extends BorderPane {
 
     /**
      * Check if game is over with time equals 0 or pointWon is 4
+     *
      * @param newValue new value of label
      */
     public void gameOver(String newValue) {
@@ -223,6 +254,7 @@ public class GamePageBP extends BorderPane {
         if (btnSkip == null) {
             btnSkip = new Button("Skip");
             btnSkip.getStyleClass().add("buttonBasic");
+            btnSkip.setBackground(BackgroundLoader.buildBtnBackGround());
             btnSkip.setId("medium-button");
             btnSkip.setOnAction(event -> {
                 updateScore(false);
@@ -244,6 +276,7 @@ public class GamePageBP extends BorderPane {
     public Button getBtnOk() {
         if (btnOk == null) {
             btnOk = new Button("Ok");
+            btnOk.setBackground(BackgroundLoader.buildBtnBackGround());
             btnOk.getStyleClass().add("buttonBasic");
             btnOk.setId("medium-button");
 
@@ -258,6 +291,7 @@ public class GamePageBP extends BorderPane {
 
     /**
      * Check if it's necessary add a point or not
+     *
      * @return true or false if add point
      */
     public boolean isAddPoint() {
@@ -266,8 +300,7 @@ public class GamePageBP extends BorderPane {
             addPoint = true;
             itQuestions.remove();
             getTxtAnswer().setPromptText("Correct Answer");
-        }
-        else {
+        } else {
             addPoint = false;
             getTxtAnswer().setPromptText("Wrong Answer");
         }
@@ -284,7 +317,7 @@ public class GamePageBP extends BorderPane {
     /**
      * Check if it's end of the list
      */
-    public void choiceQuestion(){
+    public void choiceQuestion() {
         if (!itQuestions.hasNext()) itQuestions.firstIndex();
         returnStartQuestion();
     }
@@ -303,6 +336,7 @@ public class GamePageBP extends BorderPane {
 
     /**
      * Check if the answer of question is correct
+     *
      * @param text answer of question
      * @return true or false
      */
@@ -312,13 +346,13 @@ public class GamePageBP extends BorderPane {
 
     /**
      * Update of score add point or return to zero
+     *
      * @param addPoint true or false if add point
      */
     public void updateScore(boolean addPoint) {
-        if (addPoint){
+        if (addPoint) {
             addPointScore();
-        }
-        else {
+        } else {
             removePointScore();
         }
     }
@@ -330,10 +364,10 @@ public class GamePageBP extends BorderPane {
         pointCons++;
         pointsFromLbl.forEach((key, label) -> {
             if (pointCons == Integer.parseInt(key)) {
-                label.getStyleClass().addAll("point-gagne","point-consecutif");
+                label.getStyleClass().addAll("point-gagne", "point-consecutif");
                 pointFinal();
             }
-            if (pointCons-1 == Integer.parseInt(key)) {
+            if (pointCons - 1 == Integer.parseInt(key)) {
                 label.getStyleClass().remove("point-consecutif");
             }
         });
@@ -358,7 +392,7 @@ public class GamePageBP extends BorderPane {
     /**
      * Point final for EndGameBP, retains the highest point
      */
-    public void pointFinal(){
+    public void pointFinal() {
         if (pointWon < pointCons) {
             pointWon = pointCons;
         }

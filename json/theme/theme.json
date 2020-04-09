@@ -34,7 +34,7 @@
       "author": "Charlier Guillaume",
       "theme": "Extinct Animal",
       "clues": [
-        "the longest known theropod, measuring 16 to 18 meters and up to 5 to 6 meters high",
+        "The longest known theropod, measuring 16 to 18 meters and up to 5 to 6 meters high",
         "I could be a land predator or a fisherman as shown by my long jaws",
         "I had a back veil"
       ],
@@ -54,9 +54,9 @@
       "author": "Charlier Guillaume",
       "theme": "Extinct Animal",
       "clues": [
-        "My hind limbs were provided with a retractable claw of approximately 15 centimeters, capable of being positioned almost vertically to shred the skin of its prey.",
-        " I had an excellent running speed of up to 60 km / h",
-        " the volume of my brain is relatively large in proportion to my size"
+        "I had a retractable claw of approximately 15 centimeters, capable of being positioned almost vertically to shred the skin of its prey",
+        "I had an excellent running speed of up to 60 km / h",
+        "The volume of my brain is relatively large in proportion to my size"
       ],
       "answer": "Velociraptor"
     },
@@ -134,7 +134,7 @@
       "author": "Trempont Mathieu",
       "theme": "Animal",
       "clues": [
-        "I can \"hear\" thanks to my legs, which capture the vibrations of the ground. Thanks to this method, I can warn my congeneres of the danger up to 30km",
+        "I can capture the vibrations of the ground, to warn my congeneres of the danger up to 30km",
         "I'm the biggest land animal of the planet (I can weight up to 7 tons)",
         "I'm easily recognizable with my trunk and can live up to 80 years"
       ],
@@ -296,7 +296,7 @@
       "clues": [
         "My name is probably from a Portuguese transliteration of the name of the Zenaga also known as the Sanhaja",
         "I will host the 2022 Summer Youth Olympics",
-        "I am externally bounded by the Atlantic Ocean to the west, Mauritania to the north, Mali to the east, and Guinea and Guinea-Bissau to the south"
+        "I am externally bounded by the Atlantic Ocean to the west, Mauritania to the north, Mali to the east, and Guinea"
       ],
       "answer": "Senegal"
     },
@@ -425,7 +425,7 @@
       "theme": "Sport",
       "clues": [
         "In Europe, I'm mainly played on grass or synthetic field, and in the United States, I'm often played on ice",
-        "On a grass field, the teams are made up of 11 players and 5 substitutes.On an ice field, the teams are composed of 5 players and 1 goalkeeper",
+        "On grass, teams are made up of 11 players and 5 substitutes. On ice, teams are composed of 5 players and 1 goalkeeper",
         "The players must be well equipped because the ball (called puck) can reach 105 mph"
       ],
       "answer": "Hockey"

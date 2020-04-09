@@ -52,8 +52,8 @@ public class Question implements Serializable{
 		this.clues = clues;
 	}
 
-	public void setClue(int index, String value) {
-		if (index < clues.size()) clues.set(index, value);
+	public void setClue(int index, List<String> value) {
+		if (index < clues.size()) clues = value;
 	}
 
 	public String getAnswer() {

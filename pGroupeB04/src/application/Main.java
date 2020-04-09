@@ -38,7 +38,7 @@ public class Main extends Application {
         //Main menu page
         scene = new Scene(new UserLoginSP());
         scene.getStylesheets().addAll("styles/btnStyles.css", "styles/labelStyles.css", "styles/BoxStyles.css",
-                "styles/TableStyles.css");
+                "styles/TableStyles.css", "styles/dialogStyle.css");
 
         primaryStage.setScene(scene);
 
@@ -47,7 +47,7 @@ public class Main extends Application {
         primaryStage.setMinWidth(1080.);
         primaryStage.setMinHeight(720.);
         primaryStage.setTitle("Battle of knowledges");
-        primaryStage.getIcons().add(new Image("images/base/euro.png"));
+        primaryStage.getIcons().add(new Image("images/icon/euro.png"));
 
         primaryStage.show();
 
