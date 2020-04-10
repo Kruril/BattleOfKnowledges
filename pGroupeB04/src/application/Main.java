@@ -46,7 +46,7 @@ public class Main extends Application {
 
         primaryStage.setMinWidth(1080.);
         primaryStage.setMinHeight(720.);
-        primaryStage.setTitle("Battle of knowledges");
+        primaryStage.setTitle("Battle of knowledge");
         primaryStage.getIcons().add(new Image("images/icon/euro.png"));
 
         primaryStage.show();

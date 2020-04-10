@@ -40,15 +40,15 @@ public class GamePageBP extends StackPane {
     private TextField txtAnswer;
     private Button btnOk;
 
-    private String theme;
-    private IteratorQuestion itQuestions;
+    private final String theme;
+    private final IteratorQuestion itQuestions;
     private int waitingClues = 0;
     private long time;
     private int pointWon = 0;
     private int pointCons;
     private HashMap<String, Label> pointsFromLbl;
 
-    private ExitGame exit = new ExitGame();
+    private final ExitGame exit = new ExitGame();
 
     public GamePageBP(String theme) {
         this.theme = theme;

@@ -106,11 +106,12 @@ public class Question implements Serializable{
 		if (clues.size() != 3) return false;
 		if (author.equalsIgnoreCase("") || author.equalsIgnoreCase(null)) return false;
 		if (clues.contains("") || clues.contains(null)) return false;
+		if (clues.removeIf(clue -> clue.length() > 150)) return false;
 		return true;
 	}
 
 	public String get(int index) {
-		return clues.get(0);
+		return clues.get(index);
 	}
 
 }

@@ -161,7 +161,8 @@ public class TableViewThemeBP extends BorderPane {
 	public void contexMenu() {
 		ContextMenu menu = new ContextMenu();
 
-		MenuItem remove = new MenuItem("Remove");
+		MenuItem remove = new MenuItem("Remove"),
+				edit = new MenuItem("Edit question");
 		remove.setOnAction(event -> {
 			Question qRemoved = getTvQuestions().getSelectionModel().getSelectedItem();
 			if (JsonManager.getDeck().removeQuestion(qRemoved)) {
@@ -169,7 +170,11 @@ public class TableViewThemeBP extends BorderPane {
 			}
 		});
 
-		menu.getItems().add(remove);
+		edit.setOnAction(event -> {
+			System.out.println("blabla");
+		});
+
+		menu.getItems().addAll(remove, edit);
 		getTvQuestions().setContextMenu(menu);
 	}
 
@@ -226,6 +231,7 @@ public class TableViewThemeBP extends BorderPane {
 	}
 
 	public void validation() {
+		System.out.println(getTxtClue1().getLength());
 		if (!getTxtAuthor().getText().equals("") && !getTxtClue1().getText().equals("") &&
 				!getTxtClue2().getText().equals("") && !getTxtClue3().getText().equals("") &&
 				!getTxtAnswer().getText().equals("")) {
