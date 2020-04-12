@@ -84,18 +84,21 @@ public class TableViewThemeSP extends StackPane {
 			}
 
 			if (event.getCode() == KeyCode.Z && event.isControlDown()) {
-				if (!TrashControl.getTrash().isEmpty()) {
-					Question question = TrashControl.reloadLastDeleted(theme);
-					if (JsonManager.getDeck().addQuestion(question)) {
-						getTvQuestions().getItems().add(question);
-					}
-				}
+				undoQuestionDeleted();
 			}
 		});
 	}
-	
-	
-	
+
+	public void undoQuestionDeleted() {
+		if (!TrashControl.getTrash().isEmpty()) {
+			Question question = TrashControl.reloadLastDeleted(theme);
+			if (JsonManager.getDeck().addQuestion(question)) {
+				getTvQuestions().getItems().add(question);
+			}
+		}
+	}
+
+
 	public TableView<Question> getTvQuestions() {
 		if(tvQuestions==null) {
 			tvQuestions=new TableView<>();
@@ -172,7 +175,8 @@ public class TableViewThemeSP extends StackPane {
 
 		MenuItem remove = new MenuItem("Remove"),
 				edit = new MenuItem("Edit question"),
-				importQuestion = new MenuItem("Import questions");
+				importQuestion = new MenuItem("Import questions"),
+				undo = new MenuItem("Undo");
 		remove.setOnAction(event -> {
 			Question qRemoved = getTvQuestions().getSelectionModel().getSelectedItem().clone();
 			if (JsonManager.getDeck().removeQuestion(qRemoved)) {
@@ -201,7 +205,9 @@ public class TableViewThemeSP extends StackPane {
 			importFile();
 		});
 
-		menu.getItems().addAll(remove, edit, importQuestion);
+		undo.setOnAction(event -> undoQuestionDeleted());
+
+		menu.getItems().addAll(remove, edit, importQuestion, undo);
 		getTvQuestions().setContextMenu(menu);
 	}
 

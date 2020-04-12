@@ -43,7 +43,6 @@ public abstract class Container {
 
     public boolean isEmpty() {
         if (questions == null) return true;
-        if (questions.size() == 0) return true;
-        return false;
+        return questions.size() == 0;
     }
 }

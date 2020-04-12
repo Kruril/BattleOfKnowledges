@@ -5,7 +5,7 @@ import java.util.List;
 public class IteratorQuestion {
 
     private int index;
-    private List<Question> list;
+    private final List<Question> list;
 
     public IteratorQuestion(List<Question> list) {
         this.list = list;
@@ -36,8 +36,8 @@ public class IteratorQuestion {
         index = lastIndex();
     }
 
-    public int firstIndex() {
-        return index = -1;
+    public void firstIndex() {
+        index = -1;
     }
 
     public int getIndex() {
