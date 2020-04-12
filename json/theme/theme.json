@@ -4,16 +4,6 @@
       "author": "Charlier Guillaume",
       "theme": "Extinct Animal",
       "clues": [
-        "I can swallow 500 lbs (230 kg) in one bite",
-        "I am one of the most formidable predators the earth has known",
-        "My arms were smaller than his head"
-      ],
-      "answer": "T-Rex"
-    },
-    {
-      "author": "Charlier Guillaume",
-      "theme": "Extinct Animal",
-      "clues": [
         "My long tail allowed me to defend myself in case of attack",
         "I am among the biggest herbivores",
         "I can eat up to 1 ton of plant per day"
@@ -404,16 +394,6 @@
       "author": "Trempont Mathieu",
       "theme": "Sport",
       "clues": [
-        "I was created in the 1860s and became an Olympic sport in 1908",
-        "There is a Mondial cup every 4 years, where teams can earn a star to put on their jersey",
-        "I'm the most popular sport in the world with more than 4 billions supporters"
-      ],
-      "answer": "Football"
-    },
-    {
-      "author": "Trempont Mathieu",
-      "theme": "Sport",
-      "clues": [
         "There is more than 38000 clubs only in Europe",
         "You can play me on different types of terrain: grass, synthetic, dirt",
         "My main championships are divided into grand slam"
@@ -499,6 +479,26 @@
         "The length of an Olympic sport was not precisely fixed at first, but the races in the first few Olympic Games were about 40 kilometres"
       ],
       "answer": "Marathon"
+    },
+    {
+      "author": "Trempont Mathieu",
+      "theme": "Sport",
+      "clues": [
+        "I was created in the 1860s and became an Olympic sport in 1908",
+        "There is a Mondial cup every 4 years, where teams can earn a star to put on their jersey",
+        "I'm the most popular sport in the world with more than 4 billions supporters"
+      ],
+      "answer": "Football"
+    },
+    {
+      "author": "Charlier Guillaume",
+      "theme": "Extinct Animal",
+      "clues": [
+        "I can swallow 500 lbs (230 kg) in one bite",
+        "I am one of the most formidable predators the earth has known",
+        "My arms were smaller than his head"
+      ],
+      "answer": "T-Rex"
     }
   ]
 }

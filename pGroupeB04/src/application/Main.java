@@ -7,8 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-import utils.JsonManager;
+import model.Trash;
+import utils.controler.JsonManager;
 import utils.Resolution;
+import utils.controler.TrashControl;
 import view.*;
 
 public class Main extends Application {
@@ -28,6 +30,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         JsonManager.themeFromDeck();
+        TrashControl.buildTrash();
         stage = primaryStage;
         Scene scene;
         Resolution resolution = new Resolution();

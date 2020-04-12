@@ -24,12 +24,16 @@ public class IteratorQuestion {
         index++;
     }
 
-    public void preview() {
+    public void previous() {
         index--;
     }
 
     public int lastIndex(){
         return index = list.size() -1;
+    }
+
+    public void setLastIndex() {
+        index = lastIndex();
     }
 
     public int firstIndex() {
@@ -50,5 +54,9 @@ public class IteratorQuestion {
 
     public boolean hasNext() {
         return index < list.size() -1;
+    }
+
+    public boolean hasPrevious() {
+        return index - 1 >= -1;
     }
 }

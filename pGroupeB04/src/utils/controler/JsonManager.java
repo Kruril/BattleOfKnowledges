@@ -1,4 +1,4 @@
-package utils;
+package utils.controler;
 
 import model.Deck;
 import model.Question;
@@ -10,7 +10,7 @@ public class JsonManager{
 
     private static Deck deck;
 
-    private static List<String> themes = new ArrayList<>();
+    private static final List<String> themes = new ArrayList<>();
 
 
     private JsonManager(){
@@ -33,7 +33,7 @@ public class JsonManager{
         if (deck == null) {
             new JsonManager();
 
-            for (Question quest : deck.getListe()) {
+            for (Question quest : deck.getList()) {
                 if (!(themes.contains(quest.getTheme()))) {
                     themes.add(quest.getTheme());
                 }
@@ -48,7 +48,7 @@ public class JsonManager{
      */
     public static List<Question> choiceTheme(String theme){
         List<Question> questions = new ArrayList<>();
-        for (Question question : deck.getListe()) {
+        for (Question question : deck.getList()) {
             if (question.getTheme().equals(theme)) {
                 questions.add(question.clone());
             }

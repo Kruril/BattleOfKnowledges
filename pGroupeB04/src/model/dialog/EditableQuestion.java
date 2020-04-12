@@ -9,8 +9,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.Question;
 import utils.BackgroundLoader;
-import utils.JsonManager;
-import view.TableViewThemeBP;
 
 import java.util.ArrayList;
 import java.util.Arrays;

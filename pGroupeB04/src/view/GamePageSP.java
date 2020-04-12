@@ -12,11 +12,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import model.Deck;
 import model.IteratorQuestion;
 import model.dialog.ExitGame;
 import utils.BackgroundLoader;
 import utils.GamePage.Timer;
+import utils.controler.JsonManager;
 
 import java.util.HashMap;
 
@@ -52,7 +52,7 @@ public class GamePageSP extends StackPane {
 
     public GamePageSP(String theme) {
         this.theme = theme;
-        this.itQuestions = Deck.createIterator(theme);
+        this.itQuestions = JsonManager.getDeck().createIterator(theme);
 
         ImageView shelf0 = new ImageView(new Image("images/element/shelf.png", 100,40,true,true));
         ImageView shelf1 = new ImageView(shelf0.getImage()),

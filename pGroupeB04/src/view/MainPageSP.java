@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import utils.BackgroundLoader;
-import utils.JsonManager;
+import utils.controler.JsonManager;
 import utils.Resolution;
 
 public class MainPageSP extends StackPane {

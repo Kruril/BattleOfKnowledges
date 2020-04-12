@@ -13,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
-import utils.JsonManager;
+import utils.controler.JsonManager;
 
 
 public class ChoiceThemeBP extends BorderPane {

@@ -23,8 +23,9 @@ import model.Deck;
 import model.Question;
 import model.dialog.EditableQuestion;
 import utils.BackgroundLoader;
-import utils.JsonManager;
+import utils.controler.JsonManager;
 import utils.TableView.CommonTableView;
+import utils.controler.TrashControl;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -33,7 +34,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-public class TableViewThemeBP extends StackPane {
+public class TableViewThemeSP extends StackPane {
 	private Label lblTheme;
 	
 	private TableView<Question> tvQuestions;
@@ -46,7 +47,7 @@ public class TableViewThemeBP extends StackPane {
 	private TextField txtAuthor, txtClue1, txtClue2, txtClue3, txtAnswer;
 	private EditableQuestion editableQuestion;
 	
-	public TableViewThemeBP(String theme) {
+	public TableViewThemeSP(String theme) {
 		this.theme=theme;
 		this.questions=JsonManager.choiceTheme(theme);
 		this.setBackground(BackgroundLoader.builderBackGround());
@@ -80,6 +81,15 @@ public class TableViewThemeBP extends StackPane {
 		this.setOnKeyReleased(event -> {
 			if (event.getCode() == KeyCode.ESCAPE && editableQuestion != null) {
 				editableQuestion.setVisible(false);
+			}
+
+			if (event.getCode() == KeyCode.Z && event.isControlDown()) {
+				if (!TrashControl.getTrash().isEmpty()) {
+					Question question = TrashControl.reloadLastDeleted(theme);
+					if (JsonManager.getDeck().addQuestion(question)) {
+						getTvQuestions().getItems().add(question);
+					}
+				}
 			}
 		});
 	}
@@ -164,9 +174,10 @@ public class TableViewThemeBP extends StackPane {
 				edit = new MenuItem("Edit question"),
 				importQuestion = new MenuItem("Import questions");
 		remove.setOnAction(event -> {
-			Question qRemoved = getTvQuestions().getSelectionModel().getSelectedItem();
+			Question qRemoved = getTvQuestions().getSelectionModel().getSelectedItem().clone();
 			if (JsonManager.getDeck().removeQuestion(qRemoved)) {
 				getTvQuestions().getItems().remove(qRemoved);
+				TrashControl.getTrash().addQuestion(qRemoved);
 			}
 		});
 
@@ -303,7 +314,7 @@ public class TableViewThemeBP extends StackPane {
 			deck.fromJson(selectedFile);
 			deck.checkTheme(theme);
 
-			deck.getListe().forEach(question -> {
+			deck.getList().forEach(question -> {
 				question.setTheme(CommonTableView.upperLowerText(question.getTheme()));
 				if (JsonManager.getDeck().addQuestion(question)) {
 					getTvQuestions().getItems().add(question);

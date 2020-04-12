@@ -1,39 +1,20 @@
 package model;
 
 import serialisation.LectureEcriture;
-import utils.JsonManager;
+import utils.controler.JsonManager;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Deck {
-
-	private List<Question> questions;
+public class Deck extends Container{
 	
 	
 	public Deck() {
-		questions = new ArrayList<>();
-	}
-	
-	public List<Question> getListe() {
-		return new ArrayList<>(questions);
+		super();
 	}
 
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
-	}
-
-	public boolean addQuestion(Question questionAdd) {
-		if (questions.contains(questionAdd) || !questionAdd.checkQuestion() ) return false;
-		questions.add(questionAdd);
-        return true;
-    }
-	
-	public boolean removeQuestion(Question questionASuprimer) {
-		if (!questions.contains(questionASuprimer)) return false;
-		questions.remove(questionASuprimer);
-		return true;
 	}
 	
 	public void modifyQuestion(Question questionOld, Question questionNew) {
@@ -45,29 +26,19 @@ public class Deck {
 		return questions.indexOf(questionFinding);
 	}
 
-
-	@Override
-	public String toString(){
-    	StringBuilder tpm = new StringBuilder();
-        for (Question q : questions) {
-        	tpm.append(q.toString()).append("\n");
-        }
-        return tpm.toString();
-    }
-
 	public void toJson(){
 		LectureEcriture.writeStringDeck(this);
 	}
 
 	public void fromJson(){
-		this.setQuestions(LectureEcriture.readStringDeck().getListe());
+		this.setQuestions(LectureEcriture.readStringDeck().getList());
 	}
 
 	public void fromJson(File file) {
-		this.setQuestions(LectureEcriture.readStringDeck(file).getListe());
+		this.setQuestions(LectureEcriture.readStringDeck(file).getList());
 	}
 
-	public static IteratorQuestion createIterator(String theme) {
+	public IteratorQuestion createIterator(String theme) {
 		return new IteratorQuestion(JsonManager.choiceTheme(theme));
 	}
 
