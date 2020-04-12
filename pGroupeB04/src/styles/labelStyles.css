@@ -45,7 +45,6 @@
 }
 
 .labelPoints {
-	/*-fx-background-color: #45C1DC;*/
 	-fx-border-radius: 15; 
     -fx-background-radius: 15; 
     -fx-min-width:75;

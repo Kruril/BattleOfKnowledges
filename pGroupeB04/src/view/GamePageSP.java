@@ -20,7 +20,7 @@ import utils.GamePage.Timer;
 
 import java.util.HashMap;
 
-public class GamePageBP extends StackPane {
+public class GamePageSP extends StackPane {
 
     private Label lblTitle;
 
@@ -50,7 +50,7 @@ public class GamePageBP extends StackPane {
 
     private final ExitGame exit = new ExitGame();
 
-    public GamePageBP(String theme) {
+    public GamePageSP(String theme) {
         this.theme = theme;
         this.itQuestions = Deck.createIterator(theme);
 

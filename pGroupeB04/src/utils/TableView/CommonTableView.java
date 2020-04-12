@@ -6,7 +6,7 @@ import javafx.scene.control.TableView;
 public class CommonTableView {
 
     public static void changeHeight(TableView tableView) {
-        tableView.setMaxHeight(Main.getStage().getHeight() - 290);
+        tableView.setMaxHeight(Main.getStage().getHeight() - 350);
     }
 
     public static String upperLowerText(String element) {

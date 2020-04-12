@@ -21,18 +21,21 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import model.Deck;
 import model.Question;
+import model.dialog.EditableQuestion;
 import utils.BackgroundLoader;
 import utils.JsonManager;
 import utils.TableView.CommonTableView;
 
-public class TableViewThemeBP extends BorderPane {
+public class TableViewThemeBP extends StackPane {
 	private Label lblTheme;
 	
 	private TableView<Question> tvQuestions;
@@ -43,6 +46,7 @@ public class TableViewThemeBP extends BorderPane {
 	private Button btnBack, btnValidation, btnAddFile;
 
 	private TextField txtAuthor, txtClue1, txtClue2, txtClue3, txtAnswer;
+	private EditableQuestion editableQuestion;
 	
 	public TableViewThemeBP(String theme) {
 		this.theme=theme;
@@ -52,11 +56,12 @@ public class TableViewThemeBP extends BorderPane {
 		
 		this.setPadding(insets);
 
-		setAlignment(getLblTheme(), Pos.CENTER);
-		this.setTop(getLblTheme());
+		setAlignment(getLblTheme(), Pos.TOP_CENTER);
+		this.getChildren().add(getLblTheme());
 
 		setAlignment(getTvQuestions(), Pos.CENTER);
-		this.setCenter(getTvQuestions());
+		setMargin(getTvQuestions(), new Insets(-65.,0.,0.,0.));
+		this.getChildren().add(getTvQuestions());
 		tvQuestions.setEditable(true);
 		
 		setAlignment(getBtnBack(), Pos.CENTER);
@@ -69,8 +74,16 @@ public class TableViewThemeBP extends BorderPane {
 		vbBottom.setAlignment(Pos.CENTER);
 		vbBottom.setPadding(insets);
 		vbBottom.setSpacing(10.);
-		this.setBottom(vbBottom);
+		vbBottom.setMaxHeight(160.);
+		setAlignment(vbBottom, Pos.BOTTOM_CENTER);
+		this.getChildren().add(vbBottom);
 		contexMenu();
+
+		this.setOnKeyReleased(event -> {
+			if (event.getCode() == KeyCode.ESCAPE && editableQuestion != null) {
+				editableQuestion.setVisible(false);
+			}
+		});
 	}
 	
 	
@@ -111,9 +124,6 @@ public class TableViewThemeBP extends BorderPane {
 	         * Allow the Cell editing
 	         */
 	        tcAuthor.setCellFactory(TextFieldTableCell.forTableColumn());
-	        tcClue1.setCellFactory(TextFieldTableCell.forTableColumn());
-	        tcClue2.setCellFactory(TextFieldTableCell.forTableColumn());
-	        tcClue3.setCellFactory(TextFieldTableCell.forTableColumn());
 	        tcAnswer.setCellFactory(TextFieldTableCell.forTableColumn());
 	        
 	        /*
@@ -148,21 +158,13 @@ public class TableViewThemeBP extends BorderPane {
 			editQuestion(oldQuestion,getTvQuestions().getSelectionModel().getSelectedItem());
 		});
 	}
-	public void modifyClues(int index, TableColumn<Question, List<String>> tcClue) {
-		tcClue.setOnEditCommit((CellEditEvent<Question,List<String>> t)->{
-			Question oldQuestion = getTvQuestions().getSelectionModel().getSelectedItem().clone();
-			t.getTableView().getItems().get(
-					t.getTablePosition().getRow()).setClue(index, t.getNewValue());
-
-			editQuestion(oldQuestion,getTvQuestions().getSelectionModel().getSelectedItem());
-		});
-	}
 
 	public void contexMenu() {
 		ContextMenu menu = new ContextMenu();
 
 		MenuItem remove = new MenuItem("Remove"),
-				edit = new MenuItem("Edit question");
+				edit = new MenuItem("Edit question"),
+				importQuestion = new MenuItem("Import questions");
 		remove.setOnAction(event -> {
 			Question qRemoved = getTvQuestions().getSelectionModel().getSelectedItem();
 			if (JsonManager.getDeck().removeQuestion(qRemoved)) {
@@ -171,10 +173,26 @@ public class TableViewThemeBP extends BorderPane {
 		});
 
 		edit.setOnAction(event -> {
-			System.out.println("blabla");
+			editableQuestion = new EditableQuestion(getTvQuestions().getSelectionModel().getSelectedItem());
+			this.getChildren().add(editableQuestion);
+			editableQuestion.setVisible(true);
+			editableQuestion.getBtnEdit().pressedProperty().addListener(observable -> {
+				if (editableQuestion.isPressed()) {
+					Question old = getTvQuestions().getSelectionModel().getSelectedItem().clone();
+					JsonManager.getDeck().modifyQuestion(old, editableQuestion.getQuestion());
+					getTvQuestions().getSelectionModel().getSelectedItem().set(editableQuestion.getQuestion());
+					getTvQuestions().refresh();
+					editableQuestion.setVisible(false);
+				}
+			});
 		});
 
-		menu.getItems().addAll(remove, edit);
+		importQuestion.setOnAction(event -> {
+			menu.hide();
+			importFile();
+		});
+
+		menu.getItems().addAll(remove, edit, importQuestion);
 		getTvQuestions().setContextMenu(menu);
 	}
 

@@ -1,7 +1,5 @@
 package model;
 
-import javafx.beans.property.StringProperty;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -110,8 +108,15 @@ public class Question implements Serializable{
 		return true;
 	}
 
-	public String get(int index) {
+	public String getClue(int index) {
 		return clues.get(index);
+	}
+
+	public void set(Question question) {
+		this.setClues(question.clues);
+		this.setAnswer(question.answer);
+		this.setAuthor(question.author);
+		this.setTheme(question.theme);
 	}
 
 }

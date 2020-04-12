@@ -33,10 +33,10 @@ public abstract class BackgroundLoader {
                         false)));
     }
 
-    public static Background buildExitDialogBackGround () {
+    public static Background buildDialogBackGround(double wigth, double height) {
         return new Background(new BackgroundImage(new Image("images/element/ExitMenu.png"), BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(400.,297,false,false,false,
+                new BackgroundSize(wigth,height,false,false,false,
                         false)));
     }
 

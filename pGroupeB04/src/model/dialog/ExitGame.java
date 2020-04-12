@@ -16,7 +16,7 @@ public class ExitGame extends StackPane {
 
     public ExitGame() {
         this.setMaxSize(400.,300.);
-        this.setBackground(BackgroundLoader.buildExitDialogBackGround());
+        this.setBackground(BackgroundLoader.buildDialogBackGround(400.,300.));
         this.getStyleClass().add("dialog");
         this.setAlignment(getText(), Pos.CENTER);
         this.setAlignment(getBtnExit(), Pos.BOTTOM_CENTER);
@@ -39,7 +39,7 @@ public class ExitGame extends StackPane {
         if (btnExit == null) {
             btnExit = new Button("Exit");
             btnExit.setOnAction(event -> Main.switchScene(new MainPageSP()));
-            btnExit.setMinSize(70.,25.);
+            btnExit.setMinSize(80.,25.);
             btnExit.getStyleClass().addAll("buttonBasic","dialog-button");
         }
         return btnExit;
@@ -49,7 +49,7 @@ public class ExitGame extends StackPane {
         if (btnCancel == null) {
             btnCancel = new Button("Cancel");
             btnCancel.setOnAction(event -> this.setVisible(false));
-            btnCancel.setMinSize(70.,25.);
+            btnCancel.setMinSize(80.,25.);
             btnCancel.getStyleClass().addAll( "buttonBasic","dialog-button");
         }
         return btnCancel;
