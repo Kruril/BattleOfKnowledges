@@ -1,13 +1,5 @@
 package view;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileSystemView;
-
 import application.Main;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -22,7 +14,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -35,13 +26,20 @@ import utils.BackgroundLoader;
 import utils.JsonManager;
 import utils.TableView.CommonTableView;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
 public class TableViewThemeBP extends StackPane {
 	private Label lblTheme;
 	
 	private TableView<Question> tvQuestions;
 
-	private String theme;
-	private List<Question> questions;
+	private final String theme;
+	private final List<Question> questions;
 	
 	private Button btnBack, btnValidation, btnAddFile;
 
