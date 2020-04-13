@@ -109,7 +109,7 @@ public class AdminLoginSP extends StackPane {
             
             btnConnection.setOnAction(event -> {
                 if(pwfPassword.getText().equals("helha") && txtLogin.getText().equals("admin")) {
-                    Main.switchScene(new TableViewBP());
+                    Main.switchScene(new AdminChoiceSP());
                 }
                 else{
                     pwfPassword.setText("");
