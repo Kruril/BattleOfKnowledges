@@ -83,6 +83,7 @@ public class MainPageSP extends StackPane {
             btnMulti.setBackground(BackgroundLoader.buildBtnBackGround());
             btnMulti.getStyleClass().add("buttonBasic");
             btnMulti.setId("big-button");
+            btnMulti.setOnAction(event -> Main.switchScene(new MultiplayerBP()));
         }
         return btnMulti;
     }
