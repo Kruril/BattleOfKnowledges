@@ -8,7 +8,6 @@ import javafx.util.Duration;
 
 public class Timer {
 
-    private static final int TIME_TIMER = 90;
     private static Timeline timeTimer;
     private static Integer timeSecond;
 

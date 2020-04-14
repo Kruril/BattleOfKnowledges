@@ -7,13 +7,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import model.IteratorQuestion;
 import model.dialog.ExitGame;
 import utils.BackgroundLoader;
@@ -56,12 +53,6 @@ public class GamePageSP extends StackPane {
         this.theme = theme;
         this.itQuestions = JsonManager.getDeck().createIterator(theme);
 
-        ImageView shelf0 = new ImageView(new Image("images/element/shelf.png", 100,40,true,true));
-        ImageView shelf1 = new ImageView(shelf0.getImage()),
-                shelf2 = new ImageView(shelf0.getImage()),
-                shelf3 = new ImageView(shelf0.getImage()),
-                shelf4 = new ImageView(shelf0.getImage());
-
         //BACKGROUND
         this.setBackground(BackgroundLoader.builderBackGround());
 
@@ -71,7 +62,7 @@ public class GamePageSP extends StackPane {
         //CENTER
         HBox hbCenter = new HBox();
         VBox vbPoints = new VBox();
-        vbPoints.getChildren().addAll(shelf0,getLblPoint4(), getLblPoint3(), getLblPoint2(), getLblPoint1(), getLblPoint0());
+        vbPoints.getChildren().addAll(getLblPoint4(), getLblPoint3(), getLblPoint2(), getLblPoint1(), getLblPoint0());
         vbPoints.setAlignment(Pos.CENTER);
         vbPoints.getStyleClass().add("vboxPoints");
         vbPoints.setMaxSize(100., 450);
@@ -207,7 +198,7 @@ public class GamePageSP extends StackPane {
 
     public Label getLblTimer() {
         if (lblTimer == null) {
-            lblTimer = new Label("90");
+            lblTimer = new Label("91");
             lblTimer.getStyleClass().addAll("labelBasique", "labelPoints");
             lblTimer.textProperty().addListener((observable, oldValue, newValue) -> {
 

@@ -9,10 +9,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
+import utils.Connection;
 
 public class UserLoginSP extends StackPane {
 
@@ -64,6 +66,13 @@ public class UserLoginSP extends StackPane {
         StackPane.setMargin(getBtnConnection(), new Insets(10,0,50,0));
 
         this.getChildren().addAll(getImgTitre(),vContainer,getBtnConnection());
+
+        this.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                if (!getTxtLogin().equals("") && !getPwfPassword().equals(""))
+                    Connection.connection(txtLogin, pwfPassword, this.getClass(), new MainPageSP());
+            }
+        });
     }
 
     public ImageView getImgTitre() {
@@ -131,18 +140,7 @@ public class UserLoginSP extends StackPane {
             btnConnection.getStyleClass().add("buttonBasic");
             btnConnection.setId("big-button");
             
-            btnConnection.setOnAction(event -> {
-                if(pwfPassword.getText().equals("helha") && txtLogin.getText().equals("user")) {
-                    Main.switchScene(new MainPageSP());
-                }
-                else{
-                    pwfPassword.setText("");
-                    txtLogin.setText("");
-                    txtLogin.setPromptText("Invalid");
-                    pwfPassword.setPromptText("Invalid");
-                }
-
-            });
+            btnConnection.setOnAction(event -> Connection.connection(txtLogin, pwfPassword, this.getClass(), new MainPageSP()));
         }
         return btnConnection;
     }

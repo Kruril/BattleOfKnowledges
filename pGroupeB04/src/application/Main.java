@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-import model.Trash;
 import utils.controler.JsonManager;
 import utils.Resolution;
 import utils.controler.TrashControl;

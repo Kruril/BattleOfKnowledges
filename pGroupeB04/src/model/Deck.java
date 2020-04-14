@@ -1,6 +1,7 @@
 package model;
 
 import serialisation.LectureEcriture;
+import utils.Path;
 import utils.controler.JsonManager;
 
 import java.io.File;
@@ -27,15 +28,15 @@ public class Deck extends Container{
 	}
 
 	public void toJson(){
-		LectureEcriture.writeStringDeck(this);
+		LectureEcriture.writeJson(Path.FILE_THEME.getPath(),this);
 	}
 
 	public void fromJson(){
-		this.setQuestions(LectureEcriture.readStringDeck().getList());
+		this.setQuestions(LectureEcriture.readJson(Path.FILE_THEME.getPath(), this.getClass()).getList());
 	}
 
 	public void fromJson(File file) {
-		this.setQuestions(LectureEcriture.readStringDeck(file).getList());
+		this.setQuestions(LectureEcriture.readJson(file, this.getClass()).getList());
 	}
 
 	public IteratorQuestion createIterator(String theme) {

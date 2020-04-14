@@ -60,14 +60,14 @@ public class Resolution {
      */
     public void toJson(Double width, Double height) {
         setResolution(new Resolution(width,height));
-        LectureEcriture.writeStringResolu(this);
+        LectureEcriture.writeJson(Path.FILE_RESOLUTION.getPath(),this);
     }
 
     /**
      * transforms a json into a resolution object
      */
     public void fromJson() {
-        this.setResolution(LectureEcriture.readStringResolu());
+        this.setResolution(LectureEcriture.readJson(Path.FILE_RESOLUTION.getPath(), this.getClass()));
     }
 
     @Override

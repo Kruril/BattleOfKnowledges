@@ -48,7 +48,7 @@ public class AdminChoiceSP extends StackPane{
 
 	public Button getBtnModifQuestion() {
 		if (btnModifQuestion == null) {
-			btnModifQuestion = new Button("Modify Json");
+			btnModifQuestion = new Button("Edit questions");
 			btnModifQuestion.getStyleClass().addAll("buttonBasic");
 			btnModifQuestion.setBackground(BackgroundLoader.buildBtnBackGround());
 			btnModifQuestion.setId("big-button");
@@ -60,7 +60,7 @@ public class AdminChoiceSP extends StackPane{
 
 	public Button getBtnModifTime() {
 		if (btnModifTime == null) {
-			btnModifTime = new Button("Modify time");
+			btnModifTime = new Button("Edit time");
 			btnModifTime.getStyleClass().addAll("buttonBasic");
 			btnModifTime.setBackground(BackgroundLoader.buildBtnBackGround());
 			btnModifTime.setId("big-button");

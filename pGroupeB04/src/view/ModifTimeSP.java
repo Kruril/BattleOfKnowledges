@@ -97,11 +97,13 @@ public class ModifTimeSP extends StackPane {
         	spTimer.setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.ENTER) {
                     Time.TIMER_TIME.setValue(spTimer.getValue());
-                    System.out.println(Time.TIMER_TIME.getValue());
                 }
             });
         	spTimer.setOnScroll(event -> {
-        		spTimer.increment();
+                if (event.getDeltaY() > 0)
+                    spTimer.increment();
+                else
+                    spTimer.decrement();
         	});
 
         	spTimer.getStyleClass().add("textBox");
@@ -115,16 +117,18 @@ public class ModifTimeSP extends StackPane {
         	spInterval = new Spinner<>();
 
         	SpinnerValueFactory<Integer> intervalFactory =
-                    new SpinnerValueFactory.IntegerSpinnerValueFactory(1,30, Time.INTERVAL.getValue());
+                    new SpinnerValueFactory.IntegerSpinnerValueFactory(2,30, Time.INTERVAL.getValue()/1000);
         	spInterval.setValueFactory(intervalFactory);
         	spInterval.setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.ENTER) {
                     Time.INTERVAL.setValue(spInterval.getValue()*1000);
-                    System.out.println(Time.INTERVAL.getValue());
                 }
             });
         	spInterval.setOnScroll(event -> {
-        		spInterval.increment();
+                if (event.getDeltaY() > 0)
+        		    spInterval.increment();
+                else
+                    spInterval.decrement();
         	});
 
         	spInterval.getStyleClass().add("textBox");
