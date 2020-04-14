@@ -1,6 +1,7 @@
 package view;
 
 import application.Main;
+import enumeration.Time;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import model.IteratorQuestion;
 import model.dialog.ExitGame;
 import utils.BackgroundLoader;
@@ -226,11 +228,11 @@ public class GamePageSP extends StackPane {
                 getLblClue1().setText(itQuestions.item().getClues().get(waitingClues));
                 waitingClues++;
             }
-            if (waitingClues == 1 && System.currentTimeMillis() - time >= 3000) {
+            if (waitingClues == 1 && System.currentTimeMillis() - time >= Time.INTERVAL.getValue()) {
                 getLblClue2().setText(itQuestions.item().getClues().get(waitingClues));
                 waitingClues++;
             }
-            if (waitingClues == 2 && System.currentTimeMillis() - time >= 6000) {
+            if (waitingClues == 2 && System.currentTimeMillis() - time >= Time.INTERVAL.getValue()*2) {
                 getLblClue3().setText(itQuestions.item().getClues().get(waitingClues));
                 waitingClues++;
             }

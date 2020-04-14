@@ -25,8 +25,8 @@ public class MultiplayerBP extends StackPane{
 	        StackPane.setAlignment(getBtnJoin(),Pos.CENTER);
 	        StackPane.setMargin(getBtnJoin(), new Insets(200,0,0,0));
 	        
-	        StackPane.setAlignment(getBtnBack(), Pos.CENTER);
-	        StackPane.setMargin(getBtnBack(), new Insets(400,100,0,100));
+	        StackPane.setAlignment(getBtnBack(), Pos.BOTTOM_CENTER);
+	        StackPane.setMargin(getBtnBack(), new Insets(10));
 	        
 	        this.getChildren().addAll(getBtnCreate(),getBtnJoin(),getBtnBack(),getLblTitle());
 

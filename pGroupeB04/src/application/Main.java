@@ -38,7 +38,7 @@ public class Main extends Application {
         primaryStage.setFullScreenExitHint("");
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 
-        //Main menu page
+
         scene = new Scene(new UserLoginSP());
         scene.getStylesheets().addAll("styles/btnStyles.css", "styles/labelStyles.css", "styles/BoxStyles.css",
                 "styles/TableStyles.css", "styles/dialogStyle.css");

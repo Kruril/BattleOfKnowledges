@@ -1,5 +1,6 @@
 package utils.GamePage;
 
+import enumeration.Time;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
@@ -20,7 +21,7 @@ public class Timer {
         if (timeTimer != null) {
             timeTimer.stop();
         }
-        timeSecond = TIME_TIMER;
+        timeSecond = Time.TIMER_TIME.getValue();
 
         lblTimer.setText(timeSecond.toString());
         timeTimer = new Timeline();

@@ -31,6 +31,7 @@ public class AdminChoiceSP extends StackPane{
         
         vContainer.getChildren().addAll(getBtnModifQuestion(),getBtnModifTime(), getBtnBack());
         vContainer.setSpacing(50);
+        vContainer.setAlignment(Pos.CENTER);
         vContainer.setMaxSize(550,300);
         
         StackPane.setAlignment(vContainer, Pos.CENTER);

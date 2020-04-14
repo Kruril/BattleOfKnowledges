@@ -94,7 +94,7 @@ public class TableViewBP extends BorderPane {
             btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("big-button");
-            btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
+            btnBack.setOnAction(event -> Main.switchScene(new AdminChoiceSP()));
         }
         return btnBack;
     }

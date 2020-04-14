@@ -1,17 +1,20 @@
 package view;
 
 import application.Main;
+import enumeration.Time;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 import utils.BackgroundLoader;
 
 public class ModifTimeSP extends StackPane {
@@ -21,7 +24,7 @@ public class ModifTimeSP extends StackPane {
     private Label lblTimer;
     private Label lblInterval;
 
-    private TextField txtTimer;
+    private Spinner<Integer> spTimer;
     private TextField txtInterval;
 
     private Button btnValidate;
@@ -40,7 +43,7 @@ public class ModifTimeSP extends StackPane {
 
         HBox hbTimer = new HBox();
         hbTimer.setSpacing(20.);
-        hbTimer.getChildren().addAll(getLblTimer(), getTxtTimer());
+        hbTimer.getChildren().addAll(getLblTimer(), getSpTimer());
 
         HBox hbInterval = new HBox();
         hbInterval.setSpacing(20.);
@@ -84,13 +87,24 @@ public class ModifTimeSP extends StackPane {
         }
         return lblInterval;
     }
-    public TextField getTxtTimer() {
-        if (txtTimer == null) {
-        	txtTimer = new TextField();
-        	txtTimer.getStyleClass().add("textBox");
-        	txtTimer.setPrefSize(300,50);
+    public Spinner<Integer> getSpTimer() {
+        if (spTimer == null) {
+        	spTimer = new Spinner<>();
+
+        	SpinnerValueFactory<Integer> valueFactory =
+                    new SpinnerValueFactory.IntegerSpinnerValueFactory(40,200, Time.TIMER_TIME.getValue());
+        	spTimer.setValueFactory(valueFactory);
+        	spTimer.setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    Time.TIMER_TIME.setValue(spTimer.getValue());
+                    System.out.println(Time.TIMER_TIME.getValue());
+                }
+            });
+
+        	spTimer.getStyleClass().add("textBox");
+        	spTimer.setPrefSize(300,50);
         }
-        return txtTimer;
+        return spTimer;
     }
     public TextField getTxtInterval() {
         if (txtInterval == null) {
