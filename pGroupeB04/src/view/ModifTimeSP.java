@@ -25,7 +25,7 @@ public class ModifTimeSP extends StackPane {
     private Label lblInterval;
 
     private Spinner<Integer> spTimer;
-    private TextField txtInterval;
+    private Spinner<Integer> spInterval;
 
     private Button btnValidate;
     private Button btnBack;
@@ -47,7 +47,7 @@ public class ModifTimeSP extends StackPane {
 
         HBox hbInterval = new HBox();
         hbInterval.setSpacing(20.);
-        hbInterval.getChildren().addAll(getLblInterval(),getTxtInterval());
+        hbInterval.getChildren().addAll(getLblInterval(),getSpInterval());
 
         vContainer.getChildren().addAll(hbTimer,hbInterval);
         vContainer.setSpacing(50);
@@ -100,31 +100,54 @@ public class ModifTimeSP extends StackPane {
                     System.out.println(Time.TIMER_TIME.getValue());
                 }
             });
+        	spTimer.setOnScroll(event -> {
+        		spTimer.increment();
+        	});
 
         	spTimer.getStyleClass().add("textBox");
         	spTimer.setPrefSize(300,50);
         }
         return spTimer;
     }
-    public TextField getTxtInterval() {
-        if (txtInterval == null) {
-        	txtInterval = new PasswordField();
-        	txtInterval.getStyleClass().add("textBox");
+
+    public Spinner<Integer> getSpInterval() {
+        if (spInterval == null) {
+        	spInterval = new Spinner<>();
+
+        	SpinnerValueFactory<Integer> intervalFactory =
+                    new SpinnerValueFactory.IntegerSpinnerValueFactory(1,30, Time.INTERVAL.getValue());
+        	spInterval.setValueFactory(intervalFactory);
+        	spInterval.setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    Time.INTERVAL.setValue(spInterval.getValue()*1000);
+                    System.out.println(Time.INTERVAL.getValue());
+                }
+            });
+        	spInterval.setOnScroll(event -> {
+        		spInterval.increment();
+        	});
+
+        	spInterval.getStyleClass().add("textBox");
+        	spInterval.setPrefSize(300,50);
         }
-        return txtInterval;
+        return spInterval;
     }
     
     public Button getBtnValidate() {
         if (btnValidate == null) {
-        	btnValidate = new Button("Connection");
+        	btnValidate = new Button("Validate");
         	btnValidate.setBackground(BackgroundLoader.buildBtnBackGround());
         	btnValidate.getStyleClass().addAll("buttonBasic");
         	btnValidate.setId("big-button");
-            
+        	
         	btnValidate.setOnAction(event -> {
-
-
-            });
+        		Time.TIMER_TIME.setValue(spTimer.getValue());
+        		Time.INTERVAL.setValue(spInterval.getValue()*1000);
+        		Main.switchScene(new AdminChoiceSP());
+        		}
+        	);
+        	
+            
         }
         return btnValidate;
     }

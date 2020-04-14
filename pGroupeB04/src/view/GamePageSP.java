@@ -219,7 +219,7 @@ public class GamePageSP extends StackPane {
         return lblTimer;
     }
 
-    /**
+	/**
      * show clues after 3 seconds
      */
     public void seeClues() {
