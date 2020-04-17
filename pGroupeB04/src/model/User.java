@@ -12,6 +12,22 @@ public class User{
         this.bank = bank;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getBank() {
+        return bank;
+    }
+
     @Override
     public String toString() {
         return "User{" +

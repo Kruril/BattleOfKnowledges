@@ -13,6 +13,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
+import utils.controler.SQLManager;
+
+import java.sql.SQLException;
 
 public class CreateUserSP extends StackPane{
 
@@ -45,7 +48,7 @@ public class CreateUserSP extends StackPane{
         hbLogin.getChildren().addAll(getLblLogin(), getTxtLogin());
 
         HBox hbPassword = new HBox();
-        hbPassword.setSpacing(20.);
+        hbPassword.setSpacing(25.);
         hbPassword.getChildren().addAll(getLblPassword(),getPwfPassword());
         
         HBox hbEmail = new HBox();
@@ -130,22 +133,38 @@ public class CreateUserSP extends StackPane{
         	
             //Check if all the form is filled
         	btnValidate.setOnAction(event -> {
-                if(!pwfPassword.getText().equals("") && !txtLogin.getText().equals("") && !txtEmail.getText().contentEquals("")) {
-                	Main.switchScene(new MainPageSP());
+                if(!getPwfPassword().getText().equals("") && !getTxtLogin().getText().equals("")) {
+                    try {
+                        if (!SQLManager.createUser(getTxtLogin().getText(),getPwfPassword().getText(),getTxtEmail().getText())) {
+                            clearAllEntries();
+                            promptTextSet("Invalid");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                 }
                 else{
-                	pwfPassword.setText("");
-                    txtLogin.setText("");
-                    txtEmail.setText("");
-                    txtLogin.setPromptText("Please fill all the blanks");
-                    pwfPassword.setPromptText("Please fill all the blanks");
-                    txtEmail.setPromptText("Please fill all the blanks");
+                    clearAllEntries();
+                    promptTextSet("Please fill all the blanks");
                 }
 
             });
         }
         return btnValidate;
     }
+
+    public void promptTextSet(String value) {
+        txtLogin.setPromptText(value);
+        pwfPassword.setPromptText(value);
+        txtEmail.setPromptText(value);
+    }
+
+    public void clearAllEntries() {
+        pwfPassword.setText("");
+        txtLogin.setText("");
+        txtEmail.setText("");
+    }
+
     public Button getBtnBack() {
         if (btnBack == null) {
             btnBack = new Button("Back");
