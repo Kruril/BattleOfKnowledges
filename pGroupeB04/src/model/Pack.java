@@ -3,12 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Container {
+public abstract class Pack {
 
     protected List<Question> questions;
 
 
-    public Container() {
+    public Pack() {
         questions = new ArrayList<>();
     }
 

@@ -6,10 +6,9 @@ import javafx.stage.Screen;
 
 public abstract class BackgroundLoader {
 
-
     /**
-     * Method that will load the game background
-     * @return a background
+     *
+     * @return e
      */
     public static Background builderBackGround() {
         return new Background(new BackgroundImage(new Image("images/background/Background.png"), BackgroundRepeat.NO_REPEAT,

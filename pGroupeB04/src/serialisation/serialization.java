@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 
 import java.io.*;
 
-public class LectureEcriture implements Serializable {
+public class serialization implements Serializable {
 
     public static <C> C readJson(String path, Class<C> className) {
         C object = null;

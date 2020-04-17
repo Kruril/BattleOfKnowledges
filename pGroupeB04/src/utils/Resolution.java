@@ -1,7 +1,7 @@
 package utils;
 
 import application.Main;
-import serialisation.LectureEcriture;
+import serialisation.serialization;
 
 public class Resolution {
 
@@ -60,14 +60,14 @@ public class Resolution {
      */
     public void toJson(Double width, Double height) {
         setResolution(new Resolution(width,height));
-        LectureEcriture.writeJson(Path.FILE_RESOLUTION.getPath(),this);
+        serialization.writeJson(Path.FILE_RESOLUTION.getPath(),this);
     }
 
     /**
      * transforms a json into a resolution object
      */
     public void fromJson() {
-        this.setResolution(LectureEcriture.readJson(Path.FILE_RESOLUTION.getPath(), this.getClass()));
+        this.setResolution(serialization.readJson(Path.FILE_RESOLUTION.getPath(), this.getClass()));
     }
 
     @Override

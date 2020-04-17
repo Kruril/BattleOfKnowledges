@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
 import utils.Connection;
 
+import java.sql.SQLException;
+
 public class UserLoginSP extends StackPane {
 
     private ImageView imgTitre;
@@ -69,8 +71,15 @@ public class UserLoginSP extends StackPane {
 
         this.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                if (!getTxtLogin().equals("") && !getPwfPassword().equals(""))
-                    Connection.connection(txtLogin, pwfPassword, this.getClass(), new MainPageSP());
+                if (!getTxtLogin().equals("") && !getPwfPassword().equals("")) {
+                    try {
+                        if (!Connection.connection(txtLogin, pwfPassword, this.getClass())){
+
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
             }
         });
     }
@@ -140,7 +149,13 @@ public class UserLoginSP extends StackPane {
             btnConnection.getStyleClass().add("buttonBasic");
             btnConnection.setId("big-button");
             
-            btnConnection.setOnAction(event -> Connection.connection(txtLogin, pwfPassword, this.getClass(), new MainPageSP()));
+            btnConnection.setOnAction(event -> {
+                try {
+                    Connection.connection(txtLogin, pwfPassword, this.getClass());
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            });
         }
         return btnConnection;
     }

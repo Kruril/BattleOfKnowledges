@@ -1,6 +1,6 @@
 package model;
 
-public class Trash extends Container {
+public class Trash extends Pack {
 
     public Trash() {
         super();

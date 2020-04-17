@@ -1,7 +1,9 @@
 package model;
 
 public class UserBuilder{
+
     private String login, password, email;
+    private int bank;
 
     public UserBuilder login(String login) {
         this.login = login;
@@ -18,7 +20,12 @@ public class UserBuilder{
         return this;
     }
 
+    public UserBuilder bank(int bank) {
+        this.bank = bank;
+        return this;
+    }
+
     public User build() {
-        return new User(login, password, email);
+        return new User(login, password, email, bank);
     }
 }
