@@ -48,6 +48,7 @@ public abstract class SQLManager {
         }
 
         Main.switchScene(parent);
+        connection.close();
 
     }
 
@@ -67,15 +68,16 @@ public abstract class SQLManager {
                 return true;
             }
         }
+        connection.close();
         return false;
     }
 
     private static void insertNewUser(User user) throws SQLException {
         getConnection();
 
-        String querry = "insert into user (login, password, email, bank) values (?, ?, ?, ?)";
+        String query = "insert into user (login, password, email, bank) values (?, ?, ?, ?)";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(querry);
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, user.getLogin());
         preparedStatement.setString(2, user.getPassword());
         preparedStatement.setString(3, user.getEmail());
@@ -92,7 +94,10 @@ public abstract class SQLManager {
 
         while (result.next()) {
             String loginSQL = result.getString("login");
-            if (loginSQL.equals(login)) return false;
+            if (loginSQL.equals(login)) {
+                connection.close();
+                return false;
+            }
         }
         return true;
     }
@@ -108,12 +113,11 @@ public abstract class SQLManager {
         return result;
     }
 
-    public static Connection getConnection() throws SQLException {
+    public static void getConnection() throws SQLException {
         if (connection == null) {
             connection = DriverManager.getConnection("jdbc:mysql://sql7.freesqldatabase.com:3306/sql7333954" + "?useUnicode=true&characterEncoding=utf-8",
                     "sql7333954", "ipCXxP8p8r");
         }
-        return connection;
     }
 
 }

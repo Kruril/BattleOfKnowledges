@@ -3,16 +3,14 @@ package view;
 import application.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
+import utils.Mail;
 import utils.controler.SQLManager;
 
 import java.sql.SQLException;
@@ -31,6 +29,8 @@ public class CreateUserSP extends StackPane{
 
     private Button btnValidate;
     private Button btnBack;
+
+    private CheckBox cbNewLetter;
 	
     public CreateUserSP() {
 
@@ -55,8 +55,9 @@ public class CreateUserSP extends StackPane{
         hbEmail.setSpacing(20.);
         hbEmail.getChildren().addAll(getLblEmail(), getTxtEmail());
 
-        vContainer.getChildren().addAll(hbLogin,hbPassword, hbEmail);
+        vContainer.getChildren().addAll(hbLogin,hbPassword, hbEmail, getCbNewLetter());
         vContainer.setSpacing(50);
+        vContainer.setAlignment(Pos.CENTER);
         vContainer.setMaxSize(500,200);
 
         StackPane.setAlignment(vContainer, Pos.CENTER);
@@ -139,9 +140,13 @@ public class CreateUserSP extends StackPane{
                             clearAllEntries();
                             promptTextSet("Invalid");
                         }
+                        else if (getCbNewLetter().isSelected()) {
+                            Mail.sendMail(getTxtEmail().getText());
+                        }
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
+
                 }
                 else{
                     clearAllEntries();
@@ -174,5 +179,13 @@ public class CreateUserSP extends StackPane{
             btnBack.setOnAction(event -> Main.switchScene(new UserLoginSP()));
         }
         return btnBack;
+    }
+
+    public CheckBox getCbNewLetter() {
+        if (cbNewLetter == null) {
+            cbNewLetter = new CheckBox("subscribe newsletters");
+            cbNewLetter.getStyleClass().add("labelSmall");
+        }
+        return cbNewLetter;
     }
 }

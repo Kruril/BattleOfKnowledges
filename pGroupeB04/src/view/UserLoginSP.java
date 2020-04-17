@@ -50,10 +50,10 @@ public class UserLoginSP extends StackPane {
 
         HBox hbPassword = new HBox();
         hbPassword.setSpacing(20.);
-        hbPassword.getChildren().addAll(getLblPassword(),getPwfPassword(),getLblNew());
+        hbPassword.getChildren().addAll(getLblPassword(),getPwfPassword());
         
         VBox vbCreateUser = new VBox();
-        vbCreateUser.getChildren().addAll(getLblNew(),getLblCreateUser());
+        vbCreateUser.getChildren().add(getLblCreateUser());
         vbCreateUser.setAlignment(Pos.CENTER);
         vbCreateUser.setPadding(new Insets(0,0,50,0));
 
@@ -119,15 +119,6 @@ public class UserLoginSP extends StackPane {
         }
         return pwfPassword;
     }
-    
-    public Label getLblNew() {
-		if (lblNew == null) {
-			lblNew = new Label("New here ?");
-			
-			lblNew.getStyleClass().add("labelBasique");
-		}
-		return lblNew;
-	}
 	
 	public Label getLblCreateUser() {
 		if (lblCreateUser == null) {

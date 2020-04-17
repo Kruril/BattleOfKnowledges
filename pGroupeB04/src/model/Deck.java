@@ -1,6 +1,6 @@
 package model;
 
-import serialisation.serialization;
+import serialisation.Serialization;
 import utils.Path;
 import utils.controler.JsonManager;
 
@@ -28,15 +28,15 @@ public class Deck extends Pack {
 	}
 
 	public void toJson(){
-		serialization.writeJson(Path.FILE_THEME.getPath(),this);
+		Serialization.writeJson(Path.FILE_THEME.getPath(),this);
 	}
 
 	public void fromJson(){
-		this.setQuestions(serialization.readJson(Path.FILE_THEME.getPath(), this.getClass()).getList());
+		this.setQuestions(Serialization.readJson(Path.FILE_THEME.getPath(), this.getClass()).getList());
 	}
 
 	public void fromJson(File file) {
-		this.setQuestions(serialization.readJson(file, this.getClass()).getList());
+		this.setQuestions(Serialization.readJson(file, this.getClass()).getList());
 	}
 
 	public IteratorQuestion createIterator(String theme) {

@@ -7,12 +7,12 @@ import model.Trash;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrashControl {
+public class TrashManager {
 
     private static List<String> themes;
     private static Trash trash;
 
-    public TrashControl() {
+    public TrashManager() {
         trash = new Trash();
         themes = new ArrayList<>();
     }
@@ -37,7 +37,7 @@ public class TrashControl {
     }
 
     public static void buildTrash() {
-        new TrashControl();
+        new TrashManager();
     }
 
     public static Question reloadLastDeleted(String theme) {

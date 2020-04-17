@@ -9,7 +9,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import utils.controler.JsonManager;
 import utils.Resolution;
-import utils.controler.TrashControl;
+import utils.controler.TrashManager;
 import view.*;
 
 public class Main extends Application {
@@ -29,7 +29,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         JsonManager.themeFromDeck();
-        TrashControl.buildTrash();
+        TrashManager.buildTrash();
         stage = primaryStage;
         Scene scene;
         Resolution resolution = new Resolution();

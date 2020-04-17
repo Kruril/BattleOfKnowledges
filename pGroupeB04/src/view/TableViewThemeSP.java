@@ -25,7 +25,7 @@ import model.dialog.EditableQuestion;
 import utils.BackgroundLoader;
 import utils.controler.JsonManager;
 import utils.TableView.CommonTableView;
-import utils.controler.TrashControl;
+import utils.controler.TrashManager;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -90,8 +90,8 @@ public class TableViewThemeSP extends StackPane {
 	}
 
 	public void undoQuestionDeleted() {
-		if (!TrashControl.getTrash().isEmpty()) {
-			Question question = TrashControl.reloadLastDeleted(theme);
+		if (!TrashManager.getTrash().isEmpty()) {
+			Question question = TrashManager.reloadLastDeleted(theme);
 			if (JsonManager.getDeck().addQuestion(question)) {
 				getTvQuestions().getItems().add(question);
 			}
@@ -181,7 +181,7 @@ public class TableViewThemeSP extends StackPane {
 			Question qRemoved = getTvQuestions().getSelectionModel().getSelectedItem().clone();
 			if (JsonManager.getDeck().removeQuestion(qRemoved)) {
 				getTvQuestions().getItems().remove(qRemoved);
-				TrashControl.getTrash().addQuestion(qRemoved);
+				TrashManager.getTrash().addQuestion(qRemoved);
 			}
 		});
 
