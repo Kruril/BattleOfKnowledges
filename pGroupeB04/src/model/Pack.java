@@ -41,6 +41,10 @@ public abstract class Pack {
         return new IteratorQuestion(questions);
     }
 
+    /**
+     * Check if list is empty return true if list empty and false if list contain questions
+     * @return boolean true (list is empty) or false (list contain questions)
+     */
     public boolean isEmpty() {
         if (questions == null) return true;
         return questions.size() == 0;

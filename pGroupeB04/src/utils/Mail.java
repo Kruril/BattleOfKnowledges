@@ -7,6 +7,11 @@ import java.util.Properties;
 
 public class Mail {
 
+    /**
+     * Will send an email via an email address given in parameter by thanking
+     * the person for subscribing to the newsletter
+     * @param email email of the person you want sent the email
+     */
     public static void sendMail(String email) {
 
         final String username = "battleofknowledges@gmail.com";
@@ -34,11 +39,11 @@ public class Mail {
             );
             message.setSubject("subscribe newsletters");
             message.setText("Welcome"
-                    + "\n\nThank to be subscribe to newsletter");
+                    + "\n\nThank you for subscribing");
 
             Transport.send(message);
 
-            System.out.println("Done");
+            System.out.println("Email send");
 
         } catch (MessagingException e) {
             e.printStackTrace();

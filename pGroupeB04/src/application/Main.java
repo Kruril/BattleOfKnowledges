@@ -12,6 +12,12 @@ import utils.Resolution;
 import utils.controler.TrashManager;
 import view.*;
 
+/**
+ *Battle of knowledge is a game based on the principle of 4 in a row the famous game show Question for a champion.
+ *
+ * @author Charlier Guillaume, Gailliez Valentin, Trempont Mathieu
+ * @version 1.0
+ */
 public class Main extends Application {
 
     private static Stage stage;

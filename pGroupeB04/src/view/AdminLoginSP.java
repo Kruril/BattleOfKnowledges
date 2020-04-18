@@ -67,15 +67,29 @@ public class AdminLoginSP extends StackPane {
 
         this.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                if (!getTxtLogin().equals("") && !getPwfPassword().equals("")) {
-                    try {
-                        SQLManager.connectionDB(txtLogin, pwfPassword, this.getClass());
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
+                connection();
             }
         });
+    }
+
+    /**
+     * Connection to the database
+     */
+    public void connection() {
+        if (!getTxtLogin().equals("") && !getPwfPassword().equals("")) {
+            try {
+                if (SQLManager.connectionDB(txtLogin.getText(), pwfPassword.getText(), this.getClass())) {
+                    Main.switchScene(new AdminChoiceSP());
+                } else {
+                    pwfPassword.setText("");
+                    txtLogin.setText("");
+                    txtLogin.setPromptText("Invalid");
+                    pwfPassword.setPromptText("Invalid");
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
     }
 
     public ImageView getImgTitre() {
@@ -123,13 +137,7 @@ public class AdminLoginSP extends StackPane {
             btnConnection.getStyleClass().addAll("buttonBasic");
             btnConnection.setId("big-button");
             
-            btnConnection.setOnAction(event -> {
-                try {
-                    SQLManager.connectionDB(txtLogin, pwfPassword, this.getClass());
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            });
+            btnConnection.setOnAction(event -> connection());
         }
         return btnConnection;
     }

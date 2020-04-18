@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -70,6 +71,34 @@ public class CreateUserSP extends StackPane{
         StackPane.setMargin(getBtnBack(), new Insets(0,0,50,450));
 
         this.getChildren().addAll(getImgCreateUser(),vContainer,getBtnValidate(),getBtnBack());
+
+        this.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                connection();
+            }
+        });
+    }
+
+    public void connection() {
+        if (!getPwfPassword().getText().equals("") && !getTxtLogin().getText().equals("")) {
+            try {
+                if (!SQLManager.createUser(getTxtLogin().getText(), getPwfPassword().getText(), getTxtEmail().getText())) {
+                    clearAllEntries();
+                    promptTextSet("Invalid");
+                } else {
+                    Main.switchScene(new MainPageSP());
+                }
+                if (getCbNewLetter().isSelected()) {
+                    Mail.sendMail(getTxtEmail().getText());
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+        } else {
+            clearAllEntries();
+            promptTextSet("Please fill all the blanks");
+        }
     }
 
     public ImageView getImgCreateUser() {
@@ -134,25 +163,7 @@ public class CreateUserSP extends StackPane{
         	
             //Check if all the form is filled
         	btnValidate.setOnAction(event -> {
-                if(!getPwfPassword().getText().equals("") && !getTxtLogin().getText().equals("")) {
-                    try {
-                        if (!SQLManager.createUser(getTxtLogin().getText(),getPwfPassword().getText(),getTxtEmail().getText())) {
-                            clearAllEntries();
-                            promptTextSet("Invalid");
-                        }
-                        else if (getCbNewLetter().isSelected()) {
-                            Mail.sendMail(getTxtEmail().getText());
-                        }
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-
-                }
-                else{
-                    clearAllEntries();
-                    promptTextSet("Please fill all the blanks");
-                }
-
+                connection();
             });
         }
         return btnValidate;
@@ -183,7 +194,7 @@ public class CreateUserSP extends StackPane{
 
     public CheckBox getCbNewLetter() {
         if (cbNewLetter == null) {
-            cbNewLetter = new CheckBox("subscribe newsletters");
+            cbNewLetter = new CheckBox("Subscribe to the newsletter");
             cbNewLetter.getStyleClass().add("labelSmall");
         }
         return cbNewLetter;

@@ -481,16 +481,6 @@
       "answer": "Marathon"
     },
     {
-      "author": "Trempont Mathieu",
-      "theme": "Sport",
-      "clues": [
-        "I was created in the 1860s and became an Olympic sport in 1908",
-        "There is a Mondial cup every 4 years, where teams can earn a star to put on their jersey",
-        "I'm the most popular sport in the world with more than 4 billions supporters"
-      ],
-      "answer": "Football"
-    },
-    {
       "author": "Charlier Guillaume",
       "theme": "Extinct Animal",
       "clues": [
@@ -499,6 +489,16 @@
         "My arms were smaller than his head"
       ],
       "answer": "T-Rex"
+    },
+    {
+      "author": "Trempont Mathieu",
+      "theme": "Sport",
+      "clues": [
+        "I was created in the 1860s and became an Olympic sport in 1908",
+        "There is a Mondial cup every 4 years, where teams can earn a star to put on their jersey",
+        "I'm the most popular sport in the world with more than 4 billions supporters"
+      ],
+      "answer": "Football"
     }
   ]
 }

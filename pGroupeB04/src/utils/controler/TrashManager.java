@@ -12,7 +12,7 @@ public class TrashManager {
     private static List<String> themes;
     private static Trash trash;
 
-    public TrashManager() {
+    private TrashManager() {
         trash = new Trash();
         themes = new ArrayList<>();
     }
@@ -36,10 +36,19 @@ public class TrashManager {
         }
     }
 
+    /**
+     * Create the TrashManager by creating the list of themes that compose it
+     * as well as the trash can that contains the questions
+     */
     public static void buildTrash() {
         new TrashManager();
     }
 
+    /**
+     * Will reload the last question deleted in relation to the theme we want
+     * @param theme the theme of the question removed
+     * @return a question if question exists
+     */
     public static Question reloadLastDeleted(String theme) {
         Question reload = null;
         IteratorQuestion itTrash = trash.createIterator();

@@ -130,7 +130,6 @@ public class ChoiceThemeBP extends BorderPane {
      * we attribute a random theme
      * to the buttons
      */
-    
     public void randomTheme() {
         Random rand = new Random();
         String theme;

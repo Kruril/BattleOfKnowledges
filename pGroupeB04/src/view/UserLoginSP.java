@@ -71,15 +71,27 @@ public class UserLoginSP extends StackPane {
 
         this.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                if (!getTxtLogin().equals("") && !getPwfPassword().equals("")) {
-                    try {
-                        SQLManager.connectionDB(txtLogin, pwfPassword, this.getClass());
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
+                connection();
             }
         });
+    }
+
+    public void connection() {
+        if (!getTxtLogin().equals("") && !getPwfPassword().equals("")) {
+            try {
+                if (SQLManager.connectionDB(txtLogin.getText(), pwfPassword.getText(), this.getClass())) {
+                    Main.switchScene(new MainPageSP());
+                }
+                else {
+                    pwfPassword.setText("");
+                    txtLogin.setText("");
+                    txtLogin.setPromptText("Invalid");
+                    pwfPassword.setPromptText("Invalid");
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
     }
 
     public ImageView getImgTitre() {
@@ -138,13 +150,7 @@ public class UserLoginSP extends StackPane {
             btnConnection.getStyleClass().add("buttonBasic");
             btnConnection.setId("big-button");
             
-            btnConnection.setOnAction(event -> {
-                try {
-                    SQLManager.connectionDB(txtLogin, pwfPassword, this.getClass());
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            });
+            btnConnection.setOnAction(event -> connection());
         }
         return btnConnection;
     }

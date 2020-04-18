@@ -108,7 +108,21 @@ public class GamePageSP extends StackPane {
             if (event.getCode() == KeyCode.ESCAPE) {
                 showExitMenu();
             }
+
+            if (event.getCode() == KeyCode.ENTER) {
+                validationAnswer();
+            }
         });
+    }
+
+    /**
+     * Valid your answer.
+     * Check if it's correct or not
+     */
+    public void validationAnswer() {
+        updateScore(isAddPoint());
+        choiceQuestion();
+        getTxtAnswer().setText("");
     }
 
     private void showExitMenu() {
@@ -274,9 +288,7 @@ public class GamePageSP extends StackPane {
             btnOk.setId("medium-button");
 
             btnOk.setOnAction(event -> {
-                updateScore(isAddPoint());
-                choiceQuestion();
-                getTxtAnswer().setText("");
+                validationAnswer();
             });
         }
         return btnOk;
