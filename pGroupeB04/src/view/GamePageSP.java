@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import model.IteratorQuestion;
 import model.dialog.ExitGame;
 import utils.BackgroundLoader;
+import utils.Damerau;
 import utils.GamePage.Timer;
 import utils.controler.JsonManager;
 
@@ -341,10 +342,10 @@ public class GamePageSP extends StackPane {
      * Check if the answer of question is correct
      *
      * @param text answer of question
-     * @return true or false
+     * @return boolean true if answer is correct or false if answer is wrong
      */
     public boolean isCorrect(String text) {
-        return itQuestions.item().getAnswer().equalsIgnoreCase(text);
+        return Damerau.calculateDistance(itQuestions.item().getAnswer(), text);
     }
 
     /**

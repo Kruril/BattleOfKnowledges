@@ -304,6 +304,11 @@ public class TableViewThemeSP extends StackPane {
 		return btnAddFile;
 	}
 
+	/**
+	 * Import of a file containing a list of questions.
+	 * Adding is done by theme if the theme does not match that of the tableview,
+	 * the question will not be added
+	 */
 	public void importFile() {
 		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 		jfc.setDialogTitle("Select a theme from json");
