@@ -76,7 +76,7 @@ public class AdminLoginSP extends StackPane {
      * Connection to the database
      */
     public void connection() {
-        if (!getTxtLogin().equals("") && !getPwfPassword().equals("")) {
+        if (!getTxtLogin().getText().equals("") && !getPwfPassword().getText().equals("")) {
             try {
                 if (SQLManager.connectionDB(txtLogin.getText(), pwfPassword.getText(), this.getClass())) {
                     Main.switchScene(new AdminChoiceSP());

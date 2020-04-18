@@ -287,9 +287,7 @@ public class GamePageSP extends StackPane {
             btnOk.getStyleClass().add("buttonBasic");
             btnOk.setId("medium-button");
 
-            btnOk.setOnAction(event -> {
-                validationAnswer();
-            });
+            btnOk.setOnAction(event -> validationAnswer());
         }
         return btnOk;
     }

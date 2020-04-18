@@ -27,8 +27,7 @@ public class UserLoginSP extends StackPane {
 
     private TextField txtLogin;
     private PasswordField pwfPassword;
-    
-    private Label lblNew;
+
 	private Label lblCreateUser;
 
     private Button btnConnection;
@@ -77,7 +76,7 @@ public class UserLoginSP extends StackPane {
     }
 
     public void connection() {
-        if (!getTxtLogin().equals("") && !getPwfPassword().equals("")) {
+        if (!getTxtLogin().getText().equals("") && !getPwfPassword().getText().equals("")) {
             try {
                 if (SQLManager.connectionDB(txtLogin.getText(), pwfPassword.getText(), this.getClass())) {
                     Main.switchScene(new MainPageSP());

@@ -2,9 +2,6 @@ package view;
 
 import application.Main;
 import enumeration.Time;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -14,7 +11,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.StringConverter;
 import utils.BackgroundLoader;
 
 public class ModifTimeSP extends StackPane {

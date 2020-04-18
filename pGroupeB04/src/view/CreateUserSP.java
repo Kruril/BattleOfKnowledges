@@ -162,9 +162,7 @@ public class CreateUserSP extends StackPane{
         	btnValidate.setId("big-button");
         	
             //Check if all the form is filled
-        	btnValidate.setOnAction(event -> {
-                connection();
-            });
+        	btnValidate.setOnAction(event -> connection());
         }
         return btnValidate;
     }

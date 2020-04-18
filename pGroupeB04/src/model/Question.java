@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Question implements Serializable{
@@ -10,14 +9,6 @@ public class Question implements Serializable{
 	private String theme;
 	private List<String> clues;
 	private String answer;
-
-
-	public Question(String author, String theme,String answer) {
-		this.author = author;
-		this.theme = theme;
-		this.answer = answer;
-		clues = new ArrayList<>();
-	}
 
 	public Question(String author, String theme, List<String> clues, String answer) {
 		this.author = author;
@@ -102,10 +93,9 @@ public class Question implements Serializable{
 
 	public boolean checkQuestion() {
 		if (clues.size() != 3) return false;
-		if (author.equalsIgnoreCase("") || author.equalsIgnoreCase(null)) return false;
+		if (author.equalsIgnoreCase("")) return false;
 		if (clues.contains("") || clues.contains(null)) return false;
-		if (clues.removeIf(clue -> clue.length() > 150)) return false;
-		return true;
+		return !clues.removeIf(clue -> clue.length() > 150);
 	}
 
 	public String getClue(int index) {

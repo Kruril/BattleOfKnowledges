@@ -18,10 +18,10 @@ public class ExitGame extends StackPane {
         this.setMaxSize(400.,300.);
         this.setBackground(BackgroundLoader.buildDialogBackGround(400.,300.));
         this.getStyleClass().add("dialog");
-        this.setAlignment(getText(), Pos.CENTER);
-        this.setAlignment(getBtnExit(), Pos.BOTTOM_CENTER);
+        setAlignment(getText(), Pos.CENTER);
+        setAlignment(getBtnExit(), Pos.BOTTOM_CENTER);
         setMargin(getBtnExit(), new Insets(0.,0.,50.,0.));
-        this.setAlignment(getBtnCancel(), Pos.BOTTOM_RIGHT);
+        setAlignment(getBtnCancel(), Pos.BOTTOM_RIGHT);
         setMargin(getBtnCancel(), new Insets(0.,60.,50.,0.));
         this.setPadding(new Insets(10.));
         this.getChildren().addAll(getText(), getBtnExit(),getBtnCancel());
