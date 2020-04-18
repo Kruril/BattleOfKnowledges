@@ -129,6 +129,7 @@ public class GamePageSP extends StackPane {
     private void showExitMenu() {
         exit.setVisible(!exit.isVisible());
         setAlignment(exit, Pos.CENTER);
+
     }
 
     public Label getLblTitle() {

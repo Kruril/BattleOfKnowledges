@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import utils.BackgroundLoader;
+import utils.GamePage.Timer;
 import view.MainPageSP;
 
 public class ExitGame extends StackPane {
@@ -38,7 +39,10 @@ public class ExitGame extends StackPane {
     public Button getBtnExit() {
         if (btnExit == null) {
             btnExit = new Button("Exit");
-            btnExit.setOnAction(event -> Main.switchScene(new MainPageSP()));
+            btnExit.setOnAction(event -> {
+                Main.switchScene(new MainPageSP());
+                Timer.getTimeTimer().stop();
+            });
             btnExit.setMinSize(80.,25.);
             btnExit.getStyleClass().addAll("buttonBasic","dialog-button");
         }
