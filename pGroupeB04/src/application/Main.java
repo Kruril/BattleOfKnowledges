@@ -9,8 +9,11 @@ import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import utils.controler.JsonManager;
 import utils.Resolution;
+import utils.controler.SQLManager;
 import utils.controler.TrashManager;
 import view.*;
+
+import java.sql.SQLException;
 
 /**
  *Battle of knowledge is a game based on the principle of 4 in a row the famous game show Question for a champion.
@@ -68,6 +71,11 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(event -> {
             resolution.toJson(primaryStage.getWidth(),primaryStage.getHeight());
             JsonManager.getDeck().toJson();
+            try {
+                SQLManager.getConnection().close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         });
 
     }
