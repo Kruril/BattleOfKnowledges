@@ -12,6 +12,8 @@ public abstract class SQLManager {
 
     private static Connection connection;
 
+
+
     /**
      * connection to the remote database via a login and password.
      * The name of the class from which the method is called is used to find out which table we are going to use
@@ -79,7 +81,7 @@ public abstract class SQLManager {
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, user.getLogin());
-        preparedStatement.setString(2, user.getPassword());
+        preparedStatement.setString(2, user.getPassword() );
         preparedStatement.setString(3, user.getEmail());
         preparedStatement.setInt(4, user.getBank());
 
@@ -124,7 +126,7 @@ public abstract class SQLManager {
         return result;
     }
 
-    public static void getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         if (connection == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -135,6 +137,7 @@ public abstract class SQLManager {
                             + "?useUnicode=true&characterEncoding=utf-8",
                     "sql7333954", "ipCXxP8p8r");
         }
+        return connection;
     }
 
 }
