@@ -26,15 +26,11 @@ public abstract class SQLManager {
      */
     public static <C> boolean connectionDB(String login, String password, Class<C> className) throws SQLException {
 
-        getConnection();
-
-        if (connection != null) System.out.println("Connected");
-        else System.out.println("Connection fail");
         Statement state = connection.createStatement();
 
         String table = className == UserLoginSP.class ? "user" : "admin";
 
-        ResultSet result = state.executeQuery("select * from " + table + " where login = '" + login
+        ResultSet result = state.executeQuery("select * from " + table + " whseere login = '" + login
                 + "' and password = '" + password + "'");
 
         return result.next();
@@ -54,7 +50,6 @@ public abstract class SQLManager {
     public static boolean createUser(String login, String password, String email) throws SQLException {
 
         if (isValidEmailAddress(email) || email.equals("")) {
-            getConnection();
             if (checkUser(login)) {
                 User user = new UserBuilder()
                         .login(login)
@@ -75,7 +70,6 @@ public abstract class SQLManager {
      * @throws SQLException An exception that provides information on a database access error or other errors
      */
     private static void insertNewUser(User user) throws SQLException {
-        getConnection();
 
         String query = "insert into user (login, password, email, bank) values (?, ?, ?, ?)";
 
@@ -96,7 +90,6 @@ public abstract class SQLManager {
      * @throws SQLException An exception that provides information on a database access error or other errors
      */
     private static boolean checkUser(String login) throws SQLException {
-        getConnection();
 
         Statement state = connection.createStatement();
         ResultSet result = state.executeQuery("select * from user");
@@ -136,6 +129,8 @@ public abstract class SQLManager {
             connection = DriverManager.getConnection("jdbc:mysql://sql7.freesqldatabase.com:3306/sql7333954"
                             + "?useUnicode=true&characterEncoding=utf-8",
                     "sql7333954", "ipCXxP8p8r");
+            if (connection != null) System.out.println("Connected");
+            else System.out.println("Connection fail");
         }
         return connection;
     }
