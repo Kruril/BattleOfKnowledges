@@ -314,16 +314,6 @@
       "author": "Gailliez Valentin",
       "theme": "Villains Disney",
       "clues": [
-        "A religious extremist and a dogmatist, I'm convinced that all my actions are justified because they are God's will",
-        "My goal is to rid Paris of gypsies",
-        "I'm most frequently dressed in a black and purple robe, a purple jumpsuit, a purple and black striped tricorn hat"
-      ],
-      "answer": "Frollo"
-    },
-    {
-      "author": "Gailliez Valentin",
-      "theme": "Villains Disney",
-      "clues": [
         "A trully cruel and sadistic megalomaniac, I’m solely driven by power and the desire to earn myself riches",
         "I destest ,above all else, being referred to as a rat",
         "I make plans to take over London by replacing the Mouse Queen with a robotic fake built by a toymaker named Flaversham"
@@ -499,6 +489,16 @@
         "I'm the most popular sport in the world with more than 4 billions supporters"
       ],
       "answer": "Football"
+    },
+    {
+      "author": "Gailliez Valentin",
+      "theme": "Villains Disney",
+      "clues": [
+        "A religious extremist and a dogmatist, I'm convinced that all my actions are justified because they are God's will",
+        "My goal is to rid Paris of gypsies",
+        "I'm most frequently dressed in a black and purple robe, a purple jumpsuit, a purple and black striped tricorn hat"
+      ],
+      "answer": "Frollo"
     }
   ]
 }
