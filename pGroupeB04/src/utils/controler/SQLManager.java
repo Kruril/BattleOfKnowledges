@@ -30,7 +30,7 @@ public abstract class SQLManager {
 
         String table = className == UserLoginSP.class ? "user" : "admin";
 
-        ResultSet result = state.executeQuery("select * from " + table + " whseere login = '" + login
+        ResultSet result = state.executeQuery("select * from " + table + " where login = '" + login
                 + "' and password = '" + password + "'");
 
         return result.next();
