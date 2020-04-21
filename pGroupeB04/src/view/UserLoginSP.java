@@ -68,7 +68,7 @@ public class UserLoginSP extends StackPane {
         StackPane.setMargin(getBtnConnection(), new Insets(10,450,50,0));
 
         StackPane.setAlignment(getBtnInvite(), Pos.BOTTOM_CENTER);
-        StackPane.setMargin(getBtnInvite(), new Insets(0,0,50,450));
+        StackPane.setMargin(getBtnInvite(), new Insets(0,0,50,450));	
         
         this.getChildren().addAll(getImgTitre(),vContainer,getBtnConnection(), getBtnInvite());
 
