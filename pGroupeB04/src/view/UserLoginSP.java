@@ -31,6 +31,7 @@ public class UserLoginSP extends StackPane {
 	private Label lblCreateUser;
 
     private Button btnConnection;
+    private Button btnInvite;
 
     public UserLoginSP() {
 
@@ -62,11 +63,14 @@ public class UserLoginSP extends StackPane {
 
         StackPane.setAlignment(vContainer, Pos.CENTER);
 
-
+        
         StackPane.setAlignment(getBtnConnection(), Pos.BOTTOM_CENTER);
-        StackPane.setMargin(getBtnConnection(), new Insets(10,0,50,0));
+        StackPane.setMargin(getBtnConnection(), new Insets(10,450,50,0));
 
-        this.getChildren().addAll(getImgTitre(),vContainer,getBtnConnection());
+        StackPane.setAlignment(getBtnInvite(), Pos.BOTTOM_CENTER);
+        StackPane.setMargin(getBtnInvite(), new Insets(0,0,50,450));
+        
+        this.getChildren().addAll(getImgTitre(),vContainer,getBtnConnection(), getBtnInvite());
 
         this.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -153,5 +157,20 @@ public class UserLoginSP extends StackPane {
         }
         return btnConnection;
     }
+
+	public Button getBtnInvite() {
+		if (btnInvite == null) {
+			btnInvite = new Button("Play as invited");
+			btnInvite.setBackground(BackgroundLoader.buildBtnBackGround());
+			btnInvite.getStyleClass().add("buttonBasic");
+			btnInvite.setId("big-button");
+			
+			btnInvite.setOnAction(event -> Main.switchScene(new MainPageSP()));
+
+		}
+		return btnInvite;
+	}
+    
+    
 
 }
