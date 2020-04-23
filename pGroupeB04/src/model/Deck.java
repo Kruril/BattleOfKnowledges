@@ -1,15 +1,16 @@
 package model;
 
-import serialisation.Serialization;
-import enumeration.Path;
-import utils.controler.JsonManager;
-
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+
+import enumeration.Path;
+import serialisation.Serialization;
+import utils.controler.JsonManager;
 
 public class Deck extends Pack {
 	
-	
+	private List<Question> questions=new ArrayList<Question>();
 	public Deck() {
 		super();
 	}
