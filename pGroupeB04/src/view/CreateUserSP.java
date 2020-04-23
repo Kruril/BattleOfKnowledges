@@ -11,10 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
-import utils.Mail;
-import utils.controler.SQLManager;
+import utils.controler.Connection;
 
-import java.sql.SQLException;
 
 public class CreateUserSP extends StackPane{
 
@@ -81,18 +79,12 @@ public class CreateUserSP extends StackPane{
 
     public void connection() {
         if (!getPwfPassword().getText().equals("") && !getTxtLogin().getText().equals("")) {
-            try {
-                if (!SQLManager.createUser(getTxtLogin().getText(), getPwfPassword().getText(), getTxtEmail().getText())) {
-                    clearAllEntries();
-                    promptTextSet("Invalid");
-                } else {
-                    Main.switchScene(new MainPageSP());
-                }
-                if (getCbNewLetter().isSelected()) {
-                    Mail.sendMail(getTxtEmail().getText());
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            if (Connection.createUser(getTxtLogin().getText(), getPwfPassword().getText(), getTxtEmail().getText())) {
+                Main.switchScene(new MainPageSP());
+            }
+            else {
+                clearAllEntries();
+                promptTextSet("Invalid");
             }
 
         } else {

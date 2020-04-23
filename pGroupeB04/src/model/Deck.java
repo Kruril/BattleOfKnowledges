@@ -1,7 +1,7 @@
 package model;
 
 import serialisation.Serialization;
-import utils.Path;
+import enumeration.Path;
 import utils.controler.JsonManager;
 
 import java.io.File;

@@ -21,7 +21,7 @@ public class Serialization implements Serializable {
             Gson gson = new Gson();
             object = gson.fromJson(in , className);
         } catch (IOException e) {
-            e.printStackTrace();
+            return object;
         }
         return object;
     }

@@ -13,8 +13,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import model.User;
 import utils.BackgroundLoader;
-import utils.controler.SQLManager;
+import utils.controler.Connection;
 
 import java.sql.SQLException;
 
@@ -81,18 +82,14 @@ public class UserLoginSP extends StackPane {
 
     public void connection() {
         if (!getTxtLogin().getText().equals("") && !getPwfPassword().getText().equals("")) {
-            try {
-                if (SQLManager.connectionDB(txtLogin.getText(), pwfPassword.getText(), this.getClass())) {
-                    Main.switchScene(new MainPageSP());
-                }
-                else {
-                    pwfPassword.setText("");
-                    txtLogin.setText("");
-                    txtLogin.setPromptText("Invalid");
-                    pwfPassword.setPromptText("Invalid");
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            if (Connection.connectionGame(txtLogin.getText(), pwfPassword.getText(), this.getClass())) {
+                Main.switchScene(new MainPageSP());
+            }
+            else {
+                pwfPassword.setText("");
+                txtLogin.setText("");
+                txtLogin.setPromptText("Invalid");
+                pwfPassword.setPromptText("Invalid");
             }
         }
     }

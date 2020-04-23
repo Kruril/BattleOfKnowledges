@@ -1,6 +1,7 @@
 package utils;
 
 import application.Main;
+import enumeration.Path;
 import serialisation.Serialization;
 
 public class Resolution {

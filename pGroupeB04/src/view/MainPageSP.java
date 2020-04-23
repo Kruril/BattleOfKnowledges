@@ -10,7 +10,7 @@ import javafx.scene.layout.*;
 import utils.BackgroundLoader;
 import utils.controler.JsonManager;
 import utils.Resolution;
-import utils.controler.SQLManager;
+import utils.controler.Connection;
 
 import java.sql.SQLException;
 
@@ -64,11 +64,6 @@ public class MainPageSP extends StackPane {
                 new Resolution().toJson(Main.getStage().getWidth(),Main.getStage().getHeight());
                 Main.getStage().close();
                 JsonManager.getDeck().toJson();
-                try {
-                    SQLManager.getConnection().close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
             });
         }
         return btnOff;

@@ -9,7 +9,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import utils.controler.JsonManager;
 import utils.Resolution;
-import utils.controler.SQLManager;
+import utils.controler.Connection;
 import utils.controler.TrashManager;
 import view.*;
 
@@ -37,7 +37,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        SQLManager.getConnection();
         JsonManager.themeFromDeck();
         TrashManager.buildTrash();
         stage = primaryStage;
@@ -72,11 +71,7 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(event -> {
             resolution.toJson(primaryStage.getWidth(),primaryStage.getHeight());
             JsonManager.getDeck().toJson();
-            try {
-                SQLManager.getConnection().close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+
         });
 
     }

@@ -482,6 +482,106 @@
     },
     {
       "author": "Trempont Mathieu",
+      "theme": "Film",
+      "clues": [
+        "I am composed of 8 films, distributed by Warner Bros",
+        "I stage a young wizard in a strange school where everything is possible",
+        "I'm based on the books of J.K.Rowling"
+      ],
+      "answer": "Harry Potter"
+    },
+    {
+      "author": "Trempont Mathieu",
+      "theme": "Film",
+      "clues": [
+        "I'm the second most profitable saga of all time, after Star Wars",
+        "Each of the films in my trilogy lasts more than 3 hours, even 4 hours for the last one",
+        "In my trilogy, we can find well-known characters like Gollum, Gandalf, Legolas, ..."
+      ],
+      "answer": "Lord of the rings"
+    },
+    {
+      "author": "Gailliez Valentin",
+      "theme": "Film",
+      "clues": [
+        "The film is based on Stephen King's 1977 novel of the same name",
+        "Film critic Jonathan Romney writes that the film has been interpreted in many ways, addressing the topics of sexism, and racism",
+        "In 2005, the quote \"Here's Johnny!\" was ranked 68 on AFI's 100 Years"
+      ],
+      "answer": "Shining"
+    },
+    {
+      "author": "Gailliez Valentin",
+      "theme": "Film",
+      "clues": [
+        "It's a 2000 epic historical action drama film directed by Ridley Scott",
+        "The film is loosely based on real events that occurred within the Roman Empire in the latter half of the 2nd century AD",
+        "The film's plot was influenced by two 1960s Hollywood films, The Fall of the Roman Empire and Spartacus"
+      ],
+      "answer": "Gladiator"
+    },
+    {
+      "author": "Charlier Guillaume",
+      "theme": "Film",
+      "clues": [
+        "I find myself drawn into my own game because of an artificial intelligence called MCP",
+        "Each character in the game represents one of the game designers",
+        "The film's special effects used only two megabytes of memory"
+      ],
+      "answer": "Tron"
+    },
+    {
+      "author": "Charlier Guillaume",
+      "theme": "Film",
+      "clues": [
+        "The phrase \"I have a bad feeling about this\" or \"I have a very bad feeling about this\" is said in every movie",
+        "The saga takes place in space",
+        "I have three trilogies. My second trilogy came out first"
+      ],
+      "answer": "Star Wars"
+    },
+    {
+      "author": "Charlier Guillaume",
+      "theme": "Film",
+      "clues": [
+        "Tom Hanks agreed to participate in the film only on condition that the film is historically accurate",
+        "When the original book was released, only 30K copies of the book could be sold. However, 1.6 million books were sold after the film was released",
+        "When I tell my story you see me sitting on a bench"
+      ],
+      "answer": "Forest gump"
+    },
+    {
+      "author": "Gailliez Valentin",
+      "theme": "Film",
+      "clues": [
+        "It's a 1984 American comedy horror film written by Chris Columbus and directed by Joe Dante",
+        "The movie was one of two films in 1984 to influence the MPAA to create the PG-13 rating",
+        "The story follows a young man who receives a strange creature called a mogwai as a pet"
+      ],
+      "answer": "Gremlins"
+    },
+    {
+      "author": "Trempont Mathieu",
+      "theme": "Film",
+      "clues": [
+        "I'm one of the most famous spy / action film series in the world",
+        "My first film was released in 1996, although a series bearing the same name exist since 1966",
+        "I'm a series of 6 films starring Tom Cruise, playing the role of Ethan Hunt"
+      ],
+      "answer": "Mission : Impossible"
+    },
+    {
+      "author": "Charlier Guillaume",
+      "theme": "Film",
+      "clues": [
+        "My main character was originally sketched as a ventriloquist dummy",
+        "All of my second film was almost deleted because of just one line of code",
+        "I am the first feature film produced entirely in computer generated images, therefore using images entirely produced by IT"
+      ],
+      "answer": "Toy Story"
+    },
+    {
+      "author": "Trempont Mathieu",
       "theme": "Sport",
       "clues": [
         "I was created in the 1860s and became an Olympic sport in 1908",
