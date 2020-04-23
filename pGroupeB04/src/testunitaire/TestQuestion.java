@@ -15,6 +15,7 @@ import model.Question;
 import test.Explorateur;
 
 public class TestQuestion {
+
 	private static String author="test",theme="ThemeTeste",answer="Answer";
 	private static List<String> clue,listClues;
 	private static String clue1="I'm a clue",clue2="I'm a second clue",clue3="I'm the last clue";

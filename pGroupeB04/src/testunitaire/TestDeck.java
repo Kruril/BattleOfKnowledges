@@ -24,7 +24,7 @@ public class TestDeck {
 	static List<Question>question;
 	static String author="Author",theme="theme",answer="answer";
 	static String clue1="I'm a clue",clue2="I'm a second clue",clue3="I'm the last clue";
-	static List<String>clues=new ArrayList<String>();
+	static List<String>clues= new ArrayList<>();
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		deck=new Deck();
@@ -48,6 +48,7 @@ public class TestDeck {
 		clues.add(clue1);
 		clues.add(clue2);
 		clues.add(clue3);
+		System.out.println(clues);
 		quest=new Question(author,theme,clues,answer);
 		question.add(quest);
 		Question quest2=new Question("NewAuthor","NewTheme",clues,"NewAnwser");
@@ -60,6 +61,7 @@ public class TestDeck {
 		clues.add(clue1);
 		clues.add(clue2);
 		clues.add(clue3);
+		System.out.println(clues);
 		quest=new Question(author,theme,clues,answer);
 		question.add(quest);
 		Question quest2=new Question("NewAuthor","NewTheme",clues,"NewAnwser");
@@ -82,27 +84,27 @@ public class TestDeck {
 
 	@Test
 	public void testToJson() {
-		fail("Not yet implemented");
+		fail();
 	}
 
 	@Test
 	public void testFromJson() {
-		fail("Not yet implemented");
+		fail();
 	}
 
 	@Test
 	public void testFromJsonFile() {
-		fail("Not yet implemented");
+		fail();
 	}
 
 	@Test
 	public void testCreateIteratorString() {
-		fail("Not yet implemented");
+		fail();
 	}
 
 	@Test
 	public void testCheckTheme() {
-		fail("Not yet implemented");
+		fail();
 	}
 
 }

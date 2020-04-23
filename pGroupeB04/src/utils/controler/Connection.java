@@ -2,6 +2,7 @@ package utils.controler;
 
 import model.User;
 import model.UserBuilder;
+import utils.Cryptage;
 import view.AdminLoginSP;
 import view.UserLoginSP;
 
@@ -25,10 +26,10 @@ public abstract class Connection {
         User user = User.fromJson(login);
         if (user != null) {
             if (className == UserLoginSP.class && !user.isAllowed()) {
-                return user.getPassword().equals(password);
+                return Cryptage.decrypt(user.getPassword()).equals(password);
             }
             else if (className == AdminLoginSP.class && user.isAllowed()) {
-                return user.getPassword().equals(password);
+                return Cryptage.decrypt(user.getPassword()).equals(password);
             }
         } else {
         	throw new UserUnknown();
@@ -51,7 +52,7 @@ public abstract class Connection {
             if (checkUser(login)) {
                 User user = new UserBuilder()
                         .login(login)
-                        .password(password)
+                        .password(Cryptage.encrypt(password))
                         .email(email)
                         .bank(0)
                         .build();
