@@ -1,6 +1,7 @@
 package view;
 
 import application.Main;
+import exceptions.UserUnknown;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -75,12 +76,16 @@ public class UserLoginSP extends StackPane {
 
         this.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                connection();
+                try {
+					connection();
+				} catch (UserUnknown e) {
+					e.printStackTrace();
+				}
             }
         });
     }
 
-    public void connection() {
+    public void connection() throws UserUnknown {
         if (!getTxtLogin().getText().equals("") && !getPwfPassword().getText().equals("")) {
             if (Connection.connectionGame(txtLogin.getText(), pwfPassword.getText(), this.getClass())) {
                 Main.switchScene(new MainPageSP());
@@ -150,7 +155,14 @@ public class UserLoginSP extends StackPane {
             btnConnection.getStyleClass().add("buttonBasic");
             btnConnection.setId("big-button");
             
-            btnConnection.setOnAction(event -> connection());
+            
+            btnConnection.setOnAction(event -> {
+				try {
+					connection();
+				} catch (UserUnknown e) {
+					e.printStackTrace();
+				}
+			});
         }
         return btnConnection;
     }

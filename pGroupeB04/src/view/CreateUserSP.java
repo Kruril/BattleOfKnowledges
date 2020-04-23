@@ -1,6 +1,8 @@
 package view;
 
 import application.Main;
+import exceptions.UserAlreadyExist;
+import exceptions.UserUnknown;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -72,12 +74,16 @@ public class CreateUserSP extends StackPane{
 
         this.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                connection();
+                try {
+					connection();
+				} catch (UserUnknown | UserAlreadyExist e) {
+					e.printStackTrace();
+				}
             }
         });
     }
 
-    public void connection() {
+    public void connection() throws UserUnknown, UserAlreadyExist{
         if (!getPwfPassword().getText().equals("") && !getTxtLogin().getText().equals("")) {
             if (Connection.createUser(getTxtLogin().getText(), getPwfPassword().getText(), getTxtEmail().getText())) {
                 Main.switchScene(new MainPageSP());
@@ -153,8 +159,13 @@ public class CreateUserSP extends StackPane{
         	btnValidate.getStyleClass().addAll("buttonBasic");
         	btnValidate.setId("big-button");
         	
-            //Check if all the form is filled
-        	btnValidate.setOnAction(event -> connection());
+        	btnValidate.setOnAction(event -> {
+				try {
+					connection();
+				} catch (UserUnknown | UserAlreadyExist e) {
+					e.printStackTrace();
+				}
+			});
         }
         return btnValidate;
     }

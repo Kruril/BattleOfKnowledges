@@ -7,6 +7,9 @@ import view.UserLoginSP;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+
+import exceptions.UserAlreadyExist;
+import exceptions.UserUnknown;
 public abstract class Connection {
 
     /**
@@ -18,7 +21,7 @@ public abstract class Connection {
      * @param <C> class generic
      * @return boolean true if connection succeed or false if failed
      */
-    public static <C> boolean connectionGame(String login, String password, Class<C> className) {
+    public static <C> boolean connectionGame(String login, String password, Class<C> className) throws UserUnknown{
         User user = User.fromJson(login);
         if (user != null) {
             if (className == UserLoginSP.class && !user.isAllowed()) {
@@ -27,6 +30,8 @@ public abstract class Connection {
             else if (className == AdminLoginSP.class && user.isAllowed()) {
                 return user.getPassword().equals(password);
             }
+        } else {
+        	throw new UserUnknown();
         }
         return false;
     }
@@ -40,7 +45,7 @@ public abstract class Connection {
      * @param email email given by the user
      * @return boolean true if user was added or false if user wasn't added
      */
-    public static boolean createUser(String login, String password, String email) {
+    public static boolean createUser(String login, String password, String email) throws UserAlreadyExist{
 
         if (isValidEmailAddress(email) || email.equals("")) {
             if (checkUser(login)) {
@@ -52,6 +57,8 @@ public abstract class Connection {
                         .build();
                 user.toJson();
                 return true;
+            } else {
+            	throw new UserAlreadyExist();
             }
         }
         return false;
@@ -64,7 +71,7 @@ public abstract class Connection {
      * @param login login of user that we will check
      * @return boolean true if user isn't in database or false if he is
      */
-    private static boolean checkUser(String login) {
+    private static boolean checkUser(String login){
         return User.fromJson(login) == null;
     }
 
