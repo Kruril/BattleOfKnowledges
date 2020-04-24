@@ -1,6 +1,8 @@
 package utils;
 
 public abstract class Damerau {
+	
+	private static int difficulty = 2;
 
     public static boolean calculateDistance(CharSequence source, CharSequence target) {
         if (source == null || target == null) {
@@ -29,6 +31,12 @@ public abstract class Damerau {
                 }
             }
         }
-        return dist[sourceLength][targetLength] <= 2;
+        return dist[sourceLength][targetLength] <= difficulty;
     }
+
+	public static void setDifficulty(int value) {
+		Damerau.difficulty = value;
+	}
+    
+    
 }

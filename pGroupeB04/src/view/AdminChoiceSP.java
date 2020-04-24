@@ -1,14 +1,20 @@
 package view;
 
 import application.Main;
+import enumeration.Difficulty;
+import enumeration.SizeScreen;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
+import utils.Damerau;
 
 public class AdminChoiceSP extends StackPane{
 
@@ -17,6 +23,9 @@ public class AdminChoiceSP extends StackPane{
 	private Button btnModifQuestion;
     private Button btnModifTime;
     private Button btnBack;
+    
+    private Label lblDifficulty;
+    private ComboBox<String> cmDifficulty;
     
     public AdminChoiceSP() {
     	
@@ -29,7 +38,10 @@ public class AdminChoiceSP extends StackPane{
     	
         VBox vContainer = new VBox();
         
-        vContainer.getChildren().addAll(getBtnModifQuestion(),getBtnModifTime(), getBtnBack());
+        HBox hbDiff = new HBox();
+        hbDiff.getChildren().addAll(getLblDifficulty(),getCmDifficulty());
+        
+        vContainer.getChildren().addAll(getBtnModifQuestion(),getBtnModifTime(), hbDiff, getBtnBack());
         vContainer.setSpacing(50);
         vContainer.setAlignment(Pos.CENTER);
         vContainer.setMaxSize(550,300);
@@ -69,6 +81,34 @@ public class AdminChoiceSP extends StackPane{
 		}
 		return btnModifTime;
 	}
+	
+	
+	
+	public Label getLblDifficulty() {
+		if (lblDifficulty == null) {
+			lblDifficulty = new Label("Difficulty :");
+			lblDifficulty.getStyleClass().add("labelBasique");
+
+		}
+		return lblDifficulty;
+	}
+
+	public ComboBox<String> getCmDifficulty() {
+        if (cmDifficulty == null) {
+        	cmDifficulty = new ComboBox<>();
+        	cmDifficulty.getStyleClass().add("textBox");
+            cmDifficulty.setPromptText(Difficulty.NORMAL.name());
+
+            for (Difficulty diff: Difficulty.values())
+            	cmDifficulty.getItems().add(diff.name());
+
+            getCmDifficulty().setOnAction(event -> {
+                String value = getCmDifficulty().getSelectionModel().getSelectedItem();
+                Damerau.setDifficulty(Integer.parseInt(value));
+            });
+        }
+        return cmDifficulty;
+    }
 
 	public Button getBtnBack() {
 		if (btnBack == null) {
