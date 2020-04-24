@@ -17,7 +17,7 @@ public class TestQuestion {
 
 	private String author,theme,answer;
 	private List<String>listClues=new ArrayList<>();
-	private String clue1="I'm a clue",clue2="I'm a second clue",clue3="I'm the last clue";
+	private String clue1,clue2,clue3;
 	private Question question;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -34,6 +34,9 @@ public class TestQuestion {
 		author="test";
 		theme="theme";
 		answer="Answer";
+		clue1="I'm a clue";
+		clue2="I'm a second clue";
+		clue3="I'm the last clue";
 	}
 
 	@After
