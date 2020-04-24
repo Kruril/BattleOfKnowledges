@@ -76,14 +76,16 @@ public class CreateUserSP extends StackPane{
             if (event.getCode() == KeyCode.ENTER) {
                 try {
 					connection();
-				} catch (UserUnknown | UserAlreadyExist e) {
-					e.printStackTrace();
+				} catch (UserAlreadyExist e) {
+                    clearAllEntries();
+                    promptTextSet("User Exists");
+                    System.err.println(e.getMessage());
 				}
             }
         });
     }
 
-    public void connection() throws UserUnknown, UserAlreadyExist{
+    public void connection() throws UserAlreadyExist{
         if (!getPwfPassword().getText().equals("") && !getTxtLogin().getText().equals("")) {
             if (Connection.createUser(getTxtLogin().getText(), getPwfPassword().getText(), getTxtEmail().getText())) {
                 Main.switchScene(new MainPageSP());
@@ -162,8 +164,10 @@ public class CreateUserSP extends StackPane{
         	btnValidate.setOnAction(event -> {
 				try {
 					connection();
-				} catch (UserUnknown | UserAlreadyExist e) {
-					e.printStackTrace();
+				} catch (UserAlreadyExist e) {
+                    clearAllEntries();
+                    promptTextSet("User Exists");
+                    System.err.println(e.getMessage());
 				}
 			});
         }

@@ -9,11 +9,8 @@ import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import utils.controler.JsonManager;
 import utils.Resolution;
-import utils.controler.Connection;
 import utils.controler.TrashManager;
 import view.*;
-
-import java.sql.SQLException;
 
 /**
  *Battle of knowledge is a game based on the principle of 4 in a row the famous game show Question for a champion.

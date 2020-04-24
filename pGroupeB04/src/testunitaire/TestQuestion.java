@@ -49,6 +49,7 @@ public class TestQuestion {
 		listClues.add(clue1);
 		listClues.add(clue2);
 		listClues.add(clue3);
+		System.out.println(listClues);
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
 		assertTrue(listClues.size()==3 && !(listClues.contains("") || listClues.contains(null)) && !(question.getAuthor().equalsIgnoreCase("")));
@@ -58,6 +59,7 @@ public class TestQuestion {
 	public void testCheckQuestionWith2Clues() {
 		listClues.add(clue1);
 		listClues.add(clue2);
+		System.out.println(listClues);
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
 		assertTrue(listClues.size()!=3);

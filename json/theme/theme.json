@@ -491,16 +491,6 @@
       "answer": "Harry Potter"
     },
     {
-      "author": "Trempont Mathieu",
-      "theme": "Film",
-      "clues": [
-        "I'm the second most profitable saga of all time, after Star Wars",
-        "Each of the films in my trilogy lasts more than 3 hours, even 4 hours for the last one",
-        "In my trilogy, we can find well-known characters like Gollum, Gandalf, Legolas, ..."
-      ],
-      "answer": "Lord of the rings"
-    },
-    {
       "author": "Gailliez Valentin",
       "theme": "Film",
       "clues": [
@@ -599,6 +589,16 @@
         "I'm most frequently dressed in a black and purple robe, a purple jumpsuit, a purple and black striped tricorn hat"
       ],
       "answer": "Frollo"
+    },
+    {
+      "author": "Trempont Mathieu",
+      "theme": "Film",
+      "clues": [
+        "I'm the second most profitable saga of all time, after Star Wars",
+        "Each of the films in my trilogy lasts more than 3 hours, even 4 hours for the last one",
+        "In my trilogy, we can find well-known characters like Gollum, Gandalf, Legolas, ..."
+      ],
+      "answer": "Lord of the rings"
     }
   ]
 }

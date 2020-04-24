@@ -1,15 +1,14 @@
 package testunitaire;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import model.Pack;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import model.Deck;
@@ -17,69 +16,38 @@ import model.Question;
 import test.Explorateur;
 
 public class TestDeck {
-	
-	
-	static Question quest;
-	static Deck deck;
-	static List<Question>question;
-	static String author="Author",theme="theme",answer="answer";
-	static String clue1="I'm a clue",clue2="I'm a second clue",clue3="I'm the last clue";
-	static List<String>clues= new ArrayList<>();
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		deck=new Deck();
-		question= (List<Question>) Explorateur.getField(deck, "questions");
-	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+	private Deck deck;
+	private List<Question> questions;
+	private String author="Author",theme="theme",answer="answer";
+	private String clue1="I'm a clue",clue2="I'm a second clue",clue3="I'm the last clue";
+
 
 	@Before
 	public void setUp() throws Exception {
+		deck = new Deck();
+		questions = (List<Question>) Explorateur.getField(deck, "questions");
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		deck = null;
+		questions = null;
 	}
 
 	@Test
 	public void testModifyQuestion() {
-		clues.add(clue1);
-		clues.add(clue2);
-		clues.add(clue3);
-		System.out.println(clues);
-		quest=new Question(author,theme,clues,answer);
-		question.add(quest);
-		Question quest2=new Question("NewAuthor","NewTheme",clues,"NewAnwser");
-		deck.modifyQuestion(quest, quest2);
-		assertTrue(question.contains(quest2) && !(question.contains(quest)));
 	}
-	
-	@Test
-	public void testModifyQuestionWithException() {
-		clues.add(clue1);
-		clues.add(clue2);
-		clues.add(clue3);
-		System.out.println(clues);
-		quest=new Question(author,theme,clues,answer);
-		question.add(quest);
-		Question quest2=new Question("NewAuthor","NewTheme",clues,"NewAnwser");
-		deck.modifyQuestion(quest2, quest);
-		assertTrue(question.contains(quest) && !(question.contains(quest2)));
-	}
-	
 
 	@Test
 	public void testFindQuestion() {
-		int index=0;
-		clues.add(clue1);
-		clues.add(clue2);
-		clues.add(clue3);
-		quest=new Question(author,theme,clues,answer);
-		question.add(quest);
-		deck.findQuestion(quest);
-		assertTrue(question.get(index).equals(quest));	
+		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
+		System.out.println(question);
+		questions.add(question);
+		System.out.println(questions);
+		System.out.println(deck.getList());
+		deck.findQuestion(question);
+		System.out.println(deck.findQuestion(question));
 	}
 
 	@Test

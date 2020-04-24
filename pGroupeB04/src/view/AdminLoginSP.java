@@ -69,7 +69,9 @@ public class AdminLoginSP extends StackPane {
                 try {
 					connection();
 				} catch (UserUnknown e) {
-					e.printStackTrace();
+                    clearAllEntries();
+                    promptTextSet("User Exists");
+                    System.err.println(e.getMessage());
 				}
             }
         });
@@ -77,7 +79,7 @@ public class AdminLoginSP extends StackPane {
 
     /**
      * Connection to the database
-     * @throws UserUnknown 
+     * @throws UserUnknown The user does not exist
      */
     public void connection() throws UserUnknown {
         if (!getTxtLogin().getText().equals("") && !getPwfPassword().getText().equals("")) {
@@ -141,7 +143,9 @@ public class AdminLoginSP extends StackPane {
 				try {
 					connection();
 				} catch (UserUnknown e) {
-					e.printStackTrace();
+                    clearAllEntries();
+                    promptTextSet("User Exists");
+                    System.err.println(e.getMessage());
 				}
 			});
         }
@@ -156,5 +160,15 @@ public class AdminLoginSP extends StackPane {
             btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
         }
         return btnBack;
+    }
+
+    public void promptTextSet(String value) {
+        txtLogin.setPromptText(value);
+        pwfPassword.setPromptText(value);
+    }
+
+    public void clearAllEntries() {
+        pwfPassword.setText("");
+        txtLogin.setText("");
     }
 }

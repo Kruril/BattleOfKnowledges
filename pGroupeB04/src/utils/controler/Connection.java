@@ -11,6 +11,9 @@ import javax.mail.internet.InternetAddress;
 
 import exceptions.UserAlreadyExist;
 import exceptions.UserUnknown;
+
+import java.util.Objects;
+
 public abstract class Connection {
 
     /**
@@ -26,10 +29,10 @@ public abstract class Connection {
         User user = User.fromJson(login);
         if (user != null) {
             if (className == UserLoginSP.class && !user.isAllowed()) {
-                return Cryptage.decrypt(user.getPassword()).equals(password);
+                return Objects.equals(Cryptage.decrypt(user.getPassword()), password);
             }
             else if (className == AdminLoginSP.class && user.isAllowed()) {
-                return Cryptage.decrypt(user.getPassword()).equals(password);
+                return Objects.equals(Cryptage.decrypt(user.getPassword()), password);
             }
         } else {
         	throw new UserUnknown();

@@ -14,11 +14,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import model.User;
 import utils.BackgroundLoader;
 import utils.controler.Connection;
-
-import java.sql.SQLException;
 
 public class UserLoginSP extends StackPane {
 
@@ -79,7 +76,9 @@ public class UserLoginSP extends StackPane {
                 try {
 					connection();
 				} catch (UserUnknown e) {
-					e.printStackTrace();
+                    clearAllEntries();
+                    promptTextSet("unknown user");
+                    System.err.println(e.getMessage());
 				}
             }
         });
@@ -160,7 +159,9 @@ public class UserLoginSP extends StackPane {
 				try {
 					connection();
 				} catch (UserUnknown e) {
-					e.printStackTrace();
+                    clearAllEntries();
+                    promptTextSet("unknown user");
+                    System.err.println(e.getMessage());
 				}
 			});
         }
@@ -179,7 +180,15 @@ public class UserLoginSP extends StackPane {
 		}
 		return btnInvite;
 	}
-    
-    
+
+    public void promptTextSet(String value) {
+        txtLogin.setPromptText(value);
+        pwfPassword.setPromptText(value);
+    }
+
+    public void clearAllEntries() {
+        pwfPassword.setText("");
+        txtLogin.setText("");
+    }
 
 }

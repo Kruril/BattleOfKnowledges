@@ -3,7 +3,7 @@ package exceptions;
 public class UserUnknown extends Exception{
 	
 	public UserUnknown() {
-		super("User not known");
+		super("unknown user");
 	}
 	
 	@Override
