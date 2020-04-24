@@ -6,18 +6,18 @@ public enum Difficulty {
      * Enum containing the different difficulty of the game.
      */
 
-    EASY("4"),
-    NORMAL("3"),
-    MEDIUM("2"),
-    HARD("1");
+    EASY(4),
+    NORMAL(3),
+    MEDIUM(2),
+    HARD(1);
     
-    private String valeur;
+    private int valeur;
 
-    Difficulty(String valeur) {
+    Difficulty(int valeur) {
         this.valeur = valeur;
     }
 
-    public String getValeur() {
+    public int getValeur() {
         return valeur;
     }
 }

@@ -25,7 +25,7 @@ public class AdminChoiceSP extends StackPane{
     private Button btnBack;
     
     private Label lblDifficulty;
-    private ComboBox<String> cmDifficulty;
+    private ComboBox<Difficulty> cmDifficulty;
     
     public AdminChoiceSP() {
     	
@@ -93,18 +93,18 @@ public class AdminChoiceSP extends StackPane{
 		return lblDifficulty;
 	}
 
-	public ComboBox<String> getCmDifficulty() {
+	public ComboBox<Difficulty> getCmDifficulty() {
         if (cmDifficulty == null) {
         	cmDifficulty = new ComboBox<>();
         	cmDifficulty.getStyleClass().add("textBox");
-            cmDifficulty.setPromptText(Difficulty.NORMAL.name());
+        	cmDifficulty.setPromptText(Difficulty.NORMAL.name());
 
             for (Difficulty diff: Difficulty.values())
-            	cmDifficulty.getItems().add(diff.name());
+            	cmDifficulty.getItems().add(diff);
 
             getCmDifficulty().setOnAction(event -> {
-                String value = getCmDifficulty().getSelectionModel().getSelectedItem();
-                Damerau.setDifficulty(Integer.parseInt(value));
+            	int value = getCmDifficulty().getSelectionModel().getSelectedItem().getValeur();
+                Damerau.setDifficulty(value);
             });
         }
         return cmDifficulty;
