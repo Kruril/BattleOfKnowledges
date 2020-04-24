@@ -16,7 +16,7 @@ import model.Question;
 public class TestQuestion {
 
 	private String author,theme,answer;
-	private List<String>listClues;
+	private List<String>listClues=new ArrayList<>();
 	private String clue1="I'm a clue",clue2="I'm a second clue",clue3="I'm the last clue";
 	private Question question;
 	@BeforeClass
@@ -30,8 +30,7 @@ public class TestQuestion {
 
 	@Before
 	public void setUp() throws Exception {
-		listClues=new ArrayList<>();
-		listClues.clear();
+		
 		author="test";
 		theme="theme";
 		answer="Answer";
@@ -39,6 +38,7 @@ public class TestQuestion {
 
 	@After
 	public void tearDown() throws Exception {
+		listClues.clear();
 	}
 
 	/**
@@ -49,7 +49,6 @@ public class TestQuestion {
 		listClues.add(clue1);
 		listClues.add(clue2);
 		listClues.add(clue3);
-		System.out.println(listClues);
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
 		assertTrue(listClues.size()==3 && !(listClues.contains("") || listClues.contains(null)) && !(question.getAuthor().equalsIgnoreCase("")));
@@ -59,7 +58,6 @@ public class TestQuestion {
 	public void testCheckQuestionWith2Clues() {
 		listClues.add(clue1);
 		listClues.add(clue2);
-		System.out.println(listClues);
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
 		assertTrue(listClues.size()!=3);
