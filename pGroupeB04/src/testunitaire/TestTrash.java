@@ -29,10 +29,42 @@ public class TestTrash {
 
 	@After
 	public void tearDown() throws Exception {
-		clues.clear();
-		questions.clear();
+		clues=null;
+		questions=null;
 	}
 
+	
+
+	/**
+	 * Test of the isEmpty method
+	 */
+
+
+	@Test
+	public void testIsEmptyNull() {
+		questions=null;
+		trash.isEmpty();
+		assertTrue(questions==null);
+	}
+	
+	@Test
+	public void testIsNotEmpty() {
+		clues.add(clue1);
+		clues.add(clue2);
+		clues.add(clue3);
+		quest=new Question(author,theme,clues,answer);
+		questions.add(quest);
+		trash.isEmpty();
+		assertTrue(questions.size()!=0);
+	}
+	
+	@Test
+	public void testIsEmpty() {
+		trash.isEmpty();
+		assertTrue(questions.size()==0);
+	}
+
+	
 	/**
 	 * Test of the addQuestion method
 	 */
@@ -94,16 +126,5 @@ public class TestTrash {
 		assertTrue(!(questions.contains(quest)) && questions.size()==0);
 	}
 	
-	@Test
-	public void testIsEmpty() {
-		clues.add(clue1);
-		clues.add(clue2);
-		clues.add(clue3);
-		quest=new Question(author,theme,clues,answer);
-		questions.add(quest);
-		trash.isEmpty();
-		assertTrue(questions.size()!=0);
-	}
 	
-
 }
