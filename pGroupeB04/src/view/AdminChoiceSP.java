@@ -24,9 +24,6 @@ public class AdminChoiceSP extends StackPane{
     private Button btnModifTime;
     private Button btnBack;
     
-    private Label lblDifficulty;
-    private ComboBox<Difficulty> cmDifficulty;
-    
     public AdminChoiceSP() {
     	
     	//BACKGROUND
@@ -38,10 +35,7 @@ public class AdminChoiceSP extends StackPane{
     	
         VBox vContainer = new VBox();
         
-        HBox hbDiff = new HBox();
-        hbDiff.getChildren().addAll(getLblDifficulty(),getCmDifficulty());
-        
-        vContainer.getChildren().addAll(getBtnModifQuestion(),getBtnModifTime(), hbDiff, getBtnBack());
+        vContainer.getChildren().addAll(getBtnModifQuestion(),getBtnModifTime(), getBtnBack());
         vContainer.setSpacing(50);
         vContainer.setAlignment(Pos.CENTER);
         vContainer.setMaxSize(550,300);
@@ -82,35 +76,6 @@ public class AdminChoiceSP extends StackPane{
 		return btnModifTime;
 	}
 	
-	
-	
-	public Label getLblDifficulty() {
-		if (lblDifficulty == null) {
-			lblDifficulty = new Label("Difficulty :");
-			lblDifficulty.getStyleClass().add("labelBasique");
-
-		}
-		return lblDifficulty;
-	}
-
-	public ComboBox<Difficulty> getCmDifficulty() {
-        if (cmDifficulty == null) {
-        	cmDifficulty = new ComboBox<>();
-        	cmDifficulty.getStyleClass().add("textBox");
-        	cmDifficulty.setPromptText(Difficulty.NORMAL.name());
-
-            for (Difficulty diff: Difficulty.values())
-            	cmDifficulty.getItems().add(diff);
-
-            getCmDifficulty().setOnAction(event -> {
-            	int value = getCmDifficulty().getSelectionModel().getSelectedItem().getValeur();
-                Damerau.setDifficulty(value);
-            });
-        }
-        
-        return cmDifficulty;
-    }
-
 	public Button getBtnBack() {
 		if (btnBack == null) {
 			btnBack = new Button("Back");

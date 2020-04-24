@@ -2,6 +2,7 @@ package view;
 
 import application.Main;
 import enumeration.AvatarPlayer;
+import enumeration.Difficulty;
 import enumeration.SizeScreen;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
+import utils.Damerau;
 
 public class SettingSP extends StackPane {
 
@@ -26,6 +28,9 @@ public class SettingSP extends StackPane {
     private Button btnBack;
     private Button btnAdmin;
 
+    private Label lblDifficulty;
+    private ComboBox<Difficulty> cmDifficulty;
+    
     public SettingSP() {
 
         //BACKGROUND
@@ -51,19 +56,23 @@ public class SettingSP extends StackPane {
         HBox hbAvatar = new HBox();
         hbAvatar.setSpacing(20);
         hbAvatar.getChildren().addAll(getLblAvatar(), getCmAvatar());
+        
+        HBox hbDiff = new HBox();
+        hbDiff.setSpacing(20);
+        hbDiff.getChildren().addAll(getLblDifficulty(),getCmDifficulty());
 
-        vContainer.getChildren().addAll(hbSound,hbResolution,hbAvatar);
+        vContainer.getChildren().addAll(hbSound,hbResolution,hbAvatar, hbDiff);
         vContainer.setSpacing(50);
         vContainer.setMaxSize(600,350);
         StackPane.setAlignment(vContainer, Pos.CENTER);
         
         //Button back
         StackPane.setAlignment(getBtnBack(), Pos.BOTTOM_CENTER);
-        StackPane.setMargin(getBtnBack(), new Insets(0,0,50,450));
+        StackPane.setMargin(getBtnBack(), new Insets(0,0,35,450));
         
         //Button Admin
         StackPane.setAlignment(getBtnAdmin(), Pos.BOTTOM_CENTER);
-        StackPane.setMargin(getBtnAdmin(), new Insets(10,450,50,0));
+        StackPane.setMargin(getBtnAdmin(), new Insets(10,450,35,0));
 
         this.getChildren().addAll(getIvTitle(), vContainer,getBtnBack(), getBtnAdmin());
 
@@ -142,6 +151,35 @@ public class SettingSP extends StackPane {
                 cmAvatar.getItems().add(avatar.getValeur());
         }
         return cmAvatar;
+    }
+    
+	
+	
+	public Label getLblDifficulty() {
+		if (lblDifficulty == null) {
+			lblDifficulty = new Label("Difficulty :");
+			lblDifficulty.getStyleClass().add("labelBasique");
+
+		}
+		return lblDifficulty;
+	}
+
+	public ComboBox<Difficulty> getCmDifficulty() {
+        if (cmDifficulty == null) {
+        	cmDifficulty = new ComboBox<>();
+        	cmDifficulty.getStyleClass().add("textBox");
+        	cmDifficulty.setPromptText(Difficulty.NORMAL.name());
+
+            for (Difficulty diff: Difficulty.values())
+            	cmDifficulty.getItems().add(diff);
+
+            getCmDifficulty().setOnAction(event -> {
+            	int value = getCmDifficulty().getSelectionModel().getSelectedItem().getValeur();
+                Damerau.setDifficulty(value);
+            });
+        }
+        
+        return cmDifficulty;
     }
 
     public Button getBtnBack() {
