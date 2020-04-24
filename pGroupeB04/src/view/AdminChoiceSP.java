@@ -107,6 +107,7 @@ public class AdminChoiceSP extends StackPane{
                 Damerau.setDifficulty(value);
             });
         }
+        
         return cmDifficulty;
     }
 
