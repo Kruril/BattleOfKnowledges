@@ -15,13 +15,13 @@ import model.Question;
 
 public class TestQuestion {
 
-	private static String author,theme,answer;
-	private static List<String>listClues;
-	private static String clue1="I'm a clue",clue2="I'm a second clue",clue3="I'm the last clue";
-	private static Question question;
+	private String author,theme,answer;
+	private List<String>listClues;
+	private String clue1="I'm a clue",clue2="I'm a second clue",clue3="I'm the last clue";
+	private Question question;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		listClues=new ArrayList<>();
+		
 	}
 
 	@AfterClass
@@ -30,6 +30,7 @@ public class TestQuestion {
 
 	@Before
 	public void setUp() throws Exception {
+		listClues=new ArrayList<>();
 		listClues.clear();
 		author="test";
 		theme="theme";
@@ -101,8 +102,6 @@ public class TestQuestion {
 		listClues.add(clue3);
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
-		System.out.println(question);
-		System.out.println(clue3.length());
 		assertTrue(question.getClues()==null);
 		
 	}
