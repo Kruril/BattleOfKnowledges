@@ -15,7 +15,7 @@ import model.Question;
 
 public class TestQuestion {
 
-	private static String author="test",theme="ThemeTeste",answer="Answer";
+	private static String author,theme,answer;
 	private static List<String>listClues;
 	private static String clue1="I'm a clue",clue2="I'm a second clue",clue3="I'm the last clue";
 	private static Question question;
@@ -30,6 +30,10 @@ public class TestQuestion {
 
 	@Before
 	public void setUp() throws Exception {
+		listClues.clear();
+		author="test";
+		theme="theme";
+		answer="Answer";
 	}
 
 	@After
@@ -69,16 +73,39 @@ public class TestQuestion {
 	}
 
 	@Test
+	public void testCheckQuestionWithEmptyClue() {
+		listClues.add(clue1);
+		listClues.add(clue2);
+		listClues.add("");
+		question=new Question(author,theme,listClues,answer);
+		question.checkQuestion();
+		assertTrue(listClues.contains(""));
+	}
+
+
+	@Test
+	public void testCheckQuestionWithNullClue() {
+		listClues.add(clue1);
+		listClues.add(clue2);
+		listClues.add(null);
+		question=new Question(author,theme,listClues,answer);
+		question.checkQuestion();
+		assertTrue(listClues.contains(null));
+	}
+	
+	@Test
 	public void testCheckQuestionWithToLongClue() {
 		listClues.add(clue1);
 		listClues.add(clue2);
-		clue3="hello. I am the third, last and longest index of the test but the maximum size of characters to be validated is one hundred and fifty. Anyway, I’m a clue.";
+		clue3="Hello I am the third last and longest index of the unit test but the maximum size of an index is one hundred and fifty characters . Anyway I am a clue.";
 		listClues.add(clue3);
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
-		assertTrue(listClues.size()!=2 && author.equals(""));
+		System.out.println(question);
+		System.out.println(clue3.length());
+		assertTrue(question.getClues()==null);
+		
 	}
-
 	
 	
 	/**
