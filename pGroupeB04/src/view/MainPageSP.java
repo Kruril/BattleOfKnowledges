@@ -10,9 +10,6 @@ import javafx.scene.layout.*;
 import utils.BackgroundLoader;
 import utils.controler.JsonManager;
 import utils.Resolution;
-import utils.controler.Connection;
-
-import java.sql.SQLException;
 
 public class MainPageSP extends StackPane {
 
@@ -44,7 +41,7 @@ public class MainPageSP extends StackPane {
 
     public Button getBtnSetting() {
         if (btnSetting == null) {
-            ImageView setting = new ImageView(new Image("images/icon/settings.png", 50,
+            ImageView setting = new ImageView(new Image("asset/images/icon/settings.png", 50,
                     50,true,true));
             btnSetting = new Button("" , setting);
             btnSetting.getStyleClass().add("buttonTransparence");
@@ -56,7 +53,7 @@ public class MainPageSP extends StackPane {
 
     public Button getBtnOff() {
         if (btnOff == null) {
-            ImageView powerOff = new ImageView(new Image("images/icon/turn-off.png",50,
+            ImageView powerOff = new ImageView(new Image("asset/images/icon/turn-off.png",50,
                     50,true,true));
             btnOff = new Button("", powerOff);
             btnOff.getStyleClass().add("buttonTransparence");
@@ -93,7 +90,7 @@ public class MainPageSP extends StackPane {
 
     public ImageView getIvTitle() {
         if (ivTitle == null) {
-            ivTitle = new ImageView(new Image("images/title/Title.png"));
+            ivTitle = new ImageView(new Image("asset/images/title/Title.png"));
         }
         return ivTitle;
     }

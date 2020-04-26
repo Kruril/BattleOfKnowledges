@@ -96,7 +96,7 @@ public class AdminLoginSP extends StackPane {
 
     public ImageView getImgTitre() {
         if (imgTitre == null) {
-            imgTitre = new ImageView(new Image("images/title/Admin.png"));
+            imgTitre = new ImageView(new Image("asset/images/title/Admin.png"));
         }
         return imgTitre;
     }

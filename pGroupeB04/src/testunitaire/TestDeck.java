@@ -1,12 +1,11 @@
 package testunitaire;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import model.Pack;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,17 +36,20 @@ public class TestDeck {
 
 	@Test
 	public void testModifyQuestion() {
+		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
+		questions.add(question);
+		int index = deck.findQuestion(question);
+		assertTrue("Condition != -1" , index != -1);
+		Question newQuestion = new Question(author, answer, Arrays.asList(clue1,clue2,clue3), theme);
+		deck.modifyQuestion(question, newQuestion);
+
 	}
 
 	@Test
 	public void testFindQuestion() {
 		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
-		System.out.println(question);
 		questions.add(question);
-		System.out.println(questions);
-		System.out.println(deck.getList());
 		deck.findQuestion(question);
-		System.out.println(deck.findQuestion(question));
 	}
 
 	@Test

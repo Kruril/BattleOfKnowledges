@@ -100,7 +100,7 @@ public class UserLoginSP extends StackPane {
 
     public ImageView getImgTitre() {
         if (imgTitre == null) {
-            imgTitre = new ImageView(new Image("images/title/LogIn.png"));
+            imgTitre = new ImageView(new Image("asset/images/title/LogIn.png"));
         }
         return imgTitre;
     }

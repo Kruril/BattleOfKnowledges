@@ -65,7 +65,7 @@ public class EndGameBP extends BorderPane{
 	
 	public ImageView getImgCongrats() {
 		if (imgCongrats == null) {
-			imgCongrats = new ImageView(new Image("images/title/Congratulations.png"));
+			imgCongrats = new ImageView(new Image("asset/images/title/Congratulations.png"));
 		}
 		return imgCongrats;
 	}
@@ -82,7 +82,7 @@ public class EndGameBP extends BorderPane{
 
 	public ImageView getImgPlayAgain() {
 		if (imgPlayAgain == null) {
-			imgPlayAgain = new ImageView(new Image("images/title/PlayAgain.png"));
+			imgPlayAgain = new ImageView(new Image("asset/images/title/PlayAgain.png"));
 		}
 		return imgPlayAgain;
 	}

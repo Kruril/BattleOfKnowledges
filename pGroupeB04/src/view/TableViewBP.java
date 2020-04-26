@@ -110,7 +110,7 @@ public class TableViewBP extends BorderPane {
 
     public Button getBtnAddTheme() {
         if (btnAddTheme == null) {
-            btnAddTheme = new Button("", new ImageView(new Image("images/icon/validation.png",
+            btnAddTheme = new Button("", new ImageView(new Image("asset/images/icon/validation.png",
                     30, 30, true, true)));
             btnAddTheme.getStyleClass().add("round");
             btnAddTheme.setOnAction(event -> {

@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
+import utils.audio.AudioPlayer;
 import utils.controler.JsonManager;
 import utils.Resolution;
 import utils.controler.TrashManager;
@@ -55,7 +56,7 @@ public class Main extends Application {
         primaryStage.setMinWidth(1080.);
         primaryStage.setMinHeight(720.);
         primaryStage.setTitle("Battle of knowledge");
-        primaryStage.getIcons().add(new Image("images/icon/euro.png"));
+        primaryStage.getIcons().add(new Image("asset/images/icon/euro.png"));
 
         primaryStage.show();
 
@@ -70,6 +71,8 @@ public class Main extends Application {
             JsonManager.getDeck().toJson();
 
         });
+
+        AudioPlayer.play();
 
     }
 

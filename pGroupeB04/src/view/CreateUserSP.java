@@ -2,7 +2,6 @@ package view;
 
 import application.Main;
 import exceptions.UserAlreadyExist;
-import exceptions.UserUnknown;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -103,7 +102,7 @@ public class CreateUserSP extends StackPane{
 
     public ImageView getImgCreateUser() {
         if (imgCreateUser == null) {
-        	imgCreateUser = new ImageView(new Image("images/title/Create_User.png"));
+        	imgCreateUser = new ImageView(new Image("asset/images/title/Create_User.png"));
         }
         return imgCreateUser;
     }

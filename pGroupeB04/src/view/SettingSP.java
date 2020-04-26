@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
 import utils.Damerau;
+import utils.audio.AudioPlayer;
 
 public class SettingSP extends StackPane {
 
@@ -59,7 +60,7 @@ public class SettingSP extends StackPane {
         
         HBox hbDiff = new HBox();
         hbDiff.setSpacing(20);
-        hbDiff.getChildren().addAll(getLblDifficulty(),getCmDifficulty());
+        hbDiff.getChildren().addAll(getLblDifficulty(), getCmDifficulty());
 
         vContainer.getChildren().addAll(hbSound,hbResolution,hbAvatar, hbDiff);
         vContainer.setSpacing(50);
@@ -80,7 +81,7 @@ public class SettingSP extends StackPane {
 
     public ImageView getIvTitle() {
         if (ivTitle == null) {
-            ivTitle = new ImageView(new Image("images/title/Settings.png"));
+            ivTitle = new ImageView(new Image("asset/images/title/Settings.png"));
         }
         return ivTitle;
     }
@@ -115,6 +116,12 @@ public class SettingSP extends StackPane {
         if (slSound == null) {
             slSound = new Slider();
             slSound.getStyleClass().add("textBox");
+            slSound.setMin(0.);
+            slSound.setMax(1.);
+            slSound.setValue(AudioPlayer.getPlayer().getVolume());
+            slSound.valueProperty().addListener((observable, oldValue, newValue) -> {
+                AudioPlayer.volume(newValue.doubleValue());
+            });
         }
         return slSound;
     }
@@ -164,21 +171,21 @@ public class SettingSP extends StackPane {
 		return lblDifficulty;
 	}
 
-	public ComboBox<Difficulty> getCmDifficulty() {
+    public ComboBox<Difficulty> getCmDifficulty() {
         if (cmDifficulty == null) {
-        	cmDifficulty = new ComboBox<>();
-        	cmDifficulty.getStyleClass().add("textBox");
-        	cmDifficulty.setPromptText(Difficulty.NORMAL.name());
+            cmDifficulty = new ComboBox<>();
+            cmDifficulty.getStyleClass().add("textBox");
+            cmDifficulty.setPromptText(Difficulty.NORMAL.name());
 
             for (Difficulty diff: Difficulty.values())
-            	cmDifficulty.getItems().add(diff);
+                cmDifficulty.getItems().add(diff);
 
             getCmDifficulty().setOnAction(event -> {
-            	int value = getCmDifficulty().getSelectionModel().getSelectedItem().getValeur();
+                int value = getCmDifficulty().getSelectionModel().getSelectedItem().getValue();
                 Damerau.setDifficulty(value);
             });
         }
-        
+
         return cmDifficulty;
     }
 

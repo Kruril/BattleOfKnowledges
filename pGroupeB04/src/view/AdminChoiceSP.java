@@ -2,7 +2,6 @@ package view;
 
 import application.Main;
 import enumeration.Difficulty;
-import enumeration.SizeScreen;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -23,6 +22,8 @@ public class AdminChoiceSP extends StackPane{
 	private Button btnModifQuestion;
     private Button btnModifTime;
     private Button btnBack;
+    
+    private Label lblDifficulty;
     
     public AdminChoiceSP() {
     	
@@ -47,7 +48,7 @@ public class AdminChoiceSP extends StackPane{
 
 	public ImageView getImgTitre() {
 		if (imgTitre == null) {
-			imgTitre = new ImageView(new Image("images/title/Choose.png"));
+			imgTitre = new ImageView(new Image("asset/images/title/Choose.png"));
 		}
 		return imgTitre;
 	}
@@ -76,6 +77,17 @@ public class AdminChoiceSP extends StackPane{
 		return btnModifTime;
 	}
 	
+	
+	
+	public Label getLblDifficulty() {
+		if (lblDifficulty == null) {
+			lblDifficulty = new Label("Difficulty :");
+			lblDifficulty.getStyleClass().add("labelBasique");
+
+		}
+		return lblDifficulty;
+	}
+
 	public Button getBtnBack() {
 		if (btnBack == null) {
 			btnBack = new Button("Back");

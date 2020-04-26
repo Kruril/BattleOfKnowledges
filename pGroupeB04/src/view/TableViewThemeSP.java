@@ -255,7 +255,7 @@ public class TableViewThemeSP extends StackPane {
 
 	public Button getBtnValidation() {
 		if (btnValidation == null) {
-			btnValidation = new Button("", new ImageView(new Image("images/icon/validation.png",
+			btnValidation = new Button("", new ImageView(new Image("asset/images/icon/validation.png",
 					30, 30, true, true)));
 			btnValidation.getStyleClass().add("round");
 			btnValidation.setOnAction(event -> validation());
@@ -296,7 +296,7 @@ public class TableViewThemeSP extends StackPane {
 
 	public Button getBtnAddFile() {
 		if (btnAddFile == null) {
-			btnAddFile = new Button("", new ImageView(new Image("images/icon/openFile.png",
+			btnAddFile = new Button("", new ImageView(new Image("asset/images/icon/openFile.png",
 					25, 25, true, true)));
 			btnAddFile.getStyleClass().add("round");
 			btnAddFile.setOnAction(event -> importFile());

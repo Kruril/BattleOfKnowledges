@@ -63,7 +63,7 @@ public class ModifTimeSP extends StackPane {
 
     public ImageView getImgTitre() {
         if (imgTitre == null) {
-            imgTitre = new ImageView(new Image("images/title/Modify_Time.png"));
+            imgTitre = new ImageView(new Image("asset/images/title/Modify_Time.png"));
         }
         return imgTitre;
     }

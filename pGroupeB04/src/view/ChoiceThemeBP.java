@@ -119,7 +119,7 @@ public class ChoiceThemeBP extends BorderPane {
 
     public ImageView getIvTitle() {
         if (ivTitle == null) {
-            ivTitle = new ImageView("images/title/ChooseThemeLabel.png");
+            ivTitle = new ImageView("asset/images/title/ChooseThemeLabel.png");
         }
         return ivTitle;
     }
