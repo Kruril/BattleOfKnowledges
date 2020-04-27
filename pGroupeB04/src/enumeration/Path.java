@@ -13,7 +13,7 @@ public enum  Path {
     FILE_CONNECTION("json/user/"),
 
     //Audio
-    MAIN_SOUND("/asset/audio/ANW3225_08_That-Way-You-Look-At-Me.wav");
+    MAIN_SOUND("/asset/audio/main_music.wav");
 
     private String path;
 

@@ -26,6 +26,7 @@ public class AudioPlayer {
             loadFrom(Path.MAIN_SOUND);
         }
         player.play();
+        player.setCycleCount(MediaPlayer.INDEFINITE);
     }
 
     public static void stop() {
