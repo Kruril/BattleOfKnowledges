@@ -3,8 +3,9 @@ package utils.controler;
 import model.User;
 import model.UserBuilder;
 import utils.Cryptage;
-import view.AdminLoginSP;
-import view.UserLoginSP;
+import view.admin.AdminLoginSP;
+import view.user.Player;
+import view.user.UserLoginSP;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -29,6 +30,7 @@ public abstract class Connection {
         User user = User.fromJson(login);
         if (user != null) {
             if (className == UserLoginSP.class && !user.isAllowed()) {
+                Player.setUser(user);
                 return Objects.equals(Cryptage.decrypt(user.getPassword()), password);
             }
             else if (className == AdminLoginSP.class && user.isAllowed()) {
@@ -58,8 +60,10 @@ public abstract class Connection {
                         .password(Cryptage.encrypt(password))
                         .email(email)
                         .bank(0)
+                        .pseudo(login)
                         .build();
                 user.toJson();
+                Player.setUser(user);
                 return true;
             } else {
             	throw new UserAlreadyExist();

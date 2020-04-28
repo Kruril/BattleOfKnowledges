@@ -2,5 +2,7 @@
   "login": "user",
   "password": "/MUULL9/uV1egZ2rZg6WOA==",
   "email": "",
-  "bank": 123
+  "pseudo": "user",
+  "bank": 123,
+  "allowed": false
 }

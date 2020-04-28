@@ -82,3 +82,17 @@
     -fx-border-width: 4px;
     -fx-border-color: #b36000;
 }
+
+.waitingPlayer {
+    -fx-background-color: linear-gradient(from 50% 0% to 50% 100%,
+    #e2dcdc, #7b7b7d);
+    -fx-font-family: "Book Antiqua";
+    -fx-font-weight: bold;
+    -fx-text-fill: #504f4f;
+    -fx-font-size: 25px;
+    -fx-line-height: 49px;
+    -fx-min-width: 450px;
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
+
+}
