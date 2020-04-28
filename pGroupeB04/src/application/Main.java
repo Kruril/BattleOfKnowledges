@@ -11,7 +11,8 @@ import utils.audio.AudioPlayer;
 import utils.controler.JsonManager;
 import utils.Resolution;
 import utils.controler.TrashManager;
-import view.*;
+import view.user.Player;
+import view.user.UserLoginSP;
 
 /**
  *Battle of knowledge is a game based on the principle of 4 in a row the famous game show Question for a champion.
@@ -69,6 +70,7 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(event -> {
             resolution.toJson(primaryStage.getWidth(),primaryStage.getHeight());
             JsonManager.getDeck().toJson();
+            if (Player.getUser() != null) Player.getUser().toJson();
 
         });
 

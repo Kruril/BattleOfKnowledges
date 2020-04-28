@@ -5,16 +5,17 @@ import serialisation.Serialization;
 
 public class User{
 
-    private String login, password, email;
+    private String login, password, email, pseudo;
     private int bank;
     private boolean allowed;
 
-    public User(String login, String password, String email, int bank) {
+    public User(String login, String password, String email, int bank, String pseudo) {
         this.login = login;
         this.password = password;
         this.email = email;
         this.bank = bank;
         this.allowed = false;
+        this.pseudo = pseudo;
     }
 
     public String getLogin() {
@@ -37,6 +38,10 @@ public class User{
         return allowed;
     }
 
+    public String getPseudo() {
+        return pseudo;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -52,5 +57,9 @@ public class User{
 
     public void toJson() {
         Serialization.writeJson(Path.FILE_CONNECTION.getPath() + login, this);
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 }

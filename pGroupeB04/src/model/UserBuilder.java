@@ -2,7 +2,7 @@ package model;
 
 public class UserBuilder{
 
-    private String login, password, email;
+    private String login, password, email, pseudo;
     private int bank;
 
     public UserBuilder login(String login) {
@@ -25,7 +25,12 @@ public class UserBuilder{
         return this;
     }
 
+    public UserBuilder pseudo(String pseudo) {
+        this.pseudo = pseudo;
+        return this;
+    }
+
     public User build() {
-        return new User(login, password, email, bank);
+        return new User(login, password, email, bank, pseudo);
     }
 }

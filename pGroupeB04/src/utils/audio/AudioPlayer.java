@@ -27,6 +27,7 @@ public class AudioPlayer {
         }
         player.play();
         player.setCycleCount(MediaPlayer.INDEFINITE);
+        player.setMute(true);
     }
 
     public static void stop() {
