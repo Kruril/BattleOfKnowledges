@@ -53,7 +53,7 @@ public class DeckTest {
     @Test
     public void createIterator() {
     	//IteratorQuestion iterator = new IteratorQuestion(JsonManager.choiceTheme(theme));
-        //deck.createIterator(theme);
+        //deck.createIterator(JsonManager.choiceTheme(theme));
     }
 
     @Test
