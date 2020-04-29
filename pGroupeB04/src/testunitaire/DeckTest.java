@@ -3,6 +3,8 @@ package testunitaire;
 import model.Deck;
 import model.IteratorQuestion;
 import model.Question;
+import model.Trash;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +19,7 @@ import static org.junit.Assert.*;
 public class DeckTest {
 
     private Deck deck;
+	private Trash trash;
     private List<Question> questions;
     private String author="Author",theme="theme",answer="answer";
     private String clue1="I'm a clue",clue2="I'm a second clue",clue3="I'm the last clue";
@@ -30,6 +33,7 @@ public class DeckTest {
     @After
     public void tearDown() throws Exception {
         deck = null;
+        trash = null;
         questions = null;
     }
 
@@ -65,46 +69,79 @@ public class DeckTest {
     public void testToString() {
     }
 
-    @Test
-    public void addQuestion() {
-    	Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
-    	questions.add(question);
-    	assertTrue(questions.contains(question) || !question.checkQuestion());
-    	questions.add(question);
-    }   
-    
-    @Test
-    public void addQuestionAlreadyExist() {
-    	Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
-    	questions.add(question);
-    	assertTrue(questions.contains(question));
-    	questions.add(question);
-    } 
-    
-    @Test
-    public void addQuestionChecked() {
-    	Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
-    	assertTrue(question.checkQuestion());
-    	questions.add(question);
-    }
+	/**
+	 * Test of the addQuestion method
+	 */
 
-    @Test
-    public void removeQuestion() {
+	@Test
+	public void testAddQuestion() {
     	Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
-    	assertFalse(questions.contains(question));
-    	questions.add(question);
-    	questions.remove(question);
-    	assertFalse(questions.contains(question));
-    }
+		deck.addQuestion(question);
+		assertTrue(questions.contains(question) && questions.size()==1);
+	}
 
+	@Test
+	public void testAddQuestionAlreadyAdded() {
+		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
+		questions.add(question);
+		deck.addQuestion(question);
+		assertTrue(questions.contains(question) && questions.size()==1);
+	}
+	
+
+	@Test
+	public void testAddQuestionWithError() {
+		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
+		deck.addQuestion(question);
+		assertTrue(question.checkQuestion()==false);
+	}
+	
+	/**
+	 * test of removeQuestion method
+	 */
+	
+	@Test
+	public void testRemoveQuestion() {
+		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
+		questions.add(question);
+		deck.removeQuestion(question);
+		assertTrue(!(questions.contains(question)) && questions.size()==0);
+	}
+
+	@Test
+	public void testRemoveQuestionNotContained() {
+		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
+		deck.removeQuestion(question);
+		assertTrue(!(questions.contains(question)) && questions.size()==0);
+	}
+    
     @Test
     public void testCreateIterator() {
     	deck.createIterator();   
     }
     
-    @Test
-    public void isEmpty() {
-    	assertFalse(questions == null);
-    	deck.isEmpty();
-    }
+    /**
+	 * Test of the isEmpty method
+	 */
+
+	@Test
+	public void testIsEmptyNull() {
+		questions=null;
+		deck.isEmpty();
+		assertTrue(questions==null);
+	}
+	
+	@Test
+	public void testIsNotEmpty() {
+		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
+		questions.add(question);
+		deck.isEmpty();
+		assertTrue(questions.size()!=0);
+	}
+	
+	@Test
+	public void testIsEmpty() {
+		deck.isEmpty();
+		assertTrue(questions.size()==0);
+	}
 }
