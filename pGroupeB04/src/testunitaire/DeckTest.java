@@ -84,7 +84,6 @@ public class DeckTest {
     @Test
     public void addQuestionChecked() {
     	Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
-    	//questions.add(question);
     	assertTrue(question.checkQuestion());
     	questions.add(question);
     }
