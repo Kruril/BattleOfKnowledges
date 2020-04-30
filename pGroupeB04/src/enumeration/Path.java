@@ -13,7 +13,8 @@ public enum  Path {
     FILE_CONNECTION("json/user/"),
 
     //Audio
-    MAIN_SOUND("/asset/audio/main_music.wav");
+    MAIN_SOUND("/asset/audio/main_music.wav"),
+    VOLUME_SOUND("json/audio/volume.json");
 
     private String path;
 

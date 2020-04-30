@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import utils.BackgroundLoader;
 import utils.Damerau;
 import utils.audio.AudioPlayer;
+import utils.audio.Sound;
 import view.admin.AdminLoginSP;
 
 public class SettingSP extends StackPane {
@@ -29,7 +30,9 @@ public class SettingSP extends StackPane {
     private ComboBox<ImageView> cmAvatar;
     private Button btnBack;
     private Button btnAdmin;
-
+    
+    private Sound sound;
+    
     private Label lblDifficulty;
     private ComboBox<Difficulty> cmDifficulty;
     
@@ -115,13 +118,16 @@ public class SettingSP extends StackPane {
 
     public Slider getSlSound() {
         if (slSound == null) {
-            slSound = new Slider();
+            slSound = new Slider(0,1,AudioPlayer.getPlayer().getVolume());
             slSound.getStyleClass().add("textBox");
             slSound.setMin(0.);
             slSound.setMax(1.);
             slSound.setValue(AudioPlayer.getPlayer().getVolume());
             slSound.valueProperty().addListener((observable, oldValue, newValue) -> {
                 AudioPlayer.volume(newValue.doubleValue());
+                sound=new Sound(newValue.doubleValue());
+                sound.toJson(sound.getVolume());
+                
             });
         }
         return slSound;

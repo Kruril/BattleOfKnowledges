@@ -8,6 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import utils.audio.AudioPlayer;
+import utils.audio.Sound;
 import utils.controler.JsonManager;
 import utils.Resolution;
 import utils.controler.TrashManager;
@@ -44,7 +45,9 @@ public class Main extends Application {
         resolution.fromJson();
         primaryStage.setFullScreenExitHint("");
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-
+        
+        Sound sound=new Sound();
+        sound.fromJson();
 
         scene = new Scene(new UserLoginSP());
         scene.getStylesheets().addAll("styles/btnStyles.css", "styles/labelStyles.css", "styles/BoxStyles.css",
@@ -68,14 +71,16 @@ public class Main extends Application {
         });
 
         primaryStage.setOnCloseRequest(event -> {
-            resolution.toJson(primaryStage.getWidth(),primaryStage.getHeight());
+        	
+        	resolution.toJson(primaryStage.getWidth(),primaryStage.getHeight());
+             
             JsonManager.getDeck().toJson();
             if (Player.getUser() != null) Player.getUser().toJson();
 
         });
 
         AudioPlayer.play();
-
+        AudioPlayer.volume(sound.getVolume());
     }
 
 
