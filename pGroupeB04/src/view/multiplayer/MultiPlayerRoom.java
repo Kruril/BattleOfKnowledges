@@ -49,7 +49,7 @@ public class MultiPlayerRoom extends StackPane {
         this.setPadding(new Insets(20.));
         this.getChildren().addAll(getIvTitle(), vbWaitingPlayer, getBtnBack(), getBtnStart());
 
-        server = new Server(1234);
+        server = new Server(1234, playerWaits);
         server.start();
     }
 
@@ -68,7 +68,7 @@ public class MultiPlayerRoom extends StackPane {
             playerWait2 = new Label("Waiting player ...");
             playerWait2.getStyleClass().add("waitingPlayer");
             playerWait2.setPadding(insets);
-            playerWaits.put(1, playerWait2);
+            playerWaits.put(2, playerWait2);
         }
         return playerWait2;
     }
@@ -78,7 +78,7 @@ public class MultiPlayerRoom extends StackPane {
             playerWait3 = new Label("Waiting player ...");
             playerWait3.getStyleClass().add("waitingPlayer");
             playerWait3.setPadding(insets);
-            playerWaits.put(1, playerWait3);
+            playerWaits.put(3, playerWait3);
         }
         return playerWait3;
     }

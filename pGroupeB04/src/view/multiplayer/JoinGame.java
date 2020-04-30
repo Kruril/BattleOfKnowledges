@@ -2,6 +2,7 @@ package view.multiplayer;
 
 import application.Main;
 import connection.Client;
+import connection.gestion.client.packets.AddConnectionPacket;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -46,10 +47,6 @@ public class JoinGame  extends StackPane {
 
         this.setPadding(new Insets(20.));
         this.getChildren().addAll(getIvTitle(), vbContainer, getBtnBack(), getBtnJoin());
-
-        Main.getStage().setOnCloseRequest(event -> {
-            if (client != null) client.close();
-        });
 
     }
 
@@ -121,7 +118,13 @@ public class JoinGame  extends StackPane {
                 else return;
                 Player.setName(getTxtNamePLayer().getText());
                 client.connect();
-                client.sendInfo();
+                AddConnectionPacket packet = new AddConnectionPacket();
+                try {
+                    client.sendObject(packet);
+                    client.sendInfo();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
         }
         return btnJoin;

@@ -2,13 +2,11 @@ package connection;
 
 
 import connection.gestion.client.EventListenerClient;
+import connection.gestion.client.packets.AddConnectionPacket;
 import connection.gestion.client.packets.RemoveConnectionPacket;
 import utils.user.Player;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 
@@ -18,8 +16,8 @@ public class Client implements Runnable{
 	private int port;
 
 	private Socket socket;
-	private PrintWriter out;
-	private BufferedReader in;
+	private ObjectOutputStream out;
+	private ObjectInputStream in;
 
 	private boolean running = false;
 	private EventListenerClient listener;
@@ -32,8 +30,8 @@ public class Client implements Runnable{
 	public void connect() {
 		try {
 			socket = new Socket(host,port);
-			out = new PrintWriter(socket.getOutputStream());
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			out = new ObjectOutputStream(socket.getOutputStream());
+			in = new ObjectInputStream(socket.getInputStream());
 			listener = new EventListenerClient();
 			new Thread(this).start();
 		}catch(ConnectException e) {
@@ -56,8 +54,8 @@ public class Client implements Runnable{
 		}
 	}
 
-	public void sendObject(Object packet) {
-		out.println(packet);
+	public void sendObject(Object packet) throws IOException {
+		out.writeObject(packet);
 		out.flush();
 	}
 
@@ -66,14 +64,20 @@ public class Client implements Runnable{
 		running = true;
 
 		while(running) {
-			Object data = in.lines();
-			listener.received(data);
+			try {
+				Object data = in.readObject();
+				listener.received(data);
+			} catch (IOException e) {
+
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	public void sendInfo() {
+	public void sendInfo() throws IOException {
 		if (socket == null) return;
-		out.println(Player.getName());
+		out.writeObject(Player.getName());
 		out.flush();
 	}
 }

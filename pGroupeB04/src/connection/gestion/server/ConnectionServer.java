@@ -1,28 +1,31 @@
 package connection.gestion.server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
+import javafx.application.Platform;
+import javafx.scene.control.Label;
 
-public class ConnectionServer implements Runnable{
+import java.io.*;
+import java.net.Socket;
+import java.util.HashMap;
+
+public class ConnectionServer implements Runnable {
 
     private Socket socket;
-    private BufferedReader in;
-    private PrintWriter out;
+    private ObjectInputStream in;
+    private ObjectOutputStream out;
 
     public int id;
     private EventListenerServer listener;
     private boolean running = false;
+    private HashMap<Integer, Label> hashMap;
 
-    public ConnectionServer(Socket socket, int id) {
+    public ConnectionServer(Socket socket, int id, HashMap<Integer, Label> hashMap) {
         this.socket = socket;
         this.id = id;
+        this.hashMap = hashMap;
 
         try {
-            out = new PrintWriter(socket.getOutputStream());
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new ObjectOutputStream(socket.getOutputStream());
+            in = new ObjectInputStream(socket.getInputStream());
             listener = new EventListenerServer();
         }catch(IOException e) {
             e.printStackTrace();
@@ -34,8 +37,19 @@ public class ConnectionServer implements Runnable{
         running = true;
 
         while(running) {
-            Object data = in.lines();
-            listener.received(data, this);
+            try {
+                Object data = in.readObject();
+                if (data instanceof String) {
+                    Platform.runLater(() -> {
+                        hashMap.get(id + 1).setText(data.toString());
+                    });
+                }
+                listener.received(data, this);
+            } catch (IOException e) {
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -50,8 +64,8 @@ public class ConnectionServer implements Runnable{
         }
     }
 
-    public void sendObject(Object packet) {
-        out.println(packet);
+    public void sendObject(Object packet) throws IOException {
+        out.writeObject(packet);
         out.flush();
     }
 }

@@ -4,12 +4,12 @@ package connection;
 import connection.Handler.ConnectionHandlerServer;
 import connection.gestion.server.ConnectionServer;
 import javafx.scene.control.Label;
+import view.multiplayer.MultiPlayerRoom;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class Server implements Runnable{
 
@@ -18,9 +18,11 @@ public class Server implements Runnable{
 	private boolean running = false;
 	private int id = 0;
 	private Socket socket;
+	private HashMap<Integer, Label> hashMap;
 
-	public Server(int port) {
+	public Server(int port, HashMap<Integer, Label> hashMap) {
 		this.port = port;
+		this.hashMap = hashMap;
 
 		try {
 			serverSocket = new ServerSocket(port);
@@ -42,8 +44,6 @@ public class Server implements Runnable{
 			try {
 				socket = serverSocket.accept();
 				initSocket(socket);
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				System.out.println(bufferedReader.readLine());
 			}catch(IOException e) {
 				shutdown();
 			}
@@ -51,7 +51,7 @@ public class Server implements Runnable{
 	}
 
 	private void initSocket(Socket socket) {
-		ConnectionServer connection = new ConnectionServer(socket,id);
+		ConnectionServer connection = new ConnectionServer(socket,id, hashMap);
 		ConnectionHandlerServer.connections.put(id,connection);
 		new Thread(connection).start();
 		id++;
@@ -61,7 +61,6 @@ public class Server implements Runnable{
 		running = false;
 
 		try {
-			System.out.println("je passe ici");
 			socket.close();
 			serverSocket.close();
 		}catch(IOException e) {
