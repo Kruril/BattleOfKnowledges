@@ -1,4 +1,4 @@
-package utils;
+package utils.utility;
 
 public abstract class Damerau {
 	

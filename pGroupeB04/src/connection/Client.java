@@ -1,61 +1,79 @@
 package connection;
 
-import view.user.Player;
+
+import connection.gestion.client.EventListenerClient;
+import connection.gestion.client.packets.RemoveConnectionPacket;
+import utils.user.Player;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
+import java.net.ConnectException;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Scanner;
 
-public class Client {
+public class Client implements Runnable{
+
+	private String host;
+	private int port;
 
 	private Socket socket;
+	private PrintWriter out;
+	private BufferedReader in;
 
-//	public static void main(String[] args) {
-//		try {
-//
-//			Socket socket = new Socket(InetAddress.getLocalHost().getHostAddress(),1342);
-//			System.out.println(socket);
-//
-//			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//
-//			System.out.println(bufferedReader.readLine());
-//
-//
-//			socket.close();
-//			bufferedReader.close();
-//
-//		} catch (UnknownHostException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	private boolean running = false;
+	private EventListenerClient listener;
 
-
-	public Client() {
+	public Client(String host, int port) {
+		this.host = host;
+		this.port = port;
 	}
 
-	public void connection() throws IOException {
-		if (socket != null) return;
-		System.out.println("I'm client");
-		socket = new Socket(InetAddress.getLocalHost().getHostAddress(), 1234);
-		System.out.println("connected");
-
+	public void connect() {
+		try {
+			socket = new Socket(host,port);
+			out = new PrintWriter(socket.getOutputStream());
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			listener = new EventListenerClient();
+			new Thread(this).start();
+		}catch(ConnectException e) {
+			System.out.println("Unable to connect to the server");
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void sendInfo() throws IOException {
+	public void close() {
+		try {
+			running = false;
+			RemoveConnectionPacket packet = new RemoveConnectionPacket();
+			sendObject(packet);
+			in.close();
+			out.close();
+			socket.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void sendObject(Object packet) {
+		out.println(packet);
+		out.flush();
+	}
+
+	@Override
+	public void run() {
+		running = true;
+
+		while(running) {
+			Object data = in.lines();
+			listener.received(data);
+		}
+	}
+
+	public void sendInfo() {
 		if (socket == null) return;
-		PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
-		printWriter.println(Player.getName());
-		printWriter.flush();
-	}
-
-	public void close() throws IOException {
-		socket.close();
+		out.println(Player.getName());
+		out.flush();
 	}
 }

@@ -11,8 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import utils.BackgroundLoader;
-import view.admin.AdminChoiceSP;
+import utils.utility.BackgroundLoader;
 
 public class ModifTimeSP extends StackPane {
 

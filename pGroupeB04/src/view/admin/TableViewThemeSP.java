@@ -22,7 +22,7 @@ import javafx.util.Callback;
 import model.Deck;
 import model.Question;
 import model.dialog.EditableQuestion;
-import utils.BackgroundLoader;
+import utils.utility.BackgroundLoader;
 import utils.controler.JsonManager;
 import utils.TableView.CommonTableView;
 import utils.controler.TrashManager;

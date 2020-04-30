@@ -14,9 +14,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import model.User;
 import model.UserBuilder;
-import utils.BackgroundLoader;
+import utils.utility.BackgroundLoader;
+import utils.user.Player;
 import utils.controler.Connection;
 import view.MainPageSP;
 
@@ -180,8 +180,9 @@ public class UserLoginSP extends StackPane {
 			
 			btnInvite.setOnAction(event -> {
 			    Player.setUser(new UserBuilder()
-                                .login("default")
-                                .build());
+                        .login("default")
+                        .pseudo("default")
+                        .build());
 			    Main.switchScene(new MainPageSP());
             });
 

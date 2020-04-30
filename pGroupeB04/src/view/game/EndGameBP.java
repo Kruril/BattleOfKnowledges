@@ -10,9 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import utils.BackgroundLoader;
+import utils.utility.BackgroundLoader;
 import view.MainPageSP;
-import view.game.ChoiceThemeBP;
 
 public class EndGameBP extends BorderPane{
 	

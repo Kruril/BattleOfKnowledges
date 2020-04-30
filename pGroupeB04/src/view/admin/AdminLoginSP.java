@@ -14,10 +14,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import utils.BackgroundLoader;
+import utils.utility.BackgroundLoader;
 import utils.controler.Connection;
 import view.MainPageSP;
-import view.admin.AdminChoiceSP;
 
 public class AdminLoginSP extends StackPane {
 

@@ -2,9 +2,9 @@ package utils.controler;
 
 import model.User;
 import model.UserBuilder;
-import utils.Cryptage;
+import utils.utility.Cryptage;
 import view.admin.AdminLoginSP;
-import view.user.Player;
+import utils.user.Player;
 import view.user.UserLoginSP;
 
 import javax.mail.internet.AddressException;

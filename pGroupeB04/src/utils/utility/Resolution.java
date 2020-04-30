@@ -1,4 +1,4 @@
-package utils;
+package utils.utility;
 
 import application.Main;
 import enumeration.Path;

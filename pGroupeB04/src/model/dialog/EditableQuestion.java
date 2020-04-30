@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.Question;
-import utils.BackgroundLoader;
+import utils.utility.BackgroundLoader;
 
 import java.util.ArrayList;
 import java.util.Arrays;

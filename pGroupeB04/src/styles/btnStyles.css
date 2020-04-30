@@ -29,7 +29,7 @@
 #small-button {
     -fx-min-width: 100px;
     -fx-min-height: 25px;
-    -fx-font-size: 35;
+    -fx-font-size: 25;
 }
 
 #medium-button {

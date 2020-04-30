@@ -7,12 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import utils.BackgroundLoader;
+import utils.utility.BackgroundLoader;
 import utils.controler.JsonManager;
-import utils.Resolution;
+import utils.utility.Resolution;
 import view.game.ChoiceThemeBP;
 import view.multiplayer.MultiplayerBP;
-import view.user.Player;
+import utils.user.Player;
+import view.user.UserLoginSP;
 
 public class MainPageSP extends StackPane {
 
@@ -64,7 +65,7 @@ public class MainPageSP extends StackPane {
                 new Resolution().toJson(Main.getStage().getWidth(),Main.getStage().getHeight());
                 Main.getStage().close();
                 JsonManager.getDeck().toJson();
-                if (Player.getUser() != null) Player.getUser().toJson();
+                Player.getUser().toJson();
             });
         }
         return btnOff;

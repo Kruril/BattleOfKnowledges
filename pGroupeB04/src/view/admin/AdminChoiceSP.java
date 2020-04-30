@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import utils.BackgroundLoader;
+import utils.utility.BackgroundLoader;
 
 public class AdminChoiceSP extends StackPane{
 

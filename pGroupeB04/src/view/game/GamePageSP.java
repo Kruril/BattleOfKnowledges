@@ -13,11 +13,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.IteratorQuestion;
 import model.dialog.ExitGame;
-import utils.BackgroundLoader;
-import utils.Damerau;
+import utils.utility.BackgroundLoader;
+import utils.utility.Damerau;
 import utils.GamePage.Timer;
 import utils.controler.JsonManager;
-import view.game.EndGameBP;
 
 import java.util.HashMap;
 

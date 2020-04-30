@@ -1,4 +1,4 @@
-package view.user;
+package utils.user;
 
 import model.User;
 

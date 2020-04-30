@@ -11,8 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import utils.BackgroundLoader;
-import view.user.Player;
+import utils.utility.BackgroundLoader;
+import utils.user.Player;
 
 import java.io.IOException;
 
@@ -46,6 +46,10 @@ public class JoinGame  extends StackPane {
 
         this.setPadding(new Insets(20.));
         this.getChildren().addAll(getIvTitle(), vbContainer, getBtnBack(), getBtnJoin());
+
+        Main.getStage().setOnCloseRequest(event -> {
+            if (client != null) client.close();
+        });
 
     }
 
@@ -99,11 +103,7 @@ public class JoinGame  extends StackPane {
             btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setOnAction(event -> {
-                try {
-                    client.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                if (client != null) client.close();
                 Main.switchScene(new MultiplayerBP());
             });
         }
@@ -117,15 +117,11 @@ public class JoinGame  extends StackPane {
             btnJoin.setId("big-button");
             btnJoin.getStyleClass().add("buttonBasic");
             btnJoin.setOnAction(event -> {
-                try {
-                    if (client == null) client = new Client();
-                    else return;
-                    Player.setName(getTxtNamePLayer().getText());
-                    client.connection();
-                    client.sendInfo();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                if (client == null) client = new Client(getTxtHost().getText(),1234);
+                else return;
+                Player.setName(getTxtNamePLayer().getText());
+                client.connect();
+                client.sendInfo();
             });
         }
         return btnJoin;

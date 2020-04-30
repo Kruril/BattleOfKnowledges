@@ -2,12 +2,13 @@ package view.multiplayer;
 
 
 import application.Main;
+import connection.Server;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import utils.BackgroundLoader;
+import utils.utility.BackgroundLoader;
 import view.MainPageSP;
 
 import java.io.IOException;
@@ -42,11 +43,7 @@ public class MultiplayerBP extends StackPane{
 	            btnCreate.getStyleClass().add("buttonBasic");
 	            btnCreate.setId("big-button");
 	            btnCreate.setOnAction(event -> {
-					try {
-						Main.switchScene(new MultiPlayerRoom());
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					Main.switchScene(new MultiPlayerRoom());
 				});
 	            
 			}

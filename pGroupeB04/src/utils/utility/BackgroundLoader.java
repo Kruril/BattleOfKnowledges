@@ -1,4 +1,4 @@
-package utils;
+package utils.utility;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;

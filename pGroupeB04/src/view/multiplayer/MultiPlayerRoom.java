@@ -1,10 +1,7 @@
 package view.multiplayer;
 
 import application.Main;
-import com.sun.javafx.fxml.LoadListener;
-import com.sun.org.apache.bcel.internal.generic.*;
 import connection.Server;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -13,32 +10,34 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import utils.BackgroundLoader;
+import utils.utility.BackgroundLoader;
 
 import java.io.IOException;
+import java.util.HashMap;
+
 
 public class MultiPlayerRoom extends StackPane {
 
-    private Label playerWait1, playerWait2, playerWait3, playerWait4;
+    private Label playerWait1, playerWait2, playerWait3;
     private ImageView ivTitle;
 
-    private Button btnBack, btnStart;
+    private Button btnBack, btnStart, btnLaunch;
 
     private Insets insets = new Insets(10.);
 
     private Server server;
 
+    private HashMap<Integer, Label> playerWaits;
 
+    public MultiPlayerRoom() {
+        playerWaits = new HashMap<>();
 
-    public MultiPlayerRoom() throws IOException {
-
-        server = new Server();
 
         this.setBackground(BackgroundLoader.builderBackGround());
 
         setAlignment(getIvTitle(), Pos.TOP_CENTER);
 
-        VBox vbWaitingPlayer = new VBox(getPlayerWait1(), getPlayerWait2(), getPlayerWait3(), getPlayerWait4());
+        VBox vbWaitingPlayer = new VBox(getBtnLaunch(),getPlayerWait1(), getPlayerWait2(), getPlayerWait3());
         vbWaitingPlayer.setMaxSize(720.,360.);
         vbWaitingPlayer.setAlignment(Pos.CENTER);
         vbWaitingPlayer.setSpacing(20.);
@@ -50,9 +49,8 @@ public class MultiPlayerRoom extends StackPane {
         this.setPadding(new Insets(20.));
         this.getChildren().addAll(getIvTitle(), vbWaitingPlayer, getBtnBack(), getBtnStart());
 
-        server.create();
-        getPlayerWait1().setText(server.PlayerConnected());
-
+        server = new Server(1234);
+        server.start();
     }
 
     public Label getPlayerWait1() {
@@ -60,6 +58,7 @@ public class MultiPlayerRoom extends StackPane {
             playerWait1 = new Label("Waiting player ...");
             playerWait1.getStyleClass().add("waitingPlayer");
             playerWait1.setPadding(insets);
+            playerWaits.put(1, playerWait1);
         }
         return playerWait1;
     }
@@ -69,6 +68,7 @@ public class MultiPlayerRoom extends StackPane {
             playerWait2 = new Label("Waiting player ...");
             playerWait2.getStyleClass().add("waitingPlayer");
             playerWait2.setPadding(insets);
+            playerWaits.put(1, playerWait2);
         }
         return playerWait2;
     }
@@ -78,18 +78,9 @@ public class MultiPlayerRoom extends StackPane {
             playerWait3 = new Label("Waiting player ...");
             playerWait3.getStyleClass().add("waitingPlayer");
             playerWait3.setPadding(insets);
+            playerWaits.put(1, playerWait3);
         }
         return playerWait3;
-    }
-
-    public Label getPlayerWait4() {
-        if (playerWait4 == null) {
-            playerWait4 = new Label("Waiting player ...");
-            playerWait4.getStyleClass().add("waitingPlayer");
-            playerWait4.setPadding(insets);
-
-        }
-        return playerWait4;
     }
 
     public ImageView getIvTitle() {
@@ -106,12 +97,8 @@ public class MultiPlayerRoom extends StackPane {
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("small-button");
             btnBack.setOnAction(event -> {
+                server.shutdown();
                 Main.switchScene(new MultiplayerBP());
-                try {
-                    server.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             });
         }
         return btnBack;
@@ -127,4 +114,20 @@ public class MultiPlayerRoom extends StackPane {
         return btnStart;
     }
 
+    public Button getBtnLaunch() {
+        if (btnLaunch == null) {
+            btnLaunch = new Button("Launch server");
+            btnLaunch.setBackground(BackgroundLoader.buildBtnBackGround());
+            btnLaunch.getStyleClass().add("buttonBasic");
+            btnLaunch.setId("small-button");
+            btnLaunch.setOnAction(event -> {
+//                try {
+//                    server.create(this);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+            });
+        }
+        return btnLaunch;
+    }
 }
