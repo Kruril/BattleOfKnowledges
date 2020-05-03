@@ -1,4 +1,4 @@
-package connection.gestion.server.packets;
+package connection.gestion.packets;
 
 import java.io.Serializable;
 

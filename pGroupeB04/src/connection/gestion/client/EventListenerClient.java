@@ -1,9 +1,8 @@
 package connection.gestion.client;
 
-
 import connection.Handler.ConnectionHandlerClient;
-import connection.gestion.server.packets.AddConnectionPacket;
-import connection.gestion.server.packets.RemoveConnectionPacket;
+import connection.gestion.packets.AddConnectionPacket;
+import connection.gestion.packets.RemoveConnectionPacket;
 
 public class EventListenerClient {
 	

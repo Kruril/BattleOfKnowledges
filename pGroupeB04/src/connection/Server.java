@@ -1,12 +1,15 @@
 package connection;
 
 
+import application.Main;
 import connection.Handler.ConnectionHandlerServer;
 import connection.gestion.server.ConnectionServer;
+import enumeration.Settings;
 import javafx.scene.control.Label;
-import view.multiplayer.MultiPlayerRoom;
+import view.game.ChoiceThemeBP;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -61,10 +64,21 @@ public class Server implements Runnable{
 		running = false;
 
 		try {
-			socket.close();
+			if (socket != null) {
+				socket.close();
+			}
 			serverSocket.close();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
+
+	public void startGame() throws IOException {
+		Settings.CONTINUE_AFTER_4.setContinueGame(true);
+//		Main.switchScene(new ChoiceThemeBP());
+		ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+		out.writeObject("Start Game");
+		out.flush();
+	}
+
 }

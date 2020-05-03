@@ -2,8 +2,8 @@ package connection;
 
 
 import connection.gestion.client.EventListenerClient;
-import connection.gestion.client.packets.AddConnectionPacket;
-import connection.gestion.client.packets.RemoveConnectionPacket;
+import connection.gestion.packets.AddConnectionPacket;
+import connection.gestion.packets.RemoveConnectionPacket;
 import utils.user.Player;
 
 import java.io.*;

@@ -1,7 +1,7 @@
 package connection.gestion.server;
 
-import javafx.application.Platform;
 import javafx.scene.control.Label;
+import utils.user.Player;
 
 import java.io.*;
 import java.net.Socket;
@@ -39,13 +39,8 @@ public class ConnectionServer implements Runnable {
         while(running) {
             try {
                 Object data = in.readObject();
-                if (data instanceof String) {
-                    Platform.runLater(() -> {
-                        hashMap.get(id + 1).setText(data.toString());
-                    });
-                }
                 listener.received(data, this);
-            } catch (IOException e) {
+            } catch (IOException ignored) {
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -67,5 +62,15 @@ public class ConnectionServer implements Runnable {
     public void sendObject(Object packet) throws IOException {
         out.writeObject(packet);
         out.flush();
+    }
+
+    public void sendInfo() throws IOException {
+        if (socket == null) return;
+        out.writeObject(Player.getUser());
+        out.flush();
+    }
+
+    public HashMap<Integer, Label> getHashMap() {
+        return hashMap;
     }
 }

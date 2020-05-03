@@ -90,7 +90,7 @@ public class DeckTest {
 	
 
 	@Test
-	public void testAddQuestionWithError() {
+	public void testAddQuestionNotChecked() {
 		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
 		deck.addQuestion(question);
 		assertTrue(question.checkQuestion()==false);

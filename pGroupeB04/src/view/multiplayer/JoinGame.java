@@ -2,7 +2,7 @@ package view.multiplayer;
 
 import application.Main;
 import connection.Client;
-import connection.gestion.client.packets.AddConnectionPacket;
+import connection.gestion.packets.AddConnectionPacket;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
