@@ -13,10 +13,7 @@ import utils.controler.JsonManager;
 import utils.utility.Resolution;
 import utils.controler.TrashManager;
 import utils.user.Player;
-import view.multiplayer.MultiPlayerRoom;
 import view.user.UserLoginSP;
-
-import java.io.IOException;
 
 /**
  * Battle of knowledge is a game based on the principle of 4 in a row the famous game show Question for a champion.

@@ -2,7 +2,6 @@ package view.multiplayer;
 
 import application.Main;
 import connection.Client;
-import connection.gestion.client.packets.AddConnectionPacket;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -14,9 +13,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.utility.BackgroundLoader;
 import utils.user.Player;
-
-import java.io.IOException;
-
 
 public class JoinGame  extends StackPane {
 
@@ -100,7 +96,6 @@ public class JoinGame  extends StackPane {
             btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setOnAction(event -> {
-                if (client != null) client.close();
                 Main.switchScene(new MultiplayerBP());
             });
         }
@@ -118,13 +113,6 @@ public class JoinGame  extends StackPane {
                 else return;
                 Player.setName(getTxtNamePLayer().getText());
                 client.connect();
-                AddConnectionPacket packet = new AddConnectionPacket();
-                try {
-                    client.sendObject(packet);
-                    client.sendInfo();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             });
         }
         return btnJoin;

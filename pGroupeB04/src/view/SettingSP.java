@@ -1,15 +1,12 @@
 package view;
 
 import application.Main;
-import enumeration.AvatarPlayer;
 import enumeration.Difficulty;
+import enumeration.Settings;
 import enumeration.SizeScreen;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -24,16 +21,19 @@ import view.admin.AdminLoginSP;
 public class SettingSP extends StackPane {
 
     private ImageView ivTitle;
-    private Label lblSound, lblResolution, lblAvatar;
+
+    private Label lblSound, lblResolution, lblDifficulty, lblContinue;
+
     private Slider slSound;
-    private ComboBox<String> cmResolusion;
-    private ComboBox<ImageView> cmAvatar;
+
     private Button btnBack;
     private Button btnAdmin;
-    
+
     private Sound sound;
-    
-    private Label lblDifficulty;
+
+    private CheckBox chContinue;
+
+    private ComboBox<String> cmResolusion;
     private ComboBox<Difficulty> cmDifficulty;
     
     public SettingSP() {
@@ -49,24 +49,19 @@ public class SettingSP extends StackPane {
 
         //Sound
         HBox hbSound = new HBox();
-        hbSound.setSpacing(20);
+        hbSound.setSpacing(30);
         hbSound.getChildren().addAll(getLblSound(), getSlSound());
 
         //Resolution
         HBox hbResolution = new HBox();
         hbResolution.setSpacing(20);
         hbResolution.getChildren().addAll(getLblResolution(), getCmResolution());
-
-        //Avatar
-        HBox hbAvatar = new HBox();
-        hbAvatar.setSpacing(20);
-        hbAvatar.getChildren().addAll(getLblAvatar(), getCmAvatar());
         
         HBox hbDiff = new HBox();
-        hbDiff.setSpacing(20);
+        hbDiff.setSpacing(30);
         hbDiff.getChildren().addAll(getLblDifficulty(), getCmDifficulty());
 
-        vContainer.getChildren().addAll(hbSound,hbResolution,hbAvatar, hbDiff);
+        vContainer.getChildren().addAll(hbSound,hbResolution, hbDiff, getChContinue());
         vContainer.setSpacing(50);
         vContainer.setMaxSize(600,350);
         StackPane.setAlignment(vContainer, Pos.CENTER);
@@ -107,15 +102,6 @@ public class SettingSP extends StackPane {
         return lblResolution;
     }
 
-    public Label getLblAvatar() {
-        if (lblAvatar == null) {
-            lblAvatar = new Label("Avatar :");
-            lblAvatar.setAlignment(Pos.CENTER_RIGHT);
-            lblAvatar.getStyleClass().add("labelBasique");
-        }
-        return lblAvatar;
-    }
-
     public Slider getSlSound() {
         if (slSound == null) {
             slSound = new Slider(0,1,AudioPlayer.getPlayer().getVolume());
@@ -125,7 +111,7 @@ public class SettingSP extends StackPane {
             slSound.setValue(AudioPlayer.getPlayer().getVolume());
             slSound.valueProperty().addListener((observable, oldValue, newValue) -> {
                 AudioPlayer.volume(newValue.doubleValue());
-                sound=new Sound(newValue.doubleValue());
+                sound = new Sound(newValue.doubleValue());
                 sound.toJson(sound.getVolume());
                 
             });
@@ -155,20 +141,6 @@ public class SettingSP extends StackPane {
         return cmResolusion;
     }
 
-    public ComboBox<ImageView> getCmAvatar() {
-        if (cmAvatar == null) {
-            cmAvatar = new ComboBox<>();
-            cmAvatar.setPromptText("select avatar");
-            cmAvatar.getStyleClass().add("textBox");
-
-            for (AvatarPlayer avatar: AvatarPlayer.values())
-                cmAvatar.getItems().add(avatar.getValeur());
-        }
-        return cmAvatar;
-    }
-    
-	
-	
 	public Label getLblDifficulty() {
 		if (lblDifficulty == null) {
 			lblDifficulty = new Label("Difficulty :");
@@ -202,7 +174,10 @@ public class SettingSP extends StackPane {
             btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("big-button");
-            btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
+            btnBack.setOnAction(event -> {
+                saveContinue();
+                Main.switchScene(new MainPageSP());
+            });
         }
         return btnBack;
     }
@@ -213,9 +188,21 @@ public class SettingSP extends StackPane {
         	btnAdmin.setBackground(BackgroundLoader.buildBtnBackGround());
         	btnAdmin.getStyleClass().add("buttonBasic");
         	btnAdmin.setId("big-button");
-        	btnAdmin.setOnAction(event -> Main.switchScene(new AdminLoginSP()));
+        	btnAdmin.setOnAction(event -> {
+        	    saveContinue();
+        	    Main.switchScene(new AdminLoginSP());
+            });
         }
         return btnAdmin;
+    }
+
+    public CheckBox getChContinue() {
+        if (chContinue == null) {
+            chContinue = new CheckBox("Continue after 4 points ?");
+            chContinue.setSelected(Settings.CONTINUE_AFTER_4.isContinueGame());
+            chContinue.getStyleClass().add("labelBasique");
+        }
+        return chContinue;
     }
 
     /**
@@ -268,5 +255,9 @@ public class SettingSP extends StackPane {
             resolution = (int)Main.getStage().getWidth()+"*"+(int)Main.getStage().getHeight();
 
         cmResolusion.setPromptText(resolution);
+    }
+
+    public void saveContinue() {
+        Settings.CONTINUE_AFTER_4.setContinueGame(getChContinue().isSelected());
     }
 }

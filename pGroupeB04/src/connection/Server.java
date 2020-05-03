@@ -3,8 +3,8 @@ package connection;
 
 import connection.Handler.ConnectionHandlerServer;
 import connection.gestion.server.ConnectionServer;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import view.multiplayer.MultiPlayerRoom;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -19,10 +19,12 @@ public class Server implements Runnable{
 	private int id = 0;
 	private Socket socket;
 	private HashMap<Integer, Label> hashMap;
+	private Button btnstart;
 
-	public Server(int port, HashMap<Integer, Label> hashMap) {
+	public Server(int port, HashMap<Integer, Label> hashMap, Button btnstart) {
 		this.port = port;
 		this.hashMap = hashMap;
+		this.btnstart = btnstart;
 
 		try {
 			serverSocket = new ServerSocket(port);
@@ -51,7 +53,7 @@ public class Server implements Runnable{
 	}
 
 	private void initSocket(Socket socket) {
-		ConnectionServer connection = new ConnectionServer(socket,id, hashMap);
+		ConnectionServer connection = new ConnectionServer(socket,id, hashMap, btnstart);
 		ConnectionHandlerServer.connections.put(id,connection);
 		new Thread(connection).start();
 		id++;
@@ -61,10 +63,13 @@ public class Server implements Runnable{
 		running = false;
 
 		try {
-			socket.close();
+			if (socket != null) {
+				socket.close();
+			}
 			serverSocket.close();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
+
 }

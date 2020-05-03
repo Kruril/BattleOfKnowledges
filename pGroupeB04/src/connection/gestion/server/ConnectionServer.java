@@ -1,7 +1,11 @@
 package connection.gestion.server;
 
-import javafx.application.Platform;
+import application.Main;
+import enumeration.Settings;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import utils.user.Player;
+import view.game.ChoiceThemeBP;
 
 import java.io.*;
 import java.net.Socket;
@@ -17,11 +21,13 @@ public class ConnectionServer implements Runnable {
     private EventListenerServer listener;
     private boolean running = false;
     private HashMap<Integer, Label> hashMap;
+    private Button btnStart;
 
-    public ConnectionServer(Socket socket, int id, HashMap<Integer, Label> hashMap) {
+    public ConnectionServer(Socket socket, int id, HashMap<Integer, Label> hashMap, Button btnStart) {
         this.socket = socket;
         this.id = id;
         this.hashMap = hashMap;
+        this.btnStart = btnStart;
 
         try {
             out = new ObjectOutputStream(socket.getOutputStream());
@@ -30,6 +36,20 @@ public class ConnectionServer implements Runnable {
         }catch(IOException e) {
             e.printStackTrace();
         }
+        btnStart.pressedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                Settings.CONTINUE_AFTER_4.setContinueGame(true);
+
+                try {
+                    out.writeObject("Start Game");
+                    out.flush();
+                    Main.switchScene(new ChoiceThemeBP());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -39,13 +59,8 @@ public class ConnectionServer implements Runnable {
         while(running) {
             try {
                 Object data = in.readObject();
-                if (data instanceof String) {
-                    Platform.runLater(() -> {
-                        hashMap.get(id + 1).setText(data.toString());
-                    });
-                }
                 listener.received(data, this);
-            } catch (IOException e) {
+            } catch (IOException ignored) {
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -67,5 +82,15 @@ public class ConnectionServer implements Runnable {
     public void sendObject(Object packet) throws IOException {
         out.writeObject(packet);
         out.flush();
+    }
+
+    public void sendInfo() throws IOException {
+        if (socket == null) return;
+        out.writeObject(Player.getUser());
+        out.flush();
+    }
+
+    public HashMap<Integer, Label> getHashMap() {
+        return hashMap;
     }
 }

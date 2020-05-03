@@ -1,6 +1,7 @@
 package view.game;
 
 import application.Main;
+import enumeration.Settings;
 import enumeration.Time;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -252,7 +253,7 @@ public class GamePageSP extends StackPane {
      * @param newValue new value of label
      */
     public void gameOver(String newValue) {
-        if (newValue.equals("0") || pointWon == 4 || itQuestions.size() <= 0) {
+        if (newValue.equals("0") || itQuestions.size() <= 0 || (!Settings.CONTINUE_AFTER_4.isContinueGame() && pointWon == 4)) {
             Main.switchScene(new EndGameBP(pointWon));
             Timer.getTimeTimer().stop();
             pointWon++;
@@ -370,12 +371,12 @@ public class GamePageSP extends StackPane {
         pointsFromLbl.forEach((key, label) -> {
             if (pointCons == Integer.parseInt(key)) {
                 label.getStyleClass().addAll("point-gagne", "point-consecutif");
-                pointFinal();
             }
             if (pointCons - 1 == Integer.parseInt(key)) {
                 label.getStyleClass().remove("point-consecutif");
             }
         });
+        pointFinal();
     }
 
     /**
