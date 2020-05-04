@@ -12,9 +12,13 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.IteratorQuestion;
+import model.Question;
 import utils.utility.BackgroundLoader;
 import utils.controler.JsonManager;
 import utils.TableView.CommonTableView;
+
+import java.util.List;
 
 public class TableViewBP extends BorderPane {
 
@@ -138,11 +142,8 @@ public class TableViewBP extends BorderPane {
             String sRemoved = getTvThemes().getSelectionModel().getSelectedItem();
             if (JsonManager.getThemes().remove(sRemoved)) {
                 getTvThemes().getItems().remove(sRemoved);
-                JsonManager.getDeck().getList().forEach(question -> {
-                    if (question.getTheme().equalsIgnoreCase(sRemoved)) {
-                        JsonManager.getDeck().removeQuestion(question);
-                    }
-                });
+                List<Question> qRemoved = JsonManager.choiceTheme(sRemoved);
+                JsonManager.getDeck().getList().removeAll(qRemoved);
             }
         });
 

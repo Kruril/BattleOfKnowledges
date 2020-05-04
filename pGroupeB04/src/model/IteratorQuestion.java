@@ -9,6 +9,7 @@ public class IteratorQuestion {
 
     public IteratorQuestion(List<Question> list) {
         this.list = list;
+        index = 0;
     }
 
     public Question item() {
@@ -53,7 +54,7 @@ public class IteratorQuestion {
     }
 
     public boolean hasNext() {
-        return index < list.size() -1;
+        return index < list.size();
     }
 
     public boolean hasPrevious() {

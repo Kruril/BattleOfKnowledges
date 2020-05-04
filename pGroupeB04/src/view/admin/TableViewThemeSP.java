@@ -21,7 +21,7 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 import model.Deck;
 import model.Question;
-import model.dialog.EditableQuestion;
+import view.dialog.EditableQuestion;
 import utils.utility.BackgroundLoader;
 import utils.controler.JsonManager;
 import utils.TableView.CommonTableView;

@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.IteratorQuestion;
-import model.dialog.ExitGame;
+import view.dialog.ExitGame;
 import utils.utility.BackgroundLoader;
 import utils.utility.Damerau;
 import utils.GamePage.Timer;

@@ -1,4 +1,4 @@
-package model.dialog;
+package view.dialog;
 
 import application.Main;
 import javafx.geometry.Insets;

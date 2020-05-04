@@ -1,4 +1,4 @@
-package model.dialog;
+package view.dialog;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
