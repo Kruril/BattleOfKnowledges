@@ -54,7 +54,7 @@ public class IteratorQuestion {
     }
 
     public boolean hasNext() {
-        return index < list.size();
+        return index < list.size() - 1;
     }
 
     public boolean hasPrevious() {
