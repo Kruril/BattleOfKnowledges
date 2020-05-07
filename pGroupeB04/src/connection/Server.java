@@ -74,4 +74,8 @@ public class Server implements Runnable{
 		this.btnstart = button;
 		this.hashMap = hashMap;
 	}
+
+	public Socket getSocket() {
+		return socket;
+	}
 }

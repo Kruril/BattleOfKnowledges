@@ -119,4 +119,8 @@ public class Client implements Runnable{
 	public void addHost(String host) {
 		this.host = host;
 	}
+
+	public Socket getSocket() {
+		return socket;
+	}
 }
