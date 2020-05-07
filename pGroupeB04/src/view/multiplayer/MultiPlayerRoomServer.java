@@ -26,8 +26,6 @@ public class MultiPlayerRoomServer extends StackPane {
 
     private Insets insets = new Insets(10.);
 
-    private Server server;
-
     private HashMap<Integer, Label> playerWaits;
 
     public MultiPlayerRoomServer() {
@@ -50,8 +48,8 @@ public class MultiPlayerRoomServer extends StackPane {
         this.setPadding(new Insets(20.));
         this.getChildren().addAll(getIvTitle(), vbWaitingPlayer, getBtnBack(), getBtnStart());
 
-        server = new Server(1234, playerWaits, getBtnStart());
-        server.start();
+        Main.getServer().setProperty(playerWaits, getBtnStart());
+        Main.getServer().start();
     }
 
     public Label getPlayerWait0() {
@@ -106,7 +104,7 @@ public class MultiPlayerRoomServer extends StackPane {
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("small-button");
             btnBack.setOnAction(event -> {
-                server.shutdown();
+                Main.getServer().shutdown();
                 Main.switchScene(new MultiplayerBP());
             });
         }

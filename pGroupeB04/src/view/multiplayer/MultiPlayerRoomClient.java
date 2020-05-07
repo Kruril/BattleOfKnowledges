@@ -27,11 +27,8 @@ public class MultiPlayerRoomClient extends StackPane {
 
     private HashMap<Integer, Label> playerWaits;
 
-    private Client client;
-
-    public MultiPlayerRoomClient(Client client) {
+    public MultiPlayerRoomClient() {
         playerWaits = new HashMap<>();
-        this.client = client;
 
         this.setBackground(BackgroundLoader.builderBackGround());
 
@@ -47,7 +44,7 @@ public class MultiPlayerRoomClient extends StackPane {
 
         this.setPadding(new Insets(20.));
         this.getChildren().addAll(getIvTitle(), vbWaitingPlayer, getBtnBack());
-        this.client.addHashMap(playerWaits);
+        Main.getClient().addHashMap(playerWaits);
     }
 
     public Label getPlayerWait0() {
@@ -103,7 +100,7 @@ public class MultiPlayerRoomClient extends StackPane {
             btnBack.setId("small-button");
             btnBack.setOnAction(event -> {
                 Main.switchScene(new JoinGame());
-                if (client != null) client.close();
+                Main.getClient().close();
             });
         }
         return btnBack;

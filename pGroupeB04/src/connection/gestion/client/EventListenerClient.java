@@ -13,7 +13,7 @@ import view.multiplayer.MultiPlayerRoomClient;
 
 public class EventListenerClient {
 	
-	public void received(Object p, Client client) {
+	public void received(Object p) {
 		if(p instanceof AddConnectionPacket) {
 			AddConnectionPacket packet = (AddConnectionPacket)p;
 			ConnectionHandlerClient.connections.put(packet.id,new ConnectionClient(packet.id));
@@ -27,7 +27,7 @@ public class EventListenerClient {
 		else if (p instanceof String) {
 			String value = (String) p;
 			if (value.equals("connected")) {
-				Main.switchScene(new MultiPlayerRoomClient(client));
+				Main.switchScene(new MultiPlayerRoomClient());
 			}
 			else if (value.equals("Start Game")) {
 				Main.switchScene(new ChoiceThemeBP());
@@ -36,12 +36,12 @@ public class EventListenerClient {
 		else if (p instanceof User) {
 			User user = (User) p;
 			Platform.runLater(() -> {
-				if (client.getHashMap().get(1).getText().equals("Waiting player ..."))
-					client.getHashMap().get(1).setText(user.getPseudo());
-				else if (client.getHashMap().get(2).getText().equals("Waiting player ..."))
-					client.getHashMap().get(2).setText(user.getPseudo());
-				else if (client.getHashMap().get(3).getText().equals("Waiting player ..."))
-					client.getHashMap().get(3).setText(user.getPseudo());
+				if (Main.getClient().getHashMap().get(1).getText().equals("Waiting player ..."))
+					Main.getClient().getHashMap().get(1).setText(user.getPseudo());
+				else if (Main.getClient().getHashMap().get(2).getText().equals("Waiting player ..."))
+					Main.getClient().getHashMap().get(2).setText(user.getPseudo());
+				else if (Main.getClient().getHashMap().get(3).getText().equals("Waiting player ..."))
+					Main.getClient().getHashMap().get(3).setText(user.getPseudo());
 			});
 		}
 	}

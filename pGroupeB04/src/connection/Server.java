@@ -21,10 +21,8 @@ public class Server implements Runnable{
 	private HashMap<Integer, Label> hashMap;
 	private Button btnstart;
 
-	public Server(int port, HashMap<Integer, Label> hashMap, Button btnstart) {
+	public Server(int port) {
 		this.port = port;
-		this.hashMap = hashMap;
-		this.btnstart = btnstart;
 
 		try {
 			serverSocket = new ServerSocket(port);
@@ -72,4 +70,8 @@ public class Server implements Runnable{
 		}
 	}
 
+	public void setProperty(HashMap<Integer, Label> hashMap, Button button) {
+		this.btnstart = button;
+		this.hashMap = hashMap;
+	}
 }

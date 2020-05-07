@@ -25,8 +25,7 @@ public class Client implements Runnable{
 	private EventListenerClient listener;
 	private HashMap<Integer, Label> hashMap;
 
-	public Client(String host, int port) {
-		this.host = host;
+	public Client(int port) {
 		this.port = port;
 		hashMap = new HashMap<>();
 	}
@@ -90,7 +89,7 @@ public class Client implements Runnable{
 		while(running) {
 			try {
 				Object data = in.readObject();
-				listener.received(data, this);
+				listener.received(data);
 			} catch (IOException ignored) {
 
 			} catch (ClassNotFoundException e) {
@@ -115,5 +114,9 @@ public class Client implements Runnable{
 
 	public HashMap<Integer, Label> getHashMap() {
 		return hashMap;
+	}
+
+	public void addHost(String host) {
+		this.host = host;
 	}
 }

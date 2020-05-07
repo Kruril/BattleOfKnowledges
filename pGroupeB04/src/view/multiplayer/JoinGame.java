@@ -24,8 +24,6 @@ public class JoinGame  extends StackPane {
     private Button btnBack, btnJoin;
     private Insets insets = new Insets(10.);
 
-    private Client client;
-
     public JoinGame() {
 
         this.setBackground(BackgroundLoader.builderBackGround());
@@ -109,10 +107,9 @@ public class JoinGame  extends StackPane {
             btnJoin.setId("big-button");
             btnJoin.getStyleClass().add("buttonBasic");
             btnJoin.setOnAction(event -> {
-                if (client == null) client = new Client(getTxtHost().getText(),1234);
-                else return;
+                Main.getClient().addHost(getTxtHost().getText());
                 Player.setName(getTxtNamePLayer().getText());
-                client.connect();
+                Main.getClient().connect();
             });
         }
         return btnJoin;

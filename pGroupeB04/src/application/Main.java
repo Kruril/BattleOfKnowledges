@@ -1,5 +1,7 @@
 package application;
 
+import connection.Client;
+import connection.Server;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,6 +26,8 @@ import view.user.UserLoginSP;
 public class Main extends Application {
 
     private static Stage stage;
+    private static Server server;
+    private static Client client;
 
     /**
      * method that changes the displayed scene
@@ -90,6 +94,20 @@ public class Main extends Application {
 
     public static Stage getStage() {
         return stage;
+    }
+
+    public static Server getServer() {
+        if (server == null) {
+            server = new Server(1234);
+        }
+        return server;
+    }
+
+    public static Client getClient() {
+        if (client == null) {
+            client = new Client(1234);
+        }
+        return client;
     }
 
     /**
