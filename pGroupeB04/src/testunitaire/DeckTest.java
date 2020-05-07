@@ -88,7 +88,6 @@ public class DeckTest {
 		assertTrue(questions.contains(question) && questions.size()==1);
 	}
 	
-
 	@Test
 	public void testAddQuestionNotChecked() {
 		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);

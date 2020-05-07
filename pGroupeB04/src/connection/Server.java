@@ -2,14 +2,19 @@ package connection;
 
 
 import connection.Handler.ConnectionHandlerServer;
+import connection.gestion.client.ConnectionClient;
 import connection.gestion.server.ConnectionServer;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import view.game.ChoiceThemeBP;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Map;
+
+import application.Main;
 
 public class Server implements Runnable{
 
@@ -77,5 +82,11 @@ public class Server implements Runnable{
 
 	public Socket getSocket() {
 		return socket;
+	}
+	
+	public void launchGame() {
+		for (Map.Entry<Integer, ConnectionServer> client : ConnectionHandlerServer.connections.entrySet()) {
+			Main.switchScene(new ChoiceThemeBP());
+		}
 	}
 }
