@@ -54,7 +54,6 @@ public class TestQuestion {
 		listClues.add(clue3);
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
-		assertTrue(listClues.size()==3 && !(listClues.contains("") || listClues.contains(null)) && !(question.getAuthor().equalsIgnoreCase("")));
 	}
 	
 	@Test
@@ -63,7 +62,6 @@ public class TestQuestion {
 		listClues.add(clue2);
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
-		assertTrue(listClues.size()!=3);
 	}
 	@Test
 	public void testCheckQuestionWithoutAuthor() {
@@ -73,7 +71,6 @@ public class TestQuestion {
 		author="";
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
-		assertTrue(author.equalsIgnoreCase("") && listClues.size()==3);
 	}
 
 	@Test
@@ -83,7 +80,6 @@ public class TestQuestion {
 		listClues.add("");
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
-		assertTrue(listClues.contains(""));
 	}
 
 
@@ -94,7 +90,6 @@ public class TestQuestion {
 		listClues.add(null);
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
-		assertTrue(listClues.contains(null));
 	}
 	
 	@Test
@@ -105,7 +100,6 @@ public class TestQuestion {
 		listClues.add(clue3);
 		question=new Question(author,theme,listClues,answer);
 		question.checkQuestion();
-		assertTrue(question.getClues()==null);
 		
 	}
 	
