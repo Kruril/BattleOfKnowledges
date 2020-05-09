@@ -65,7 +65,6 @@ public class DeckTest {
     	deck.addQuestion(question);
     	deck.addQuestion(question2);
     	deck.checkTheme(theme);
-    	
     }
     
     @Test
