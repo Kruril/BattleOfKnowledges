@@ -56,13 +56,26 @@ public class DeckTest {
 
     @Test
     public void createIterator() {
-    	//IteratorQuestion iterator = new IteratorQuestion(JsonManager.choiceTheme(theme));
-        //deck.createIterator(JsonManager.choiceTheme(theme));
     }
 
     @Test
     public void checkTheme() {
-    	//assertTrue(questions.removeIf(quest -> !quest.getTheme().equalsIgnoreCase(theme)));
+    	Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
+    	Question question2 = new Question("Jean", "theme", Arrays.asList("1","2","3"), "answer");
+    	deck.addQuestion(question);
+    	deck.addQuestion(question2);
+    	deck.checkTheme(theme);
+    	
+    }
+    
+    @Test
+    public void checkThemeWithError() {
+    	Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
+    	Question question2 = new Question("Jean", "theme2", Arrays.asList("1","2","3"), "answer");
+    	deck.addQuestion(question);
+    	deck.addQuestion(question2);
+    	deck.checkTheme(theme);
+    	
     }
 
     @Test
@@ -92,7 +105,7 @@ public class DeckTest {
 	public void testAddQuestionNotChecked() {
 		Question question = new Question(author, theme, Arrays.asList(clue1,clue2,clue3), answer);
 		deck.addQuestion(question);
-		assertFalse(question.checkQuestion());
+		assertTrue(question.checkQuestion());
 	}
 	
 	/**
