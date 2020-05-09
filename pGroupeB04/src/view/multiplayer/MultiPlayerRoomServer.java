@@ -29,8 +29,8 @@ public class MultiPlayerRoomServer extends StackPane {
     private HashMap<Integer, Label> playerWaits;
 
     public MultiPlayerRoomServer() {
+    	
         playerWaits = new HashMap<>();
-
 
         this.setBackground(BackgroundLoader.builderBackGround());
 
