@@ -3,6 +3,11 @@
     src: url('Tytoon_Mist.ttf');
 }
 
+@font-face {
+    font-family: Book Antiqua;
+    src: url('book-antiqua.ttf');
+}
+
 .labelBasique {
     -fx-font-family: "Book Antiqua";
     -fx-font-weight: bold;
@@ -80,7 +85,7 @@
 
 .point-consecutif {
     -fx-border-width: 4px;
-    -fx-border-color: #b36000;
+    -fx-border-color: #001eb3;
 }
 
 .waitingPlayer {
