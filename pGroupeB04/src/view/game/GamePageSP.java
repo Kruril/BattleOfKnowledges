@@ -35,6 +35,7 @@ public class GamePageSP extends StackPane {
     private Label lblPoint2;
     private Label lblPoint3;
     private Label lblPoint4;
+    private Label lblMaxPoint;
 
     private Label lblTimer;
 
@@ -65,7 +66,7 @@ public class GamePageSP extends StackPane {
         //CENTER
         HBox hbCenter = new HBox();
         VBox vbPoints = new VBox();
-        vbPoints.getChildren().addAll(getLblPoint4(), getLblPoint3(), getLblPoint2(), getLblPoint1(), getLblPoint0());
+        vbPoints.getChildren().addAll(getLblMaxPoint(),getLblPoint4(), getLblPoint3(), getLblPoint2(), getLblPoint1(), getLblPoint0());
         vbPoints.setAlignment(Pos.CENTER);
         vbPoints.getStyleClass().add("vboxPoints");
         vbPoints.setMaxSize(100., 450);
@@ -212,6 +213,14 @@ public class GamePageSP extends StackPane {
             getPointsFromLbl().put(lblPoint4.getText(), lblPoint4);
         }
         return lblPoint4;
+    }
+
+    public Label getLblMaxPoint() {
+        if (lblMaxPoint == null) {
+            lblMaxPoint = new Label("max point : " + pointWon);
+            lblMaxPoint.getStyleClass().addAll("labelBasic");
+        }
+        return lblMaxPoint;
     }
 
     public Label getLblTimer() {
@@ -402,6 +411,7 @@ public class GamePageSP extends StackPane {
     public void pointFinal() {
         if (pointWon < pointCons) {
             pointWon = pointCons;
+            getLblMaxPoint().setText("max point : " + pointWon);
         }
     }
 }

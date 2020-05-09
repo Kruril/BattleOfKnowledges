@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.utility.BackgroundLoader;
 import utils.controler.Connection;
+import utils.utility.Mail;
 import view.MainPageSP;
 
 
@@ -89,6 +90,9 @@ public class CreateUserSP extends StackPane{
         if (!getPwfPassword().getText().equals("") && !getTxtLogin().getText().equals("")) {
             if (Connection.createUser(getTxtLogin().getText(), getPwfPassword().getText(), getTxtEmail().getText())) {
                 Main.switchScene(new MainPageSP());
+                if (getCbNewLetter().isSelected()) {
+                    Mail.sendMail(getTxtEmail().getText());
+                }
             }
             else {
                 clearAllEntries();

@@ -134,6 +134,12 @@ public class TableViewBP extends BorderPane {
         return btnAddTheme;
     }
 
+    /**
+     * Contextual menu for the table view.
+     * Do not overload the user interface.
+     * It contains an action which is to delete a theme as well as
+     * the questions concerning it
+     */
     public void contexMenu() {
         ContextMenu menu = new ContextMenu();
 

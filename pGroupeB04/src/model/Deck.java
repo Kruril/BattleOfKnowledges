@@ -45,6 +45,12 @@ public class Deck implements Pack {
 		return new IteratorQuestion(JsonManager.choiceTheme(theme));
 	}
 
+	/**
+	 * Check the theme of each question in the deck
+	 * if he finds a question that contains a different theme
+	 * then he will delete the question
+	 * @param theme the reference theme
+	 */
 	public void checkTheme(String theme) {
 		questions.removeIf(quest -> !quest.getTheme().equalsIgnoreCase(theme));
 	}

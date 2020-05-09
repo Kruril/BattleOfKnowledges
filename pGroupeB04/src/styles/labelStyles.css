@@ -101,3 +101,11 @@
     -fx-background-radius: 25px;
 
 }
+
+.labelBasic {
+    -fx-font-family: "Book Antiqua";
+    -fx-font-weight: bold;
+    -fx-text-fill: #80c400;
+    -fx-font-size: 15px;
+    -fx-line-height: 49px;
+}
