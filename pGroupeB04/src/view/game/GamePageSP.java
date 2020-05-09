@@ -1,5 +1,9 @@
 package view.game;
 
+import java.util.HashMap;
+import java.util.List;
+import model.Deck;
+
 import application.Main;
 import enumeration.Settings;
 import enumeration.Time;
@@ -14,15 +18,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.IteratorQuestion;
-import view.dialog.ExitGame;
-import view.multiplayer.EndGameMulti;
+import model.Question;
+import utils.GamePage.Timer;
 import utils.utility.BackgroundLoader;
 import utils.utility.Damerau;
-import utils.GamePage.Timer;
-import utils.controler.JsonManager;
-import view.user.CreateUserSP;
-
-import java.util.HashMap;
+import view.dialog.ExitGame;
+import view.multiplayer.EndGameMulti;
 
 public class GamePageSP extends StackPane {
 
@@ -45,7 +46,7 @@ public class GamePageSP extends StackPane {
     private TextField txtAnswer;
     private Button btnOk;
 
-    private final String theme;
+    
     private final IteratorQuestion itQuestions;
     private int waitingClues = 0;
     private long time;
@@ -55,9 +56,10 @@ public class GamePageSP extends StackPane {
 
     private final ExitGame exit = new ExitGame();
 
-    public GamePageSP(String theme) {
-        this.theme = theme;
-        this.itQuestions = JsonManager.getDeck().createIterator(theme);
+    public GamePageSP(List<Question> questions) {
+        Deck deck=new Deck();
+        deck.setQuestions(questions);
+        this.itQuestions = deck.createIterator();
 
         //BACKGROUND
         this.setBackground(BackgroundLoader.builderBackGround());
@@ -139,7 +141,7 @@ public class GamePageSP extends StackPane {
 
     public Label getLblTitle() {
         if (lblTitle == null) {
-            lblTitle = new Label(theme);
+            lblTitle = new Label(itQuestions.item().getTheme());
             lblTitle.getStyleClass().add("labelTitle");
         }
         return lblTitle;

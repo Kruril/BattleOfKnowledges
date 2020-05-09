@@ -116,9 +116,7 @@ public class MultiPlayerRoomServer extends StackPane {
             btnStart.setBackground(BackgroundLoader.buildBtnBackGround());
             btnStart.getStyleClass().add("buttonBasic");
             btnStart.setId("big-button");
-            btnStart.setOnAction(event -> {
-            	Main.getServer().launchGame();
-            });
+            
         }
         return btnStart;
     }

@@ -1,6 +1,7 @@
 package view.dialog;
 
 import application.Main;
+import enumeration.TypeGame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -40,6 +41,15 @@ public class ExitGame extends StackPane {
         if (btnExit == null) {
             btnExit = new Button("Exit");
             btnExit.setOnAction(event -> {
+            	switch(TypeGame.TYPEGAME.getValue()) {
+            	case "SERVER":
+            		Main.getServer().shutdown();
+            		break;
+            	case "CLIENT":
+            		Main.getClient().close();
+            		break;
+            	}
+            	
                 Main.switchScene(new MainPageSP());
                 Timer.getTimeTimer().stop();
             });
