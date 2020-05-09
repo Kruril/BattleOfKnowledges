@@ -43,12 +43,11 @@ public class ConnectionServer implements Runnable {
                 Settings.CONTINUE_AFTER_4.setContinueGame(true);
                 ParameterHost pHost=new ParameterHost();
                 try {
-                	out.writeObject(pHost);
-                    out.flush();
-                    Main.switchScene(new GamePageSP(pHost.getQuestions()));
+                    sendObject(pHost);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                Main.switchScene(new GamePageSP(pHost.getQuestions()));
             }
         });
 
@@ -82,6 +81,7 @@ public class ConnectionServer implements Runnable {
     }
 
     public void sendObject(Object packet) throws IOException {
+        System.out.println(packet.getClass());
         out.writeObject(packet);
         out.flush();
     }

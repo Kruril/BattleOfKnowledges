@@ -3,7 +3,9 @@ package model;
 import enumeration.Path;
 import serialisation.Serialization;
 
-public class User{
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String login, password, email, pseudo;
     private int bank;

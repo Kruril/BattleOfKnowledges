@@ -7,7 +7,7 @@ import java.util.Random;
 import enumeration.Time;
 import model.Question;
 
-public class ParameterHost implements Serializable{
+public class ParameterHost implements Serializable {
 	private int time;
 	private int interval;
 	private int randomNumber;
@@ -24,8 +24,6 @@ public class ParameterHost implements Serializable{
 			this.theme=JsonManager.getThemes().get(randomNumber);
 			this.questions=JsonManager.choiceTheme(theme);
 		}while(this.questions.size()<10);
-		
-		
 	}
 
 
@@ -33,30 +31,31 @@ public class ParameterHost implements Serializable{
 		return time;
 	}
 
-
 	public int getInterval() {
 		return interval;
 	}
-
-
-	public int getRandomNumber() {
-		return randomNumber;
-	}
-
 
 	public String getTheme() {
 		return theme;
 	}
 
-
 	public List<Question> getQuestions() {
 		return questions;
 	}
 
-
 	public boolean isCONTINUE() {
 		return CONTINUE;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "ParameterHost{" +
+				"time=" + time +
+				", interval=" + interval +
+				", randomNumber=" + randomNumber +
+				", theme='" + theme + '\'' +
+				", questions=" + questions +
+				", CONTINUE=" + CONTINUE +
+				'}';
+	}
 }
