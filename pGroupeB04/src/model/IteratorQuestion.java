@@ -11,7 +11,7 @@ public class IteratorQuestion {
         this.list = list;
         index = 0;
     }
-
+ 
     public Question item() {
         if (index >= 0 && index < list.size()) {
             return list.get(index);
@@ -29,6 +29,7 @@ public class IteratorQuestion {
         index--;
     }
 
+    
     public int lastIndex(){
         return index = list.size() -1;
     }

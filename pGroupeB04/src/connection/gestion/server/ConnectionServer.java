@@ -4,8 +4,10 @@ import application.Main;
 import enumeration.Settings;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import utils.controler.ParameterHost;
 import utils.user.Player;
 import view.game.ChoiceThemeBP;
+import view.game.GamePageSP;
 
 import java.io.*;
 import java.net.Socket;
@@ -39,11 +41,11 @@ public class ConnectionServer implements Runnable {
         btnStart.pressedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 Settings.CONTINUE_AFTER_4.setContinueGame(true);
-
+                ParameterHost pHost=new ParameterHost();
                 try {
-                    out.writeObject("Start Game");
+                	out.writeObject(pHost);
                     out.flush();
-                    Main.switchScene(new ChoiceThemeBP());
+                    Main.switchScene(new GamePageSP(pHost.getQuestions()));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

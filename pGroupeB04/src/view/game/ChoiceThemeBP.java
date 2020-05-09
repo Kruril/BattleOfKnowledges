@@ -13,10 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import utils.utility.BackgroundLoader;
+import model.Question;
 import utils.controler.JsonManager;
+import utils.utility.BackgroundLoader;
 import view.MainPageSP;
-import view.multiplayer.EndGameMulti;
 import view.multiplayer.MultiPlayerRoomClient;
 import view.multiplayer.MultiPlayerRoomServer;
 
@@ -63,13 +63,18 @@ public class ChoiceThemeBP extends BorderPane {
         this.setCenter(hTheme);
     }
 
+    public void launchGame(String theme) {
+    	List<Question> questions=JsonManager.choiceTheme(theme);
+    	Main.switchScene(new GamePageSP(questions));
+    }
+    
     public Button getBtnThm1() {
         if (btnThm1 == null) {
             btnThm1 = new Button(themes.get(0));
             btnThm1.setBackground(BackgroundLoader.buildBtnBackGround());
             btnThm1.getStyleClass().add("buttonBasic");
             btnThm1.setId("big-button");
-            btnThm1.setOnAction(event -> Main.switchScene(new GamePageSP(btnThm1.getText())));
+            btnThm1.setOnAction(event -> launchGame(btnThm1.getText()));
         }
         return btnThm1;
     }
@@ -81,7 +86,7 @@ public class ChoiceThemeBP extends BorderPane {
             btnThm2.getStyleClass().add("buttonBasic");
             btnThm2.setId("big-button");
             
-            btnThm2.setOnAction(event -> Main.switchScene(new GamePageSP(btnThm2.getText())));
+            btnThm2.setOnAction(event -> launchGame(btnThm2.getText()));
 
         }
         return btnThm2;
@@ -94,7 +99,7 @@ public class ChoiceThemeBP extends BorderPane {
             btnThm3.getStyleClass().add("buttonBasic");
             btnThm3.setId("big-button");
 
-            btnThm3.setOnAction(event -> Main.switchScene(new GamePageSP(btnThm3.getText())));
+            btnThm3.setOnAction(event -> launchGame(btnThm3.getText()));
         }
         return btnThm3;
     }
@@ -106,7 +111,7 @@ public class ChoiceThemeBP extends BorderPane {
             btnThm4.getStyleClass().add("buttonBasic");
             btnThm4.setId("big-button");
 
-            btnThm4.setOnAction(event -> Main.switchScene(new GamePageSP(btnThm4.getText())));
+            btnThm4.setOnAction(event -> launchGame(btnThm4.getText()));
         }
         return btnThm4;
     }

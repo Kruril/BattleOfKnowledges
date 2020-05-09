@@ -6,9 +6,13 @@ import connection.Client;
 import connection.Handler.ConnectionHandlerClient;
 import connection.gestion.packets.AddConnectionPacket;
 import connection.gestion.packets.RemoveConnectionPacket;
+import enumeration.Settings;
+import enumeration.Time;
 import javafx.application.Platform;
 import model.User;
+import utils.controler.ParameterHost;
 import view.game.ChoiceThemeBP;
+import view.game.GamePageSP;
 import view.multiplayer.MultiPlayerRoomClient;
 
 public class EventListenerClient {
@@ -29,9 +33,6 @@ public class EventListenerClient {
 			if (value.equals("connected")) {
 				Main.switchScene(new MultiPlayerRoomClient());
 			}
-			else if (value.equals("Start Game")) {
-				Main.switchScene(new ChoiceThemeBP());
-			}
 		}
 		else if (p instanceof User) {
 			User user = (User) p;
@@ -43,6 +44,16 @@ public class EventListenerClient {
 				else if (Main.getClient().getHashMap().get(3).getText().equals("Waiting player ..."))
 					Main.getClient().getHashMap().get(3).setText(user.getPseudo());
 			});
+		}
+		else if (p instanceof ParameterHost) {
+			ParameterHost pHost=(ParameterHost)p;
+			Platform.runLater(()->{
+				Time.TIMER_TIME.setValue(pHost.getTime());
+				Time.INTERVAL.setValue(pHost.getInterval());
+				Settings.CONTINUE_AFTER_4.setContinueGame(pHost.isCONTINUE());
+				Main.switchScene(new GamePageSP(pHost.getQuestions()));
+			});
+			
 		}
 	}
 
