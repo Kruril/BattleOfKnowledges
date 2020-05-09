@@ -1,0 +1,170 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: EditableQuestion</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">view.dialog</a> ]
+</div>
+
+<h1>Coverage Summary for Class: EditableQuestion (view.dialog)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EditableQuestion</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 42)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package view.dialog;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javafx.geometry.Insets;
+<i>4</i>&nbsp;import javafx.geometry.Pos;
+<i>5</i>&nbsp;import javafx.scene.control.Button;
+<i>6</i>&nbsp;import javafx.scene.control.TextField;
+<i>7</i>&nbsp;import javafx.scene.layout.HBox;
+<i>8</i>&nbsp;import javafx.scene.layout.StackPane;
+<i>9</i>&nbsp;import javafx.scene.layout.VBox;
+<i>10</i>&nbsp;import model.Question;
+<i>11</i>&nbsp;import utils.utility.BackgroundLoader;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import java.util.ArrayList;
+<i>14</i>&nbsp;import java.util.Arrays;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;public class EditableQuestion extends StackPane {
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    private Button btnEdit, btnCancel;
+<i>20</i>&nbsp;    private Question oldQuestion, editQuestion;
+<b class="nc"><i>21</i>&nbsp;    private TextField author = new TextField(),</b>
+<i>22</i>&nbsp;            clue1 = new TextField(),
+<i>23</i>&nbsp;            clue2 = new TextField(),
+<i>24</i>&nbsp;            clue3 = new TextField(),
+<i>25</i>&nbsp;            answer = new TextField();
+<i>26</i>&nbsp;
+<b class="nc"><i>27</i>&nbsp;    public EditableQuestion(Question question) {</b>
+<b class="nc"><i>28</i>&nbsp;        oldQuestion = question.clone();</b>
+<b class="nc"><i>29</i>&nbsp;        author.setText(question.getAuthor());</b>
+<b class="nc"><i>30</i>&nbsp;        clue1.setText(question.getClue(0));</b>
+<b class="nc"><i>31</i>&nbsp;        clue2.setText(question.getClue(1));</b>
+<b class="nc"><i>32</i>&nbsp;        clue3.setText(question.getClue(2));</b>
+<b class="nc"><i>33</i>&nbsp;        answer.setText(question.getAnswer());</b>
+<i>34</i>&nbsp;
+<b class="nc"><i>35</i>&nbsp;        HBox hbUp = new HBox(author, answer);</b>
+<b class="nc"><i>36</i>&nbsp;        hbUp.setAlignment(Pos.CENTER);</b>
+<b class="nc"><i>37</i>&nbsp;        hbUp.setSpacing(10.);</b>
+<b class="nc"><i>38</i>&nbsp;        HBox hbDown = new HBox(clue1, clue2, clue3);</b>
+<b class="nc"><i>39</i>&nbsp;        hbDown.setAlignment(Pos.CENTER);</b>
+<b class="nc"><i>40</i>&nbsp;        hbDown.setSpacing(10.);</b>
+<b class="nc"><i>41</i>&nbsp;        VBox vbContainer = new VBox(hbUp, hbDown);</b>
+<b class="nc"><i>42</i>&nbsp;        vbContainer.setAlignment(Pos.CENTER);</b>
+<b class="nc"><i>43</i>&nbsp;        vbContainer.setSpacing(50.);</b>
+<i>44</i>&nbsp;
+<b class="nc"><i>45</i>&nbsp;        HBox hbBottom = new HBox(getBtnEdit(), getBtnCancel());</b>
+<b class="nc"><i>46</i>&nbsp;        hbBottom.setSpacing(20.);</b>
+<b class="nc"><i>47</i>&nbsp;        hbBottom.setAlignment(Pos.BOTTOM_CENTER);</b>
+<b class="nc"><i>48</i>&nbsp;        setAlignment(hbBottom, Pos.BOTTOM_CENTER);</b>
+<b class="nc"><i>49</i>&nbsp;        setMargin(hbBottom, new Insets(0.,0.,50.,0.));</b>
+<b class="nc"><i>50</i>&nbsp;        hbBottom.setMaxHeight(35.);</b>
+<i>51</i>&nbsp;
+<b class="nc"><i>52</i>&nbsp;        this.getChildren().addAll(vbContainer, hbBottom);</b>
+<i>53</i>&nbsp;
+<b class="nc"><i>54</i>&nbsp;        this.setMaxSize(550.,400.);</b>
+<b class="nc"><i>55</i>&nbsp;        this.setVisible(false);</b>
+<b class="nc"><i>56</i>&nbsp;        this.setBackground(BackgroundLoader.buildDialogBackGround(550.,400.));</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    }
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    public Button getBtnEdit() {
+<b class="nc"><i>62</i>&nbsp;        if (btnEdit == null ) {</b>
+<b class="nc"><i>63</i>&nbsp;            btnEdit = new Button(&quot;Edit&quot;);</b>
+<b class="nc"><i>64</i>&nbsp;            btnEdit.setMinSize(80.,25.);</b>
+<b class="nc"><i>65</i>&nbsp;            btnEdit.getStyleClass().addAll(&quot;buttonBasic&quot;,&quot;dialog-button&quot;);</b>
+<i>66</i>&nbsp;        }
+<b class="nc"><i>67</i>&nbsp;        return btnEdit;</b>
+<i>68</i>&nbsp;    }
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    public Button getBtnCancel() {
+<b class="nc"><i>71</i>&nbsp;        if (btnCancel == null) {</b>
+<b class="nc"><i>72</i>&nbsp;            btnCancel = new Button(&quot;Cancel&quot;);</b>
+<b class="nc"><i>73</i>&nbsp;            btnCancel.setMinSize(80.,25.);</b>
+<b class="nc"><i>74</i>&nbsp;            btnCancel.getStyleClass().addAll(&quot;buttonBasic&quot;,&quot;dialog-button&quot;);</b>
+<b class="nc"><i>75</i>&nbsp;            btnCancel.setOnAction(event -&gt; setVisible(false));</b>
+<i>76</i>&nbsp;        }
+<b class="nc"><i>77</i>&nbsp;        return btnCancel;</b>
+<i>78</i>&nbsp;    }
+<i>79</i>&nbsp;
+<i>80</i>&nbsp;    public Question getQuestion() {
+<b class="nc"><i>81</i>&nbsp;        if (editQuestion == null) {</b>
+<b class="nc"><i>82</i>&nbsp;            editQuestion = new Question(author.getText(),oldQuestion.getTheme(),</b>
+<b class="nc"><i>83</i>&nbsp;                    new ArrayList&lt;&gt;(Arrays.asList(clue1.getText(), clue2.getText(), clue3.getText())),answer.getText());</b>
+<i>84</i>&nbsp;        }
+<b class="nc"><i>85</i>&nbsp;        return editQuestion;</b>
+<i>86</i>&nbsp;    }
+<i>87</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-09 15:45</div>
+</div>
+</body>
+</html>

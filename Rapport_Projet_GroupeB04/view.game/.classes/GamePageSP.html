@@ -1,0 +1,500 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GamePageSP</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">view.game</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GamePageSP (view.game)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GamePageSP</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 34)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 185)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package view.game;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import application.Main;
+<i>4</i>&nbsp;import enumeration.Settings;
+<i>5</i>&nbsp;import enumeration.Time;
+<i>6</i>&nbsp;import javafx.geometry.Insets;
+<i>7</i>&nbsp;import javafx.geometry.Pos;
+<i>8</i>&nbsp;import javafx.scene.control.Button;
+<i>9</i>&nbsp;import javafx.scene.control.Label;
+<i>10</i>&nbsp;import javafx.scene.control.TextField;
+<i>11</i>&nbsp;import javafx.scene.input.KeyCode;
+<i>12</i>&nbsp;import javafx.scene.layout.HBox;
+<i>13</i>&nbsp;import javafx.scene.layout.StackPane;
+<i>14</i>&nbsp;import javafx.scene.layout.VBox;
+<i>15</i>&nbsp;import model.IteratorQuestion;
+<i>16</i>&nbsp;import view.dialog.ExitGame;
+<i>17</i>&nbsp;import utils.utility.BackgroundLoader;
+<i>18</i>&nbsp;import utils.utility.Damerau;
+<i>19</i>&nbsp;import utils.GamePage.Timer;
+<i>20</i>&nbsp;import utils.controler.JsonManager;
+<i>21</i>&nbsp;import view.user.CreateUserSP;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;import java.util.HashMap;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;public class GamePageSP extends StackPane {
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    private Label lblTitle;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    private Label lblClue1;
+<i>30</i>&nbsp;    private Label lblClue2;
+<i>31</i>&nbsp;    private Label lblClue3;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    private Label lblPoint0;
+<i>34</i>&nbsp;    private Label lblPoint1;
+<i>35</i>&nbsp;    private Label lblPoint2;
+<i>36</i>&nbsp;    private Label lblPoint3;
+<i>37</i>&nbsp;    private Label lblPoint4;
+<i>38</i>&nbsp;    private Label lblMaxPoint;
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    private Label lblTimer;
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    private Button btnSkip;
+<i>43</i>&nbsp;    private TextField txtAnswer;
+<i>44</i>&nbsp;    private Button btnOk;
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    private final String theme;
+<i>47</i>&nbsp;    private final IteratorQuestion itQuestions;
+<b class="nc"><i>48</i>&nbsp;    private int waitingClues = 0;</b>
+<i>49</i>&nbsp;    private long time;
+<b class="nc"><i>50</i>&nbsp;    private int pointWon = 0;</b>
+<i>51</i>&nbsp;    private int pointCons;
+<i>52</i>&nbsp;    private HashMap&lt;String, Label&gt; pointsFromLbl;
+<i>53</i>&nbsp;
+<b class="nc"><i>54</i>&nbsp;    private final ExitGame exit = new ExitGame();</b>
+<i>55</i>&nbsp;
+<b class="nc"><i>56</i>&nbsp;    public GamePageSP(String theme) {</b>
+<b class="nc"><i>57</i>&nbsp;        this.theme = theme;</b>
+<b class="nc"><i>58</i>&nbsp;        this.itQuestions = JsonManager.getDeck().createIterator(theme);</b>
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;        //BACKGROUND
+<b class="nc"><i>61</i>&nbsp;        this.setBackground(BackgroundLoader.builderBackGround());</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;        //TOP
+<b class="nc"><i>64</i>&nbsp;        setAlignment(getLblTitle(), Pos.TOP_CENTER);</b>
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;        //CENTER
+<b class="nc"><i>67</i>&nbsp;        HBox hbCenter = new HBox();</b>
+<b class="nc"><i>68</i>&nbsp;        VBox vbPoints = new VBox();</b>
+<b class="nc"><i>69</i>&nbsp;        vbPoints.getChildren().addAll(getLblMaxPoint(),getLblPoint4(), getLblPoint3(), getLblPoint2(), getLblPoint1(), getLblPoint0());</b>
+<b class="nc"><i>70</i>&nbsp;        vbPoints.setAlignment(Pos.CENTER);</b>
+<b class="nc"><i>71</i>&nbsp;        vbPoints.getStyleClass().add(&quot;vboxPoints&quot;);</b>
+<b class="nc"><i>72</i>&nbsp;        vbPoints.setMaxSize(100., 450);</b>
+<b class="nc"><i>73</i>&nbsp;        vbPoints.setSpacing(10);</b>
+<i>74</i>&nbsp;
+<b class="nc"><i>75</i>&nbsp;        VBox vbClues = new VBox();</b>
+<b class="nc"><i>76</i>&nbsp;        vbClues.getChildren().addAll(getLblClue1(), getLblClue2(), getLblClue3());</b>
+<b class="nc"><i>77</i>&nbsp;        vbClues.setBackground(BackgroundLoader.buildBookGame());</b>
+<b class="nc"><i>78</i>&nbsp;        vbClues.setMaxSize(800., 500.);</b>
+<b class="nc"><i>79</i>&nbsp;        vbClues.setMinWidth(780.);</b>
+<b class="nc"><i>80</i>&nbsp;        VBox.setMargin(getLblClue1(), new Insets(30., 0., 0., 60.));</b>
+<b class="nc"><i>81</i>&nbsp;        VBox.setMargin(getLblClue2(), new Insets(-110., 0., 0., 400.));</b>
+<b class="nc"><i>82</i>&nbsp;        VBox.setMargin(getLblClue3(), new Insets(-45., 0., 0., 60));</b>
+<b class="nc"><i>83</i>&nbsp;        vbClues.setSpacing(15);</b>
+<i>84</i>&nbsp;
+<b class="nc"><i>85</i>&nbsp;        VBox vbTimer = new VBox();</b>
+<b class="nc"><i>86</i>&nbsp;        vbTimer.getChildren().add(getLblTimer());</b>
+<b class="nc"><i>87</i>&nbsp;        vbTimer.setBackground(BackgroundLoader.buildTimerBackGround());</b>
+<b class="nc"><i>88</i>&nbsp;        vbTimer.setMinSize(100.,110.);</b>
+<b class="nc"><i>89</i>&nbsp;        vbTimer.setMaxSize(100.,110.);</b>
+<b class="nc"><i>90</i>&nbsp;        vbTimer.setAlignment(Pos.CENTER);</b>
+<b class="nc"><i>91</i>&nbsp;        vbTimer.setSpacing(15);</b>
+<i>92</i>&nbsp;
+<b class="nc"><i>93</i>&nbsp;        hbCenter.getChildren().addAll(vbPoints, vbClues, vbTimer);</b>
+<b class="nc"><i>94</i>&nbsp;        hbCenter.setPadding(new Insets(10.));</b>
+<b class="nc"><i>95</i>&nbsp;        hbCenter.setAlignment(Pos.CENTER);</b>
+<b class="nc"><i>96</i>&nbsp;        hbCenter.setSpacing(35);</b>
+<b class="nc"><i>97</i>&nbsp;        setAlignment(hbCenter, Pos.CENTER);</b>
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;        //BOTTOM
+<b class="nc"><i>100</i>&nbsp;        HBox hbBottom = new HBox();</b>
+<b class="nc"><i>101</i>&nbsp;        hbBottom.getChildren().addAll(getBtnSkip(), getTxtAnswer(), getBtnOk());</b>
+<b class="nc"><i>102</i>&nbsp;        hbBottom.setSpacing(10);</b>
+<b class="nc"><i>103</i>&nbsp;        hbBottom.setAlignment(Pos.BOTTOM_CENTER);</b>
+<b class="nc"><i>104</i>&nbsp;        hbBottom.setPadding(new Insets(0, 30, 30, 0));</b>
+<b class="nc"><i>105</i>&nbsp;        setAlignment(hbBottom, Pos.BOTTOM_CENTER);</b>
+<b class="nc"><i>106</i>&nbsp;        time = System.currentTimeMillis();</b>
+<b class="nc"><i>107</i>&nbsp;        Timer.startTimer(getLblTimer());</b>
+<b class="nc"><i>108</i>&nbsp;        this.getChildren().addAll(getLblTitle(), hbCenter, hbBottom, exit);</b>
+<b class="nc"><i>109</i>&nbsp;        exit.setVisible(false);</b>
+<i>110</i>&nbsp;
+<b class="nc"><i>111</i>&nbsp;        this.setOnKeyReleased(event -&gt; {</b>
+<b class="nc"><i>112</i>&nbsp;            if (event.getCode() == KeyCode.ESCAPE) {</b>
+<b class="nc"><i>113</i>&nbsp;                showExitMenu();</b>
+<i>114</i>&nbsp;            }
+<i>115</i>&nbsp;
+<b class="nc"><i>116</i>&nbsp;            if (event.getCode() == KeyCode.ENTER) {</b>
+<b class="nc"><i>117</i>&nbsp;                validationAnswer();</b>
+<i>118</i>&nbsp;            }
+<i>119</i>&nbsp;        });
+<i>120</i>&nbsp;    }
+<i>121</i>&nbsp;
+<i>122</i>&nbsp;    /**
+<i>123</i>&nbsp;     * Valid your answer.
+<i>124</i>&nbsp;     * Check if it&#39;s correct or not
+<i>125</i>&nbsp;     */
+<i>126</i>&nbsp;    public void validationAnswer() {
+<b class="nc"><i>127</i>&nbsp;        updateScore(isAddPoint());</b>
+<b class="nc"><i>128</i>&nbsp;        choiceQuestion();</b>
+<b class="nc"><i>129</i>&nbsp;        getTxtAnswer().setText(&quot;&quot;);</b>
+<i>130</i>&nbsp;    }
+<i>131</i>&nbsp;
+<i>132</i>&nbsp;    private void showExitMenu() {
+<b class="nc"><i>133</i>&nbsp;        exit.setVisible(!exit.isVisible());</b>
+<b class="nc"><i>134</i>&nbsp;        setAlignment(exit, Pos.CENTER);</b>
+<i>135</i>&nbsp;
+<i>136</i>&nbsp;    }
+<i>137</i>&nbsp;
+<i>138</i>&nbsp;    public Label getLblTitle() {
+<b class="nc"><i>139</i>&nbsp;        if (lblTitle == null) {</b>
+<b class="nc"><i>140</i>&nbsp;            lblTitle = new Label(theme);</b>
+<b class="nc"><i>141</i>&nbsp;            lblTitle.getStyleClass().add(&quot;labelTitle&quot;);</b>
+<i>142</i>&nbsp;        }
+<b class="nc"><i>143</i>&nbsp;        return lblTitle;</b>
+<i>144</i>&nbsp;    }
+<i>145</i>&nbsp;
+<i>146</i>&nbsp;    public Label getLblClue1() {
+<b class="nc"><i>147</i>&nbsp;        if (lblClue1 == null) {</b>
+<b class="nc"><i>148</i>&nbsp;            lblClue1 = new Label();</b>
+<b class="nc"><i>149</i>&nbsp;            lblClue1.setWrapText(true);</b>
+<b class="nc"><i>150</i>&nbsp;            lblClue1.getStyleClass().addAll(&quot;labelBasique&quot;, &quot;labelClue&quot;);</b>
+<i>151</i>&nbsp;        }
+<b class="nc"><i>152</i>&nbsp;        return lblClue1;</b>
+<i>153</i>&nbsp;    }
+<i>154</i>&nbsp;
+<i>155</i>&nbsp;    public Label getLblClue2() {
+<b class="nc"><i>156</i>&nbsp;        if (lblClue2 == null) {</b>
+<b class="nc"><i>157</i>&nbsp;            lblClue2 = new Label();</b>
+<b class="nc"><i>158</i>&nbsp;            lblClue2.setWrapText(true);</b>
+<b class="nc"><i>159</i>&nbsp;            lblClue2.getStyleClass().addAll(&quot;labelBasique&quot;, &quot;labelClue&quot;);</b>
+<i>160</i>&nbsp;        }
+<b class="nc"><i>161</i>&nbsp;        return lblClue2;</b>
+<i>162</i>&nbsp;    }
+<i>163</i>&nbsp;
+<i>164</i>&nbsp;    public Label getLblClue3() {
+<b class="nc"><i>165</i>&nbsp;        if (lblClue3 == null) {</b>
+<b class="nc"><i>166</i>&nbsp;            lblClue3 = new Label();</b>
+<b class="nc"><i>167</i>&nbsp;            lblClue3.setWrapText(true);</b>
+<b class="nc"><i>168</i>&nbsp;            lblClue3.getStyleClass().addAll(&quot;labelBasique&quot;, &quot;labelClue&quot;);</b>
+<i>169</i>&nbsp;        }
+<b class="nc"><i>170</i>&nbsp;        return lblClue3;</b>
+<i>171</i>&nbsp;    }
+<i>172</i>&nbsp;
+<i>173</i>&nbsp;    public Label getLblPoint0() {
+<b class="nc"><i>174</i>&nbsp;        if (lblPoint0 == null) {</b>
+<b class="nc"><i>175</i>&nbsp;            lblPoint0 = new Label(&quot;0&quot;);</b>
+<b class="nc"><i>176</i>&nbsp;            lblPoint0.getStyleClass().addAll(&quot;labelBasique&quot;, &quot;labelPoints&quot;, &quot;point-gagne&quot;, &quot;point-consecutif&quot;);</b>
+<b class="nc"><i>177</i>&nbsp;            getPointsFromLbl().put(lblPoint0.getText(), lblPoint0);</b>
+<i>178</i>&nbsp;        }
+<b class="nc"><i>179</i>&nbsp;        return lblPoint0;</b>
+<i>180</i>&nbsp;    }
+<i>181</i>&nbsp;
+<i>182</i>&nbsp;    public Label getLblPoint1() {
+<b class="nc"><i>183</i>&nbsp;        if (lblPoint1 == null) {</b>
+<b class="nc"><i>184</i>&nbsp;            lblPoint1 = new Label(&quot;1&quot;);</b>
+<b class="nc"><i>185</i>&nbsp;            lblPoint1.getStyleClass().addAll(&quot;labelBasique&quot;, &quot;labelPoints&quot;);</b>
+<b class="nc"><i>186</i>&nbsp;            getPointsFromLbl().put(lblPoint1.getText(), lblPoint1);</b>
+<i>187</i>&nbsp;        }
+<b class="nc"><i>188</i>&nbsp;        return lblPoint1;</b>
+<i>189</i>&nbsp;    }
+<i>190</i>&nbsp;
+<i>191</i>&nbsp;    public Label getLblPoint2() {
+<b class="nc"><i>192</i>&nbsp;        if (lblPoint2 == null) {</b>
+<b class="nc"><i>193</i>&nbsp;            lblPoint2 = new Label(&quot;2&quot;);</b>
+<b class="nc"><i>194</i>&nbsp;            lblPoint2.getStyleClass().addAll(&quot;labelBasique&quot;, &quot;labelPoints&quot;);</b>
+<b class="nc"><i>195</i>&nbsp;            getPointsFromLbl().put(lblPoint2.getText(), lblPoint2);</b>
+<i>196</i>&nbsp;        }
+<b class="nc"><i>197</i>&nbsp;        return lblPoint2;</b>
+<i>198</i>&nbsp;    }
+<i>199</i>&nbsp;
+<i>200</i>&nbsp;    public Label getLblPoint3() {
+<b class="nc"><i>201</i>&nbsp;        if (lblPoint3 == null) {</b>
+<b class="nc"><i>202</i>&nbsp;            lblPoint3 = new Label(&quot;3&quot;);</b>
+<b class="nc"><i>203</i>&nbsp;            lblPoint3.getStyleClass().addAll(&quot;labelBasique&quot;, &quot;labelPoints&quot;);</b>
+<b class="nc"><i>204</i>&nbsp;            getPointsFromLbl().put(lblPoint3.getText(), lblPoint3);</b>
+<i>205</i>&nbsp;        }
+<b class="nc"><i>206</i>&nbsp;        return lblPoint3;</b>
+<i>207</i>&nbsp;    }
+<i>208</i>&nbsp;
+<i>209</i>&nbsp;    public Label getLblPoint4() {
+<b class="nc"><i>210</i>&nbsp;        if (lblPoint4 == null) {</b>
+<b class="nc"><i>211</i>&nbsp;            lblPoint4 = new Label(&quot;4&quot;);</b>
+<b class="nc"><i>212</i>&nbsp;            lblPoint4.getStyleClass().addAll(&quot;labelBasique&quot;, &quot;labelPoints&quot;);</b>
+<b class="nc"><i>213</i>&nbsp;            getPointsFromLbl().put(lblPoint4.getText(), lblPoint4);</b>
+<i>214</i>&nbsp;        }
+<b class="nc"><i>215</i>&nbsp;        return lblPoint4;</b>
+<i>216</i>&nbsp;    }
+<i>217</i>&nbsp;
+<i>218</i>&nbsp;    public Label getLblMaxPoint() {
+<b class="nc"><i>219</i>&nbsp;        if (lblMaxPoint == null) {</b>
+<b class="nc"><i>220</i>&nbsp;            lblMaxPoint = new Label(&quot;max point : &quot; + pointWon);</b>
+<b class="nc"><i>221</i>&nbsp;            lblMaxPoint.getStyleClass().addAll(&quot;labelBasic&quot;);</b>
+<i>222</i>&nbsp;        }
+<b class="nc"><i>223</i>&nbsp;        return lblMaxPoint;</b>
+<i>224</i>&nbsp;    }
+<i>225</i>&nbsp;
+<i>226</i>&nbsp;    public Label getLblTimer() {
+<b class="nc"><i>227</i>&nbsp;        if (lblTimer == null) {</b>
+<b class="nc"><i>228</i>&nbsp;            lblTimer = new Label(&quot;91&quot;);</b>
+<b class="nc"><i>229</i>&nbsp;            lblTimer.getStyleClass().addAll(&quot;labelBasique&quot;, &quot;labelPoints&quot;);</b>
+<b class="nc"><i>230</i>&nbsp;            lblTimer.textProperty().addListener((observable, oldValue, newValue) -&gt; {</b>
+<i>231</i>&nbsp;
+<b class="nc"><i>232</i>&nbsp;                gameOver(newValue);</b>
+<b class="nc"><i>233</i>&nbsp;                seeClues();</b>
+<i>234</i>&nbsp;
+<i>235</i>&nbsp;            });
+<i>236</i>&nbsp;        }
+<b class="nc"><i>237</i>&nbsp;        return lblTimer;</b>
+<i>238</i>&nbsp;    }
+<i>239</i>&nbsp;
+<i>240</i>&nbsp;	/**
+<i>241</i>&nbsp;     * show clues after 3 seconds
+<i>242</i>&nbsp;     */
+<i>243</i>&nbsp;    public void seeClues() {
+<b class="nc"><i>244</i>&nbsp;        if (waitingClues &lt; 3) {</b>
+<b class="nc"><i>245</i>&nbsp;            if (waitingClues == 0) {</b>
+<b class="nc"><i>246</i>&nbsp;                getLblClue1().setText(itQuestions.item().getClues().get(waitingClues));</b>
+<b class="nc"><i>247</i>&nbsp;                waitingClues++;</b>
+<i>248</i>&nbsp;            }
+<b class="nc"><i>249</i>&nbsp;            if (waitingClues == 1 &amp;&amp; System.currentTimeMillis() - time &gt;= Time.INTERVAL.getValue()) {</b>
+<b class="nc"><i>250</i>&nbsp;                getLblClue2().setText(itQuestions.item().getClues().get(waitingClues));</b>
+<b class="nc"><i>251</i>&nbsp;                waitingClues++;</b>
+<i>252</i>&nbsp;            }
+<b class="nc"><i>253</i>&nbsp;            if (waitingClues == 2 &amp;&amp; System.currentTimeMillis() - time &gt;= Time.INTERVAL.getValue()*2) {</b>
+<b class="nc"><i>254</i>&nbsp;                getLblClue3().setText(itQuestions.item().getClues().get(waitingClues));</b>
+<b class="nc"><i>255</i>&nbsp;                waitingClues++;</b>
+<i>256</i>&nbsp;            }
+<i>257</i>&nbsp;        }
+<i>258</i>&nbsp;    }
+<i>259</i>&nbsp;
+<i>260</i>&nbsp;    /**
+<i>261</i>&nbsp;     * Check if game is over with time equals 0 or pointWon is 4
+<i>262</i>&nbsp;     *
+<i>263</i>&nbsp;     * @param newValue new value of label
+<i>264</i>&nbsp;     */
+<i>265</i>&nbsp;    public void gameOver(String newValue) {
+<b class="nc"><i>266</i>&nbsp;        if (newValue.equals(&quot;0&quot;) || itQuestions.size() &lt;= 0 || (!Settings.CONTINUE_AFTER_4.isContinueGame() &amp;&amp; pointWon == 4)) {</b>
+<b class="nc"><i>267</i>&nbsp;            Main.switchScene(new EndGameBP(pointWon));</b>
+<b class="nc"><i>268</i>&nbsp;            Timer.getTimeTimer().stop();</b>
+<b class="nc"><i>269</i>&nbsp;            pointWon++;</b>
+<i>270</i>&nbsp;        }
+<i>271</i>&nbsp;    }
+<i>272</i>&nbsp;
+<i>273</i>&nbsp;    public Button getBtnSkip() {
+<b class="nc"><i>274</i>&nbsp;        if (btnSkip == null) {</b>
+<b class="nc"><i>275</i>&nbsp;            btnSkip = new Button(&quot;Skip&quot;);</b>
+<b class="nc"><i>276</i>&nbsp;            btnSkip.getStyleClass().add(&quot;buttonBasic&quot;);</b>
+<b class="nc"><i>277</i>&nbsp;            btnSkip.setBackground(BackgroundLoader.buildBtnBackGround());</b>
+<b class="nc"><i>278</i>&nbsp;            btnSkip.setId(&quot;medium-button&quot;);</b>
+<b class="nc"><i>279</i>&nbsp;            btnSkip.setOnAction(event -&gt; {</b>
+<b class="nc"><i>280</i>&nbsp;                updateScore(false);</b>
+<b class="nc"><i>281</i>&nbsp;                choiceQuestion();</b>
+<b class="nc"><i>282</i>&nbsp;                getTxtAnswer().setPromptText(&quot;&quot;);</b>
+<i>283</i>&nbsp;            });
+<i>284</i>&nbsp;        }
+<b class="nc"><i>285</i>&nbsp;        return btnSkip;</b>
+<i>286</i>&nbsp;    }
+<i>287</i>&nbsp;
+<i>288</i>&nbsp;    public TextField getTxtAnswer() {
+<b class="nc"><i>289</i>&nbsp;        if (txtAnswer == null) {</b>
+<b class="nc"><i>290</i>&nbsp;            txtAnswer = new TextField();</b>
+<b class="nc"><i>291</i>&nbsp;            txtAnswer.getStyleClass().add(&quot;textField&quot;);</b>
+<i>292</i>&nbsp;        }
+<b class="nc"><i>293</i>&nbsp;        return txtAnswer;</b>
+<i>294</i>&nbsp;    }
+<i>295</i>&nbsp;
+<i>296</i>&nbsp;    public Button getBtnOk() {
+<b class="nc"><i>297</i>&nbsp;        if (btnOk == null) {</b>
+<b class="nc"><i>298</i>&nbsp;            btnOk = new Button(&quot;Ok&quot;);</b>
+<b class="nc"><i>299</i>&nbsp;            btnOk.setBackground(BackgroundLoader.buildBtnBackGround());</b>
+<b class="nc"><i>300</i>&nbsp;            btnOk.getStyleClass().add(&quot;buttonBasic&quot;);</b>
+<b class="nc"><i>301</i>&nbsp;            btnOk.setId(&quot;medium-button&quot;);</b>
+<i>302</i>&nbsp;
+<b class="nc"><i>303</i>&nbsp;            btnOk.setOnAction(event -&gt; validationAnswer());</b>
+<i>304</i>&nbsp;        }
+<b class="nc"><i>305</i>&nbsp;        return btnOk;</b>
+<i>306</i>&nbsp;    }
+<i>307</i>&nbsp;
+<i>308</i>&nbsp;    /**
+<i>309</i>&nbsp;     * Check if it&#39;s necessary add a point or not
+<i>310</i>&nbsp;     *
+<i>311</i>&nbsp;     * @return true or false if add point
+<i>312</i>&nbsp;     */
+<i>313</i>&nbsp;    public boolean isAddPoint() {
+<i>314</i>&nbsp;        boolean addPoint;
+<b class="nc"><i>315</i>&nbsp;        if (isCorrect(getTxtAnswer().getText())) {</b>
+<b class="nc"><i>316</i>&nbsp;            addPoint = true;</b>
+<b class="nc"><i>317</i>&nbsp;            itQuestions.remove();</b>
+<b class="nc"><i>318</i>&nbsp;            getTxtAnswer().setPromptText(&quot;Correct Answer&quot;);</b>
+<i>319</i>&nbsp;        } else {
+<b class="nc"><i>320</i>&nbsp;            addPoint = false;</b>
+<b class="nc"><i>321</i>&nbsp;            getTxtAnswer().setPromptText(&quot;Wrong Answer&quot;);</b>
+<i>322</i>&nbsp;        }
+<b class="nc"><i>323</i>&nbsp;        return addPoint;</b>
+<i>324</i>&nbsp;    }
+<i>325</i>&nbsp;
+<i>326</i>&nbsp;    public HashMap&lt;String, Label&gt; getPointsFromLbl() {
+<b class="nc"><i>327</i>&nbsp;        if (pointsFromLbl == null) {</b>
+<b class="nc"><i>328</i>&nbsp;            pointsFromLbl = new HashMap&lt;&gt;();</b>
+<i>329</i>&nbsp;        }
+<b class="nc"><i>330</i>&nbsp;        return pointsFromLbl;</b>
+<i>331</i>&nbsp;    }
+<i>332</i>&nbsp;
+<i>333</i>&nbsp;    /**
+<i>334</i>&nbsp;     * Check if it&#39;s end of the list
+<i>335</i>&nbsp;     */
+<i>336</i>&nbsp;    public void choiceQuestion() {
+<b class="nc"><i>337</i>&nbsp;        if (!itQuestions.hasNext()) itQuestions.firstIndex();</b>
+<b class="nc"><i>338</i>&nbsp;        returnStartQuestion();</b>
+<i>339</i>&nbsp;    }
+<i>340</i>&nbsp;
+<i>341</i>&nbsp;    /**
+<i>342</i>&nbsp;     * set the basic display for start a question
+<i>343</i>&nbsp;     */
+<i>344</i>&nbsp;    public void returnStartQuestion() {
+<b class="nc"><i>345</i>&nbsp;        itQuestions.next();</b>
+<b class="nc"><i>346</i>&nbsp;        getLblClue1().setText(&quot;&quot;);</b>
+<b class="nc"><i>347</i>&nbsp;        getLblClue2().setText(&quot;&quot;);</b>
+<b class="nc"><i>348</i>&nbsp;        getLblClue3().setText(&quot;&quot;);</b>
+<b class="nc"><i>349</i>&nbsp;        waitingClues = 0;</b>
+<b class="nc"><i>350</i>&nbsp;        time = System.currentTimeMillis();</b>
+<i>351</i>&nbsp;    }
+<i>352</i>&nbsp;
+<i>353</i>&nbsp;    /**
+<i>354</i>&nbsp;     * Check if the answer of question is correct
+<i>355</i>&nbsp;     *
+<i>356</i>&nbsp;     * @param text answer of question
+<i>357</i>&nbsp;     * @return boolean true if answer is correct or false if answer is wrong
+<i>358</i>&nbsp;     */
+<i>359</i>&nbsp;    public boolean isCorrect(String text) {
+<b class="nc"><i>360</i>&nbsp;        return Damerau.calculateDistance(itQuestions.item().getAnswer(), text);</b>
+<i>361</i>&nbsp;    }
+<i>362</i>&nbsp;
+<i>363</i>&nbsp;    /**
+<i>364</i>&nbsp;     * Update of score add point or return to zero
+<i>365</i>&nbsp;     *
+<i>366</i>&nbsp;     * @param addPoint true or false if add point
+<i>367</i>&nbsp;     */
+<i>368</i>&nbsp;    public void updateScore(boolean addPoint) {
+<b class="nc"><i>369</i>&nbsp;        if (addPoint) {</b>
+<b class="nc"><i>370</i>&nbsp;            addPointScore();</b>
+<i>371</i>&nbsp;        } else {
+<b class="nc"><i>372</i>&nbsp;            removePointScore();</b>
+<i>373</i>&nbsp;        }
+<i>374</i>&nbsp;    }
+<i>375</i>&nbsp;
+<i>376</i>&nbsp;    /**
+<i>377</i>&nbsp;     * add point in total and update of label for point in user display
+<i>378</i>&nbsp;     */
+<i>379</i>&nbsp;    public void addPointScore() {
+<b class="nc"><i>380</i>&nbsp;        pointCons++;</b>
+<b class="nc"><i>381</i>&nbsp;        pointsFromLbl.forEach((key, label) -&gt; {</b>
+<b class="nc"><i>382</i>&nbsp;            if (pointCons == Integer.parseInt(key)) {</b>
+<b class="nc"><i>383</i>&nbsp;                label.getStyleClass().addAll(&quot;point-gagne&quot;, &quot;point-consecutif&quot;);</b>
+<i>384</i>&nbsp;            }
+<b class="nc"><i>385</i>&nbsp;            if (pointCons - 1 == Integer.parseInt(key)) {</b>
+<b class="nc"><i>386</i>&nbsp;                label.getStyleClass().remove(&quot;point-consecutif&quot;);</b>
+<i>387</i>&nbsp;            }
+<i>388</i>&nbsp;        });
+<b class="nc"><i>389</i>&nbsp;        pointFinal();</b>
+<i>390</i>&nbsp;    }
+<i>391</i>&nbsp;
+<i>392</i>&nbsp;    /**
+<i>393</i>&nbsp;     * update point in zero value
+<i>394</i>&nbsp;     */
+<i>395</i>&nbsp;    public void removePointScore() {
+<b class="nc"><i>396</i>&nbsp;        pointsFromLbl.forEach((key, label) -&gt; {</b>
+<b class="nc"><i>397</i>&nbsp;            if (pointCons == Integer.parseInt(key)) {</b>
+<b class="nc"><i>398</i>&nbsp;                label.getStyleClass().remove(&quot;point-consecutif&quot;);</b>
+<b class="nc"><i>399</i>&nbsp;                pointFinal();</b>
+<b class="nc"><i>400</i>&nbsp;                pointCons = 0;</b>
+<i>401</i>&nbsp;            }
+<b class="nc"><i>402</i>&nbsp;            if (key.equals(&quot;0&quot;)) {</b>
+<b class="nc"><i>403</i>&nbsp;                label.getStyleClass().add(&quot;point-consecutif&quot;);</b>
+<i>404</i>&nbsp;            }
+<i>405</i>&nbsp;        });
+<i>406</i>&nbsp;    }
+<i>407</i>&nbsp;
+<i>408</i>&nbsp;    /**
+<i>409</i>&nbsp;     * Point final for EndGameBP, retains the highest point
+<i>410</i>&nbsp;     */
+<i>411</i>&nbsp;    public void pointFinal() {
+<b class="nc"><i>412</i>&nbsp;        if (pointWon &lt; pointCons) {</b>
+<b class="nc"><i>413</i>&nbsp;            pointWon = pointCons;</b>
+<b class="nc"><i>414</i>&nbsp;            getLblMaxPoint().setText(&quot;max point : &quot; + pointWon);</b>
+<i>415</i>&nbsp;        }
+<i>416</i>&nbsp;    }
+<i>417</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-09 15:45</div>
+</div>
+</body>
+</html>

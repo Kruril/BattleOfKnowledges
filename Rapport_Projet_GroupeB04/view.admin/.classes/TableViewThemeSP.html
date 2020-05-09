@@ -1,0 +1,547 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TableViewThemeSP</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">view.admin</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TableViewThemeSP (view.admin)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TableViewThemeSP</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 34)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 180)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TableViewThemeSP$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">TableViewThemeSP$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">TableViewThemeSP$Factory</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 40)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 192)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package view.admin;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import application.Main;
+<i>4</i>&nbsp;import javafx.beans.property.SimpleStringProperty;
+<i>5</i>&nbsp;import javafx.beans.value.ObservableValue;
+<i>6</i>&nbsp;import javafx.collections.FXCollections;
+<i>7</i>&nbsp;import javafx.geometry.Insets;
+<i>8</i>&nbsp;import javafx.geometry.Pos;
+<i>9</i>&nbsp;import javafx.scene.control.*;
+<i>10</i>&nbsp;import javafx.scene.control.TableColumn.CellDataFeatures;
+<i>11</i>&nbsp;import javafx.scene.control.TableColumn.CellEditEvent;
+<i>12</i>&nbsp;import javafx.scene.control.cell.PropertyValueFactory;
+<i>13</i>&nbsp;import javafx.scene.control.cell.TextFieldTableCell;
+<i>14</i>&nbsp;import javafx.scene.image.Image;
+<i>15</i>&nbsp;import javafx.scene.image.ImageView;
+<i>16</i>&nbsp;import javafx.scene.input.KeyCode;
+<i>17</i>&nbsp;import javafx.scene.layout.HBox;
+<i>18</i>&nbsp;import javafx.scene.layout.StackPane;
+<i>19</i>&nbsp;import javafx.scene.layout.VBox;
+<i>20</i>&nbsp;import javafx.scene.text.Text;
+<i>21</i>&nbsp;import javafx.util.Callback;
+<i>22</i>&nbsp;import model.Deck;
+<i>23</i>&nbsp;import model.Question;
+<i>24</i>&nbsp;import view.dialog.EditableQuestion;
+<i>25</i>&nbsp;import utils.utility.BackgroundLoader;
+<i>26</i>&nbsp;import utils.controler.JsonManager;
+<i>27</i>&nbsp;import utils.TableView.CommonTableView;
+<i>28</i>&nbsp;import utils.controler.TrashManager;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;import javax.swing.*;
+<i>31</i>&nbsp;import javax.swing.filechooser.FileNameExtensionFilter;
+<i>32</i>&nbsp;import javax.swing.filechooser.FileSystemView;
+<i>33</i>&nbsp;import java.io.File;
+<i>34</i>&nbsp;import java.util.Arrays;
+<i>35</i>&nbsp;import java.util.List;
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;public class TableViewThemeSP extends StackPane {
+<i>38</i>&nbsp;	private Label lblTheme;
+<i>39</i>&nbsp;	
+<i>40</i>&nbsp;	private TableView&lt;Question&gt; tvQuestions;
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;	private final String theme;
+<i>43</i>&nbsp;	private final List&lt;Question&gt; questions;
+<i>44</i>&nbsp;	
+<i>45</i>&nbsp;	private Button btnBack, btnValidation, btnAddFile;
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;	private TextField txtAuthor, txtClue1, txtClue2, txtClue3, txtAnswer;
+<i>48</i>&nbsp;	private EditableQuestion editableQuestion;
+<i>49</i>&nbsp;	
+<b class="nc"><i>50</i>&nbsp;	public TableViewThemeSP(String theme) {</b>
+<b class="nc"><i>51</i>&nbsp;		this.theme=theme;</b>
+<b class="nc"><i>52</i>&nbsp;		this.questions=JsonManager.choiceTheme(theme);</b>
+<b class="nc"><i>53</i>&nbsp;		this.setBackground(BackgroundLoader.builderBackGround());</b>
+<b class="nc"><i>54</i>&nbsp;		Insets insets = new Insets(10.);</b>
+<i>55</i>&nbsp;		
+<b class="nc"><i>56</i>&nbsp;		this.setPadding(insets);</b>
+<i>57</i>&nbsp;
+<b class="nc"><i>58</i>&nbsp;		setAlignment(getLblTheme(), Pos.TOP_CENTER);</b>
+<b class="nc"><i>59</i>&nbsp;		this.getChildren().add(getLblTheme());</b>
+<i>60</i>&nbsp;
+<b class="nc"><i>61</i>&nbsp;		setAlignment(getTvQuestions(), Pos.CENTER);</b>
+<b class="nc"><i>62</i>&nbsp;		setMargin(getTvQuestions(), new Insets(-65.,0.,0.,0.));</b>
+<b class="nc"><i>63</i>&nbsp;		this.getChildren().add(getTvQuestions());</b>
+<b class="nc"><i>64</i>&nbsp;		tvQuestions.setEditable(true);</b>
+<i>65</i>&nbsp;		
+<b class="nc"><i>66</i>&nbsp;		setAlignment(getBtnBack(), Pos.CENTER);</b>
+<b class="nc"><i>67</i>&nbsp;		HBox hbNewQuestion = new HBox(getBtnAddFile(),getTxtAuthor(), getTxtClue1(), getTxtClue2(), getTxtClue3(),getTxtAnswer(),getBtnValidation());</b>
+<b class="nc"><i>68</i>&nbsp;		hbNewQuestion.setAlignment(Pos.CENTER);</b>
+<b class="nc"><i>69</i>&nbsp;		hbNewQuestion.setSpacing(10.);</b>
+<b class="nc"><i>70</i>&nbsp;		hbNewQuestion.setPadding(insets);</b>
+<i>71</i>&nbsp;
+<b class="nc"><i>72</i>&nbsp;		VBox vbBottom = new VBox(hbNewQuestion, getBtnBack());</b>
+<b class="nc"><i>73</i>&nbsp;		vbBottom.setAlignment(Pos.CENTER);</b>
+<b class="nc"><i>74</i>&nbsp;		vbBottom.setPadding(insets);</b>
+<b class="nc"><i>75</i>&nbsp;		vbBottom.setSpacing(10.);</b>
+<b class="nc"><i>76</i>&nbsp;		vbBottom.setMaxHeight(160.);</b>
+<b class="nc"><i>77</i>&nbsp;		setAlignment(vbBottom, Pos.BOTTOM_CENTER);</b>
+<b class="nc"><i>78</i>&nbsp;		this.getChildren().add(vbBottom);</b>
+<b class="nc"><i>79</i>&nbsp;		contexMenu();</b>
+<i>80</i>&nbsp;
+<b class="nc"><i>81</i>&nbsp;		this.setOnKeyReleased(event -&gt; {</b>
+<b class="nc"><i>82</i>&nbsp;			if (event.getCode() == KeyCode.ESCAPE &amp;&amp; editableQuestion != null) {</b>
+<b class="nc"><i>83</i>&nbsp;				editableQuestion.setVisible(false);</b>
+<i>84</i>&nbsp;			}
+<i>85</i>&nbsp;
+<b class="nc"><i>86</i>&nbsp;			if (event.getCode() == KeyCode.Z &amp;&amp; event.isControlDown()) {</b>
+<b class="nc"><i>87</i>&nbsp;				undoQuestionDeleted();</b>
+<i>88</i>&nbsp;			}
+<i>89</i>&nbsp;		});
+<i>90</i>&nbsp;	}
+<i>91</i>&nbsp;
+<i>92</i>&nbsp;	public void undoQuestionDeleted() {
+<b class="nc"><i>93</i>&nbsp;		if (!TrashManager.getTrash().isEmpty()) {</b>
+<b class="nc"><i>94</i>&nbsp;			Question question = TrashManager.reloadLastDeleted(theme);</b>
+<b class="nc"><i>95</i>&nbsp;			if (JsonManager.getDeck().addQuestion(question)) {</b>
+<b class="nc"><i>96</i>&nbsp;				getTvQuestions().getItems().add(question);</b>
+<i>97</i>&nbsp;			}
+<i>98</i>&nbsp;		}
+<i>99</i>&nbsp;	}
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;	public TableView&lt;Question&gt; getTvQuestions() {
+<b class="nc"><i>103</i>&nbsp;		if(tvQuestions==null) {</b>
+<b class="nc"><i>104</i>&nbsp;			tvQuestions=new TableView&lt;&gt;();</b>
+<b class="nc"><i>105</i>&nbsp;			CommonTableView.changeHeight(tvQuestions);</b>
+<b class="nc"><i>106</i>&nbsp;			Main.getStage().heightProperty().addListener(observable -&gt; CommonTableView.changeHeight(tvQuestions));</b>
+<i>107</i>&nbsp;
+<i>108</i>&nbsp;			TableColumn&lt;Question, String&gt;
+<b class="nc"><i>109</i>&nbsp;					tcAuthor = new TableColumn&lt;&gt;(&quot;Author&quot;),</b>
+<b class="nc"><i>110</i>&nbsp;					tcAnswer = new TableColumn&lt;&gt;(&quot;Answer&quot;),</b>
+<b class="nc"><i>111</i>&nbsp;					tcClue1 = new TableColumn&lt;&gt;(&quot;Clue_1&quot;),</b>
+<b class="nc"><i>112</i>&nbsp;					tcClue2 = new TableColumn&lt;&gt;(&quot;Clue_2&quot;),</b>
+<b class="nc"><i>113</i>&nbsp;					tcClue3 = new TableColumn&lt;&gt;(&quot;Clue_3&quot;);</b>
+<i>114</i>&nbsp;
+<b class="nc"><i>115</i>&nbsp;			tvQuestions.widthProperty().addListener(observable -&gt; {</b>
+<b class="nc"><i>116</i>&nbsp;				double val = ((tvQuestions.getWidth() - tcAuthor.getWidth() - tcAnswer.getWidth()) / 3) - 5;</b>
+<b class="nc"><i>117</i>&nbsp;				tcClue1.setCellFactory(getValue(val));</b>
+<b class="nc"><i>118</i>&nbsp;				tcClue2.setCellFactory(getValue(val));</b>
+<b class="nc"><i>119</i>&nbsp;				tcClue3.setCellFactory(getValue(val));</b>
+<b class="nc"><i>120</i>&nbsp;				tcClue1.setPrefWidth(val);</b>
+<b class="nc"><i>121</i>&nbsp;				tcClue2.setPrefWidth(val);</b>
+<b class="nc"><i>122</i>&nbsp;				tcClue3.setPrefWidth(val);</b>
+<i>123</i>&nbsp;			});
+<i>124</i>&nbsp;
+<b class="nc"><i>125</i>&nbsp;			tcAuthor.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;author&quot;));</b>
+<i>126</i>&nbsp;
+<b class="nc"><i>127</i>&nbsp;			tcClue1.setCellValueFactory(new Factory(0));</b>
+<b class="nc"><i>128</i>&nbsp;	        tcClue2.setCellValueFactory(new Factory(1));</b>
+<b class="nc"><i>129</i>&nbsp;	        tcClue3.setCellValueFactory(new Factory(2));</b>
+<b class="nc"><i>130</i>&nbsp;	        tcAnswer.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;answer&quot;));</b>
+<i>131</i>&nbsp;			
+<i>132</i>&nbsp;	        
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;			 /*
+<i>135</i>&nbsp;	         * Allow the Cell editing
+<i>136</i>&nbsp;	         */
+<b class="nc"><i>137</i>&nbsp;	        tcAuthor.setCellFactory(TextFieldTableCell.forTableColumn());</b>
+<b class="nc"><i>138</i>&nbsp;	        tcAnswer.setCellFactory(TextFieldTableCell.forTableColumn());</b>
+<i>139</i>&nbsp;	        
+<i>140</i>&nbsp;	        /*
+<i>141</i>&nbsp;	         * When we change the value of one cell
+<i>142</i>&nbsp;	         * we change also automaticaly the value in the json file
+<i>143</i>&nbsp;	         */
+<b class="nc"><i>144</i>&nbsp;			modifyAuthor(tcAuthor);</b>
+<b class="nc"><i>145</i>&nbsp;			modifyAnswer(tcAnswer);</b>
+<i>146</i>&nbsp;
+<b class="nc"><i>147</i>&nbsp;            tvQuestions.getColumns().addAll(tcAuthor,tcClue1,tcClue2,tcClue3,tcAnswer);</b>
+<b class="nc"><i>148</i>&nbsp;            tvQuestions.setItems(FXCollections.observableArrayList(questions));</b>
+<i>149</i>&nbsp;
+<i>150</i>&nbsp;		}
+<b class="nc"><i>151</i>&nbsp;		return tvQuestions;</b>
+<i>152</i>&nbsp;	}
+<i>153</i>&nbsp;
+<i>154</i>&nbsp;	public void modifyAuthor(TableColumn&lt;Question, String&gt; tcAuthor) {
+<b class="nc"><i>155</i>&nbsp;		tcAuthor.setOnEditCommit((CellEditEvent&lt;Question,String&gt; t)-&gt;{</b>
+<b class="nc"><i>156</i>&nbsp;			Question oldQuestion = getTvQuestions().getSelectionModel().getSelectedItem().clone();</b>
+<b class="nc"><i>157</i>&nbsp;			t.getTableView().getItems().get(</b>
+<b class="nc"><i>158</i>&nbsp;					 t.getTablePosition().getRow()).setAuthor(t.getNewValue());</b>
+<b class="nc"><i>159</i>&nbsp;			editQuestion(oldQuestion,getTvQuestions().getSelectionModel().getSelectedItem());</b>
+<i>160</i>&nbsp;		});
+<i>161</i>&nbsp;	}
+<i>162</i>&nbsp;
+<i>163</i>&nbsp;	public void modifyAnswer(TableColumn&lt;Question, String&gt; tcAnswer) {
+<b class="nc"><i>164</i>&nbsp;		tcAnswer.setOnEditCommit((CellEditEvent&lt;Question,String&gt; t)-&gt;{</b>
+<b class="nc"><i>165</i>&nbsp;			Question oldQuestion = getTvQuestions().getSelectionModel().getSelectedItem().clone();</b>
+<b class="nc"><i>166</i>&nbsp;			t.getTableView().getItems().get(</b>
+<b class="nc"><i>167</i>&nbsp;					t.getTablePosition().getRow()).setAnswer(t.getNewValue());</b>
+<i>168</i>&nbsp;
+<b class="nc"><i>169</i>&nbsp;			editQuestion(oldQuestion,getTvQuestions().getSelectionModel().getSelectedItem());</b>
+<i>170</i>&nbsp;		});
+<i>171</i>&nbsp;	}
+<i>172</i>&nbsp;
+<i>173</i>&nbsp;	public void contexMenu() {
+<b class="nc"><i>174</i>&nbsp;		ContextMenu menu = new ContextMenu();</b>
+<i>175</i>&nbsp;
+<b class="nc"><i>176</i>&nbsp;		MenuItem remove = new MenuItem(&quot;Remove&quot;),</b>
+<b class="nc"><i>177</i>&nbsp;				edit = new MenuItem(&quot;Edit question&quot;),</b>
+<b class="nc"><i>178</i>&nbsp;				importQuestion = new MenuItem(&quot;Import questions&quot;),</b>
+<b class="nc"><i>179</i>&nbsp;				undo = new MenuItem(&quot;Undo&quot;);</b>
+<b class="nc"><i>180</i>&nbsp;		remove.setOnAction(event -&gt; {</b>
+<b class="nc"><i>181</i>&nbsp;			Question qRemoved = getTvQuestions().getSelectionModel().getSelectedItem().clone();</b>
+<b class="nc"><i>182</i>&nbsp;			if (JsonManager.getDeck().removeQuestion(qRemoved)) {</b>
+<b class="nc"><i>183</i>&nbsp;				getTvQuestions().getItems().remove(qRemoved);</b>
+<b class="nc"><i>184</i>&nbsp;				TrashManager.getTrash().addQuestion(qRemoved);</b>
+<i>185</i>&nbsp;			}
+<i>186</i>&nbsp;		});
+<i>187</i>&nbsp;
+<b class="nc"><i>188</i>&nbsp;		edit.setOnAction(event -&gt; {</b>
+<b class="nc"><i>189</i>&nbsp;			editableQuestion = new EditableQuestion(getTvQuestions().getSelectionModel().getSelectedItem());</b>
+<b class="nc"><i>190</i>&nbsp;			this.getChildren().add(editableQuestion);</b>
+<b class="nc"><i>191</i>&nbsp;			editableQuestion.setVisible(true);</b>
+<b class="nc"><i>192</i>&nbsp;			editableQuestion.getBtnEdit().pressedProperty().addListener(observable -&gt; {</b>
+<b class="nc"><i>193</i>&nbsp;				if (editableQuestion.isPressed()) {</b>
+<b class="nc"><i>194</i>&nbsp;					Question old = getTvQuestions().getSelectionModel().getSelectedItem().clone();</b>
+<b class="nc"><i>195</i>&nbsp;					JsonManager.getDeck().modifyQuestion(old, editableQuestion.getQuestion());</b>
+<b class="nc"><i>196</i>&nbsp;					getTvQuestions().getSelectionModel().getSelectedItem().set(editableQuestion.getQuestion());</b>
+<b class="nc"><i>197</i>&nbsp;					getTvQuestions().refresh();</b>
+<b class="nc"><i>198</i>&nbsp;					editableQuestion.setVisible(false);</b>
+<i>199</i>&nbsp;				}
+<i>200</i>&nbsp;			});
+<i>201</i>&nbsp;		});
+<i>202</i>&nbsp;
+<b class="nc"><i>203</i>&nbsp;		importQuestion.setOnAction(event -&gt; {</b>
+<b class="nc"><i>204</i>&nbsp;			menu.hide();</b>
+<b class="nc"><i>205</i>&nbsp;			importFile();</b>
+<i>206</i>&nbsp;		});
+<i>207</i>&nbsp;
+<b class="nc"><i>208</i>&nbsp;		undo.setOnAction(event -&gt; undoQuestionDeleted());</b>
+<i>209</i>&nbsp;
+<b class="nc"><i>210</i>&nbsp;		menu.getItems().addAll(remove, edit, importQuestion, undo);</b>
+<b class="nc"><i>211</i>&nbsp;		getTvQuestions().setContextMenu(menu);</b>
+<i>212</i>&nbsp;	}
+<i>213</i>&nbsp;
+<i>214</i>&nbsp;	public Callback&lt;TableColumn&lt;Question, String&gt;, TableCell&lt;Question, String&gt;&gt; getValue(double size) {
+<b class="nc"><i>215</i>&nbsp;		return new Callback&lt;TableColumn&lt;Question, String&gt;, TableCell&lt;Question, String&gt;&gt;() {</b>
+<i>216</i>&nbsp;			@Override
+<i>217</i>&nbsp;			public TableCell&lt;Question, String&gt; call(TableColumn&lt;Question, String&gt; arg0) {
+<b class="nc"><i>218</i>&nbsp;				return new TableCell&lt;Question, String&gt;() {</b>
+<i>219</i>&nbsp;					@Override
+<i>220</i>&nbsp;					public void updateItem(String item, boolean empty) {
+<b class="nc"><i>221</i>&nbsp;						super.updateItem(item, empty);</b>
+<b class="nc"><i>222</i>&nbsp;						if (!isEmpty()) {</b>
+<b class="nc"><i>223</i>&nbsp;							Text text = new Text(item);</b>
+<b class="nc"><i>224</i>&nbsp;							text.setWrappingWidth(size);</b>
+<b class="nc"><i>225</i>&nbsp;							this.setWrapText(true);</b>
+<b class="nc"><i>226</i>&nbsp;							setGraphic(text);</b>
+<i>227</i>&nbsp;						}
+<i>228</i>&nbsp;					}
+<i>229</i>&nbsp;				};
+<i>230</i>&nbsp;			}
+<i>231</i>&nbsp;		};
+<i>232</i>&nbsp;	}
+<i>233</i>&nbsp;
+<i>234</i>&nbsp;	public Label getLblTheme() {
+<b class="nc"><i>235</i>&nbsp;		if(lblTheme==null) {</b>
+<b class="nc"><i>236</i>&nbsp;			lblTheme=new Label(theme);</b>
+<b class="nc"><i>237</i>&nbsp;            lblTheme.getStyleClass().add(&quot;labelTitle&quot;);</b>
+<i>238</i>&nbsp;		}
+<b class="nc"><i>239</i>&nbsp;		return lblTheme;</b>
+<i>240</i>&nbsp;	}
+<i>241</i>&nbsp;
+<i>242</i>&nbsp;
+<i>243</i>&nbsp;	public Button getBtnBack() {
+<b class="nc"><i>244</i>&nbsp;		if(btnBack==null) {</b>
+<b class="nc"><i>245</i>&nbsp;			btnBack=new Button(&quot;Back&quot;);</b>
+<b class="nc"><i>246</i>&nbsp;			btnBack.setBackground(BackgroundLoader.buildBtnBackGround());</b>
+<b class="nc"><i>247</i>&nbsp;			btnBack.getStyleClass().add(&quot;buttonBasic&quot;);</b>
+<b class="nc"><i>248</i>&nbsp;            btnBack.setId(&quot;big-button&quot;);</b>
+<b class="nc"><i>249</i>&nbsp;            btnBack.setOnAction(event -&gt; Main.switchScene(new TableViewBP()));</b>
+<i>250</i>&nbsp;		}
+<b class="nc"><i>251</i>&nbsp;		return btnBack;</b>
+<i>252</i>&nbsp;			
+<i>253</i>&nbsp;	}
+<i>254</i>&nbsp;
+<i>255</i>&nbsp;
+<i>256</i>&nbsp;	public Button getBtnValidation() {
+<b class="nc"><i>257</i>&nbsp;		if (btnValidation == null) {</b>
+<b class="nc"><i>258</i>&nbsp;			btnValidation = new Button(&quot;&quot;, new ImageView(new Image(&quot;asset/images/icon/validation.png&quot;,</b>
+<i>259</i>&nbsp;					30, 30, true, true)));
+<b class="nc"><i>260</i>&nbsp;			btnValidation.getStyleClass().add(&quot;round&quot;);</b>
+<b class="nc"><i>261</i>&nbsp;			btnValidation.setOnAction(event -&gt; validation());</b>
+<i>262</i>&nbsp;		}
+<b class="nc"><i>263</i>&nbsp;		return btnValidation;</b>
+<i>264</i>&nbsp;	}
+<i>265</i>&nbsp;
+<i>266</i>&nbsp;	public void validation() {
+<b class="nc"><i>267</i>&nbsp;		System.out.println(getTxtClue1().getLength());</b>
+<b class="nc"><i>268</i>&nbsp;		if (!getTxtAuthor().getText().equals(&quot;&quot;) &amp;&amp; !getTxtClue1().getText().equals(&quot;&quot;) &amp;&amp;</b>
+<b class="nc"><i>269</i>&nbsp;				!getTxtClue2().getText().equals(&quot;&quot;) &amp;&amp; !getTxtClue3().getText().equals(&quot;&quot;) &amp;&amp;</b>
+<b class="nc"><i>270</i>&nbsp;				!getTxtAnswer().getText().equals(&quot;&quot;)) {</b>
+<b class="nc"><i>271</i>&nbsp;			Question question = new Question(getTxtAuthor().getText(), theme,</b>
+<b class="nc"><i>272</i>&nbsp;					Arrays.asList(getTxtClue1().getText(), getTxtClue2().getText(), getTxtClue3().getText()),</b>
+<b class="nc"><i>273</i>&nbsp;					getTxtAnswer().getText());</b>
+<b class="nc"><i>274</i>&nbsp;			if (JsonManager.getDeck().addQuestion(question)) {</b>
+<b class="nc"><i>275</i>&nbsp;				getTvQuestions().getItems().add(question);</b>
+<b class="nc"><i>276</i>&nbsp;				setTxtPromptText(&quot;Enter new&quot;);</b>
+<i>277</i>&nbsp;			}
+<i>278</i>&nbsp;			else {
+<b class="nc"><i>279</i>&nbsp;				setTxtPromptText(&quot;Invalid&quot;);</b>
+<i>280</i>&nbsp;			}
+<b class="nc"><i>281</i>&nbsp;			getTxtAuthor().setText(&quot;&quot;);</b>
+<b class="nc"><i>282</i>&nbsp;			getTxtClue1().setText(&quot;&quot;);</b>
+<b class="nc"><i>283</i>&nbsp;			getTxtClue2().setText(&quot;&quot;);</b>
+<b class="nc"><i>284</i>&nbsp;			getTxtClue3().setText(&quot;&quot;);</b>
+<b class="nc"><i>285</i>&nbsp;			getTxtAnswer().setText(&quot;&quot;);</b>
+<i>286</i>&nbsp;		}
+<i>287</i>&nbsp;	}
+<i>288</i>&nbsp;
+<i>289</i>&nbsp;	private void setTxtPromptText(String value) {
+<b class="nc"><i>290</i>&nbsp;		getTxtAuthor().setPromptText(value +&quot; Author&quot;);</b>
+<b class="nc"><i>291</i>&nbsp;		getTxtClue1().setPromptText(value +&quot; Clue 1&quot;);</b>
+<b class="nc"><i>292</i>&nbsp;		getTxtClue2().setPromptText(value +&quot; Clue 2&quot;);</b>
+<b class="nc"><i>293</i>&nbsp;		getTxtClue3().setPromptText(value +&quot; Clue 3&quot;);</b>
+<b class="nc"><i>294</i>&nbsp;		getTxtAnswer().setPromptText(value +&quot; Answer&quot;);</b>
+<i>295</i>&nbsp;	}
+<i>296</i>&nbsp;
+<i>297</i>&nbsp;	public Button getBtnAddFile() {
+<b class="nc"><i>298</i>&nbsp;		if (btnAddFile == null) {</b>
+<b class="nc"><i>299</i>&nbsp;			btnAddFile = new Button(&quot;&quot;, new ImageView(new Image(&quot;asset/images/icon/openFile.png&quot;,</b>
+<i>300</i>&nbsp;					25, 25, true, true)));
+<b class="nc"><i>301</i>&nbsp;			btnAddFile.getStyleClass().add(&quot;round&quot;);</b>
+<b class="nc"><i>302</i>&nbsp;			btnAddFile.setOnAction(event -&gt; importFile());</b>
+<i>303</i>&nbsp;		}
+<b class="nc"><i>304</i>&nbsp;		return btnAddFile;</b>
+<i>305</i>&nbsp;	}
+<i>306</i>&nbsp;
+<i>307</i>&nbsp;	/**
+<i>308</i>&nbsp;	 * Import of a file containing a list of questions.
+<i>309</i>&nbsp;	 * Adding is done by theme if the theme does not match that of the tableview,
+<i>310</i>&nbsp;	 * the question will not be added
+<i>311</i>&nbsp;	 */
+<i>312</i>&nbsp;	public void importFile() {
+<b class="nc"><i>313</i>&nbsp;		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());</b>
+<b class="nc"><i>314</i>&nbsp;		jfc.setDialogTitle(&quot;Select a theme from json&quot;);</b>
+<b class="nc"><i>315</i>&nbsp;		jfc.setAcceptAllFileFilterUsed(false);</b>
+<b class="nc"><i>316</i>&nbsp;		FileNameExtensionFilter filter = new FileNameExtensionFilter(&quot;JSON&quot;, &quot;json&quot;);</b>
+<b class="nc"><i>317</i>&nbsp;		jfc.addChoosableFileFilter(filter);</b>
+<i>318</i>&nbsp;
+<b class="nc"><i>319</i>&nbsp;		int returnValue = jfc.showDialog(null, &quot;Add theme&quot;);</b>
+<i>320</i>&nbsp;
+<b class="nc"><i>321</i>&nbsp;		if (returnValue == JFileChooser.APPROVE_OPTION) {</b>
+<b class="nc"><i>322</i>&nbsp;			File selectedFile = jfc.getSelectedFile();</b>
+<b class="nc"><i>323</i>&nbsp;			System.out.println(selectedFile.getAbsolutePath());</b>
+<b class="nc"><i>324</i>&nbsp;			Deck deck = new Deck();</b>
+<b class="nc"><i>325</i>&nbsp;			deck.fromJson(selectedFile);</b>
+<b class="nc"><i>326</i>&nbsp;			deck.checkTheme(theme);</b>
+<i>327</i>&nbsp;
+<b class="nc"><i>328</i>&nbsp;			deck.getList().forEach(question -&gt; {</b>
+<b class="nc"><i>329</i>&nbsp;				question.setTheme(CommonTableView.upperLowerText(question.getTheme()));</b>
+<b class="nc"><i>330</i>&nbsp;				if (JsonManager.getDeck().addQuestion(question)) {</b>
+<b class="nc"><i>331</i>&nbsp;					getTvQuestions().getItems().add(question);</b>
+<i>332</i>&nbsp;				}
+<i>333</i>&nbsp;			});
+<i>334</i>&nbsp;		}
+<i>335</i>&nbsp;	}
+<i>336</i>&nbsp;
+<i>337</i>&nbsp;	public TextField getTxtAuthor() {
+<b class="nc"><i>338</i>&nbsp;		if (txtAuthor == null) {</b>
+<b class="nc"><i>339</i>&nbsp;			txtAuthor = new TextField();</b>
+<b class="nc"><i>340</i>&nbsp;			txtAuthor.setPromptText(&quot;Enter Author&quot;);</b>
+<i>341</i>&nbsp;		}
+<b class="nc"><i>342</i>&nbsp;		return txtAuthor;</b>
+<i>343</i>&nbsp;	}
+<i>344</i>&nbsp;
+<i>345</i>&nbsp;	public TextField getTxtClue1() {
+<b class="nc"><i>346</i>&nbsp;		if (txtClue1 == null) {</b>
+<b class="nc"><i>347</i>&nbsp;			txtClue1 = new TextField();</b>
+<b class="nc"><i>348</i>&nbsp;			txtClue1.setPromptText(&quot;Enter Clue 1&quot;);</b>
+<i>349</i>&nbsp;		}
+<b class="nc"><i>350</i>&nbsp;		return txtClue1;</b>
+<i>351</i>&nbsp;	}
+<i>352</i>&nbsp;
+<i>353</i>&nbsp;	public TextField getTxtClue2() {
+<b class="nc"><i>354</i>&nbsp;		if (txtClue2 == null) {</b>
+<b class="nc"><i>355</i>&nbsp;			txtClue2 = new TextField();</b>
+<b class="nc"><i>356</i>&nbsp;			txtClue2.setPromptText(&quot;Enter Clue 2&quot;);</b>
+<i>357</i>&nbsp;		}
+<b class="nc"><i>358</i>&nbsp;		return txtClue2;</b>
+<i>359</i>&nbsp;	}
+<i>360</i>&nbsp;
+<i>361</i>&nbsp;	public TextField getTxtClue3() {
+<b class="nc"><i>362</i>&nbsp;		if (txtClue3 == null) {</b>
+<b class="nc"><i>363</i>&nbsp;			txtClue3 = new TextField();</b>
+<b class="nc"><i>364</i>&nbsp;			txtClue3.setPromptText(&quot;Enter Clue 3&quot;);</b>
+<i>365</i>&nbsp;		}
+<b class="nc"><i>366</i>&nbsp;		return txtClue3;</b>
+<i>367</i>&nbsp;	}
+<i>368</i>&nbsp;
+<i>369</i>&nbsp;	public TextField getTxtAnswer() {
+<b class="nc"><i>370</i>&nbsp;		if (txtAnswer == null) {</b>
+<b class="nc"><i>371</i>&nbsp;			txtAnswer = new TextField();</b>
+<b class="nc"><i>372</i>&nbsp;			txtAnswer.setPromptText(&quot;Enter Answer&quot;);</b>
+<i>373</i>&nbsp;		}
+<b class="nc"><i>374</i>&nbsp;		return txtAnswer;</b>
+<i>375</i>&nbsp;	}
+<i>376</i>&nbsp;
+<i>377</i>&nbsp;	/**
+<i>378</i>&nbsp;     * Factory class is used to obtain
+<i>379</i>&nbsp;     * the 3 Clues separately
+<i>380</i>&nbsp;     */
+<i>381</i>&nbsp;    public static class Factory implements Callback&lt;TableColumn.CellDataFeatures&lt;Question, String&gt;, ObservableValue&lt;String&gt;&gt; {
+<i>382</i>&nbsp;        int index;
+<i>383</i>&nbsp;
+<b class="nc"><i>384</i>&nbsp;        public Factory(int index) {</b>
+<b class="nc"><i>385</i>&nbsp;            this.index = index;</b>
+<i>386</i>&nbsp;        }
+<i>387</i>&nbsp;
+<i>388</i>&nbsp;        public ObservableValue&lt;String&gt; call(CellDataFeatures&lt;Question, String&gt; p) {
+<b class="nc"><i>389</i>&nbsp;            return new SimpleStringProperty(p.getValue().getClues().get(index));</b>
+<i>390</i>&nbsp;        }
+<i>391</i>&nbsp;    }
+<i>392</i>&nbsp;
+<i>393</i>&nbsp;    /**
+<i>394</i>&nbsp;     * to edit question
+<i>395</i>&nbsp;     */
+<i>396</i>&nbsp;    
+<i>397</i>&nbsp;    public void editQuestion(Question oldQuestion,Question editQuestion) {
+<b class="nc"><i>398</i>&nbsp;    	JsonManager.getDeck().modifyQuestion(oldQuestion, editQuestion);</b>
+<i>399</i>&nbsp;    }
+<i>400</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-09 15:45</div>
+</div>
+</body>
+</html>

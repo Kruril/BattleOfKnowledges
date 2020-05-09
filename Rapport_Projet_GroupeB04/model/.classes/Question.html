@@ -1,0 +1,195 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Question</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">model</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Question (model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Question</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    29,4%
+  </span>
+  <span class="absValue">
+    (5/ 17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40,4%
+  </span>
+  <span class="absValue">
+    (21/ 52)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package model;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.io.Serializable;
+<i>4</i>&nbsp;import java.util.List;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;public class Question implements Serializable{
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;	private String author;
+<i>9</i>&nbsp;	private String theme;
+<i>10</i>&nbsp;	private List&lt;String&gt; clues;
+<i>11</i>&nbsp;	private String answer;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;	public Question(String author, String theme, List&lt;String&gt; clues, String answer) {</b>
+<b class="fc"><i>14</i>&nbsp;		this.author = author;</b>
+<b class="fc"><i>15</i>&nbsp;		this.theme = theme;</b>
+<b class="fc"><i>16</i>&nbsp;		this.clues = clues;</b>
+<b class="fc"><i>17</i>&nbsp;		this.answer = answer;</b>
+<b class="fc"><i>18</i>&nbsp;	}</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;	public String getAuthor() {
+<b class="nc"><i>21</i>&nbsp;		return author;</b>
+<i>22</i>&nbsp;	}
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;	public void setAuthor(String author) {
+<b class="nc"><i>25</i>&nbsp;		this.author = author;</b>
+<b class="nc"><i>26</i>&nbsp;	}</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;	public String getTheme() {
+<b class="fc"><i>29</i>&nbsp;		return theme;</b>
+<i>30</i>&nbsp;	}
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;	public void setTheme(String theme) {
+<b class="nc"><i>33</i>&nbsp;		this.theme = theme;</b>
+<b class="nc"><i>34</i>&nbsp;	}</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;	public List&lt;String&gt; getClues() {
+<b class="nc"><i>37</i>&nbsp;		return clues;</b>
+<i>38</i>&nbsp;	}
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;	public void setClues(List&lt;String&gt; clues) {
+<b class="nc"><i>41</i>&nbsp;		this.clues = clues;</b>
+<b class="nc"><i>42</i>&nbsp;	}</b>
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;	public void setClue(int index, List&lt;String&gt; value) {
+<b class="nc"><i>45</i>&nbsp;		if (index &lt; clues.size()) clues = value;</b>
+<b class="nc"><i>46</i>&nbsp;	}</b>
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;	public String getAnswer() {
+<b class="nc"><i>49</i>&nbsp;		return answer;</b>
+<i>50</i>&nbsp;	}
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;	public void setAnswer(String answer) {
+<b class="nc"><i>53</i>&nbsp;		this.answer = answer;</b>
+<b class="nc"><i>54</i>&nbsp;	}</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;	@Override
+<i>57</i>&nbsp;	public int hashCode() {
+<b class="nc"><i>58</i>&nbsp;		final int prime = 31;</b>
+<b class="nc"><i>59</i>&nbsp;		int result = 1;</b>
+<b class="nc"><i>60</i>&nbsp;		result = prime * result + ((answer == null) ? 0 : answer.hashCode());</b>
+<b class="nc"><i>61</i>&nbsp;		result = prime * result + ((theme == null) ? 0 : theme.hashCode());</b>
+<b class="nc"><i>62</i>&nbsp;		return result;</b>
+<i>63</i>&nbsp;	}
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;	@Override
+<i>66</i>&nbsp;	public boolean equals(Object obj) {
+<b class="fc"><i>67</i>&nbsp;		if (this == obj)</b>
+<b class="fc"><i>68</i>&nbsp;			return true;</b>
+<b class="fc"><i>69</i>&nbsp;		if (obj == null)</b>
+<b class="nc"><i>70</i>&nbsp;			return false;</b>
+<b class="fc"><i>71</i>&nbsp;		if (getClass() != obj.getClass())</b>
+<b class="nc"><i>72</i>&nbsp;			return false;</b>
+<b class="fc"><i>73</i>&nbsp;		Question other = (Question) obj;</b>
+<b class="fc"><i>74</i>&nbsp;		if (answer == null) {</b>
+<b class="nc"><i>75</i>&nbsp;			if (other.answer != null)</b>
+<b class="nc"><i>76</i>&nbsp;				return false;</b>
+<b class="fc"><i>77</i>&nbsp;		} else if (!answer.equalsIgnoreCase(other.answer))</b>
+<b class="nc"><i>78</i>&nbsp;			return false;</b>
+<b class="fc"><i>79</i>&nbsp;		if (theme == null) {</b>
+<b class="nc"><i>80</i>&nbsp;			return other.theme == null;</b>
+<b class="fc"><i>81</i>&nbsp;		} else return theme.equalsIgnoreCase(other.theme);</b>
+<i>82</i>&nbsp;	}
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;	@Override
+<i>86</i>&nbsp;	public String toString() {
+<b class="nc"><i>87</i>&nbsp;		return &quot;Question [author=&quot; + author + &quot;, theme=&quot; + theme + &quot;, clues=&quot; + clues + &quot;, answer=&quot; + answer + &quot;]&quot;;</b>
+<i>88</i>&nbsp;	}
+<i>89</i>&nbsp;	
+<i>90</i>&nbsp;	public Question clone() {
+<b class="nc"><i>91</i>&nbsp;		return new Question(author, theme, clues, answer);</b>
+<i>92</i>&nbsp;	}
+<i>93</i>&nbsp;
+<i>94</i>&nbsp;	public boolean checkQuestion() {
+<b class="fc"><i>95</i>&nbsp;		if (clues.size() != 3) return false;</b>
+<b class="fc"><i>96</i>&nbsp;		if (author.equalsIgnoreCase(&quot;&quot;)) return false;</b>
+<b class="fc"><i>97</i>&nbsp;		if (clues.contains(&quot;&quot;) || clues.contains(null)) return false;</b>
+<b class="fc"><i>98</i>&nbsp;		return !clues.removeIf(clue -&gt; clue.length() &gt; 150);</b>
+<i>99</i>&nbsp;	}
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;	public String getClue(int index) {
+<b class="fc"><i>102</i>&nbsp;		return clues.get(index);</b>
+<i>103</i>&nbsp;	}
+<i>104</i>&nbsp;
+<i>105</i>&nbsp;	public void set(Question question) {
+<b class="nc"><i>106</i>&nbsp;		this.setClues(question.clues);</b>
+<b class="nc"><i>107</i>&nbsp;		this.setAnswer(question.answer);</b>
+<b class="nc"><i>108</i>&nbsp;		this.setAuthor(question.author);</b>
+<b class="nc"><i>109</i>&nbsp;		this.setTheme(question.theme);</b>
+<b class="nc"><i>110</i>&nbsp;	}</b>
+<i>111</i>&nbsp;
+<i>112</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-09 15:45</div>
+</div>
+</body>
+</html>

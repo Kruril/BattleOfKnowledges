@@ -1,0 +1,242 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TableViewBP</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">view.admin</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TableViewBP (view.admin)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TableViewBP</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 70)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package view.admin;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import application.Main;
+<i>4</i>&nbsp;import javafx.beans.property.SimpleStringProperty;
+<i>5</i>&nbsp;import javafx.collections.FXCollections;
+<i>6</i>&nbsp;import javafx.geometry.Insets;
+<i>7</i>&nbsp;import javafx.geometry.Pos;
+<i>8</i>&nbsp;import javafx.scene.control.*;
+<i>9</i>&nbsp;import javafx.scene.image.Image;
+<i>10</i>&nbsp;import javafx.scene.image.ImageView;
+<i>11</i>&nbsp;import javafx.scene.input.MouseButton;
+<i>12</i>&nbsp;import javafx.scene.layout.BorderPane;
+<i>13</i>&nbsp;import javafx.scene.layout.HBox;
+<i>14</i>&nbsp;import javafx.scene.layout.VBox;
+<i>15</i>&nbsp;import model.IteratorQuestion;
+<i>16</i>&nbsp;import model.Question;
+<i>17</i>&nbsp;import utils.utility.BackgroundLoader;
+<i>18</i>&nbsp;import utils.controler.JsonManager;
+<i>19</i>&nbsp;import utils.TableView.CommonTableView;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;import java.util.List;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;public class TableViewBP extends BorderPane {
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    private TableView&lt;String&gt; tvThemes;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    private Label lblTitle;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    private TextField txtAddTheme;
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    private Button btnBack, btnAddTheme;
+<i>32</i>&nbsp;
+<b class="nc"><i>33</i>&nbsp;    public TableViewBP() {</b>
+<b class="nc"><i>34</i>&nbsp;        this.setBackground(BackgroundLoader.builderBackGround());</b>
+<i>35</i>&nbsp;
+<b class="nc"><i>36</i>&nbsp;        this.setPadding(new Insets(10.));</b>
+<b class="nc"><i>37</i>&nbsp;        setAlignment(getLblTitle(), Pos.CENTER);</b>
+<b class="nc"><i>38</i>&nbsp;        this.setTop(getLblTitle());</b>
+<i>39</i>&nbsp;
+<b class="nc"><i>40</i>&nbsp;        setAlignment(getTvThemes(), Pos.CENTER);</b>
+<b class="nc"><i>41</i>&nbsp;        this.setCenter(getTvThemes());</b>
+<i>42</i>&nbsp;
+<b class="nc"><i>43</i>&nbsp;        HBox hbAddTheme = new HBox(getTxtAddTheme(), getBtnAddTheme());</b>
+<b class="nc"><i>44</i>&nbsp;        hbAddTheme.setPadding(new Insets(10.));</b>
+<b class="nc"><i>45</i>&nbsp;        hbAddTheme.setSpacing(10.);</b>
+<b class="nc"><i>46</i>&nbsp;        hbAddTheme.setAlignment(Pos.CENTER);</b>
+<b class="nc"><i>47</i>&nbsp;        VBox vbBottom = new VBox(hbAddTheme, getBtnBack());</b>
+<b class="nc"><i>48</i>&nbsp;        vbBottom.setSpacing(10.);</b>
+<b class="nc"><i>49</i>&nbsp;        vbBottom.setPadding(new Insets(10.));</b>
+<b class="nc"><i>50</i>&nbsp;        vbBottom.setAlignment(Pos.CENTER);</b>
+<b class="nc"><i>51</i>&nbsp;        this.setBottom(vbBottom);</b>
+<b class="nc"><i>52</i>&nbsp;        contexMenu();</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    public TableView&lt;String&gt; getTvThemes() {
+<b class="nc"><i>57</i>&nbsp;        if (tvThemes == null) {</b>
+<b class="nc"><i>58</i>&nbsp;            tvThemes = new TableView&lt;&gt;();</b>
+<b class="nc"><i>59</i>&nbsp;            tvThemes.setMaxWidth(250.);</b>
+<b class="nc"><i>60</i>&nbsp;            CommonTableView.changeHeight(tvThemes);</b>
+<b class="nc"><i>61</i>&nbsp;            Main.getStage().heightProperty().addListener(observable -&gt; CommonTableView.changeHeight(tvThemes));</b>
+<i>62</i>&nbsp;
+<b class="nc"><i>63</i>&nbsp;            TableColumn&lt;String, String&gt; tcTheme = new TableColumn&lt;&gt;(&quot;theme&quot;);</b>
+<b class="nc"><i>64</i>&nbsp;            tcTheme.setMinWidth(248.);</b>
+<i>65</i>&nbsp;
+<b class="nc"><i>66</i>&nbsp;            tcTheme.setCellValueFactory(data -&gt; new SimpleStringProperty(data.getValue()));</b>
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;
+<b class="nc"><i>69</i>&nbsp;            tvThemes.getColumns().add(tcTheme);</b>
+<b class="nc"><i>70</i>&nbsp;            tvThemes.setItems(FXCollections.observableArrayList(JsonManager.getThemes()));</b>
+<i>71</i>&nbsp;
+<b class="nc"><i>72</i>&nbsp;            tvThemes.setOnMouseClicked(event -&gt; {</b>
+<b class="nc"><i>73</i>&nbsp;                String element = tvThemes.getSelectionModel().getSelectedItem();</b>
+<b class="nc"><i>74</i>&nbsp;                if (JsonManager.getThemes().contains(element)) {</b>
+<b class="nc"><i>75</i>&nbsp;                    if (event.getButton() == MouseButton.PRIMARY) {</b>
+<b class="nc"><i>76</i>&nbsp;                        Main.switchScene(new TableViewThemeSP(element));</b>
+<i>77</i>&nbsp;                    }
+<i>78</i>&nbsp;                }
+<i>79</i>&nbsp;            });
+<i>80</i>&nbsp;        }
+<b class="nc"><i>81</i>&nbsp;        return tvThemes;</b>
+<i>82</i>&nbsp;    }
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;    public Label getLblTitle() {
+<b class="nc"><i>87</i>&nbsp;        if (lblTitle == null) {</b>
+<b class="nc"><i>88</i>&nbsp;            lblTitle = new Label(&quot;Admin&quot;);</b>
+<b class="nc"><i>89</i>&nbsp;            lblTitle.getStyleClass().add(&quot;labelTitle&quot;);</b>
+<i>90</i>&nbsp;        }
+<b class="nc"><i>91</i>&nbsp;        return lblTitle;</b>
+<i>92</i>&nbsp;    }
+<i>93</i>&nbsp;
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    public Button getBtnBack() {
+<b class="nc"><i>96</i>&nbsp;        if (btnBack == null) {</b>
+<b class="nc"><i>97</i>&nbsp;            btnBack = new Button(&quot;Back&quot;);</b>
+<b class="nc"><i>98</i>&nbsp;            btnBack.setBackground(BackgroundLoader.buildBtnBackGround());</b>
+<b class="nc"><i>99</i>&nbsp;            btnBack.getStyleClass().add(&quot;buttonBasic&quot;);</b>
+<b class="nc"><i>100</i>&nbsp;            btnBack.setId(&quot;big-button&quot;);</b>
+<b class="nc"><i>101</i>&nbsp;            btnBack.setOnAction(event -&gt; Main.switchScene(new AdminChoiceSP()));</b>
+<i>102</i>&nbsp;        }
+<b class="nc"><i>103</i>&nbsp;        return btnBack;</b>
+<i>104</i>&nbsp;    }
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    public TextField getTxtAddTheme() {
+<b class="nc"><i>107</i>&nbsp;        if (txtAddTheme == null) {</b>
+<b class="nc"><i>108</i>&nbsp;            txtAddTheme = new TextField();</b>
+<b class="nc"><i>109</i>&nbsp;            txtAddTheme.setPromptText(&quot;Enter new theme&quot;);</b>
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;        }
+<b class="nc"><i>112</i>&nbsp;        return txtAddTheme;</b>
+<i>113</i>&nbsp;    }
+<i>114</i>&nbsp;
+<i>115</i>&nbsp;    public Button getBtnAddTheme() {
+<b class="nc"><i>116</i>&nbsp;        if (btnAddTheme == null) {</b>
+<b class="nc"><i>117</i>&nbsp;            btnAddTheme = new Button(&quot;&quot;, new ImageView(new Image(&quot;asset/images/icon/validation.png&quot;,</b>
+<i>118</i>&nbsp;                    30, 30, true, true)));
+<b class="nc"><i>119</i>&nbsp;            btnAddTheme.getStyleClass().add(&quot;round&quot;);</b>
+<b class="nc"><i>120</i>&nbsp;            btnAddTheme.setOnAction(event -&gt; {</b>
+<b class="nc"><i>121</i>&nbsp;                String newTheme = CommonTableView.upperLowerText(getTxtAddTheme().getText());</b>
+<b class="nc"><i>122</i>&nbsp;                if (!newTheme.equals(&quot;&quot;)) {</b>
+<b class="nc"><i>123</i>&nbsp;                    if (!JsonManager.getThemes().contains(newTheme)) {</b>
+<b class="nc"><i>124</i>&nbsp;                        JsonManager.getThemes().add(newTheme);</b>
+<b class="nc"><i>125</i>&nbsp;                        getTvThemes().getItems().add(newTheme);</b>
+<i>126</i>&nbsp;                    }
+<i>127</i>&nbsp;                    else {
+<b class="nc"><i>128</i>&nbsp;                        getTxtAddTheme().setPromptText(&quot;Theme already present&quot;);</b>
+<i>129</i>&nbsp;                    }
+<b class="nc"><i>130</i>&nbsp;                    getTxtAddTheme().setText(&quot;&quot;);</b>
+<i>131</i>&nbsp;                }
+<i>132</i>&nbsp;            });
+<i>133</i>&nbsp;        }
+<b class="nc"><i>134</i>&nbsp;        return btnAddTheme;</b>
+<i>135</i>&nbsp;    }
+<i>136</i>&nbsp;
+<i>137</i>&nbsp;    /**
+<i>138</i>&nbsp;     * Contextual menu for the table view.
+<i>139</i>&nbsp;     * Do not overload the user interface.
+<i>140</i>&nbsp;     * It contains an action which is to delete a theme as well as
+<i>141</i>&nbsp;     * the questions concerning it
+<i>142</i>&nbsp;     */
+<i>143</i>&nbsp;    public void contexMenu() {
+<b class="nc"><i>144</i>&nbsp;        ContextMenu menu = new ContextMenu();</b>
+<i>145</i>&nbsp;
+<b class="nc"><i>146</i>&nbsp;        MenuItem remove = new MenuItem(&quot;Remove&quot;);</b>
+<b class="nc"><i>147</i>&nbsp;        remove.setOnAction(event -&gt; {</b>
+<b class="nc"><i>148</i>&nbsp;            String sRemoved = getTvThemes().getSelectionModel().getSelectedItem();</b>
+<b class="nc"><i>149</i>&nbsp;            if (JsonManager.getThemes().remove(sRemoved)) {</b>
+<b class="nc"><i>150</i>&nbsp;                getTvThemes().getItems().remove(sRemoved);</b>
+<b class="nc"><i>151</i>&nbsp;                List&lt;Question&gt; qRemoved = JsonManager.choiceTheme(sRemoved);</b>
+<b class="nc"><i>152</i>&nbsp;                JsonManager.getDeck().getList().removeAll(qRemoved);</b>
+<i>153</i>&nbsp;            }
+<i>154</i>&nbsp;        });
+<i>155</i>&nbsp;
+<b class="nc"><i>156</i>&nbsp;        menu.getItems().add(remove);</b>
+<b class="nc"><i>157</i>&nbsp;        getTvThemes().setContextMenu(menu);</b>
+<i>158</i>&nbsp;    }
+<i>159</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-09 15:45</div>
+</div>
+</body>
+</html>
