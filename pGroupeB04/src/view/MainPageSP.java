@@ -1,6 +1,7 @@
 package view;
 
 import application.Main;
+import enumeration.TypeGame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -77,7 +78,10 @@ public class MainPageSP extends StackPane {
             btnSolo.setBackground(BackgroundLoader.buildBtnBackGround());
             btnSolo.getStyleClass().add("buttonBasic");
             btnSolo.setId("big-button");
-            btnSolo.setOnAction(event -> Main.switchScene(new ChoiceThemeBP()));
+            btnSolo.setOnAction(event -> {
+            	Main.switchScene(new ChoiceThemeBP());
+            	TypeGame.TYPEGAME.setValue("SOLO");
+            });
         }
         return btnSolo;
     }

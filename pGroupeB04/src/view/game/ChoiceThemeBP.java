@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import application.Main;
+import enumeration.TypeGame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,6 +16,9 @@ import javafx.scene.layout.VBox;
 import utils.utility.BackgroundLoader;
 import utils.controler.JsonManager;
 import view.MainPageSP;
+import view.multiplayer.EndGameMulti;
+import view.multiplayer.MultiPlayerRoomClient;
+import view.multiplayer.MultiPlayerRoomServer;
 
 
 public class ChoiceThemeBP extends BorderPane {
@@ -113,7 +117,18 @@ public class ChoiceThemeBP extends BorderPane {
             btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
             btnBack.getStyleClass().add("buttonBasic");
             btnBack.setId("medium-button");
-            btnBack.setOnAction(event -> Main.switchScene(new MainPageSP()));
+            btnBack.setOnAction(event -> {
+            	switch (TypeGame.TYPEGAME.getValue()) {
+            	case "SERVER" : 
+            		Main.switchScene(new MultiPlayerRoomServer());
+            		break;
+            	case "CLIENT" :
+            		Main.switchScene(new MultiPlayerRoomClient());
+            		break;
+            	default :
+            		Main.switchScene(new MainPageSP());
+            	}
+            });
         }
         return btnBack;
     }

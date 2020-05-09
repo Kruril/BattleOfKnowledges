@@ -2,6 +2,7 @@ package view.multiplayer;
 
 
 import application.Main;
+import enumeration.TypeGame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -41,6 +42,8 @@ public class MultiplayerBP extends StackPane{
 	            btnCreate.setId("big-button");
 	            btnCreate.setOnAction(event -> {
 					Main.switchScene(new MultiPlayerRoomServer());
+					Main.getServer().start();
+					TypeGame.TYPEGAME.setValue("SERVER");
 				});
 	            
 			}
@@ -53,7 +56,10 @@ public class MultiplayerBP extends StackPane{
 				btnJoin.setBackground(BackgroundLoader.buildBtnBackGround());
 	            btnJoin.getStyleClass().add("buttonBasic");
 	            btnJoin.setId("big-button");
-	            btnJoin.setOnAction(event -> Main.switchScene(new JoinGame()));
+	            btnJoin.setOnAction(event -> {
+	            	Main.switchScene(new JoinGame());
+	            	TypeGame.TYPEGAME.setValue("CLIENT");
+	            });
 			}
 			return btnJoin;
 		}

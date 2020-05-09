@@ -49,7 +49,6 @@ public class MultiPlayerRoomServer extends StackPane {
         this.getChildren().addAll(getIvTitle(), vbWaitingPlayer, getBtnBack(), getBtnStart());
 
         Main.getServer().setProperty(playerWaits, getBtnStart());
-        Main.getServer().start();
     }
 
     public Label getPlayerWait0() {

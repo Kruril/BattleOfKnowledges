@@ -499,6 +499,16 @@
         "I'm most frequently dressed in a black and purple robe, a purple jumpsuit, a purple and black striped tricorn hat"
       ],
       "answer": "Frollo"
+    },
+    {
+      "author": "g",
+      "theme": "Test",
+      "clues": [
+        "g",
+        "g",
+        "g"
+      ],
+      "answer": "g"
     }
   ]
 }

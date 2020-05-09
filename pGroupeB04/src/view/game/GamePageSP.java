@@ -3,6 +3,7 @@ package view.game;
 import application.Main;
 import enumeration.Settings;
 import enumeration.Time;
+import enumeration.TypeGame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.IteratorQuestion;
 import view.dialog.ExitGame;
+import view.multiplayer.EndGameMulti;
 import utils.utility.BackgroundLoader;
 import utils.utility.Damerau;
 import utils.GamePage.Timer;
@@ -264,9 +266,18 @@ public class GamePageSP extends StackPane {
      */
     public void gameOver(String newValue) {
         if (newValue.equals("0") || itQuestions.size() <= 0 || (!Settings.CONTINUE_AFTER_4.isContinueGame() && pointWon == 4)) {
-            Main.switchScene(new EndGameBP(pointWon));
+        	switch (TypeGame.TYPEGAME.getValue()) {
+        	case "SERVER" : 
+        		Main.switchScene(new EndGameMulti(pointWon));
+        		break;
+        	case "CLIENT" :
+        		Main.switchScene(new EndGameMulti(pointWon));
+        		break;
+        	default :        	
+	            Main.switchScene(new EndGameBP(pointWon));
+	            break;
+        	}
             Timer.getTimeTimer().stop();
-            pointWon++;
         }
     }
 
