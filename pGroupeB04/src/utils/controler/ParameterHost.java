@@ -19,11 +19,6 @@ public class ParameterHost implements Serializable {
 	public ParameterHost() {
 		this.time=Time.TIMER_TIME.getValue();
 		this.interval=Time.INTERVAL.getValue();
-		do {
-			this.randomNumber=new Random().nextInt(JsonManager.getThemes().size());
-			this.theme=JsonManager.getThemes().get(randomNumber);
-			this.questions=JsonManager.choiceTheme(theme);
-		}while(this.questions.size()<10);
 	}
 
 
@@ -57,5 +52,9 @@ public class ParameterHost implements Serializable {
 				", questions=" + questions +
 				", CONTINUE=" + CONTINUE +
 				'}';
+	}
+	
+	public void loadQuestions(List<Question> listQuestions) {
+		this.questions = listQuestions;
 	}
 }

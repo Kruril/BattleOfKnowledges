@@ -4,6 +4,8 @@ import application.Main;
 import enumeration.Settings;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import utils.GamePage.RandomTheme;
+import utils.controler.JsonManager;
 import utils.controler.ParameterHost;
 import utils.user.Player;
 import view.game.ChoiceThemeBP;
@@ -12,6 +14,7 @@ import view.game.GamePageSP;
 import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Random;
 
 public class ConnectionServer implements Runnable {
 
@@ -42,6 +45,7 @@ public class ConnectionServer implements Runnable {
             if (newValue) {
                 Settings.CONTINUE_AFTER_4.setContinueGame(true);
                 ParameterHost pHost=new ParameterHost();
+                pHost.loadQuestions(RandomTheme.randomTheme());
                 try {
                     sendObject(pHost);
                 } catch (IOException e) {
@@ -81,7 +85,6 @@ public class ConnectionServer implements Runnable {
     }
 
     public void sendObject(Object packet) throws IOException {
-        System.out.println(packet.getClass());
         out.writeObject(packet);
         out.flush();
     }
