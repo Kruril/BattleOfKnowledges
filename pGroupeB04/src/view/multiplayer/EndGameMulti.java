@@ -1,5 +1,8 @@
 package view.multiplayer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import application.Main;
 import enumeration.TypeGame;
 import javafx.geometry.Pos;
@@ -22,6 +25,8 @@ public class EndGameMulti extends StackPane{
 	private ImageView ivTitle;
 
 	private Button btnExit;
+	
+	private List<Label> listLbl;
 	
 	public EndGameMulti(int point) {
 		this.point = point;
@@ -56,24 +61,27 @@ public class EndGameMulti extends StackPane{
 
 	public Label getLblUser2() {
 		if (lblUser2 == null) {
-			lblUser2 = new Label("waiting player...");
+			lblUser2 = new Label("Waiting player...");
 			lblUser2.getStyleClass().add("waitingPlayer");
+			getListLbl().add(lblUser2);
 		}
 		return lblUser2;
 	}
 
 	public Label getLblUser3() {
 		if (lblUser3 == null) {
-			lblUser3 = new Label("waiting player...");
+			lblUser3 = new Label("Waiting player...");
 			lblUser3.getStyleClass().add("waitingPlayer");
+			getListLbl().add(lblUser3);
 		}
 		return lblUser3;
 	}
 
 	public Label getLblUser4() {
 		if (lblUser4 == null) {
-			lblUser4 = new Label("waiting player...");
+			lblUser4 = new Label("Waiting player...");
 			lblUser4.getStyleClass().add("waitingPlayer");
+			getListLbl().add(lblUser4);
 		}
 		return lblUser4;
 	}
@@ -98,4 +106,12 @@ public class EndGameMulti extends StackPane{
 		}
 		return btnExit;
 	}
+
+	public List<Label> getListLbl() {
+		if (listLbl == null) {
+			listLbl = new ArrayList<>();
+		}
+		return listLbl;
+	}
+	
 }

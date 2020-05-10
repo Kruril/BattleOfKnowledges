@@ -4,6 +4,7 @@ package connection;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,5 +89,8 @@ public class Server implements Runnable{
 		return socket;
 	}
 	
+	public Collection<ConnectionServer> getConnection() {
+		return ConnectionHandlerServer.connections.values();
+	}
 	
 }

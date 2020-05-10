@@ -1,6 +1,6 @@
 {
   "login": "default",
-  "pseudo": "default",
+  "pseudo": "user",
   "bank": 0,
   "allowed": false
 }

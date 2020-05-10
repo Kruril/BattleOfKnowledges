@@ -4,8 +4,14 @@ import connection.Handler.ConnectionHandlerServer;
 import connection.gestion.packets.AddConnectionPacket;
 import connection.gestion.packets.RemoveConnectionPacket;
 import javafx.application.Platform;
+import javafx.scene.control.Label;
+import utils.GamePage.Points;
+import view.multiplayer.EndGameMulti;
 
 import java.io.IOException;
+import java.util.Iterator;
+
+import application.Main;
 
 public class EventListenerServer {
 	
@@ -38,6 +44,22 @@ public class EventListenerServer {
 		else if (p instanceof String) {
 			String value = (String) p;
 			Platform.runLater(() -> connection.getHashMap().get(connection.id + 1).setText(value));
+		}
+		else if (p instanceof Points) {
+			Points points = (Points) p;
+			Platform.runLater(() -> {
+				if (Main.getStage().getScene().getRoot() instanceof EndGameMulti) {
+					EndGameMulti endGame = (EndGameMulti) Main.getStage().getScene().getRoot();
+					Iterator it = endGame.getListLbl().iterator();
+					while (it.hasNext()) {
+						Label label = (Label) it.next();
+						if (label.getText().equals("Waiting player...")) {
+							label.setText(points.getNameUser() + " " + points.getPoints());
+							break;
+						}
+					}
+				}
+			});
 		}
 	}
 

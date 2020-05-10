@@ -1,5 +1,6 @@
 package view.game;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import model.Deck;
@@ -19,7 +20,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import model.IteratorQuestion;
 import model.Question;
+import utils.GamePage.Points;
 import utils.GamePage.Timer;
+import utils.user.Player;
 import utils.utility.BackgroundLoader;
 import utils.utility.Damerau;
 import view.dialog.ExitGame;
@@ -271,9 +274,21 @@ public class GamePageSP extends StackPane {
         	switch (TypeGame.TYPEGAME.getValue()) {
         	case "SERVER" : 
         		Main.switchScene(new EndGameMulti(pointWon));
+        		Main.getServer().getConnection().forEach(connection -> {
+        			try {
+						connection.sendObject(new Points(pointWon, Player.getName()));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+        		});
         		break;
         	case "CLIENT" :
         		Main.switchScene(new EndGameMulti(pointWon));
+        		try {
+					Main.getClient().sendObject(new Points(pointWon, Player.getName()));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
         		break;
         	default :        	
 	            Main.switchScene(new EndGameBP(pointWon));
