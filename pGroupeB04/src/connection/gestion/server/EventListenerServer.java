@@ -47,6 +47,11 @@ public class EventListenerServer {
 		}
 		else if (p instanceof Points) {
 			Points points = (Points) p;
+			for (ConnectionServer connectionServer : ConnectionHandlerServer.connections.values()) {
+				if(connectionServer != connection) {
+					connectionServer.sendObject(points);
+				}
+			}
 			Platform.runLater(() -> {
 				if (Main.getStage().getScene().getRoot() instanceof EndGameMulti) {
 					EndGameMulti endGame = (EndGameMulti) Main.getStage().getScene().getRoot();
