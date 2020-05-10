@@ -1,17 +1,18 @@
 package connection.gestion.server;
 
+import java.io.IOException;
+import java.util.Iterator;
+
+import application.Main;
 import connection.Handler.ConnectionHandlerServer;
 import connection.gestion.packets.AddConnectionPacket;
 import connection.gestion.packets.RemoveConnectionPacket;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
+import model.User;
+import model.UserBuilder;
 import utils.GamePage.Points;
 import view.multiplayer.EndGameMulti;
-
-import java.io.IOException;
-import java.util.Iterator;
-
-import application.Main;
 
 public class EventListenerServer {
 	
@@ -44,14 +45,26 @@ public class EventListenerServer {
 		else if (p instanceof String) {
 			String value = (String) p;
 			Platform.runLater(() -> connection.getHashMap().get(connection.id + 1).setText(value));
+			User user=new UserBuilder()
+					.pseudo(value)
+					.build();
+			for(ConnectionServer c:ConnectionHandlerServer.connections.values()) {
+				if(c!=connection) {
+					c.sendObject(user);
+				}
+			}
 		}
 		else if (p instanceof Points) {
 			Points points = (Points) p;
-			for (ConnectionServer connectionServer : ConnectionHandlerServer.connections.values()) {
-				if(connectionServer != connection) {
-					connectionServer.sendObject(points);
+			ConnectionHandlerServer.connections.forEach((key,connectionServer)->{
+				if(connection!=connectionServer) {
+					try {
+						connectionServer.sendObject(points);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
-			}
+			});
 			Platform.runLater(() -> {
 				if (Main.getStage().getScene().getRoot() instanceof EndGameMulti) {
 					EndGameMulti endGame = (EndGameMulti) Main.getStage().getScene().getRoot();

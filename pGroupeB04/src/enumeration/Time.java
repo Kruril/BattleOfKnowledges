@@ -2,7 +2,7 @@ package enumeration;
 
 public enum Time {
 
-    TIMER_TIME(90),
+    TIMER_TIME(10),
     INTERVAL(3000);
 
     private int value;

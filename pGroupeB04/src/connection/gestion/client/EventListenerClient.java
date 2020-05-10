@@ -21,8 +21,7 @@ import view.multiplayer.MultiPlayerRoomClient;
 public class EventListenerClient {
 
     public void received(Object p) {
-        System.out.println(p.getClass());
-        if (p instanceof AddConnectionPacket) {
+       if (p instanceof AddConnectionPacket) {
             AddConnectionPacket packet = (AddConnectionPacket) p;
             ConnectionHandlerClient.connections.put(packet.id, new ConnectionClient(packet.id));
             System.out.println(packet.id + " has connected");
