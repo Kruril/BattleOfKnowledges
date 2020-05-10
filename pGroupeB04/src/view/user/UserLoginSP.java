@@ -87,6 +87,10 @@ public class UserLoginSP extends StackPane {
         });
     }
 
+    /**
+     * Connect a User to the Main Page
+     * @throws UserUnknown
+     */
     public void connection() throws UserUnknown {
         if (!getTxtLogin().getText().equals("") && !getPwfPassword().getText().equals("")) {
             if (Connection.connectionGame(txtLogin.getText(), pwfPassword.getText(), this.getClass())) {
@@ -195,6 +199,9 @@ public class UserLoginSP extends StackPane {
         pwfPassword.setPromptText(value);
     }
 
+    /**
+     * Clear all TextField and PasswordField
+     */
     public void clearAllEntries() {
         pwfPassword.setText("");
         txtLogin.setText("");

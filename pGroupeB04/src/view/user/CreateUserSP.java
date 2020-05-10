@@ -86,6 +86,10 @@ public class CreateUserSP extends StackPane{
         });
     }
 
+    /**
+     * Create a new User
+     * @throws UserAlreadyExist
+     */
     public void connection() throws UserAlreadyExist{
         if (!getPwfPassword().getText().equals("") && !getTxtLogin().getText().equals("")) {
             if (Connection.createUser(getTxtLogin().getText(), getPwfPassword().getText(), getTxtEmail().getText())) {
@@ -184,6 +188,9 @@ public class CreateUserSP extends StackPane{
         txtEmail.setPromptText(value);
     }
 
+    /**
+     * Clear all textField and PasswordField
+     */
     public void clearAllEntries() {
         pwfPassword.setText("");
         txtLogin.setText("");
