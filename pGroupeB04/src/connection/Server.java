@@ -60,6 +60,11 @@ public class Server implements Runnable{
 		}
 	}
 
+	/**
+	 * initializes the connection to the server
+	 * and creates a new thread
+	 * @param socket socket containing the client connection
+	 */
 	private void initSocket(Socket socket) {
 		ConnectionServer connection = new ConnectionServer(socket,id, hashMap, btnstart);
 		ConnectionHandlerServer.connections.put(id,connection);
@@ -67,6 +72,9 @@ public class Server implements Runnable{
 		id++;
 	}
 
+	/**
+	 * close server sockets
+	 */
 	public void shutdown() {
 		running = false;
 
@@ -83,10 +91,6 @@ public class Server implements Runnable{
 	public void setProperty(HashMap<Integer, Label> hashMap, Button button) {
 		this.btnstart = button;
 		this.hashMap = hashMap;
-	}
-
-	public Socket getSocket() {
-		return socket;
 	}
 	
 	public Collection<ConnectionServer> getConnection() {

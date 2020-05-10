@@ -5,16 +5,13 @@ import enumeration.Settings;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import utils.GamePage.RandomTheme;
-import utils.controler.JsonManager;
 import utils.controler.ParameterHost;
 import utils.user.Player;
-import view.game.ChoiceThemeBP;
 import view.game.GamePageSP;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.Random;
 
 public class ConnectionServer implements Runnable {
 
@@ -73,6 +70,9 @@ public class ConnectionServer implements Runnable {
         }
     }
 
+    /**
+     * Close all elements of the connection
+     */
     public void close() {
         try {
             running = false;
@@ -84,11 +84,23 @@ public class ConnectionServer implements Runnable {
         }
     }
 
+    /**
+     * sends an object passed in parameter to the server
+     * to which it is connected.
+     * @param packet object that you will send
+     * @throws IOException throws an exception if the object is
+     * not serializable or if it has an error in sending
+     */
     public void sendObject(Object packet) throws IOException {
         out.writeObject(packet);
         out.flush();
     }
 
+    /**
+     * send user information
+     * @throws IOException throws an exception if the object is
+     * not serializable or if it has an error in sending
+     */
     public void sendInfo() throws IOException {
         if (socket == null) return;
         out.writeObject(Player.getUser());

@@ -2,6 +2,11 @@ package enumeration;
 
 public enum Time {
 
+    /**
+     * parameter for the time interval between the indices
+     * and the total time of a game
+     */
+
     TIMER_TIME(90),
     INTERVAL(3000);
 

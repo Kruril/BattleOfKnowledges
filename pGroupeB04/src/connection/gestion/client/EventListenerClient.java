@@ -20,6 +20,11 @@ import view.multiplayer.MultiPlayerRoomClient;
 
 public class EventListenerClient {
 
+    /**
+     * Will receive an object which will be treated differently
+     * depending on the type of object received
+     * @param p object to be processed
+     */
     public void received(Object p) {
        if (p instanceof AddConnectionPacket) {
             AddConnectionPacket packet = (AddConnectionPacket) p;
