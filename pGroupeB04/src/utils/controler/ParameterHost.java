@@ -1,11 +1,10 @@
 package utils.controler;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Random;
-
 import enumeration.Time;
 import model.Question;
+
+import java.io.Serializable;
+import java.util.List;
 
 public class ParameterHost implements Serializable {
 	private int time;

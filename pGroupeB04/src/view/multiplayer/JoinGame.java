@@ -1,7 +1,6 @@
 package view.multiplayer;
 
 import application.Main;
-import connection.Client;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -11,8 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import utils.utility.BackgroundLoader;
 import utils.user.Player;
+import utils.utility.BackgroundLoader;
 
 public class JoinGame  extends StackPane {
 
@@ -22,7 +21,7 @@ public class JoinGame  extends StackPane {
     private TextField txtHost, txtNamePLayer;
 
     private Button btnBack, btnJoin;
-    private Insets insets = new Insets(10.);
+    private final Insets insets = new Insets(10.);
 
     public JoinGame() {
 
@@ -93,9 +92,7 @@ public class JoinGame  extends StackPane {
             btnBack.setId("small-button");
             btnBack.setBackground(BackgroundLoader.buildBtnBackGround());
             btnBack.getStyleClass().add("buttonBasic");
-            btnBack.setOnAction(event -> {
-                Main.switchScene(new MultiplayerBP());
-            });
+            btnBack.setOnAction(event -> Main.switchScene(new MultiplayerBP()));
         }
         return btnBack;
     }

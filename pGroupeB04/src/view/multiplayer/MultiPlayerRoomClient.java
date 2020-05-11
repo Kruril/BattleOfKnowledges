@@ -1,8 +1,6 @@
 package view.multiplayer;
 
 import application.Main;
-import connection.Client;
-import connection.Server;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -23,7 +21,7 @@ public class MultiPlayerRoomClient extends StackPane {
 
     private Button btnBack;
 
-    private Insets insets = new Insets(10.);
+    private final Insets insets = new Insets(10.);
 
     private HashMap<Integer, Label> playerWaits;
 

@@ -22,7 +22,7 @@ public class SettingSP extends StackPane {
 
     private ImageView ivTitle;
 
-    private Label lblSound, lblResolution, lblDifficulty, lblContinue;
+    private Label lblSound, lblResolution, lblDifficulty;
 
     private Slider slSound;
 

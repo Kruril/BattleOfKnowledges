@@ -89,7 +89,7 @@ public class UserLoginSP extends StackPane {
 
     /**
      * Connect a User to the Main Page
-     * @throws UserUnknown
+     * @throws UserUnknown if user doesn't exist throw exception
      */
     public void connection() throws UserUnknown {
         if (!getTxtLogin().getText().equals("") && !getPwfPassword().getText().equals("")) {

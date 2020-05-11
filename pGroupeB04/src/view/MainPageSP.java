@@ -7,14 +7,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import utils.utility.BackgroundLoader;
+import javafx.scene.layout.StackPane;
 import utils.controler.JsonManager;
+import utils.user.Player;
+import utils.utility.BackgroundLoader;
 import utils.utility.Resolution;
 import view.game.ChoiceThemeBP;
 import view.multiplayer.MultiplayerBP;
-import utils.user.Player;
-import view.user.UserLoginSP;
 
 public class MainPageSP extends StackPane {
 

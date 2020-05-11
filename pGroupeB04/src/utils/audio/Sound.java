@@ -23,7 +23,7 @@ public class Sound {
 	
 	/**
      * transforms a Sound object into json format
-     * @param volume
+     * @param volume value of volume
      */
     public void toJson(double volume) {
         setSound(new Sound(volume));

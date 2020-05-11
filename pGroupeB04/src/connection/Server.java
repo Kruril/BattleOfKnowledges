@@ -1,25 +1,16 @@
 package connection;
 
 
+import connection.Handler.ConnectionHandlerServer;
+import connection.gestion.server.ConnectionServer;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import application.Main;
-import connection.Handler.ConnectionHandlerServer;
-import connection.gestion.server.ConnectionServer;
-import enumeration.Settings;
-import enumeration.Time;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import model.Question;
-import utils.controler.JsonManager;
-import view.game.GamePageSP;
 
 public class Server implements Runnable{
 

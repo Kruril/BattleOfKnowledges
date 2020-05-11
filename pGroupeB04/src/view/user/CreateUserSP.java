@@ -88,7 +88,7 @@ public class CreateUserSP extends StackPane{
 
     /**
      * Create a new User
-     * @throws UserAlreadyExist
+     * @throws UserAlreadyExist if an user exist throw the exception
      */
     public void connection() throws UserAlreadyExist{
         if (!getPwfPassword().getText().equals("") && !getTxtLogin().getText().equals("")) {
