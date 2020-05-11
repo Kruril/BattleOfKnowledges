@@ -19,28 +19,61 @@ public class Deck implements Pack {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
-	
+
+	/**
+	 * Modify a question by giving the old question
+	 * to modify as well as the new one
+	 * @param questionOld question we want to change
+	 * @param questionNew question with new values
+	 */
 	public void modifyQuestion(Question questionOld, Question questionNew) {
 		int index = findQuestion(questionOld);
 		if (index == -1) return;
 		questions.set(index, questionNew);
 	}
+
+	/**
+	 * Find the index of a question passed to it in parameter
+	 * @param questionFinding question we want to find
+	 * @return the index of the question if it exists otherwise -1
+	 */
 	public int findQuestion(Question questionFinding) {
 		return questions.indexOf(questionFinding);
 	}
 
+	/**
+	 * Save the desired deck to a json file.
+	 * The path to this file is defined by default
+	 */
 	public void toJson(){
 		Serialization.writeJson(Path.FILE_THEME.getPath(),this);
 	}
 
+	/**
+	 * Load a deck from a json file.
+	 * The file path is defined by default
+	 */
 	public void fromJson(){
 		this.setQuestions(Serialization.readJson(Path.FILE_THEME.getPath(), this.getClass()).getList());
 	}
 
+	/**
+	 * Load a deck from a json file.
+	 * The file must be specified
+	 * @param file File that you want to load.
+	 *                Must be in json format
+	 */
 	public void fromJson(File file) {
 		this.setQuestions(Serialization.readJson(file, this.getClass()).getList());
 	}
 
+	/**
+	 * create a question iterator via a chosen theme.
+	 * Will return an iterator containing the list of questions
+	 * on the chosen theme
+	 * @param theme theme we want
+	 * @return Returns an iterator containing the questions with the chosen theme
+	 */
 	public IteratorQuestion createIterator(String theme) {
 		return new IteratorQuestion(JsonManager.choiceTheme(theme));
 	}
@@ -69,6 +102,7 @@ public class Deck implements Pack {
 		return questions;
 	}
 
+	@Override
 	public boolean addQuestion(Question questionAdd) {
 		if (questions.contains(questionAdd) || !questionAdd.checkQuestion()) return false;
 		questions.add(questionAdd);
@@ -87,10 +121,6 @@ public class Deck implements Pack {
 		return new IteratorQuestion(questions);
 	}
 
-	/**
-	 * Check if list is empty return true if list empty and false if list contain questions
-	 * @return boolean true (list is empty) or false (list contain questions)
-	 */
 	@Override
 	public boolean isEmpty() {
 		if (questions == null) return true;

@@ -3,6 +3,10 @@ package utils.GamePage;
 import java.io.Serializable;
 
 public class Points implements Serializable{
+
+	/**
+	 * Point of a partie it use in MultiPlayer
+	 */
 	
 	private int points;
 	private String nameUser;

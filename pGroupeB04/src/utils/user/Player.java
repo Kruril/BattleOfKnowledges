@@ -3,6 +3,9 @@ package utils.user;
 import model.User;
 
 public class Player {
+    /**
+     * Player of the user during one session game
+     */
 
     private static User user;
 

@@ -16,6 +16,7 @@ public class Trash implements Pack {
         return questions;
     }
 
+    @Override
     public boolean addQuestion(Question questionAdd) {
         if (questions.contains(questionAdd) || !questionAdd.checkQuestion()) return false;
         questions.add(questionAdd);
@@ -34,10 +35,6 @@ public class Trash implements Pack {
         return new IteratorQuestion(questions);
     }
 
-    /**
-     * Check if list is empty return true if list empty and false if list contain questions
-     * @return boolean true (list is empty) or false (list contain questions)
-     */
     @Override
     public boolean isEmpty() {
         if (questions == null) return true;

@@ -4,7 +4,6 @@ import application.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -18,8 +17,6 @@ public class AdminChoiceSP extends StackPane{
 	private Button btnModifQuestion;
     private Button btnModifTime;
     private Button btnBack;
-    
-    private Label lblDifficulty;
     
     public AdminChoiceSP() {
     	
@@ -71,17 +68,6 @@ public class AdminChoiceSP extends StackPane{
 			btnModifTime.setOnAction(event -> Main.switchScene(new ModifTimeSP()));
 		}
 		return btnModifTime;
-	}
-	
-	
-	
-	public Label getLblDifficulty() {
-		if (lblDifficulty == null) {
-			lblDifficulty = new Label("Difficulty :");
-			lblDifficulty.getStyleClass().add("labelBasique");
-
-		}
-		return lblDifficulty;
 	}
 
 	public Button getBtnBack() {

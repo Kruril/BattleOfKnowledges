@@ -10,8 +10,6 @@ import model.Question;
 public class ParameterHost implements Serializable {
 	private int time;
 	private int interval;
-	private int randomNumber;
-	private String theme;
 	private List<Question> questions;
 	private final boolean CONTINUE=true;
 	
@@ -30,10 +28,6 @@ public class ParameterHost implements Serializable {
 		return interval;
 	}
 
-	public String getTheme() {
-		return theme;
-	}
-
 	public List<Question> getQuestions() {
 		return questions;
 	}
@@ -47,8 +41,6 @@ public class ParameterHost implements Serializable {
 		return "ParameterHost{" +
 				"time=" + time +
 				", interval=" + interval +
-				", randomNumber=" + randomNumber +
-				", theme='" + theme + '\'' +
 				", questions=" + questions +
 				", CONTINUE=" + CONTINUE +
 				'}';

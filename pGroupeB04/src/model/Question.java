@@ -41,10 +41,6 @@ public class Question implements Serializable{
 		this.clues = clues;
 	}
 
-	public void setClue(int index, List<String> value) {
-		if (index < clues.size()) clues = value;
-	}
-
 	public String getAnswer() {
 		return answer;
 	}
@@ -91,6 +87,11 @@ public class Question implements Serializable{
 		return new Question(author, theme, clues, answer);
 	}
 
+	/**
+	 * Check if the question conforms to a series of elements.
+	 * Each element of a question will be analyzed
+	 * @return if all check is conform or false if not
+	 */
 	public boolean checkQuestion() {
 		if (clues.size() != 3) return false;
 		if (author.equalsIgnoreCase("")) return false;
@@ -102,6 +103,10 @@ public class Question implements Serializable{
 		return clues.get(index);
 	}
 
+	/**
+	 * sets the values ​​of a question via another question
+	 * @param question question with new values
+	 */
 	public void set(Question question) {
 		this.setClues(question.clues);
 		this.setAnswer(question.answer);

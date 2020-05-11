@@ -53,10 +53,19 @@ public class User implements Serializable {
                 '}';
     }
 
+    /**
+     * Load a User from a json file.
+     * The login must be specified
+     * @param login login of user
+     */
     public static User fromJson(String login) {
         return Serialization.readJson(Path.FILE_CONNECTION.getPath() + login, User.class);
     }
 
+    /**
+     * Save the desired deck to a json file.
+     * The path to this file is defined via login of user
+     */
     public void toJson() {
         Serialization.writeJson(Path.FILE_CONNECTION.getPath() + login, this);
     }

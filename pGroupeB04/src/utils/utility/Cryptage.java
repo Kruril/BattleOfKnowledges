@@ -15,6 +15,11 @@ public class Cryptage {
     private static final byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private static final IvParameterSpec ivspec = new IvParameterSpec(iv);
 
+    /**
+     * Will encrypt an item to make it unreadable for reading
+     * @param elementCrypt element that we want to encrypt
+     * @return element encrypt or null if it fail
+     */
     public static String encrypt(String elementCrypt)
     {
         try
@@ -35,6 +40,11 @@ public class Cryptage {
         return null;
     }
 
+    /**
+     * Will decrypt an item to make it readable for reading
+     * @param elementDecrypt element that we want to decrypt
+     * @return element decrypt or null if it fail
+     */
     public static String decrypt(String elementDecrypt) {
         try
         {
